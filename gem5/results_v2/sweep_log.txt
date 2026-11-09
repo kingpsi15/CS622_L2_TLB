@@ -1,0 +1,125 @@
+
+=== FA-NINE: tlb.cc.nine + tlb.hh.nine ===
+  build rc=0 in 621s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1748  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   188  accesses=   8003  insts=150860
+  random1k    walks= 12041  accesses=  66418  insts=255894
+
+=== SA-Exclusive: tlb.cc.exclusive.sa + tlb.hh.exclusive.sa ===
+  build rc=0 in 487s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1584  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   988  accesses=   8003  insts=150860
+  random1k    walks= 11405  accesses=  66418  insts=255894
+
+=== SA-NINE: tlb.cc.nine.sa + tlb.hh.nine.sa ===
+  build rc=0 in 485s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1588  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   988  accesses=   8003  insts=150860
+  random1k    walks= 12136  accesses=  66418  insts=255894
+
+=== SA-Inclusive: tlb.cc.inclusive.sa + tlb.hh.inclusive.sa ===
+  build rc=0 in 304s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1595  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   988  accesses=   8003  insts=150860
+  random1k    walks= 12191  accesses=  66418  insts=255894
+
+=== SA-NINE+SP: tlb.cc.sp + tlb.hh.nine.sa ===
+  build rc=0 in 309s
+  seq_fit     walks=   429  accesses=  10441  insts=21017
+  overflow    walks=  1405  accesses=  13650  insts=23863
+  spread80    walks=   184  accesses=   8023  insts=20889
+  conflict80  walks=   974  accesses=   8003  insts=150860
+  random1k    walks= 12037  accesses=  66418  insts=255894
+
+=== SA-NINE+NaiveFP: tlb.cc.naivefp + tlb.hh.nine.sa ===
+  build rc=0 in 322s
+  seq_fit     walks=   421  accesses=  10441  insts=21017
+  overflow    walks=  1270  accesses=  13650  insts=23863
+  spread80    walks=   179  accesses=   8023  insts=20889
+  conflict80  walks=   979  accesses=   8003  insts=150860
+  random1k    walks= 12030  accesses=  66418  insts=255894
+
+================ FINAL TABLE: DTB page walks (missed L1 AND L2) ================
+config                 seq_fit    overflow    spread80  conflict80    random1k
+FA-NINE                    433        1748         188         188       12041
+SA-Exclusive               433        1584         188         988       11405
+SA-NINE                    433        1588         188         988       12136
+SA-Inclusive               433        1595         188         988       12191
+SA-NINE+SP                 429        1405         184         974       12037
+SA-NINE+NaiveFP            421        1270         179         979       12030
+DONE
+
+=== FA-NINE: tlb.cc.nine + tlb.hh.nine ===
+
+=== FA-NINE: tlb.cc.nine + tlb.hh.nine ===
+
+Restoring original active tlb.cc and tlb.hh...
+
+=== FA-NINE: tlb.cc.nine + tlb.hh.nine ===
+  build rc=0 in 275s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1748  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   188  accesses=   8003  insts=150860
+  random1k    walks= 12041  accesses=  66418  insts=255894
+
+=== SA-Exclusive: tlb.cc.exclusive.sa + tlb.hh.exclusive.sa ===
+  build rc=0 in 281s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1584  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   988  accesses=   8003  insts=150860
+  random1k    walks= 11405  accesses=  66418  insts=255894
+
+=== SA-NINE: tlb.cc.nine.sa + tlb.hh.nine.sa ===
+  build rc=0 in 268s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1588  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   988  accesses=   8003  insts=150860
+  random1k    walks= 12136  accesses=  66418  insts=255894
+
+=== SA-Inclusive: tlb.cc.inclusive.sa + tlb.hh.inclusive.sa ===
+  build rc=0 in 228s
+  seq_fit     walks=   433  accesses=  10441  insts=21017
+  overflow    walks=  1595  accesses=  13650  insts=23863
+  spread80    walks=   188  accesses=   8023  insts=20889
+  conflict80  walks=   988  accesses=   8003  insts=150860
+  random1k    walks= 12191  accesses=  66418  insts=255894
+
+=== SA-NINE+SP: tlb.cc.sp + tlb.hh.nine.sa ===
+  build rc=0 in 228s
+  seq_fit     walks=   429  accesses=  10441  insts=21017
+  overflow    walks=  1405  accesses=  13650  insts=23863
+  spread80    walks=   184  accesses=   8023  insts=20889
+  conflict80  walks=   974  accesses=   8003  insts=150860
+  random1k    walks= 12037  accesses=  66418  insts=255894
+
+=== SA-NINE+NaiveFP: tlb.cc.naivefp + tlb.hh.nine.sa ===
+  build rc=0 in 229s
+  seq_fit     walks=   421  accesses=  10441  insts=21017
+  overflow    walks=  1270  accesses=  13650  insts=23863
+  spread80    walks=   179  accesses=   8023  insts=20889
+  conflict80  walks=   979  accesses=   8003  insts=150860
+  random1k    walks= 12030  accesses=  66418  insts=255894
+
+Restoring original active tlb.cc and tlb.hh...
+Original active build restored.
+
+================ FINAL TABLE: DTB page walks (missed L1 AND L2) ================
+config                 seq_fit    overflow    spread80  conflict80    random1k
+FA-NINE                    433        1748         188         188       12041
+SA-Exclusive               433        1584         188         988       11405
+SA-NINE                    433        1588         188         988       12136
+SA-Inclusive               433        1595         188         988       12191
+SA-NINE+SP                 429        1405         184         974       12037
+SA-NINE+NaiveFP            421        1270         179         979       12030
+DONE

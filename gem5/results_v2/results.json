@@ -1,0 +1,284 @@
+{
+  "FA-NINE": {
+    "seq_fit": {
+      "simInsts": 21017,
+      "rdAccesses": 6568,
+      "wrAccesses": 3873,
+      "rdMisses": 22,
+      "wrMisses": 411,
+      "dtbAccesses": 10441,
+      "dtbWalks": 433
+    },
+    "overflow": {
+      "simInsts": 23863,
+      "rdAccesses": 8615,
+      "wrAccesses": 5035,
+      "rdMisses": 539,
+      "wrMisses": 1209,
+      "dtbAccesses": 13650,
+      "dtbWalks": 1748
+    },
+    "spread80": {
+      "simInsts": 20889,
+      "rdAccesses": 4804,
+      "wrAccesses": 3219,
+      "rdMisses": 15,
+      "wrMisses": 173,
+      "dtbAccesses": 8023,
+      "dtbWalks": 188
+    },
+    "conflict80": {
+      "simInsts": 150860,
+      "rdAccesses": 4811,
+      "wrAccesses": 3192,
+      "rdMisses": 15,
+      "wrMisses": 173,
+      "dtbAccesses": 8003,
+      "dtbWalks": 188
+    },
+    "random1k": {
+      "simInsts": 255894,
+      "rdAccesses": 42262,
+      "wrAccesses": 24156,
+      "rdMisses": 9981,
+      "wrMisses": 2060,
+      "dtbAccesses": 66418,
+      "dtbWalks": 12041
+    }
+  },
+  "SA-Exclusive": {
+    "seq_fit": {
+      "simInsts": 21017,
+      "rdAccesses": 6568,
+      "wrAccesses": 3873,
+      "rdMisses": 22,
+      "wrMisses": 411,
+      "dtbAccesses": 10441,
+      "dtbWalks": 433
+    },
+    "overflow": {
+      "simInsts": 23863,
+      "rdAccesses": 8615,
+      "wrAccesses": 5035,
+      "rdMisses": 375,
+      "wrMisses": 1209,
+      "dtbAccesses": 13650,
+      "dtbWalks": 1584
+    },
+    "spread80": {
+      "simInsts": 20889,
+      "rdAccesses": 4804,
+      "wrAccesses": 3219,
+      "rdMisses": 15,
+      "wrMisses": 173,
+      "dtbAccesses": 8023,
+      "dtbWalks": 188
+    },
+    "conflict80": {
+      "simInsts": 150860,
+      "rdAccesses": 4811,
+      "wrAccesses": 3192,
+      "rdMisses": 815,
+      "wrMisses": 173,
+      "dtbAccesses": 8003,
+      "dtbWalks": 988
+    },
+    "random1k": {
+      "simInsts": 255894,
+      "rdAccesses": 42262,
+      "wrAccesses": 24156,
+      "rdMisses": 9345,
+      "wrMisses": 2060,
+      "dtbAccesses": 66418,
+      "dtbWalks": 11405
+    }
+  },
+  "SA-NINE": {
+    "seq_fit": {
+      "simInsts": 21017,
+      "rdAccesses": 6568,
+      "wrAccesses": 3873,
+      "rdMisses": 22,
+      "wrMisses": 411,
+      "dtbAccesses": 10441,
+      "dtbWalks": 433
+    },
+    "overflow": {
+      "simInsts": 23863,
+      "rdAccesses": 8615,
+      "wrAccesses": 5035,
+      "rdMisses": 379,
+      "wrMisses": 1209,
+      "dtbAccesses": 13650,
+      "dtbWalks": 1588
+    },
+    "spread80": {
+      "simInsts": 20889,
+      "rdAccesses": 4804,
+      "wrAccesses": 3219,
+      "rdMisses": 15,
+      "wrMisses": 173,
+      "dtbAccesses": 8023,
+      "dtbWalks": 188
+    },
+    "conflict80": {
+      "simInsts": 150860,
+      "rdAccesses": 4811,
+      "wrAccesses": 3192,
+      "rdMisses": 815,
+      "wrMisses": 173,
+      "dtbAccesses": 8003,
+      "dtbWalks": 988
+    },
+    "random1k": {
+      "simInsts": 255894,
+      "rdAccesses": 42262,
+      "wrAccesses": 24156,
+      "rdMisses": 10076,
+      "wrMisses": 2060,
+      "dtbAccesses": 66418,
+      "dtbWalks": 12136
+    }
+  },
+  "SA-Inclusive": {
+    "seq_fit": {
+      "simInsts": 21017,
+      "rdAccesses": 6568,
+      "wrAccesses": 3873,
+      "rdMisses": 22,
+      "wrMisses": 411,
+      "dtbAccesses": 10441,
+      "dtbWalks": 433
+    },
+    "overflow": {
+      "simInsts": 23863,
+      "rdAccesses": 8615,
+      "wrAccesses": 5035,
+      "rdMisses": 386,
+      "wrMisses": 1209,
+      "dtbAccesses": 13650,
+      "dtbWalks": 1595
+    },
+    "spread80": {
+      "simInsts": 20889,
+      "rdAccesses": 4804,
+      "wrAccesses": 3219,
+      "rdMisses": 15,
+      "wrMisses": 173,
+      "dtbAccesses": 8023,
+      "dtbWalks": 188
+    },
+    "conflict80": {
+      "simInsts": 150860,
+      "rdAccesses": 4811,
+      "wrAccesses": 3192,
+      "rdMisses": 815,
+      "wrMisses": 173,
+      "dtbAccesses": 8003,
+      "dtbWalks": 988
+    },
+    "random1k": {
+      "simInsts": 255894,
+      "rdAccesses": 42262,
+      "wrAccesses": 24156,
+      "rdMisses": 10102,
+      "wrMisses": 2089,
+      "dtbAccesses": 66418,
+      "dtbWalks": 12191
+    }
+  },
+  "SA-NINE+SP": {
+    "seq_fit": {
+      "simInsts": 21017,
+      "rdAccesses": 6568,
+      "wrAccesses": 3873,
+      "rdMisses": 20,
+      "wrMisses": 409,
+      "dtbAccesses": 10441,
+      "dtbWalks": 429
+    },
+    "overflow": {
+      "simInsts": 23863,
+      "rdAccesses": 8615,
+      "wrAccesses": 5035,
+      "rdMisses": 198,
+      "wrMisses": 1207,
+      "dtbAccesses": 13650,
+      "dtbWalks": 1405
+    },
+    "spread80": {
+      "simInsts": 20889,
+      "rdAccesses": 4804,
+      "wrAccesses": 3219,
+      "rdMisses": 13,
+      "wrMisses": 171,
+      "dtbAccesses": 8023,
+      "dtbWalks": 184
+    },
+    "conflict80": {
+      "simInsts": 150860,
+      "rdAccesses": 4811,
+      "wrAccesses": 3192,
+      "rdMisses": 803,
+      "wrMisses": 171,
+      "dtbAccesses": 8003,
+      "dtbWalks": 974
+    },
+    "random1k": {
+      "simInsts": 255894,
+      "rdAccesses": 42262,
+      "wrAccesses": 24156,
+      "rdMisses": 9979,
+      "wrMisses": 2058,
+      "dtbAccesses": 66418,
+      "dtbWalks": 12037
+    }
+  },
+  "SA-NINE+NaiveFP": {
+    "seq_fit": {
+      "simInsts": 21017,
+      "rdAccesses": 6568,
+      "wrAccesses": 3873,
+      "rdMisses": 14,
+      "wrMisses": 407,
+      "dtbAccesses": 10441,
+      "dtbWalks": 421
+    },
+    "overflow": {
+      "simInsts": 23863,
+      "rdAccesses": 8615,
+      "wrAccesses": 5035,
+      "rdMisses": 64,
+      "wrMisses": 1206,
+      "dtbAccesses": 13650,
+      "dtbWalks": 1270
+    },
+    "spread80": {
+      "simInsts": 20889,
+      "rdAccesses": 4804,
+      "wrAccesses": 3219,
+      "rdMisses": 10,
+      "wrMisses": 169,
+      "dtbAccesses": 8023,
+      "dtbWalks": 179
+    },
+    "conflict80": {
+      "simInsts": 150860,
+      "rdAccesses": 4811,
+      "wrAccesses": 3192,
+      "rdMisses": 810,
+      "wrMisses": 169,
+      "dtbAccesses": 8003,
+      "dtbWalks": 979
+    },
+    "random1k": {
+      "simInsts": 255894,
+      "rdAccesses": 42262,
+      "wrAccesses": 24156,
+      "rdMisses": 9974,
+      "wrMisses": 2056,
+      "dtbAccesses": 66418,
+      "dtbWalks": 12030
+    }
+  }
+}
