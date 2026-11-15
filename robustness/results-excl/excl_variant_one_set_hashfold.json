@@ -1,0 +1,66 @@
+[
+ {
+  "name": "one_set_hashfold-capacity_65_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7513,
+   "wrAccesses": 4336,
+   "exAccesses": 119157,
+   "rdMisses": 265,
+   "wrMisses": 402,
+   "exMisses": 68,
+   "chkOracleChecks": 130937,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_one_set_hashfold/base/one_set_hashfold-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "one_set_hashfold-capacity_65_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7513,
+   "wrAccesses": 4336,
+   "exAccesses": 119157,
+   "rdMisses": 29,
+   "wrMisses": 142,
+   "exMisses": 68,
+   "chkOracleChecks": 130937,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 708,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 496,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_one_set_hashfold/inc/one_set_hashfold-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ }
+]

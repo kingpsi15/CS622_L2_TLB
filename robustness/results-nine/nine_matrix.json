@@ -1,0 +1,4022 @@
+[
+ {
+  "name": "se-1c1p1t-atomic-capacity_2048_2",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 76553,
+   "wrAccesses": 33300,
+   "exAccesses": 1592795,
+   "rdMisses": 24771,
+   "wrMisses": 26580,
+   "exMisses": 68,
+   "chkOracleChecks": 1700592,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_2048_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_2048_2",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 76553,
+   "wrAccesses": 33300,
+   "exAccesses": 1592795,
+   "rdMisses": 23326,
+   "wrMisses": 25401,
+   "exMisses": 68,
+   "chkOracleChecks": 1700592,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_2048_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_511_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=511 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39630,
+   "wrAccesses": 16383,
+   "exAccesses": 799870,
+   "rdMisses": 12141,
+   "wrMisses": 12490,
+   "exMisses": 68,
+   "chkOracleChecks": 855367,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_511_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_511_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=511 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39630,
+   "wrAccesses": 16383,
+   "exAccesses": 799870,
+   "rdMisses": 132,
+   "wrMisses": 1127,
+   "exMisses": 68,
+   "chkOracleChecks": 855367,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_511_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_512_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=512 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39702,
+   "wrAccesses": 16410,
+   "exAccesses": 801395,
+   "rdMisses": 12185,
+   "wrMisses": 12629,
+   "exMisses": 68,
+   "chkOracleChecks": 856990,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_512_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_512_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=512 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39702,
+   "wrAccesses": 16410,
+   "exAccesses": 801395,
+   "rdMisses": 201,
+   "wrMisses": 1174,
+   "exMisses": 68,
+   "chkOracleChecks": 856990,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_512_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_513_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39774,
+   "wrAccesses": 16436,
+   "exAccesses": 802920,
+   "rdMisses": 12225,
+   "wrMisses": 12657,
+   "exMisses": 68,
+   "chkOracleChecks": 858612,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_513_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_513_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39774,
+   "wrAccesses": 16436,
+   "exAccesses": 802920,
+   "rdMisses": 257,
+   "wrMisses": 1215,
+   "exMisses": 68,
+   "chkOracleChecks": 858612,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_513_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_63_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=63 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7369,
+   "wrAccesses": 4283,
+   "exAccesses": 116107,
+   "rdMisses": 53,
+   "wrMisses": 228,
+   "exMisses": 68,
+   "chkOracleChecks": 127692,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_63_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_63_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=63 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7369,
+   "wrAccesses": 4283,
+   "exAccesses": 116107,
+   "rdMisses": 17,
+   "wrMisses": 138,
+   "exMisses": 68,
+   "chkOracleChecks": 127692,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_63_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_64_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=64 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7441,
+   "wrAccesses": 4310,
+   "exAccesses": 117632,
+   "rdMisses": 185,
+   "wrMisses": 315,
+   "exMisses": 68,
+   "chkOracleChecks": 129315,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_64_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_64_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=64 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7441,
+   "wrAccesses": 4310,
+   "exAccesses": 117632,
+   "rdMisses": 17,
+   "wrMisses": 140,
+   "exMisses": 68,
+   "chkOracleChecks": 129315,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_64_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_65_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7513,
+   "wrAccesses": 4336,
+   "exAccesses": 119157,
+   "rdMisses": 265,
+   "wrMisses": 402,
+   "exMisses": 68,
+   "chkOracleChecks": 130937,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-capacity_65_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7513,
+   "wrAccesses": 4336,
+   "exAccesses": 119157,
+   "rdMisses": 17,
+   "wrMisses": 142,
+   "exMisses": 68,
+   "chkOracleChecks": 130937,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-conflict_200_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7630,
+   "wrAccesses": 4754,
+   "exAccesses": 559964,
+   "rdMisses": 1553,
+   "wrMisses": 1744,
+   "exMisses": 68,
+   "chkOracleChecks": 572144,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-conflict_200_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-conflict_200_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7630,
+   "wrAccesses": 4754,
+   "exAccesses": 559964,
+   "rdMisses": 1533,
+   "wrMisses": 1744,
+   "exMisses": 68,
+   "chkOracleChecks": 572144,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-conflict_200_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-conflict_80_10",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=10"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7653,
+   "wrAccesses": 4406,
+   "exAccesses": 298497,
+   "rdMisses": 1019,
+   "wrMisses": 1143,
+   "exMisses": 68,
+   "chkOracleChecks": 310472,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-conflict_80_10",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-conflict_80_10",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=10"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7653,
+   "wrAccesses": 4406,
+   "exAccesses": 298497,
+   "rdMisses": 987,
+   "wrMisses": 1143,
+   "exMisses": 68,
+   "chkOracleChecks": 310472,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-conflict_80_10",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-huge_2",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 2078,
+   "wrMisses": 4111,
+   "exMisses": 66,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-huge_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-huge_2",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 1752,
+   "wrMisses": 4110,
+   "exMisses": 66,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-huge_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-interrupts_4_200",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=1",
+   "fatal: syscall setitimer (#38) unimplemented.",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": 1,
+  "secs": 0,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-interrupts_4_200",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-interrupts_4_200",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=1",
+   "fatal: syscall setitimer (#38) unimplemented.",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": 1,
+  "secs": 0,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-interrupts_4_200",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-protect_3",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "protect",
+    "SKIP",
+    "write to read-only page 0 round 0 did NOT fault (mprotect not enforced - SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2902,
+   "wrAccesses": 2697,
+   "exAccesses": 19905,
+   "rdMisses": 30,
+   "wrMisses": 142,
+   "exMisses": 68,
+   "chkOracleChecks": 25436,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-protect_3",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-protect_3",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "protect",
+    "SKIP",
+    "write to read-only page 0 round 0 did NOT fault (mprotect not enforced - SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2902,
+   "wrAccesses": 2697,
+   "exAccesses": 19905,
+   "rdMisses": 16,
+   "wrMisses": 140,
+   "exMisses": 68,
+   "chkOracleChecks": 25436,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-protect_3",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-remap_20_96",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 12462,
+   "wrAccesses": 8355,
+   "exAccesses": 161692,
+   "rdMisses": 5840,
+   "wrMisses": 2028,
+   "exMisses": 165,
+   "chkOracleChecks": 180489,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-atomic-remap_20_96",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-atomic-remap_20_96",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 12462,
+   "wrAccesses": 8355,
+   "exAccesses": 161692,
+   "rdMisses": 3900,
+   "wrMisses": 204,
+   "exMisses": 165,
+   "chkOracleChecks": 180489,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-atomic-remap_20_96",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_2048_2",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 12,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 92256,
+   "wrAccesses": 44310,
+   "exAccesses": 154237,
+   "rdMisses": 24845,
+   "wrMisses": 36903,
+   "exMisses": 106,
+   "chkOracleChecks": 278326,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_2048_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_2048_2",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 92256,
+   "wrAccesses": 44310,
+   "exAccesses": 154237,
+   "rdMisses": 23401,
+   "wrMisses": 35724,
+   "exMisses": 105,
+   "chkOracleChecks": 278326,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_2048_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_511_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=511 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 45747,
+   "wrAccesses": 19594,
+   "exAccesses": 73001,
+   "rdMisses": 12213,
+   "wrMisses": 15041,
+   "exMisses": 106,
+   "chkOracleChecks": 135178,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_511_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_511_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=511 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 45747,
+   "wrAccesses": 19594,
+   "exAccesses": 73001,
+   "rdMisses": 213,
+   "wrMisses": 3678,
+   "exMisses": 105,
+   "chkOracleChecks": 135178,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_511_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_512_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=512 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 45764,
+   "wrAccesses": 19625,
+   "exAccesses": 73822,
+   "rdMisses": 12261,
+   "wrMisses": 15185,
+   "exMisses": 106,
+   "chkOracleChecks": 136041,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_512_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_512_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=512 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 45764,
+   "wrAccesses": 19625,
+   "exAccesses": 73822,
+   "rdMisses": 281,
+   "wrMisses": 3730,
+   "exMisses": 105,
+   "chkOracleChecks": 136041,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_512_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_513_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 45682,
+   "wrAccesses": 19665,
+   "exAccesses": 73458,
+   "rdMisses": 12300,
+   "wrMisses": 15218,
+   "exMisses": 108,
+   "chkOracleChecks": 135626,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_513_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_513_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 45682,
+   "wrAccesses": 19665,
+   "exAccesses": 73458,
+   "rdMisses": 342,
+   "wrMisses": 3776,
+   "exMisses": 107,
+   "chkOracleChecks": 135626,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_513_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_63_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=63 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 9600,
+   "wrAccesses": 5448,
+   "exAccesses": 13232,
+   "rdMisses": 210,
+   "wrMisses": 541,
+   "exMisses": 108,
+   "chkOracleChecks": 27802,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_63_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_63_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=63 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 9600,
+   "wrAccesses": 5448,
+   "exAccesses": 13232,
+   "rdMisses": 87,
+   "wrMisses": 448,
+   "exMisses": 107,
+   "chkOracleChecks": 27802,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_63_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_64_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=64 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 9679,
+   "wrAccesses": 5425,
+   "exAccesses": 12993,
+   "rdMisses": 286,
+   "wrMisses": 631,
+   "exMisses": 106,
+   "chkOracleChecks": 27615,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_64_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_64_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=64 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 9679,
+   "wrAccesses": 5425,
+   "exAccesses": 12993,
+   "rdMisses": 87,
+   "wrMisses": 455,
+   "exMisses": 105,
+   "chkOracleChecks": 27615,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_64_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_65_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 9718,
+   "wrAccesses": 5323,
+   "exAccesses": 13230,
+   "rdMisses": 343,
+   "wrMisses": 722,
+   "exMisses": 108,
+   "chkOracleChecks": 27781,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-capacity_65_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 9718,
+   "wrAccesses": 5323,
+   "exAccesses": 13230,
+   "rdMisses": 87,
+   "wrMisses": 462,
+   "exMisses": 107,
+   "chkOracleChecks": 27781,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-conflict_200_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 10767,
+   "wrAccesses": 6518,
+   "exAccesses": 16126,
+   "rdMisses": 1628,
+   "wrMisses": 2739,
+   "exMisses": 106,
+   "chkOracleChecks": 32113,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-conflict_200_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-conflict_200_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 10767,
+   "wrAccesses": 6518,
+   "exAccesses": 16126,
+   "rdMisses": 1604,
+   "wrMisses": 2739,
+   "exMisses": 105,
+   "chkOracleChecks": 32113,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-conflict_200_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-conflict_80_10",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=10"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 10010,
+   "wrAccesses": 5564,
+   "exAccesses": 13960,
+   "rdMisses": 1098,
+   "wrMisses": 1538,
+   "exMisses": 106,
+   "chkOracleChecks": 28954,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-conflict_80_10",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-conflict_80_10",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=10"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 10010,
+   "wrAccesses": 5564,
+   "exAccesses": 13960,
+   "rdMisses": 1062,
+   "wrMisses": 1538,
+   "exMisses": 105,
+   "chkOracleChecks": 28954,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-conflict_80_10",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-huge_2",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 6360,
+   "wrAccesses": 21624,
+   "exAccesses": 49448,
+   "rdMisses": 2150,
+   "wrMisses": 18428,
+   "exMisses": 107,
+   "chkOracleChecks": 60963,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-huge_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-huge_2",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 6360,
+   "wrAccesses": 21624,
+   "exAccesses": 49448,
+   "rdMisses": 1828,
+   "wrMisses": 18425,
+   "exMisses": 106,
+   "chkOracleChecks": 60963,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-huge_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-interrupts_4_200",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=1",
+   "fatal: syscall setitimer (#38) unimplemented.",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": 1,
+  "secs": 1,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-interrupts_4_200",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-interrupts_4_200",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=1",
+   "fatal: syscall setitimer (#38) unimplemented.",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": 1,
+  "secs": 1,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-interrupts_4_200",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-protect_3",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "protect",
+    "SKIP",
+    "write to read-only page 0 round 0 did NOT fault (mprotect not enforced - SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4733,
+   "wrAccesses": 4759,
+   "exAccesses": 4829,
+   "rdMisses": 96,
+   "wrMisses": 1288,
+   "exMisses": 107,
+   "chkOracleChecks": 13008,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-protect_3",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-protect_3",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "protect",
+    "SKIP",
+    "write to read-only page 0 round 0 did NOT fault (mprotect not enforced - SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4733,
+   "wrAccesses": 4759,
+   "exAccesses": 4829,
+   "rdMisses": 84,
+   "wrMisses": 1287,
+   "exMisses": 106,
+   "chkOracleChecks": 13008,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-protect_3",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-remap_20_96",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 46777,
+   "wrAccesses": 28967,
+   "exAccesses": 113559,
+   "rdMisses": 20680,
+   "wrMisses": 2604,
+   "exMisses": 232,
+   "chkOracleChecks": 171844,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-o3-remap_20_96",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-o3-remap_20_96",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 46777,
+   "wrAccesses": 28967,
+   "exAccesses": 113559,
+   "rdMisses": 18738,
+   "wrMisses": 780,
+   "exMisses": 232,
+   "chkOracleChecks": 171844,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-o3-remap_20_96",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_2048_2",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 76553,
+   "wrAccesses": 33300,
+   "exAccesses": 1592795,
+   "rdMisses": 24771,
+   "wrMisses": 26580,
+   "exMisses": 68,
+   "chkOracleChecks": 1700592,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_2048_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_2048_2",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 76553,
+   "wrAccesses": 33300,
+   "exAccesses": 1592795,
+   "rdMisses": 23326,
+   "wrMisses": 25401,
+   "exMisses": 68,
+   "chkOracleChecks": 1700592,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_2048_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_511_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=511 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39630,
+   "wrAccesses": 16383,
+   "exAccesses": 799870,
+   "rdMisses": 12141,
+   "wrMisses": 12490,
+   "exMisses": 68,
+   "chkOracleChecks": 855367,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_511_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_511_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=511 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39630,
+   "wrAccesses": 16383,
+   "exAccesses": 799870,
+   "rdMisses": 132,
+   "wrMisses": 1127,
+   "exMisses": 68,
+   "chkOracleChecks": 855367,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_511_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_512_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=512 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39702,
+   "wrAccesses": 16410,
+   "exAccesses": 801395,
+   "rdMisses": 12185,
+   "wrMisses": 12629,
+   "exMisses": 68,
+   "chkOracleChecks": 856990,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_512_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_512_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=512 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39702,
+   "wrAccesses": 16410,
+   "exAccesses": 801395,
+   "rdMisses": 201,
+   "wrMisses": 1174,
+   "exMisses": 68,
+   "chkOracleChecks": 856990,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_512_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_513_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39774,
+   "wrAccesses": 16436,
+   "exAccesses": 802920,
+   "rdMisses": 12225,
+   "wrMisses": 12657,
+   "exMisses": 68,
+   "chkOracleChecks": 858612,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_513_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_513_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39774,
+   "wrAccesses": 16436,
+   "exAccesses": 802920,
+   "rdMisses": 257,
+   "wrMisses": 1215,
+   "exMisses": 68,
+   "chkOracleChecks": 858612,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_513_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_63_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=63 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7369,
+   "wrAccesses": 4283,
+   "exAccesses": 116107,
+   "rdMisses": 53,
+   "wrMisses": 228,
+   "exMisses": 68,
+   "chkOracleChecks": 127692,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_63_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_63_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=63 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7369,
+   "wrAccesses": 4283,
+   "exAccesses": 116107,
+   "rdMisses": 17,
+   "wrMisses": 138,
+   "exMisses": 68,
+   "chkOracleChecks": 127692,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_63_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_64_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=64 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7441,
+   "wrAccesses": 4310,
+   "exAccesses": 117632,
+   "rdMisses": 185,
+   "wrMisses": 315,
+   "exMisses": 68,
+   "chkOracleChecks": 129315,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_64_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_64_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=64 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7441,
+   "wrAccesses": 4310,
+   "exAccesses": 117632,
+   "rdMisses": 17,
+   "wrMisses": 140,
+   "exMisses": 68,
+   "chkOracleChecks": 129315,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_64_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_65_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7513,
+   "wrAccesses": 4336,
+   "exAccesses": 119157,
+   "rdMisses": 265,
+   "wrMisses": 402,
+   "exMisses": 68,
+   "chkOracleChecks": 130937,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-capacity_65_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7513,
+   "wrAccesses": 4336,
+   "exAccesses": 119157,
+   "rdMisses": 17,
+   "wrMisses": 142,
+   "exMisses": 68,
+   "chkOracleChecks": 130937,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-capacity_65_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-conflict_200_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7630,
+   "wrAccesses": 4754,
+   "exAccesses": 559964,
+   "rdMisses": 1553,
+   "wrMisses": 1744,
+   "exMisses": 68,
+   "chkOracleChecks": 572144,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-conflict_200_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-conflict_200_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7630,
+   "wrAccesses": 4754,
+   "exAccesses": 559964,
+   "rdMisses": 1533,
+   "wrMisses": 1744,
+   "exMisses": 68,
+   "chkOracleChecks": 572144,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-conflict_200_4",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-conflict_80_10",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=10"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7653,
+   "wrAccesses": 4406,
+   "exAccesses": 298497,
+   "rdMisses": 1019,
+   "wrMisses": 1143,
+   "exMisses": 68,
+   "chkOracleChecks": 310472,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-conflict_80_10",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-conflict_80_10",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=10"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7653,
+   "wrAccesses": 4406,
+   "exAccesses": 298497,
+   "rdMisses": 987,
+   "wrMisses": 1143,
+   "exMisses": 68,
+   "chkOracleChecks": 310472,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-conflict_80_10",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-huge_2",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 2078,
+   "wrMisses": 4111,
+   "exMisses": 66,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-huge_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-huge_2",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 1752,
+   "wrMisses": 4110,
+   "exMisses": 66,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-huge_2",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-interrupts_4_200",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=1",
+   "fatal: syscall setitimer (#38) unimplemented.",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": 1,
+  "secs": 0,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-interrupts_4_200",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-interrupts_4_200",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=1",
+   "fatal: syscall setitimer (#38) unimplemented.",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": 1,
+  "secs": 0,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-interrupts_4_200",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-protect_3",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "protect",
+    "SKIP",
+    "write to read-only page 0 round 0 did NOT fault (mprotect not enforced - SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2902,
+   "wrAccesses": 2697,
+   "exAccesses": 19905,
+   "rdMisses": 30,
+   "wrMisses": 142,
+   "exMisses": 68,
+   "chkOracleChecks": 25436,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-protect_3",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-protect_3",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "protect",
+    "SKIP",
+    "write to read-only page 0 round 0 did NOT fault (mprotect not enforced - SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2902,
+   "wrAccesses": 2697,
+   "exAccesses": 19905,
+   "rdMisses": 16,
+   "wrMisses": 140,
+   "exMisses": 68,
+   "chkOracleChecks": 25436,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-protect_3",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-remap_20_96",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 12462,
+   "wrAccesses": 8355,
+   "exAccesses": 161692,
+   "rdMisses": 5840,
+   "wrMisses": 2028,
+   "exMisses": 165,
+   "chkOracleChecks": 180489,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-1c1p1t-timing-remap_20_96",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-1c1p1t-timing-remap_20_96",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 12462,
+   "wrAccesses": 8355,
+   "exAccesses": 161692,
+   "rdMisses": 3900,
+   "wrMisses": 204,
+   "exMisses": 165,
+   "chkOracleChecks": 180489,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-1c1p1t-timing-remap_20_96",
+  "desc": "single core / single process / single thread"
+ },
+ {
+  "name": "se-2c-atomic-fork-procs",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=3 rounds=5 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 11023,
+   "wrAccesses": 10278,
+   "exAccesses": 188262,
+   "rdMisses": 3085,
+   "wrMisses": 2740,
+   "exMisses": 75,
+   "chkOracleChecks": 209399,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-2c-atomic-fork-procs",
+  "desc": "fork + COW + same-VA processes"
+ },
+ {
+  "name": "se-2c-atomic-fork-procs",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=3 rounds=5 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 11023,
+   "wrAccesses": 10278,
+   "exAccesses": 188262,
+   "rdMisses": 508,
+   "wrMisses": 335,
+   "exMisses": 75,
+   "chkOracleChecks": 209399,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-2c-atomic-fork-procs",
+  "desc": "fork + COW + same-VA processes"
+ },
+ {
+  "name": "se-2c-atomic-fork-shared",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=TIMEOUT",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": "TIMEOUT",
+  "secs": 10800,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-2c-atomic-fork-shared",
+  "desc": "fork + MAP_SHARED"
+ },
+ {
+  "name": "se-2c-atomic-fork-shared",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=TIMEOUT",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": "TIMEOUT",
+  "secs": 10800,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-2c-atomic-fork-shared",
+  "desc": "fork + MAP_SHARED"
+ },
+ {
+  "name": "se-2c-o3-fork-procs",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=3 rounds=5 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 34564,
+   "wrAccesses": 36413,
+   "exAccesses": 96773,
+   "rdMisses": 3221,
+   "wrMisses": 4144,
+   "exMisses": 126,
+   "chkOracleChecks": 166030,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-2c-o3-fork-procs",
+  "desc": "fork + COW + same-VA processes"
+ },
+ {
+  "name": "se-2c-o3-fork-procs",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 7,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=3 rounds=5 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 34564,
+   "wrAccesses": 36413,
+   "exAccesses": 96773,
+   "rdMisses": 630,
+   "wrMisses": 1736,
+   "exMisses": 125,
+   "chkOracleChecks": 166030,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-2c-o3-fork-procs",
+  "desc": "fork + COW + same-VA processes"
+ },
+ {
+  "name": "se-2c-o3-fork-shared",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=TIMEOUT",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": "TIMEOUT",
+  "secs": 10800,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-2c-o3-fork-shared",
+  "desc": "fork + MAP_SHARED"
+ },
+ {
+  "name": "se-2c-o3-fork-shared",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=TIMEOUT",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": "TIMEOUT",
+  "secs": 10800,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-2c-o3-fork-shared",
+  "desc": "fork + MAP_SHARED"
+ },
+ {
+  "name": "se-2c-timing-fork-procs",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=3 rounds=5 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 11023,
+   "wrAccesses": 10278,
+   "exAccesses": 188262,
+   "rdMisses": 3085,
+   "wrMisses": 2740,
+   "exMisses": 75,
+   "chkOracleChecks": 209399,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-2c-timing-fork-procs",
+  "desc": "fork + COW + same-VA processes"
+ },
+ {
+  "name": "se-2c-timing-fork-procs",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=3 rounds=5 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 11023,
+   "wrAccesses": 10278,
+   "exAccesses": 188262,
+   "rdMisses": 508,
+   "wrMisses": 335,
+   "exMisses": 75,
+   "chkOracleChecks": 209399,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-2c-timing-fork-procs",
+  "desc": "fork + COW + same-VA processes"
+ },
+ {
+  "name": "se-2c-timing-fork-shared",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=TIMEOUT",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": "TIMEOUT",
+  "secs": 10800,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-2c-timing-fork-shared",
+  "desc": "fork + MAP_SHARED"
+ },
+ {
+  "name": "se-2c-timing-fork-shared",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=TIMEOUT",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": "TIMEOUT",
+  "secs": 10800,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-2c-timing-fork-shared",
+  "desc": "fork + MAP_SHARED"
+ },
+ {
+  "name": "se-4c1p3t-atomic-threads",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=3 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 13152,
+   "wrAccesses": 10717,
+   "exAccesses": 216601,
+   "rdMisses": 2699,
+   "wrMisses": 3604,
+   "exMisses": 224,
+   "chkOracleChecks": 239554,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-4c1p3t-atomic-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-4c1p3t-atomic-threads",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=3 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 13152,
+   "wrAccesses": 10717,
+   "exAccesses": 216601,
+   "rdMisses": 111,
+   "wrMisses": 1865,
+   "exMisses": 224,
+   "chkOracleChecks": 239554,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-4c1p3t-atomic-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-4c1p3t-o3-threads",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=3 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 21630,
+   "wrAccesses": 16531,
+   "exAccesses": 36464,
+   "rdMisses": 2831,
+   "wrMisses": 8101,
+   "exMisses": 341,
+   "chkOracleChecks": 68988,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-4c1p3t-o3-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-4c1p3t-o3-threads",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=3 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 21630,
+   "wrAccesses": 16531,
+   "exAccesses": 36464,
+   "rdMisses": 245,
+   "wrMisses": 6364,
+   "exMisses": 341,
+   "chkOracleChecks": 68988,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-4c1p3t-o3-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-4c1p3t-timing-threads",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=3 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 13136,
+   "wrAccesses": 10706,
+   "exAccesses": 216490,
+   "rdMisses": 2706,
+   "wrMisses": 3598,
+   "exMisses": 216,
+   "chkOracleChecks": 239416,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-4c1p3t-timing-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-4c1p3t-timing-threads",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=3 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 13136,
+   "wrAccesses": 10706,
+   "exAccesses": 216490,
+   "rdMisses": 122,
+   "wrMisses": 1861,
+   "exMisses": 216,
+   "chkOracleChecks": 239416,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-4c1p3t-timing-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-4c4p-atomic-multiprog",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 79679,
+   "wrAccesses": 41281,
+   "exAccesses": 1713512,
+   "rdMisses": 22623,
+   "wrMisses": 24918,
+   "exMisses": 365,
+   "chkOracleChecks": 1831713,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-4c4p-atomic-multiprog",
+  "desc": "4 cores, 4 different processes"
+ },
+ {
+  "name": "se-4c4p-atomic-multiprog",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 79679,
+   "wrAccesses": 41281,
+   "exAccesses": 1713512,
+   "rdMisses": 13016,
+   "wrMisses": 15853,
+   "exMisses": 365,
+   "chkOracleChecks": 1831713,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-4c4p-atomic-multiprog",
+  "desc": "4 cores, 4 different processes"
+ },
+ {
+  "name": "se-4c4p-o3-multiprog",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 107178,
+   "wrAccesses": 59460,
+   "exAccesses": 182793,
+   "rdMisses": 24249,
+   "wrMisses": 38336,
+   "exMisses": 629,
+   "chkOracleChecks": 331494,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-4c4p-o3-multiprog",
+  "desc": "4 cores, 4 different processes"
+ },
+ {
+  "name": "se-4c4p-o3-multiprog",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 9,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 107178,
+   "wrAccesses": 59460,
+   "exAccesses": 182793,
+   "rdMisses": 14575,
+   "wrMisses": 29271,
+   "exMisses": 629,
+   "chkOracleChecks": 331494,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-4c4p-o3-multiprog",
+  "desc": "4 cores, 4 different processes"
+ },
+ {
+  "name": "se-4c4p-timing-multiprog",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 79679,
+   "wrAccesses": 41281,
+   "exAccesses": 1713512,
+   "rdMisses": 22623,
+   "wrMisses": 24920,
+   "exMisses": 366,
+   "chkOracleChecks": 1831713,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-4c4p-timing-multiprog",
+  "desc": "4 cores, 4 different processes"
+ },
+ {
+  "name": "se-4c4p-timing-multiprog",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 79679,
+   "wrAccesses": 41281,
+   "exAccesses": 1713512,
+   "rdMisses": 12930,
+   "wrMisses": 15855,
+   "exMisses": 366,
+   "chkOracleChecks": 1831713,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-4c4p-timing-multiprog",
+  "desc": "4 cores, 4 different processes"
+ },
+ {
+  "name": "se-8c1p7t-atomic-threads",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=7 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 27131,
+   "wrAccesses": 21768,
+   "exAccesses": 480590,
+   "rdMisses": 6315,
+   "wrMisses": 8418,
+   "exMisses": 501,
+   "chkOracleChecks": 527356,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-8c1p7t-atomic-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-8c1p7t-atomic-threads",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=7 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 27131,
+   "wrAccesses": 21768,
+   "exAccesses": 480590,
+   "rdMisses": 727,
+   "wrMisses": 4360,
+   "exMisses": 501,
+   "chkOracleChecks": 527356,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-8c1p7t-atomic-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-8c1p7t-o3-threads",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=7 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 44665,
+   "wrAccesses": 34528,
+   "exAccesses": 79078,
+   "rdMisses": 6481,
+   "wrMisses": 18929,
+   "exMisses": 810,
+   "chkOracleChecks": 145210,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-8c1p7t-o3-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-8c1p7t-o3-threads",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 7,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=7 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 44665,
+   "wrAccesses": 34528,
+   "exAccesses": 79078,
+   "rdMisses": 1200,
+   "wrMisses": 15105,
+   "exMisses": 810,
+   "chkOracleChecks": 145210,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-8c1p7t-o3-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-8c1p7t-timing-threads",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=7 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 27102,
+   "wrAccesses": 21748,
+   "exAccesses": 480396,
+   "rdMisses": 6328,
+   "wrMisses": 8419,
+   "exMisses": 485,
+   "chkOracleChecks": 527113,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-8c1p7t-timing-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-8c1p7t-timing-threads",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=7 pages/thread=300 passes=3"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 27102,
+   "wrAccesses": 21748,
+   "exAccesses": 480396,
+   "rdMisses": 643,
+   "wrMisses": 4362,
+   "exMisses": 485,
+   "chkOracleChecks": 527113,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-8c1p7t-timing-threads",
+  "desc": "multicore, one process, pthreads (clone) - shared address space, private TLBs"
+ },
+ {
+  "name": "se-8c8p-atomic-multiprog",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xfbcc1cdf85d15fd7 (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=1 pages/thread=200 passes=2"
+   ],
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xfbcc1cdf85d15fd7 (old frame data)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=6 orders=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=3"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 139766,
+   "wrAccesses": 70907,
+   "exAccesses": 3259487,
+   "rdMisses": 36830,
+   "wrMisses": 40098,
+   "exMisses": 732,
+   "chkOracleChecks": 3466418,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-8c8p-atomic-multiprog",
+  "desc": "8 cores, 8 different processes"
+ },
+ {
+  "name": "se-8c8p-atomic-multiprog",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xfbcc1cdf85d15fd7 (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=1 pages/thread=200 passes=2"
+   ],
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xfbcc1cdf85d15fd7 (old frame data)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=6 orders=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=3"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 139766,
+   "wrAccesses": 70907,
+   "exAccesses": 3259487,
+   "rdMisses": 21021,
+   "wrMisses": 25255,
+   "exMisses": 732,
+   "chkOracleChecks": 3466418,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-8c8p-atomic-multiprog",
+  "desc": "8 cores, 8 different processes"
+ },
+ {
+  "name": "se-8c8p-o3-multiprog",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xb799e8d7135d2781 (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 15,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=1 pages/thread=200 passes=2"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=6 orders=6"
+   ],
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xb799e8d7135d2781 (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=3"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 181775,
+   "wrAccesses": 96984,
+   "exAccesses": 298804,
+   "rdMisses": 38761,
+   "wrMisses": 58341,
+   "exMisses": 1256,
+   "chkOracleChecks": 553271,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-8c8p-o3-multiprog",
+  "desc": "8 cores, 8 different processes"
+ },
+ {
+  "name": "se-8c8p-o3-multiprog",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xb799e8d7135d2781 (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 17,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=1 pages/thread=200 passes=2"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=6 orders=6"
+   ],
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0xb799e8d7135d2781 (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=3"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 181775,
+   "wrAccesses": 96984,
+   "exAccesses": 298804,
+   "rdMisses": 22836,
+   "wrMisses": 43498,
+   "exMisses": 1256,
+   "chkOracleChecks": 553271,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-8c8p-o3-multiprog",
+  "desc": "8 cores, 8 different processes"
+ },
+ {
+  "name": "se-8c8p-timing-multiprog",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=1 pages/thread=200 passes=2"
+   ],
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=6 orders=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=3"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 139766,
+   "wrAccesses": 70907,
+   "exAccesses": 3259487,
+   "rdMisses": 36801,
+   "wrMisses": 40131,
+   "exMisses": 739,
+   "chkOracleChecks": 3466418,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-8c8p-timing-multiprog",
+  "desc": "8 cores, 8 different processes"
+ },
+ {
+  "name": "se-8c8p-timing-multiprog",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 9,
+  "results": [
+   [
+    "threads",
+    "PASS",
+    "threads=1 pages/thread=200 passes=2"
+   ],
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7f9f000 got 0x268d5bd070e0559f (old frame data)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=65 passes=6 orders=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=3"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=2048 passes=1 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 139766,
+   "wrAccesses": 70907,
+   "exAccesses": 3259487,
+   "rdMisses": 20853,
+   "wrMisses": 25297,
+   "exMisses": 739,
+   "chkOracleChecks": 3466418,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-8c8p-timing-multiprog",
+  "desc": "8 cores, 8 different processes"
+ },
+ {
+  "name": "se-smt2-o3-mixed",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 52322,
+   "wrAccesses": 23642,
+   "exAccesses": 84605,
+   "rdMisses": 13430,
+   "wrMisses": 15563,
+   "exMisses": 277,
+   "chkOracleChecks": 157984,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-smt2-o3-mixed",
+  "desc": "SMT, conflict storm + capacity in the other thread"
+ },
+ {
+  "name": "se-smt2-o3-mixed",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=700 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 52322,
+   "wrAccesses": 23642,
+   "exAccesses": 84605,
+   "rdMisses": 7522,
+   "wrMisses": 10161,
+   "exMisses": 234,
+   "chkOracleChecks": 157984,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-smt2-o3-mixed",
+  "desc": "SMT, conflict storm + capacity in the other thread"
+ },
+ {
+  "name": "se-smt2-o3-same-test",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 90740,
+   "wrAccesses": 106171,
+   "exAccesses": 172792,
+   "rdMisses": 18858,
+   "wrMisses": 21541,
+   "exMisses": 284,
+   "chkOracleChecks": 366376,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-smt2-o3-same-test",
+  "desc": "SMT, 2 processes with identical VA layout share one TLB"
+ },
+ {
+  "name": "se-smt2-o3-same-test",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 90740,
+   "wrAccesses": 106171,
+   "exAccesses": 172792,
+   "rdMisses": 14714,
+   "wrMisses": 17763,
+   "exMisses": 234,
+   "chkOracleChecks": 366376,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-smt2-o3-same-test",
+  "desc": "SMT, 2 processes with identical VA layout share one TLB"
+ },
+ {
+  "name": "se-smt4-o3-mixed",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7fbf000 got 0x853f788ab7e18561 (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7fbf000 got 0x853f788ab7e18561 (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=300 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 58694,
+   "wrAccesses": 33908,
+   "exAccesses": 93699,
+   "rdMisses": 12935,
+   "wrMisses": 14017,
+   "exMisses": 640,
+   "chkOracleChecks": 183928,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/base/se-smt4-o3-mixed",
+  "desc": "SMT, 4 hardware threads / 4 processes on one core"
+ },
+ {
+  "name": "se-smt4-o3-mixed",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test remap FAIL: STALE after remap round 1 page 0 va 0x7ffff7fbf000 got 0x853f788ab7e18561 (old frame data)"
+  ],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "remap",
+    "FAIL",
+    "STALE after remap round 1 page 0 va 0x7ffff7fbf000 got 0x853f788ab7e18561 (old frame data)"
+   ],
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=300 passes=3 orders=6"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=2 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 58694,
+   "wrAccesses": 33908,
+   "exAccesses": 93699,
+   "rdMisses": 4231,
+   "wrMisses": 5986,
+   "exMisses": 536,
+   "chkOracleChecks": 183928,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-nine/runs/nine_matrix/inc/se-smt4-o3-mixed",
+  "desc": "SMT, 4 hardware threads / 4 processes on one core"
+ }
+]

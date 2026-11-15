@@ -1,0 +1,3458 @@
+[
+ {
+  "name": "pf-o3-asc-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 7,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245892,
+   "wrAccesses": 84867,
+   "exAccesses": 237109,
+   "rdMisses": 8300,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 542931,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-asc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-asc-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245892,
+   "wrAccesses": 84867,
+   "exAccesses": 237109,
+   "rdMisses": 1118,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 542931,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-asc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-asc-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64640,
+   "wrAccesses": 23345,
+   "exAccesses": 62360,
+   "rdMisses": 145,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 144146,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-asc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-asc-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64640,
+   "wrAccesses": 23345,
+   "exAccesses": 62360,
+   "rdMisses": 120,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 144146,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-asc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-asc-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 36,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970936,
+   "wrAccesses": 330924,
+   "exAccesses": 935771,
+   "rdMisses": 32890,
+   "wrMisses": 107987,
+   "exMisses": 116,
+   "chkOracleChecks": 2137738,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-asc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-asc-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 24,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970936,
+   "wrAccesses": 330924,
+   "exAccesses": 935771,
+   "rdMisses": 4192,
+   "wrMisses": 107984,
+   "exMisses": 69,
+   "chkOracleChecks": 2137738,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-asc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-chase-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 13,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 262357,
+   "wrAccesses": 76677,
+   "exAccesses": 269964,
+   "rdMisses": 8231,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 584061,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-chase-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-chase-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 262357,
+   "wrAccesses": 76677,
+   "exAccesses": 269964,
+   "rdMisses": 6634,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 584061,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-chase-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-chase-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 52334,
+   "wrAccesses": 21292,
+   "exAccesses": 52103,
+   "rdMisses": 163,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 119530,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-chase-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-chase-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 52334,
+   "wrAccesses": 21292,
+   "exAccesses": 52103,
+   "rdMisses": 165,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 119530,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-chase-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-chase-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 33,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1036541,
+   "wrAccesses": 298162,
+   "exAccesses": 1066922,
+   "rdMisses": 32933,
+   "wrMisses": 107988,
+   "exMisses": 116,
+   "chkOracleChecks": 2301732,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-chase-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-chase-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 33,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1036541,
+   "wrAccesses": 298162,
+   "exAccesses": 1066922,
+   "rdMisses": 31146,
+   "wrMisses": 107985,
+   "exMisses": 69,
+   "chkOracleChecks": 2301732,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-chase-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-desc-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 49269,
+   "wrAccesses": 60285,
+   "exAccesses": 97849,
+   "rdMisses": 7805,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 182466,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-desc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-desc-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 49269,
+   "wrAccesses": 60285,
+   "exAccesses": 97849,
+   "rdMisses": 1065,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 182466,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-desc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-desc-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 15477,
+   "wrAccesses": 17198,
+   "exAccesses": 27552,
+   "rdMisses": 158,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 54028,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-desc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-desc-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 15477,
+   "wrAccesses": 17198,
+   "exAccesses": 27552,
+   "rdMisses": 137,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 54028,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-desc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-desc-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 184495,
+   "wrAccesses": 232614,
+   "exAccesses": 378724,
+   "rdMisses": 32408,
+   "wrMisses": 107987,
+   "exMisses": 116,
+   "chkOracleChecks": 695940,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-desc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-desc-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 16,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 184495,
+   "wrAccesses": 232614,
+   "exAccesses": 378724,
+   "rdMisses": 4140,
+   "wrMisses": 107984,
+   "exMisses": 69,
+   "chkOracleChecks": 695940,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-desc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-hotcold-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 12,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xca2dd66491b26970"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 327940,
+   "wrAccesses": 84857,
+   "exAccesses": 335525,
+   "rdMisses": 4093,
+   "wrMisses": 26879,
+   "exMisses": 116,
+   "chkOracleChecks": 723381,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-hotcold-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-hotcold-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 15,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xca2dd66491b26970"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 327940,
+   "wrAccesses": 84857,
+   "exAccesses": 335525,
+   "rdMisses": 3296,
+   "wrMisses": 26876,
+   "exMisses": 69,
+   "chkOracleChecks": 723381,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-hotcold-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-hotcold-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x3df2a2dbceed9e0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 85212,
+   "wrAccesses": 23334,
+   "exAccesses": 89103,
+   "rdMisses": 109,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 191450,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-hotcold-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-hotcold-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x3df2a2dbceed9e0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 85212,
+   "wrAccesses": 23334,
+   "exAccesses": 89103,
+   "rdMisses": 103,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 191450,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-hotcold-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-hotcold-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 30,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xc4f795c480409a8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1298736,
+   "wrAccesses": 330917,
+   "exAccesses": 1329091,
+   "rdMisses": 16536,
+   "wrMisses": 107988,
+   "exMisses": 116,
+   "chkOracleChecks": 2858851,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-hotcold-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-hotcold-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 34,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xc4f795c480409a8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1298736,
+   "wrAccesses": 330917,
+   "exAccesses": 1329091,
+   "rdMisses": 15558,
+   "wrMisses": 107985,
+   "exMisses": 69,
+   "chkOracleChecks": 2858851,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-hotcold-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-random-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 188641,
+   "wrAccesses": 68477,
+   "exAccesses": 196267,
+   "rdMisses": 8231,
+   "wrMisses": 26879,
+   "exMisses": 116,
+   "chkOracleChecks": 428444,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-random-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-random-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 188641,
+   "wrAccesses": 68477,
+   "exAccesses": 196267,
+   "rdMisses": 6634,
+   "wrMisses": 26876,
+   "exMisses": 69,
+   "chkOracleChecks": 428444,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-random-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-random-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 50365,
+   "wrAccesses": 19243,
+   "exAccesses": 54252,
+   "rdMisses": 165,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 117661,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-random-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-random-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 50365,
+   "wrAccesses": 19243,
+   "exAccesses": 54252,
+   "rdMisses": 164,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 117661,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-random-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-random-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 21,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 741647,
+   "wrAccesses": 265386,
+   "exAccesses": 772038,
+   "rdMisses": 32933,
+   "wrMisses": 107988,
+   "exMisses": 116,
+   "chkOracleChecks": 1679178,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-random-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-random-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 27,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 741647,
+   "wrAccesses": 265386,
+   "exAccesses": 772038,
+   "rdMisses": 31146,
+   "wrMisses": 107985,
+   "exMisses": 69,
+   "chkOracleChecks": 1679178,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-random-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s16-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x523d47ba0e0c4680"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245901,
+   "wrAccesses": 84867,
+   "exAccesses": 237129,
+   "rdMisses": 204,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 542960,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s16-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s16-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x523d47ba0e0c4680"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245901,
+   "wrAccesses": 84867,
+   "exAccesses": 237129,
+   "rdMisses": 8282,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 542960,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s16-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s16-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xab2b7fa0732e7d80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64648,
+   "wrAccesses": 23346,
+   "exAccesses": 62379,
+   "rdMisses": 104,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 144174,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s16-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s16-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xab2b7fa0732e7d80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64648,
+   "wrAccesses": 23346,
+   "exAccesses": 62379,
+   "rdMisses": 94,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 144174,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s16-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s16-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 21,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xa1f107bba6c55a80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970949,
+   "wrAccesses": 330924,
+   "exAccesses": 935791,
+   "rdMisses": 944,
+   "wrMisses": 107987,
+   "exMisses": 116,
+   "chkOracleChecks": 2137771,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s16-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s16-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 22,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xa1f107bba6c55a80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970949,
+   "wrAccesses": 330924,
+   "exAccesses": 935791,
+   "rdMisses": 32860,
+   "wrMisses": 107984,
+   "exMisses": 69,
+   "chkOracleChecks": 2137771,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s16-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s2-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 7,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xdcbfa5c792e9ae00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245880,
+   "wrAccesses": 84861,
+   "exAccesses": 237099,
+   "rdMisses": 8301,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 542903,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s2-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s2-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 12,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xdcbfa5c792e9ae00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245880,
+   "wrAccesses": 84861,
+   "exAccesses": 237099,
+   "rdMisses": 2146,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 542903,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s2-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s2-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xcdcbfb5a2f7a1230"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64630,
+   "wrAccesses": 23341,
+   "exAccesses": 62354,
+   "rdMisses": 109,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 144126,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s2-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s2-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xcdcbfb5a2f7a1230"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64630,
+   "wrAccesses": 23341,
+   "exAccesses": 62354,
+   "rdMisses": 106,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 144126,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s2-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s2-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 32,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xcbfa54117a3f64c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970913,
+   "wrAccesses": 330913,
+   "exAccesses": 935758,
+   "rdMisses": 32890,
+   "wrMisses": 107987,
+   "exMisses": 116,
+   "chkOracleChecks": 2137691,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s2-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s2-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 24,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xcbfa54117a3f64c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970913,
+   "wrAccesses": 330913,
+   "exAccesses": 935758,
+   "rdMisses": 8292,
+   "wrMisses": 107984,
+   "exMisses": 69,
+   "chkOracleChecks": 2137691,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s2-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s4-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xed88753fdd1a8d60"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245872,
+   "wrAccesses": 84858,
+   "exAccesses": 237104,
+   "rdMisses": 667,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 542897,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s4-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s4-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xed88753fdd1a8d60"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245872,
+   "wrAccesses": 84858,
+   "exAccesses": 237104,
+   "rdMisses": 4202,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 542897,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s4-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s4-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x11fe2f9c1c0f2100"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64633,
+   "wrAccesses": 23342,
+   "exAccesses": 62363,
+   "rdMisses": 105,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 144139,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s4-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s4-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x11fe2f9c1c0f2100"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64633,
+   "wrAccesses": 23342,
+   "exAccesses": 62363,
+   "rdMisses": 101,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 144139,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s4-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s4-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 32,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xf1d91749c89bd00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970914,
+   "wrAccesses": 330913,
+   "exAccesses": 935767,
+   "rdMisses": 32890,
+   "wrMisses": 107987,
+   "exMisses": 116,
+   "chkOracleChecks": 2137701,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s4-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s4-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 24,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xf1d91749c89bd00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970914,
+   "wrAccesses": 330913,
+   "exAccesses": 935767,
+   "rdMisses": 16492,
+   "wrMisses": 107984,
+   "exMisses": 69,
+   "chkOracleChecks": 2137701,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s4-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s8-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xf1a21bea98757c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245877,
+   "wrAccesses": 84859,
+   "exAccesses": 237111,
+   "rdMisses": 317,
+   "wrMisses": 26879,
+   "exMisses": 112,
+   "chkOracleChecks": 542910,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s8-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s8-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xf1a21bea98757c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 245877,
+   "wrAccesses": 84859,
+   "exAccesses": 237111,
+   "rdMisses": 8282,
+   "wrMisses": 26876,
+   "exMisses": 65,
+   "chkOracleChecks": 542910,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s8-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s8-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x9a62a07e08030600"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64642,
+   "wrAccesses": 23344,
+   "exAccesses": 62369,
+   "rdMisses": 104,
+   "wrMisses": 6600,
+   "exMisses": 112,
+   "chkOracleChecks": 144156,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s8-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s8-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x9a62a07e08030600"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 64642,
+   "wrAccesses": 23344,
+   "exAccesses": 62369,
+   "rdMisses": 101,
+   "wrMisses": 6597,
+   "exMisses": 65,
+   "chkOracleChecks": 144156,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s8-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s8-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 27,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0x956415f37860b840"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970930,
+   "wrAccesses": 330916,
+   "exAccesses": 935776,
+   "rdMisses": 32890,
+   "wrMisses": 107987,
+   "exMisses": 116,
+   "chkOracleChecks": 2137729,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-o3-s8-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-o3-s8-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 33,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0x956415f37860b840"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 970930,
+   "wrAccesses": 330916,
+   "exAccesses": 935776,
+   "rdMisses": 32860,
+   "wrMisses": 107984,
+   "exMisses": 69,
+   "chkOracleChecks": 2137729,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-o3-s8-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-asc-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244176,
+   "wrAccesses": 37154,
+   "exAccesses": 1356904,
+   "rdMisses": 8228,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 1636178,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-asc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-asc-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244176,
+   "wrAccesses": 37154,
+   "exAccesses": 1356904,
+   "rdMisses": 1046,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 1636178,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-asc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-asc-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62927,
+   "wrAccesses": 11038,
+   "exAccesses": 352312,
+   "rdMisses": 75,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 425760,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-asc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-asc-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62927,
+   "wrAccesses": 11038,
+   "exAccesses": 352312,
+   "rdMisses": 49,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 425760,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-asc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-asc-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969170,
+   "wrAccesses": 141617,
+   "exAccesses": 5375116,
+   "rdMisses": 32816,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 6477691,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-asc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-asc-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_asc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969170,
+   "wrAccesses": 141617,
+   "exAccesses": 5375116,
+   "rdMisses": 4119,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 6477691,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-asc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-chase-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 260565,
+   "wrAccesses": 28962,
+   "exAccesses": 1766639,
+   "rdMisses": 8159,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 2054110,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-chase-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-chase-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 260565,
+   "wrAccesses": 28962,
+   "exAccesses": 1766639,
+   "rdMisses": 6562,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 2054110,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-chase-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-chase-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 50639,
+   "wrAccesses": 8990,
+   "exAccesses": 274489,
+   "rdMisses": 92,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 333601,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-chase-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-chase-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 50639,
+   "wrAccesses": 8990,
+   "exAccesses": 274489,
+   "rdMisses": 95,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 333601,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-chase-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-chase-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 9,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1034711,
+   "wrAccesses": 108849,
+   "exAccesses": 7013651,
+   "rdMisses": 32861,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 8148999,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-chase-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-chase-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "pf_chase",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1034711,
+   "wrAccesses": 108849,
+   "exAccesses": 7013651,
+   "rdMisses": 31074,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 8148999,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-chase-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-desc-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 47567,
+   "wrAccesses": 12577,
+   "exAccesses": 406630,
+   "rdMisses": 7733,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 464718,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-desc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-desc-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 47567,
+   "wrAccesses": 12577,
+   "exAccesses": 406630,
+   "rdMisses": 993,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 464718,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-desc-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-desc-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 13774,
+   "wrAccesses": 4893,
+   "exAccesses": 114742,
+   "rdMisses": 88,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 132892,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-desc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-desc-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 13774,
+   "wrAccesses": 4893,
+   "exAccesses": 114742,
+   "rdMisses": 66,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 132892,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-desc-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-desc-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 182737,
+   "wrAccesses": 43312,
+   "exAccesses": 1574026,
+   "rdMisses": 32333,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 1791863,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-desc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-desc-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_desc",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 182737,
+   "wrAccesses": 43312,
+   "exAccesses": 1574026,
+   "rdMisses": 4067,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 1791863,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-desc-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-hotcold-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xca2dd66491b26970"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 326105,
+   "wrAccesses": 37154,
+   "exAccesses": 2344227,
+   "rdMisses": 4021,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 2705430,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-hotcold-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-hotcold-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xca2dd66491b26970"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 326105,
+   "wrAccesses": 37154,
+   "exAccesses": 2344227,
+   "rdMisses": 3224,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 2705430,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-hotcold-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-hotcold-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x3df2a2dbceed9e0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 83415,
+   "wrAccesses": 11036,
+   "exAccesses": 599272,
+   "rdMisses": 38,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 693206,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-hotcold-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-hotcold-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x3df2a2dbceed9e0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 83415,
+   "wrAccesses": 11036,
+   "exAccesses": 599272,
+   "rdMisses": 32,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 693206,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-hotcold-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-hotcold-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 16,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xc4f795c480409a8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1296858,
+   "wrAccesses": 141616,
+   "exAccesses": 9323836,
+   "rdMisses": 16464,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 10754098,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-hotcold-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-hotcold-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 17,
+  "results": [
+   [
+    "pf_hotcold",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xc4f795c480409a8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1296858,
+   "wrAccesses": 141616,
+   "exAccesses": 9323836,
+   "rdMisses": 15486,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 10754098,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-hotcold-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-random-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 186841,
+   "wrAccesses": 20769,
+   "exAccesses": 1209635,
+   "rdMisses": 8159,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 1415189,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-random-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-random-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x545b3d1586b96de8"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 186841,
+   "wrAccesses": 20769,
+   "exAccesses": 1209635,
+   "rdMisses": 6562,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 1415189,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-random-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-random-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 48596,
+   "wrAccesses": 6942,
+   "exAccesses": 315583,
+   "rdMisses": 94,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 370604,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-random-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-random-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xabb2e00c0479f340"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 48596,
+   "wrAccesses": 6942,
+   "exAccesses": 315583,
+   "rdMisses": 94,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 370604,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-random-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-random-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 739803,
+   "wrAccesses": 76080,
+   "exAccesses": 4785479,
+   "rdMisses": 32861,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 5593150,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-random-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-random-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_random",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xaa68b3c7105d0db0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 739803,
+   "wrAccesses": 76080,
+   "exAccesses": 4785479,
+   "rdMisses": 31074,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 5593150,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-random-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s16-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x523d47ba0e0c4680"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244177,
+   "wrAccesses": 37154,
+   "exAccesses": 1356908,
+   "rdMisses": 132,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 1636183,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s16-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s16-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0x523d47ba0e0c4680"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244177,
+   "wrAccesses": 37154,
+   "exAccesses": 1356908,
+   "rdMisses": 8210,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 1636183,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s16-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s16-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xab2b7fa0732e7d80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62928,
+   "wrAccesses": 11038,
+   "exAccesses": 352316,
+   "rdMisses": 33,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 425765,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s16-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s16-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xab2b7fa0732e7d80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62928,
+   "wrAccesses": 11038,
+   "exAccesses": 352316,
+   "rdMisses": 23,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 425765,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s16-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s16-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xa1f107bba6c55a80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969171,
+   "wrAccesses": 141617,
+   "exAccesses": 5375120,
+   "rdMisses": 870,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 6477696,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s16-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s16-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_s16",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xa1f107bba6c55a80"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969171,
+   "wrAccesses": 141617,
+   "exAccesses": 5375120,
+   "rdMisses": 32787,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 6477696,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s16-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s2-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xdcbfa5c792e9ae00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244153,
+   "wrAccesses": 37150,
+   "exAccesses": 1356787,
+   "rdMisses": 8227,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 1636034,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s2-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s2-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xdcbfa5c792e9ae00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244153,
+   "wrAccesses": 37150,
+   "exAccesses": 1356787,
+   "rdMisses": 2074,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 1636034,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s2-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s2-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xcdcbfb5a2f7a1230"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62904,
+   "wrAccesses": 11034,
+   "exAccesses": 352195,
+   "rdMisses": 35,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 425616,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s2-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s2-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0xcdcbfb5a2f7a1230"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62904,
+   "wrAccesses": 11034,
+   "exAccesses": 352195,
+   "rdMisses": 35,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 425616,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s2-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s2-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xcbfa54117a3f64c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969147,
+   "wrAccesses": 141613,
+   "exAccesses": 5374999,
+   "rdMisses": 32815,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 6477547,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s2-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s2-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_s2",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xcbfa54117a3f64c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969147,
+   "wrAccesses": 141613,
+   "exAccesses": 5374999,
+   "rdMisses": 8219,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 6477547,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s2-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s4-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xed88753fdd1a8d60"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244160,
+   "wrAccesses": 37151,
+   "exAccesses": 1356821,
+   "rdMisses": 595,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 1636076,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s4-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s4-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xed88753fdd1a8d60"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244160,
+   "wrAccesses": 37151,
+   "exAccesses": 1356821,
+   "rdMisses": 4130,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 1636076,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s4-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s4-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x11fe2f9c1c0f2100"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62911,
+   "wrAccesses": 11035,
+   "exAccesses": 352229,
+   "rdMisses": 34,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 425658,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s4-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s4-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x11fe2f9c1c0f2100"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62911,
+   "wrAccesses": 11035,
+   "exAccesses": 352229,
+   "rdMisses": 30,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 425658,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s4-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s4-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xf1d91749c89bd00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969153,
+   "wrAccesses": 141613,
+   "exAccesses": 5375022,
+   "rdMisses": 32816,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 6477576,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s4-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s4-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s4",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0xf1d91749c89bd00"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969153,
+   "wrAccesses": 141613,
+   "exAccesses": 5375022,
+   "rdMisses": 16419,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 6477576,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s4-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s8-2048",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xf1a21bea98757c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244167,
+   "wrAccesses": 37151,
+   "exAccesses": 1356853,
+   "rdMisses": 245,
+   "wrMisses": 4116,
+   "exMisses": 59,
+   "chkOracleChecks": 1636115,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s8-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s8-2048",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=2048 passes=4 reads=8192 sum=0xf1a21bea98757c0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 244167,
+   "wrAccesses": 37151,
+   "exAccesses": 1356853,
+   "rdMisses": 8210,
+   "wrMisses": 4113,
+   "exMisses": 17,
+   "chkOracleChecks": 1636115,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s8-2048",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s8-512",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x9a62a07e08030600"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62919,
+   "wrAccesses": 11036,
+   "exAccesses": 352272,
+   "rdMisses": 33,
+   "wrMisses": 1037,
+   "exMisses": 59,
+   "chkOracleChecks": 425710,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s8-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s8-512",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=512 passes=4 reads=2048 sum=0x9a62a07e08030600"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 62919,
+   "wrAccesses": 11036,
+   "exAccesses": 352272,
+   "rdMisses": 30,
+   "wrMisses": 1034,
+   "exMisses": 17,
+   "chkOracleChecks": 425710,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s8-512",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s8-8192",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0x956415f37860b840"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969162,
+   "wrAccesses": 141615,
+   "exAccesses": 5375076,
+   "rdMisses": 32816,
+   "wrMisses": 16428,
+   "exMisses": 59,
+   "chkOracleChecks": 6477641,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/base/pf-timing-s8-8192",
+  "desc": "prefetch pattern"
+ },
+ {
+  "name": "pf-timing-s8-8192",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "pf_s8",
+    "PASS",
+    "pages=8192 passes=4 reads=32768 sum=0x956415f37860b840"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 969162,
+   "wrAccesses": 141615,
+   "exAccesses": 5375076,
+   "rdMisses": 32787,
+   "wrMisses": 16425,
+   "exMisses": 17,
+   "chkOracleChecks": 6477641,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_matrix/inc/pf-timing-s8-8192",
+  "desc": "prefetch pattern"
+ }
+]

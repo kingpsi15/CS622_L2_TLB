@@ -1,0 +1,611 @@
+--- gem5/src/arch/x86/tlb.cc.inclusive.sa	2026-11-11 09:34:00.387584353 +0530
++++ gem5/src/arch/x86/tlb.cc.inc.fixed	2026-11-13 04:18:36.166316702 +0530
+@@ -35,6 +35,29 @@
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
++// =====================================================================
++// Inclusive L2 TLB (fixed). Environment variables read once at TLB
++// construction to select the architecture variant at runtime (one binary
++// covers every combination; recompile only needed when this file changes):
++//
++//   TLB_L2_GEOM = 64x8 | 128x4 (default) | 256x2 | fa
++//                 L2 geometry: sets x ways. "fa" = fully associative
++//                 (1 set x 512 ways). Total L2 capacity is always 512
++//                 entries so associativity is comparable across geometries.
++//   TLB_L2_HASH = mod | xor7 (default) | xorfold
++//                 Set-index hash applied to the VPN. "mod" = vpn % sets;
++//                 "xor7" = low-bits XOR next-bits (generalizes the
++//                 original 7-bit XOR fold to any power-of-2 set count);
++//                 "xorfold" = XOR of every index-width chunk of the VPN.
++//   TLB_L2_REPL = lru (default) | fifo | random | plru
++//                 Per-set replacement policy.
++//   TLB_L1_SIZE = <integer>
++//                 Overrides the SimObject L1 size (p.size) with a runtime
++//                 value, e.g. 32/64/128, without touching the .py config.
++//
++// Unrecognized values fatal() at construction with the bad value named.
++// =====================================================================
++
+ #include "arch/x86/tlb.hh"
+ 
+ #include <cstring>
+@@ -60,11 +83,78 @@
+ namespace gem5
+ {
+ 
++namespace
++{
++
++uint32_t
++log2u(uint32_t x)
++{
++    uint32_t n = 0;
++    while ((1u << n) < x)
++        n++;
++    return n;
++}
++
++uint32_t
++pickL1Size(uint32_t fallback)
++{
++    if (const char *s = std::getenv("TLB_L1_SIZE")) {
++        char *end = nullptr;
++        long v = strtol(s, &end, 0);
++        if (!end || *end != '\0' || v <= 0)
++            fatal("TLB_L1_SIZE=%s is not a positive integer\n", s);
++        return (uint32_t)v;
++    }
++    return fallback;
++}
++
++void
++pickL2Config(uint32_t &sets, uint32_t &ways,
++             X86ISA::L2HashKind &hash, X86ISA::L2ReplKind &repl)
++{
++    const char *geom = std::getenv("TLB_L2_GEOM");
++    if (!geom || !strcmp(geom, "128x4")) {
++        sets = 128; ways = 4;
++    } else if (!strcmp(geom, "64x8")) {
++        sets = 64; ways = 8;
++    } else if (!strcmp(geom, "256x2")) {
++        sets = 256; ways = 2;
++    } else if (!strcmp(geom, "fa")) {
++        sets = 1; ways = 512;
++    } else {
++        fatal("TLB_L2_GEOM=%s not one of 64x8|128x4|256x2|fa\n", geom);
++    }
++
++    const char *hs = std::getenv("TLB_L2_HASH");
++    if (!hs || !strcmp(hs, "xor7"))
++        hash = X86ISA::L2HashKind::Xor7;
++    else if (!strcmp(hs, "mod"))
++        hash = X86ISA::L2HashKind::Mod;
++    else if (!strcmp(hs, "xorfold"))
++        hash = X86ISA::L2HashKind::XorFold;
++    else
++        fatal("TLB_L2_HASH=%s not one of mod|xor7|xorfold\n", hs);
++
++    const char *rp = std::getenv("TLB_L2_REPL");
++    if (!rp || !strcmp(rp, "lru"))
++        repl = X86ISA::L2ReplKind::Lru;
++    else if (!strcmp(rp, "fifo"))
++        repl = X86ISA::L2ReplKind::Fifo;
++    else if (!strcmp(rp, "random"))
++        repl = X86ISA::L2ReplKind::Random;
++    else if (!strcmp(rp, "plru"))
++        repl = X86ISA::L2ReplKind::Plru;
++    else
++        fatal("TLB_L2_REPL=%s not one of lru|fifo|random|plru\n", rp);
++}
++
++} // anonymous namespace
++
+ namespace X86ISA {
+ 
+ TLB::TLB(const Params &p)
+-    : BaseTLB(p), configAddress(0), size(p.size),
+-      tlb(size), lruSeq(0), 
++    : BaseTLB(p), configAddress(0), size(pickL1Size(p.size)),
++      tlb(size), lruSeq(0),
+       l2_lruSeq(0), // <--- MODIFIED FOR SET-ASSOCIATIVE
+       m5opRange(p.system->m5opRange()), stats(this)
+ {
+@@ -76,13 +166,16 @@
+         freeList.push_back(&tlb[x]);
+     }
+ 
+-    // --- ADD THIS SET-ASSOCIATIVE L2 SETUP LOOP ---
+-    l2_sets.resize(L2_SETS);
+-    for (int i = 0; i < L2_SETS; i++) {
+-        for (int j = 0; j < L2_WAYS; j++) {
+-            l2_sets[i].valid[j] = false;
+-        }
+-    }
++    // --- RUNTIME-SELECTABLE L2 SET-ASSOCIATIVE SETUP ---
++    pickL2Config(l2Sets, l2Ways, l2HashKind, l2ReplKind);
++    l2SetBits = log2u(l2Sets);
++    l2Rng = 0x9E3779B97F4A7C15ULL ^ (uint64_t)(uintptr_t)this;
++    uint32_t l2Total = l2Sets * l2Ways;
++    l2Entry.resize(l2Total);
++    l2Valid.assign(l2Total, 0);
++    l2Order.assign(l2Total, 0);
++    if (l2Ways > 1)
++        l2Plru.assign((size_t)l2Sets * (l2Ways - 1), 0);
+     // ----------------------------------------------
+ 
+     walker = p.walker;
+@@ -90,63 +183,166 @@
+ }
+ 
+ // --- SET-ASSOCIATIVE L2 HELPER FUNCTIONS ---
++
++uint32_t
++TLB::l2SetIndex(Addr vpn) const
++{
++    if (l2Sets == 1)
++        return 0;
++    Addr idxMask = l2Sets - 1;
++    switch (l2HashKind) {
++      case L2HashKind::Mod:
++        return (uint32_t)(vpn % l2Sets);
++      case L2HashKind::Xor7: {
++        uint32_t lo = (uint32_t)(vpn & idxMask);
++        uint32_t hi = (uint32_t)((vpn >> l2SetBits) & idxMask);
++        return lo ^ hi;
++      }
++      case L2HashKind::XorFold: {
++        uint32_t h = 0;
++        Addr v = vpn;
++        while (v) {
++            h ^= (uint32_t)(v & idxMask);
++            v >>= l2SetBits;
++        }
++        return h;
++      }
++    }
++    return 0;
++}
++
++uint64_t
++TLB::l2Rand()
++{
++    // xorshift64*; local to this TLB instance so we never touch libc's
++    // global rand()/srand() state shared with the rest of the simulator.
++    l2Rng ^= l2Rng >> 12;
++    l2Rng ^= l2Rng << 25;
++    l2Rng ^= l2Rng >> 27;
++    return l2Rng * 0x2545F4914F6CDD1DULL;
++}
++
++uint32_t
++TLB::l2PlruVictim(uint32_t set) const
++{
++    uint32_t levels = log2u(l2Ways);
++    uint32_t base = set * (l2Ways - 1);
++    uint32_t node = 0, pos = 0;
++    for (uint32_t lvl = 0; lvl < levels; lvl++) {
++        bool bit = l2Plru[base + node] != 0;
++        pos = (pos << 1) | (bit ? 1u : 0u);
++        node = 2 * node + 1 + (bit ? 1u : 0u);
++    }
++    return pos;
++}
++
++void
++TLB::l2TouchPlru(uint32_t set, uint32_t way)
++{
++    uint32_t levels = log2u(l2Ways);
++    uint32_t base = set * (l2Ways - 1);
++    uint32_t node = 0;
++    for (uint32_t lvl = 0; lvl < levels; lvl++) {
++        uint32_t bit = (way >> (levels - 1 - lvl)) & 1u;
++        // Point the node away from the branch we just used, so the next
++        // victim search walks toward the opposite (least-recently-used)
++        // subtree.
++        l2Plru[base + node] = bit ? 0 : 1;
++        node = 2 * node + 1 + bit;
++    }
++}
++
++uint32_t
++TLB::l2PickVictim(uint32_t set)
++{
++    uint32_t base = set * l2Ways;
++    for (uint32_t w = 0; w < l2Ways; w++)
++        if (!l2Valid[base + w])
++            return w;
++
++    switch (l2ReplKind) {
++      case L2ReplKind::Random:
++        return (uint32_t)(l2Rand() % l2Ways);
++      case L2ReplKind::Plru:
++        return l2PlruVictim(set);
++      case L2ReplKind::Fifo:
++      case L2ReplKind::Lru:
++      default: {
++        uint32_t victim = 0;
++        for (uint32_t w = 1; w < l2Ways; w++)
++            if (l2Order[base + w] < l2Order[base + victim])
++                victim = w;
++        return victim;
++      }
++    }
++}
++
+ TlbEntry *TLB::l2_lookup(Addr va, bool update_lru) {
+     Addr true_vpn = va >> X86ISA::PageShift;
+-    uint32_t set_idx = xor_7_hash(true_vpn);
+-    
+-    for (int i = 0; i < L2_WAYS; i++) {
+-        if (l2_sets[set_idx].valid[i] && l2_sets[set_idx].entries[i].vaddr == va) {
+-            if (update_lru) l2_sets[set_idx].entries[i].lruSeq = ++l2_lruSeq;
+-            return &l2_sets[set_idx].entries[i];
++    uint32_t set_idx = l2SetIndex(true_vpn);
++    uint32_t base = set_idx * l2Ways;
++
++    for (uint32_t i = 0; i < l2Ways; i++) {
++        if (l2Valid[base + i] && l2Entry[base + i].vaddr == va) {
++            if (update_lru) {
++                if (l2ReplKind == L2ReplKind::Lru)
++                    l2Order[base + i] = ++l2_lruSeq;
++                else if (l2ReplKind == L2ReplKind::Plru)
++                    l2TouchPlru(set_idx, i);
++                // FIFO/random: order is not touched on a hit.
++            }
++            return &l2Entry[base + i];
+         }
+     }
+     return NULL;
+ }
+ 
+-void TLB::l2_remove(Addr va) {
+-    Addr true_vpn = va >> X86ISA::PageShift;
+-    uint32_t set_idx = xor_7_hash(true_vpn);
+-
+-    for (int i = 0; i < L2_WAYS; i++) {
+-        if (l2_sets[set_idx].valid[i] &&
+-            (l2_sets[set_idx].entries[i].vaddr & ~((Addr)0xFFF)) == (va & ~((Addr)0xFFF))) {
+-            l2_sets[set_idx].valid[i] = false;
++// FIX (address-space bug, TLB_IMPLEMENTATION_AUDIT.md Approach 3 #4): the
++// original l2_remove(Addr va) masked off the low 12 bits of both the
++// lookup key and the stored key before comparing, which also strips the
++// PCID that concAddrPcid() packs into those same low bits. Two different
++// processes mapping the same virtual page therefore matched the same
++// comparison, so demapPage() in one process could silently invalidate the
++// other process's unrelated L2 entry (or leave its own stale, if the other
++// process's entry happened to occupy the matching way first). Fixing this
++// requires knowing the caller's ASID, so the signature gained an asn
++// parameter (see demapPage below) and the match is now an exact key
++// comparison, consistent with l2_insert/l2_lookup.
++void TLB::l2_remove(Addr va, uint64_t asn) {
++    Addr pageAligned = va & ~mask(X86ISA::PageShift);
++    Addr key = concAddrPcid(pageAligned, asn);
++    Addr true_vpn = key >> X86ISA::PageShift;
++    uint32_t set_idx = l2SetIndex(true_vpn);
++    uint32_t base = set_idx * l2Ways;
++
++    for (uint32_t i = 0; i < l2Ways; i++) {
++        if (l2Valid[base + i] && l2Entry[base + i].vaddr == key) {
++            l2Valid[base + i] = false;
+         }
+     }
+ }
+ 
+ TlbEntry *TLB::l2_insert(Addr vpn, const TlbEntry &entry, uint64_t pcid) {
+-    uint32_t true_vpn = vpn >> X86ISA::PageShift;
+-    uint32_t set_idx = xor_7_hash(true_vpn);
+-    
+     Addr concat_va = concAddrPcid(vpn, pcid);
+-    
++    Addr true_vpn = concat_va >> X86ISA::PageShift;
++    uint32_t set_idx = l2SetIndex(true_vpn);
++    uint32_t base = set_idx * l2Ways;
++
+     // Check if it's already there
+-    for (int i = 0; i < L2_WAYS; i++) {
+-        if (l2_sets[set_idx].valid[i] && l2_sets[set_idx].entries[i].vaddr == concat_va) {
+-            return &l2_sets[set_idx].entries[i];
+-        }
+-    }
+-    
+-    // Evict LRU in THIS set
+-    int lru_way = 0;
+-    bool found_empty = false;
+-    for (int i = 0; i < L2_WAYS; i++) {
+-        if (!l2_sets[set_idx].valid[i]) {
+-            lru_way = i;
+-            found_empty = true;
+-            break; // Found an invalid (empty) way, use it!
+-        }
+-        if (l2_sets[set_idx].entries[i].lruSeq < l2_sets[set_idx].entries[lru_way].lruSeq) {
+-            lru_way = i;
++    for (uint32_t i = 0; i < l2Ways; i++) {
++        if (l2Valid[base + i] && l2Entry[base + i].vaddr == concat_va) {
++            return &l2Entry[base + i];
+         }
+     }
+-    
++
++    uint32_t way = l2PickVictim(set_idx);
++    bool wasValid = l2Valid[base + way];
++
+     // INCLUSIVE POLICY ADDITION:
+-    // If the L2 set is full, we must evict the LRU way.
++    // If the L2 set is full, we must evict the chosen way.
+     // Since we are evicting this from L2, it MUST be evicted from L1 as well!
+-    if (!found_empty) {
+-        Addr vaddr_to_evict = l2_sets[set_idx].entries[lru_way].vaddr;
++    if (wasValid) {
++        Addr vaddr_to_evict = l2Entry[base + way].vaddr;
+         TlbEntry* l1_entry = trie.lookup(vaddr_to_evict);
+         if (l1_entry) {
+             trie.remove(l1_entry->trieHandle);
+@@ -155,14 +351,16 @@
+             DPRINTF(TLB, "INCLUSIVE POLICY: Evicting %#x from L1 because it was evicted from L2!\n", vaddr_to_evict);
+         }
+     }
+-    
++
+     // Overwrite the victim in the L2 set
+-    l2_sets[set_idx].valid[lru_way] = true;
+-    l2_sets[set_idx].entries[lru_way] = entry;
+-    l2_sets[set_idx].entries[lru_way].lruSeq = ++l2_lruSeq;
+-    l2_sets[set_idx].entries[lru_way].vaddr = concat_va;
+-    
+-    return &l2_sets[set_idx].entries[lru_way];
++    l2Valid[base + way] = true;
++    l2Entry[base + way] = entry;
++    l2Entry[base + way].vaddr = concat_va;
++    l2Order[base + way] = ++l2_lruSeq;
++    if (l2ReplKind == L2ReplKind::Plru)
++        l2TouchPlru(set_idx, way);
++
++    return &l2Entry[base + way];
+ }
+ // -------------------------------------------
+ 
+@@ -246,11 +444,7 @@
+     }
+ 
+     // --- ADD THIS TO FLUSH L2 ---
+-    for (int i = 0; i < L2_SETS; i++) {
+-        for (int j = 0; j < L2_WAYS; j++) {
+-            l2_sets[i].valid[j] = false;
+-        }
+-    }
++    std::fill(l2Valid.begin(), l2Valid.end(), 0);
+     // ----------------------------
+ }
+ 
+@@ -271,18 +465,20 @@
+             freeList.push_back(&tlb[i]);
+         }
+     }
+-    for (int i = 0; i < L2_SETS; i++) {
+-        for (int j = 0; j < L2_WAYS; j++) {
+-            if (l2_sets[i].valid[j] && !l2_sets[i].entries[j].global)
+-                l2_sets[i].valid[j] = false;
+-        }
++    uint32_t l2Total = l2Sets * l2Ways;
++    for (uint32_t i = 0; i < l2Total; i++) {
++        if (l2Valid[i] && !l2Entry[i].global)
++            l2Valid[i] = false;
+     }
+ }
+ 
+ void
+ TLB::demapPage(Addr va, uint64_t asn)
+ {
+-    l2_remove(va);
++    // FIX: pass the ASID through so l2_remove() can scope the removal to
++    // this address space instead of matching any process's identical VPN
++    // (see l2_remove's comment above for the bug this closes).
++    l2_remove(va, asn);
+     Addr pageAlignedVaddr = va & ~mask(X86ISA::PageShift);
+     Addr concat_va = concAddrPcid(pageAlignedVaddr, asn);
+     TlbEntry *entry = trie.lookup(concat_va);
+@@ -534,9 +730,9 @@
+             if (!entry) {
+                 // It missed in L1. Let's check the L2!
+                 TlbEntry *l2_entry = l2_lookup(pageAlignedVaddr);
+-                
++
+                 if (l2_entry) {
+-                    // It hit in the L2! 
++                    // It hit in the L2!
+                     DPRINTF(TLB, "SUCCESS: L2 TLB HIT for address %#x!\n", pageAlignedVaddr); // <-- ADD THIS LINE
+                     // Copy it into the L1.
+                     entry = insert(pageAlignedVaddr, *l2_entry, pcid);
+@@ -748,11 +944,45 @@
+     SERIALIZE_SCALAR(_size);
+     SERIALIZE_SCALAR(lruSeq);
+ 
++    // FIX (checkpoint bug, TLB_IMPLEMENTATION_AUDIT.md Approach 3 #5): the
++    // original serialize()/unserialize() only covered L1, so a checkpoint
++    // restore produced an empty L2 under a populated L1, violating the
++    // inclusive invariant immediately (every restored L1 entry lacked an
++    // L2 copy). Save the L2 geometry and contents too.
++    //
++    // gem5's checkpoint file is positional/INI-style: every scalar written
++    // after a child serializeSection() call physically lands inside that
++    // child's block, not back in this object's own section. All of this
++    // object's own scalars (L1's and L2's) must therefore be written here,
++    // before the Entry%d/L2Entry%d subsections are opened below - do not
++    // move SERIALIZE_SCALAR calls after either loop.
++    SERIALIZE_SCALAR(l2Sets);
++    SERIALIZE_SCALAR(l2Ways);
++    SERIALIZE_SCALAR(l2_lruSeq);
++    uint32_t l2Total = l2Sets * l2Ways;
++    uint32_t l2Count = 0;
++    for (uint32_t i = 0; i < l2Total; i++)
++        if (l2Valid[i])
++            l2Count++;
++    SERIALIZE_SCALAR(l2Count);
++
+     uint32_t _count = 0;
+     for (uint32_t x = 0; x < size; x++) {
+         if (tlb[x].trieHandle != NULL)
+             tlb[x].serializeSection(cp, csprintf("Entry%d", _count++));
+     }
++
++    // No explicit slot index is stored: unserialize() recomputes each
++    // entry's set from its own restored vaddr (l2SetIndex) and drops it
++    // into any empty way there. A scalar written between two sibling
++    // L2Entry%d sections would suffer the same misattribution as above,
++    // so this loop writes nothing but child sections.
++    uint32_t k = 0;
++    for (uint32_t i = 0; i < l2Total; i++) {
++        if (!l2Valid[i])
++            continue;
++        l2Entry[i].serializeSection(cp, csprintf("L2Entry%d", k++));
++    }
+ }
+ 
+ void
+@@ -767,6 +997,34 @@
+ 
+     UNSERIALIZE_SCALAR(lruSeq);
+ 
++    // FIX: restore L2 as well (see serialize() above). Read order mirrors
++    // the write order there exactly - all of this object's own scalars
++    // first, before any Entry%d/L2Entry%d child section is opened, since
++    // gem5's checkpoint reader tracks "current section" the same
++    // positional way the writer does.
++    //
++    // The L2 geometry must match the running configuration (same
++    // TLB_L2_GEOM); unlike L1 size, a smaller/larger/reshaped L2 cannot be
++    // remapped onto the current set/way layout without changing which
++    // entries alias, so we fatal instead of guessing.
++    //
++    // NOTE: UNSERIALIZE_SCALAR(x) keys the checkpoint by the stringified
++    // variable name, so it must read back the same key serialize() wrote
++    // (l2Sets/l2Ways) rather than a differently-named local; paramIn lets
++    // the key stay "l2Sets"/"l2Ways" while the local stays cpL2Sets/cpL2Ways.
++    uint32_t cpL2Sets, cpL2Ways;
++    paramIn(cp, "l2Sets", cpL2Sets);
++    paramIn(cp, "l2Ways", cpL2Ways);
++    if (cpL2Sets != l2Sets || cpL2Ways != l2Ways) {
++        fatal("TLB L2 geometry in checkpoint (%ux%u) does not match the "
++              "running configuration (%ux%u); restore with the same "
++              "TLB_L2_GEOM used to create the checkpoint.",
++              cpL2Sets, cpL2Ways, l2Sets, l2Ways);
++    }
++    UNSERIALIZE_SCALAR(l2_lruSeq);
++    uint32_t l2Count;
++    UNSERIALIZE_SCALAR(l2Count);
++
+     for (uint32_t x = 0; x < _size; x++) {
+         TlbEntry *newEntry = freeList.front();
+         freeList.pop_front();
+@@ -775,6 +1033,30 @@
+         newEntry->trieHandle = trie.insert(newEntry->vaddr,
+             TlbEntryTrie::MaxBits - newEntry->logBytes, newEntry);
+     }
++
++    // Mirror serialize(): no stored slot index. Each entry's own vaddr
++    // (restored by unserializeSection) determines its set via the same
++    // hash used at runtime; drop it into any empty way of that set. This
++    // never collides: geometry matched above, and l2Count can't exceed
++    // l2Total, so some way in the correct set is always free when visited
++    // in this order.
++    std::fill(l2Valid.begin(), l2Valid.end(), 0);
++    TlbEntry tmp;
++    for (uint32_t k = 0; k < l2Count; k++) {
++        tmp.unserializeSection(cp, csprintf("L2Entry%d", k));
++        uint32_t set = l2SetIndex(tmp.vaddr >> X86ISA::PageShift);
++        uint32_t base = set * l2Ways;
++        uint32_t w = 0;
++        for (; w < l2Ways; w++)
++            if (!l2Valid[base + w])
++                break;
++        if (w == l2Ways)
++            fatal("TLB checkpoint restore: L2 set %u has more entries than "
++                  "ways (%u); corrupt checkpoint or geometry mismatch.",
++                  set, l2Ways);
++        l2Entry[base + w] = tmp;
++        l2Valid[base + w] = 1;
++    }
+ }
+ 
+ Port *
+--- gem5/src/arch/x86/tlb.hh.inclusive.sa	2026-11-11 09:34:00.467584551 +0530
++++ gem5/src/arch/x86/tlb.hh.inc.fixed	2026-11-12 21:50:17.514911246 +0530
+@@ -38,6 +38,7 @@
+ #ifndef __ARCH_X86_TLB_HH__
+ #define __ARCH_X86_TLB_HH__
+ 
++#include <cstdint>
+ #include <list>
+ #include <vector>
+ 
+@@ -57,6 +58,12 @@
+ {
+     class Walker;
+ 
++    // Runtime-selectable L2 index hash (env TLB_L2_HASH) and replacement
++    // policy (env TLB_L2_REPL); see the top of tlb.cc for the full list of
++    // environment variables this TLB reads.
++    enum class L2HashKind : uint8_t { Mod, Xor7, XorFold };
++    enum class L2ReplKind : uint8_t { Lru, Fifo, Random, Plru };
++
+     class TLB : public BaseTLB
+     {
+       protected:
+@@ -104,28 +111,38 @@
+         TlbEntryTrie trie;
+         uint64_t lruSeq;
+ 
+-        // --- ADD THESE NEW SET-ASSOCIATIVE L2 VARIABLES ---
+-        static const uint32_t L2_SETS = 128;
+-        static const uint32_t L2_WAYS = 4;
+-        
+-        struct L2Set {
+-            TlbEntry entries[L2_WAYS];
+-            bool valid[L2_WAYS];
+-        };
+-        
+-        std::vector<L2Set> l2_sets;
++        // --- SET-ASSOCIATIVE L2, RUNTIME-CONFIGURABLE GEOMETRY/HASH/REPL ---
++        // Total L2 capacity is fixed at 512 entries across every geometry so
++        // associativity can be compared fairly; see pickL2Config() in tlb.cc.
++        uint32_t l2Sets = 128;
++        uint32_t l2Ways = 4;
++        uint32_t l2SetBits = 7;
++        L2HashKind l2HashKind = L2HashKind::Xor7;
++        L2ReplKind l2ReplKind = L2ReplKind::Lru;
++
++        // Flat [set*l2Ways + way] storage (replaces the old fixed-size
++        // L2Set/L2_SETS/L2_WAYS arrays so the geometry can be chosen at
++        // runtime instead of compile time).
++        std::vector<TlbEntry> l2Entry;
++        std::vector<uint8_t>  l2Valid;
++        std::vector<uint64_t> l2Order;   // LRU timestamp / FIFO insertion seq
++        std::vector<uint8_t>  l2Plru;    // per-set PLRU tree bits
+         uint64_t l2_lruSeq;
+-        
+-        inline uint32_t xor_7_hash(Addr vpn) {
+-            uint32_t hi = (vpn >> 7) & 0x7F;
+-            uint32_t lo = vpn & 0x7F;
+-            return hi ^ lo;
+-        }
+-        
++        uint64_t l2Rng;
++
++        uint32_t l2SetIndex(Addr vpn) const;
++        uint32_t l2PickVictim(uint32_t set);
++        uint32_t l2PlruVictim(uint32_t set) const;
++        void l2TouchPlru(uint32_t set, uint32_t way);
++        uint64_t l2Rand();
++
+         // --- ADD L2 HELPER FUNCTIONS ---
+         TlbEntry *l2_lookup(Addr va, bool update_lru = true);
+         TlbEntry *l2_insert(Addr vpn, const TlbEntry &entry, uint64_t pcid);
+-        void l2_remove(Addr va);
++        // FIX (address-space bug): removal must be scoped to the caller's
++        // ASID/PCID, not just the virtual page number, or demapPage() on one
++        // process silently evicts another process's identical-VA mapping.
++        void l2_remove(Addr va, uint64_t asn);
+ 
+         AddrRange m5opRange;
+ 

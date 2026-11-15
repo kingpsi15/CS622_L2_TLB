@@ -1,0 +1,92 @@
+- 2026-11-12 21:43:29 — [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-12 21:43:30 — stage m_lane_build: START
+- 2026-11-12 21:52:52 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-agile/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/m_lane_build.fail.txt)
+- 2026-11-12 21:54:31 — [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-12 21:54:31 — stage m_lane_build: START
+- 2026-11-12 21:56:24 — manual_link agile: OK 2582445608 bytes
+- 2026-11-12 21:56:24 — stage m_lane_build: OK
+- 2026-11-12 21:56:24 — stage m_base_build: START
+- 2026-11-12 21:59:57 — manual_link agile: OK 2582441040 bytes
+- 2026-11-12 21:59:57 — stage m_base_build: OK
+- 2026-11-12 22:00:52 — stage spec_download: START
+- 2026-11-12 22:01:41 — [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-12 22:01:41 — stage m_tests: START
+- 2026-11-12 22:01:41 — stage m_tests: OK
+- 2026-11-12 22:01:41 — runner agile_matrix: START 108 jobs, parallel=24
+- 2026-11-12 22:02:38 — runner agile_matrix: DONE 108/108 PASS; not-pass: none (table: robustness/results/agile_matrix.md)
+- 2026-11-12 22:02:38 — [csewsrm24] machine_run agile: DONE -> robustness/results-agile/agile_matrix.md (see runner line above for PASS counts)
+- 2026-11-12 22:03:50 — runner agile_correctness_BEFORE: START 24 jobs, parallel=12
+- 2026-11-12 22:03:53 — stage spec_download: OK
+- 2026-11-12 22:03:53 — stage spec_install: START
+- 2026-11-12 22:06:12 — stage spec_install: OK
+- 2026-11-12 22:06:12 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /tmp/sahilag24/work/cpu2017
+- 2026-11-12 23:03:51 — runner agile_correctness_BEFORE: DONE 20/24 PASS; not-pass: base/agile-shared-atomic, inc/agile-shared-atomic, base/agile-shared-timing, inc/agile-shared-timing (table: robustness/results/agile_correctness_BEFORE.md)
+- 2026-11-12 23:08:10 — manual_link agile: OK 2582578600 bytes
+- 2026-11-12 23:08:30 — runner agile_correctness_AFTER: START 24 jobs, parallel=12
+- 2026-11-12 23:08:47 — stage spec_build: START
+- 2026-11-12 23:10:16 — runner agile_correctness_AFTER: DONE 20/24 PASS; not-pass: base/agile-shared-atomic, inc/agile-shared-atomic, base/agile-shared-timing, inc/agile-shared-timing (table: robustness/results/agile_correctness_AFTER.md)
+- 2026-11-12 23:10:39 — runner agile_matrix_AFTER: START 108 jobs, parallel=20
+- 2026-11-12 23:11:40 — runner agile_matrix_AFTER: DONE 108/108 PASS; not-pass: none (table: robustness/results/agile_matrix_AFTER.md)
+- 2026-11-12 23:19:33 — stage spec_build: OK
+- 2026-11-12 23:19:33 — stage spec_setup: START
+- 2026-11-12 23:20:12 — manual_link agile: OK 2582577864 bytes
+- 2026-11-12 23:21:20 — runner agile_correctness_FINAL: START 24 jobs, parallel=12
+- 2026-11-12 23:21:48 — stage spec_setup: OK
+- 2026-11-12 23:21:48 — SPEC exes built: 56 ; build errors: 6 make.out files with errors
+- 2026-11-12 23:23:23 — runner agile_correctness_FINAL: DONE 20/24 PASS; not-pass: base/agile-shared-atomic, inc/agile-shared-atomic, base/agile-shared-timing, inc/agile-shared-timing (table: robustness/results/agile_correctness_FINAL.md)
+- 2026-11-12 23:23:54 — runner spec_test: START 68 jobs, parallel=16
+- 2026-11-12 23:29:31 — runner spec_ref: START 62 jobs, parallel=14
+- 2026-11-12 23:32:57 — runner spec_test: DONE 62/68 PASS; not-pass: base/spec-test-500.perlbench_r-0, inc/spec-test-500.perlbench_r-0, base/spec-test-500.perlbench_r-1, inc/spec-test-500.perlbench_r-1, base/spec-test-520.omnetpp_r-0, inc/spec-test-520.omnetpp_r-0 (table: robustness/results/spec_test.md)
+- 2026-11-12 23:35:03 — LANE agile COMPLETE
+- 2026-11-13 08:47:47 — runner spec_sanity: START 8 jobs, parallel=8
+- 2026-11-13 08:59:25 — runner spec_sanity: DONE 6/8 PASS; not-pass: base/spec-test-500.perlbench_r-0, inc/spec-test-500.perlbench_r-0 (table: robustness/results/spec_sanity.md)
+- 2026-11-13 20:49:26 — [csewsrm24] fixed SPEC worker agile: START cores=32 spec_jobs=32
+- 2026-11-13 20:49:26 — [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-13 20:49:34 — stage m_lane_build: START
+- 2026-11-13 20:51:14 — [csewsrm24] fixed SPEC worker agile: START cores=32 spec_jobs=32
+- 2026-11-13 20:51:14 — [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-13 20:51:15 — stage m_lane_build: START
+- 2026-11-13 21:00:16 — manual_link agile: OK 2582445608 bytes
+- 2026-11-13 21:00:16 — stage m_lane_build: OK
+- 2026-11-13 21:05:36 — [csewsrm24] fixed SPEC worker agile: START cores=32 spec_jobs=32
+- 2026-11-13 21:05:36 — [csewsrm24] SPEC available at /var/tmp/sahilag24/cpu2017
+- 2026-11-13 21:05:36 — [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-13 21:05:36 — stage m_base_build: START
+- 2026-11-13 21:09:39 — manual_link agile: OK 2582441040 bytes
+- 2026-11-13 21:09:39 — stage m_base_build: OK
+- 2026-11-13 21:09:39 — stage m_tests: START
+- 2026-11-13 21:09:40 — stage m_tests: OK
+- 2026-11-13 21:09:40 — [csewsrm24] machine_run agile: BUILD_ONLY=1; binaries, tests, and agile_matrix.json ready
+- 2026-11-13 21:12:25 — manual_link agile: OK 2582577864 bytes
+- 2026-11-13 21:12:25 — stage spec_build: START
+- 2026-11-13 21:21:59 — stage spec_build: OK
+- 2026-11-13 21:21:59 — stage spec_setup: START
+- 2026-11-13 21:23:50 — stage spec_setup: OK
+- 2026-11-13 21:23:50 — SPEC exes built: 58 ; build errors: 12 make.out files with errors
+- 2026-11-13 21:23:50 — runner spec_test_agile_csewsrm24: START 70 jobs, parallel=32
+- 2026-11-14 05:58:49 — runner spec_test_agile_csewsrm24: DONE 44/70 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_agile_csewsrm24.md)
+- 2026-11-14 05:58:52 — runner spec_ref_agile_csewsrm24: START 66 jobs, parallel=32
+- 2026-11-14 08:22:41 — [csews28] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-14 08:22:41 — stage m_lane_build: START
+- 2026-11-14 08:22:55 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-agile/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/m_lane_build.fail.txt)
+- 2026-11-14 08:23:48 — [csews28] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-14 08:23:48 — stage m_lane_build: START
+- 2026-11-14 08:24:01 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-agile/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/m_lane_build.fail.txt)
+- 2026-11-14 08:27:12 — [csews28] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+- 2026-11-14 08:27:13 — stage m_lane_build: START
+- 2026-11-14 08:27:26 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-agile/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/m_lane_build.fail.txt)
+- 2026-11-14 10:40:51 — stage spec_download: START
+- 2026-11-14 10:42:46 — stage spec_download: OK
+- 2026-11-14 10:42:46 — stage spec_install: START
+- 2026-11-14 10:44:51 — stage spec_install: OK
+- 2026-11-14 10:44:51 — SPEC: archive=/tmp/sahilag24/work-agile/spec-dl/spec2017.tar.xz bytes=2971382248; installed=/tmp/sahilag24/work-agile/cpu2017
+- 2026-11-14 10:44:51 — stage spec_build: START
+- 2026-11-14 10:58:52 — stage spec_build: OK
+- 2026-11-14 10:58:52 — stage spec_setup: START
+- 2026-11-14 11:00:42 — stage spec_setup: OK
+- 2026-11-14 11:00:42 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-14 21:12:30 — stage spec_build: START
+- 2026-11-14 21:13:52 — stage spec_build: OK
+- 2026-11-14 21:13:52 — stage spec_setup: START
+- 2026-11-14 21:15:30 — stage spec_setup: OK
+- 2026-11-14 21:15:30 — SPEC exes built: 59 ; build errors: 6 make.out files with errors

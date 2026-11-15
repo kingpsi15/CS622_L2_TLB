@@ -1,0 +1,3 @@
+mkdir: cannot stat ‘/tmp/sahilag24/work-excl/tests’: Too many levels of symbolic links
+/usr/bin/ld: cannot open output file /tmp/sahilag24/work-excl/tests/tlbstress: Too many levels of symbolic links
+collect2: error: ld returned 1 exit status

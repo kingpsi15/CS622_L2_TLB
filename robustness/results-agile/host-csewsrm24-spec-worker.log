@@ -1,0 +1,171 @@
+[20:49:26] [csewsrm24] fixed SPEC worker agile: START cores=32 spec_jobs=32
+[20:49:26] [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+WARNING: Certificate did not match expected hostname: pypi.org. Certificate: {'subject': ((('commonName', '*.iitk.ac.in'),),), 'issuer': ((('countryName', 'GB'),), (('organizationName', 'Sectigo Limited'),), (('commonName', 'Sectigo Public Server Authentication CA DV R36'),)), 'version': 3, 'serialNumber': '16C5A759610D6CDF32B73BFF2452347C', 'notBefore': 'Jan 30 00:00:00 2026 GMT', 'notAfter': 'Dec  9 23:59:59 2026 GMT', 'subjectAltName': (('DNS', '*.iitk.ac.in'), ('DNS', 'iitk.ac.in')), 'OCSP': ('http://ocsp.sectigo.com',), 'caIssuers': ('http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt',)}
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'pypi.org' doesn't match either of '*.iitk.ac.in', 'iitk.ac.in'"))': /simple/scons/
+WARNING: Certificate did not match expected hostname: pypi.org. Certificate: {'subject': ((('commonName', '*.iitk.ac.in'),),), 'issuer': ((('countryName', 'GB'),), (('organizationName', 'Sectigo Limited'),), (('commonName', 'Sectigo Public Server Authentication CA DV R36'),)), 'version': 3, 'serialNumber': '16C5A759610D6CDF32B73BFF2452347C', 'notBefore': 'Jan 30 00:00:00 2026 GMT', 'notAfter': 'Dec  9 23:59:59 2026 GMT', 'subjectAltName': (('DNS', '*.iitk.ac.in'), ('DNS', 'iitk.ac.in')), 'OCSP': ('http://ocsp.sectigo.com',), 'caIssuers': ('http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt',)}
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'pypi.org' doesn't match either of '*.iitk.ac.in', 'iitk.ac.in'"))': /simple/scons/
+WARNING: Certificate did not match expected hostname: pypi.org. Certificate: {'subject': ((('commonName', '*.iitk.ac.in'),),), 'issuer': ((('countryName', 'GB'),), (('organizationName', 'Sectigo Limited'),), (('commonName', 'Sectigo Public Server Authentication CA DV R36'),)), 'version': 3, 'serialNumber': '16C5A759610D6CDF32B73BFF2452347C', 'notBefore': 'Jan 30 00:00:00 2026 GMT', 'notAfter': 'Dec  9 23:59:59 2026 GMT', 'subjectAltName': (('DNS', '*.iitk.ac.in'), ('DNS', 'iitk.ac.in')), 'OCSP': ('http://ocsp.sectigo.com',), 'caIssuers': ('http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt',)}
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'pypi.org' doesn't match either of '*.iitk.ac.in', 'iitk.ac.in'"))': /simple/scons/
+WARNING: Certificate did not match expected hostname: pypi.org. Certificate: {'subject': ((('commonName', '*.iitk.ac.in'),),), 'issuer': ((('countryName', 'GB'),), (('organizationName', 'Sectigo Limited'),), (('commonName', 'Sectigo Public Server Authentication CA DV R36'),)), 'version': 3, 'serialNumber': '16C5A759610D6CDF32B73BFF2452347C', 'notBefore': 'Jan 30 00:00:00 2026 GMT', 'notAfter': 'Dec  9 23:59:59 2026 GMT', 'subjectAltName': (('DNS', '*.iitk.ac.in'), ('DNS', 'iitk.ac.in')), 'OCSP': ('http://ocsp.sectigo.com',), 'caIssuers': ('http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt',)}
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'pypi.org' doesn't match either of '*.iitk.ac.in', 'iitk.ac.in'"))': /simple/scons/
+WARNING: Certificate did not match expected hostname: pypi.org. Certificate: {'subject': ((('commonName', '*.iitk.ac.in'),),), 'issuer': ((('countryName', 'GB'),), (('organizationName', 'Sectigo Limited'),), (('commonName', 'Sectigo Public Server Authentication CA DV R36'),)), 'version': 3, 'serialNumber': '16C5A759610D6CDF32B73BFF2452347C', 'notBefore': 'Jan 30 00:00:00 2026 GMT', 'notAfter': 'Dec  9 23:59:59 2026 GMT', 'subjectAltName': (('DNS', '*.iitk.ac.in'), ('DNS', 'iitk.ac.in')), 'OCSP': ('http://ocsp.sectigo.com',), 'caIssuers': ('http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt',)}
+[20:51:14] [csewsrm24] fixed SPEC worker agile: START cores=32 spec_jobs=32
+[20:51:14] [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+[20:51:15] stage m_lane_build: START
+[21:00:16] stage m_lane_build: OK
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/machine_run.sh: line 62: syntax error near unexpected token `('
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/machine_run.sh: line 62: `log "[$HOSTN] machine_run $LANE: DONE -> robustness/results-$LANE/${LANE}_matrix.md (see runner line above for PASS counts)"'
+[21:05:36] [csewsrm24] fixed SPEC worker agile: START cores=32 spec_jobs=32
+[21:05:36] [csewsrm24] SPEC available at /var/tmp/sahilag24/cpu2017
+[21:05:36] [csewsrm24] machine_run agile: START (W=/tmp/sahilag24/work-agile)
+skip m_lane_build (done)
+[21:05:36] stage m_base_build: START
+[21:09:39] stage m_base_build: OK
+[21:09:39] stage m_tests: START
+[21:09:40] stage m_tests: OK
+108 jobs
+[21:09:40] [csewsrm24] machine_run agile: BUILD_ONLY=1; binaries, tests, and agile_matrix.json ready
+instrumented base: /tmp/sahilag24/work-agile/gem5-agile/src/arch/x86/tlb.cc
+[21:12:25] manual_link agile: OK 2582577864 bytes
+[21:12:25] stage spec_build: START
+[21:21:59] stage spec_build: OK
+[21:21:59] stage spec_setup: START
+[21:23:50] stage spec_setup: OK
+[21:23:50] SPEC exes built: 58 ; build errors: 12 make.out files with errors
+benchmarks=42 test_jobs=70 ref_jobs=66
+/tmp/sahilag24/work-agile/jobs/spec_test.json: 70 jobs
+/tmp/sahilag24/work-agile/jobs/spec_ref.json: 66 jobs
+runner spec_test_agile_csewsrm24: START 70 jobs, parallel=32
+[21:24:16] PASS inc/spec-test-500.perlbench_r-1 26s []
+[21:24:19] PASS base/spec-test-500.perlbench_r-1 29s []
+[21:24:20] PASS base/spec-test-502.gcc_r-0 29s []
+[21:24:21] PASS inc/spec-test-502.gcc_r-0 31s []
+[21:24:51] PASS base/spec-test-520.omnetpp_r-0 60s []
+[21:24:59] PASS inc/spec-test-520.omnetpp_r-0 68s []
+[21:26:28] PASS base/spec-test-538.imagick_r-0 127s []
+[21:26:29] PASS inc/spec-test-544.nab_r-0 1s []
+[21:26:29] PASS base/spec-test-544.nab_r-0 1s []
+[21:27:13] PASS inc/spec-test-538.imagick_r-0 173s []
+[21:35:13] PASS inc/spec-test-523.xalancbmk_r-0 683s []
+[21:35:14] PASS base/spec-test-523.xalancbmk_r-0 684s []
+[21:54:39] PASS inc/spec-test-526.blender_r-0 1848s []
+[21:58:49] PASS base/spec-test-526.blender_r-0 2098s []
+[22:33:07] PASS base/spec-test-500.perlbench_r-0 4157s []
+[22:36:11] PASS base/spec-test-511.povray_r-0 4340s []
+[22:37:58] PASS inc/spec-test-500.perlbench_r-0 4447s []
+[22:46:34] PASS inc/spec-test-511.povray_r-0 4964s []
+[23:45:02] PASS inc/spec-test-557.xz_r-1 4024s []
+[23:50:11] PASS base/spec-test-557.xz_r-1 3817s []
+[23:51:16] PASS base/spec-test-557.xz_r-0 4505s []
+[23:55:10] PASS inc/spec-test-557.xz_r-0 4922s []
+[01:06:26] PASS base/spec-test-557.xz_r-2 4575s []
+[01:07:34] PASS inc/spec-test-557.xz_r-2 4952s []
+[01:30:02] PASS base/spec-test-519.lbm_r-0 14772s []
+[01:38:46] PASS inc/spec-test-519.lbm_r-0 15295s []
+[03:01:08] PASS inc/spec-test-557.xz_r-4 6882s []
+[03:12:24] PASS base/spec-test-557.xz_r-4 7491s []
+[03:43:35] PASS inc/spec-test-557.xz_r-6 2547s []
+[03:49:04] PASS base/spec-test-557.xz_r-6 2199s []
+[04:19:43] PASS inc/spec-test-557.xz_r-3 16107s []
+[04:24:01] PASS base/spec-test-557.xz_r-7 2097s []
+[04:24:15] PASS inc/spec-test-557.xz_r-7 2441s []
+[04:39:13] PASS base/spec-test-557.xz_r-3 17043s []
+[04:57:22] PASS inc/spec-test-557.xz_r-8 2259s []
+[05:03:00] PASS base/spec-test-557.xz_r-8 2339s []
+[05:23:50] FAIL base/spec-test-507.cactuBSSN_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-508.namd_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-508.namd_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-505.mcf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-507.cactuBSSN_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-525.x264_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-505.mcf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-525.x264_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-503.bwaves_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-503.bwaves_r-1 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-503.bwaves_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-503.bwaves_r-1 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-521.wrf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-521.wrf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL inc/spec-test-527.cam4_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:23:50] FAIL base/spec-test-527.cam4_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:24:16] FAIL inc/spec-test-531.deepsjeng_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:24:19] FAIL base/spec-test-531.deepsjeng_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:24:51] FAIL inc/spec-test-541.leela_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:24:59] FAIL base/spec-test-541.leela_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:26:29] FAIL inc/spec-test-548.exchange2_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:27:13] FAIL base/spec-test-548.exchange2_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:30:20] PASS inc/spec-test-557.xz_r-9 3964s []
+[05:30:38] PASS base/spec-test-557.xz_r-9 3086s []
+[05:33:19] PASS inc/spec-test-557.xz_r-10 2157s []
+[05:33:55] PASS base/spec-test-557.xz_r-10 1855s []
+[05:35:13] FAIL inc/spec-test-549.fotonik3d_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:35:14] FAIL base/spec-test-549.fotonik3d_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:50:03] PASS inc/spec-test-557.xz_r-5 15601s []
+[05:50:15] PASS inc/spec-test-557.xz_r-11 1584s []
+[05:53:38] PASS base/spec-test-557.xz_r-11 1788s []
+[05:54:39] FAIL inc/spec-test-554.roms_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:55:59] PASS base/spec-test-557.xz_r-5 15433s []
+[05:58:49] FAIL base/spec-test-554.roms_r-0 28800s ['gem5 rc=TIMEOUT']
+runner spec_test_agile_csewsrm24: DONE 44/70 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_agile_csewsrm24.md)
+SPEC output comparison: 3/35 PASS; report: /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/spec_output_compare_agile_csewsrm24.md
+runner spec_ref_agile_csewsrm24: START 66 jobs, parallel=32
+[06:23:35] PASS inc/spec-ref-1c-525.x264_r 1483s []
+[06:25:04] PASS base/spec-ref-1c-527.cam4_r 1572s []
+[06:25:51] PASS base/spec-ref-1c-521.wrf_r 1618s []
+[06:26:03] PASS base/spec-ref-1c-525.x264_r 1631s []
+[06:27:34] PASS inc/spec-ref-1c-527.cam4_r 1722s []
+[06:28:59] PASS inc/spec-ref-1c-511.povray_r 1807s []
+[06:29:44] PASS base/spec-ref-1c-523.xalancbmk_r 1852s []
+[06:29:45] PASS inc/spec-ref-1c-521.wrf_r 1853s []
+[06:29:50] PASS base/spec-ref-1c-507.cactuBSSN_r 1858s []
+[06:30:24] PASS base/spec-ref-1c-503.bwaves_r 1892s []
+[06:30:31] PASS inc/spec-ref-1c-538.imagick_r 1898s []
+[06:31:45] PASS base/spec-ref-1c-526.blender_r 1972s []
+[06:31:46] PASS base/spec-ref-1c-508.namd_r 1974s []
+[06:32:32] PASS base/spec-ref-1c-538.imagick_r 2020s []
+[06:32:35] PASS inc/spec-ref-1c-507.cactuBSSN_r 2023s []
+[06:32:38] PASS inc/spec-ref-1c-526.blender_r 2026s []
+[06:32:46] PASS inc/spec-ref-1c-505.mcf_r 2033s []
+[06:33:08] PASS base/spec-ref-1c-511.povray_r 2056s []
+[06:33:39] PASS base/spec-ref-1c-531.deepsjeng_r 2086s []
+[06:33:47] PASS inc/spec-ref-1c-523.xalancbmk_r 2095s []
+[06:34:11] PASS inc/spec-ref-1c-508.namd_r 2119s []
+[06:34:34] PASS inc/spec-ref-1c-531.deepsjeng_r 2142s []
+[06:35:07] PASS base/spec-ref-1c-519.lbm_r 2175s []
+[06:35:35] PASS base/spec-ref-1c-505.mcf_r 2203s []
+[06:35:47] PASS base/spec-ref-1c-502.gcc_r 2215s []
+[06:35:49] FAIL inc/spec-ref-4c4p-wrf_r+xalancbmk_r+x264_r+blender_r 184s ['gem5 rc=-6', 'panic: Someone allocated physical memory at VA 0x7ffff7fad000 without creating a VMA!']
+[06:36:09] PASS inc/spec-ref-1c-519.lbm_r 2237s []
+[06:36:25] FAIL base/spec-ref-4c4p-wrf_r+xalancbmk_r+x264_r+blender_r 197s ['gem5 rc=-6', 'panic: Someone allocated physical memory at VA 0x7ffff7fad000 without creating a VMA!']
+[06:36:51] PASS inc/spec-ref-1c-500.perlbench_r 2279s []
+[06:37:09] PASS base/spec-ref-1c-500.perlbench_r 2296s []
+[06:37:18] PASS inc/spec-ref-1c-503.bwaves_r 2306s []
+[06:37:21] FAIL inc/spec-ref-omp4-649.fotonik3d_s 3s ['gem5 rc=-6', 'panic: Tried to execute unmapped address 0.']
+[06:37:23] FAIL base/spec-ref-omp4-649.fotonik3d_s 2s ['gem5 rc=-6', 'panic: Tried to execute unmapped address 0.']
+[06:40:25] PASS inc/spec-ref-1c-502.gcc_r 2493s []
+[06:51:55] PASS inc/spec-ref-1c-541.leela_r 1699s []
+[06:53:26] PASS base/spec-ref-1c-541.leela_r 1702s []
+[06:59:40] PASS base/spec-ref-4c4p-nab_r+exchange2_r+fotonik3d_r+xz_r 1506s []
+[06:59:57] PASS base/spec-ref-1c-557.xz_r 1693s []
+[07:00:19] PASS inc/spec-ref-4c4p-nab_r+exchange2_r+fotonik3d_r+xz_r 1568s []
+[07:00:39] PASS inc/spec-ref-1c-557.xz_r 1809s []
+[07:01:41] PASS base/spec-ref-1c-548.exchange2_r 1962s []
+[07:02:22] PASS inc/spec-ref-1c-548.exchange2_r 2088s []
+[07:02:34] PASS base/spec-ref-1c-554.roms_r 1930s []
+[07:03:30] PASS inc/spec-ref-1c-549.fotonik3d_r 2025s []
+[07:03:48] PASS base/spec-ref-1c-549.fotonik3d_r 2043s []
+[07:04:44] PASS inc/spec-ref-1c-554.roms_r 2094s []
+[07:06:28] FAIL inc/spec-ref-4c4p-namd_r+povray_r+lbm_r+omnetpp_r 2032s ['gem5 rc=-6', 'panic: Someone allocated physical memory at VA 0x8d8000 without creating a VMA!']
+[07:14:36] PASS inc/spec-ref-omp4-657.xz_s 2232s []
+[07:15:55] PASS inc/spec-ref-omp4-619.lbm_s 2408s []
+[07:20:30] PASS base/spec-ref-omp4-657.xz_s 2405s []
+[07:20:56] FAIL base/spec-ref-4c4p-namd_r+povray_r+lbm_r+omnetpp_r 2898s ['gem5 rc=-6', 'panic: Someone allocated physical memory at VA 0x8d8000 without creating a VMA!']
+[07:24:47] PASS base/spec-ref-omp4-619.lbm_s 2938s []
+[07:27:40] FAIL inc/spec-ref-4c4p-perlbench_r+gcc_r+mcf_r+cactuBSSN_r 3354s ['gem5 rc=-6', 'panic: Someone allocated physical memory at VA 0x7ffff7fde000 without creating a VMA!']
+[07:28:43] FAIL base/spec-ref-4c4p-perlbench_r+gcc_r+mcf_r+cactuBSSN_r 3371s ['gem5 rc=-6', 'panic: Someone allocated physical memory at VA 0x7ffff7fde000 without creating a VMA!']
+[07:42:36] PASS inc/spec-ref-omp4-638.imagick_s 3986s []
+[07:43:12] PASS base/spec-ref-omp4-638.imagick_s 4007s []
+[07:53:23] PASS base/spec-ref-4c4p-cam4_r+deepsjeng_r+imagick_r+leela_r 4776s []
+[07:56:18] PASS inc/spec-ref-omp4-603.bwaves_s 4871s []
+[08:00:02] PASS inc/spec-ref-4c4p-cam4_r+deepsjeng_r+imagick_r+leela_r 5183s []
+[08:17:57] PASS base/spec-ref-omp4-603.bwaves_s 6142s []
