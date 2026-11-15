@@ -1,0 +1,180 @@
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from ./boost/concept/assert.hpp:36,
+                 from ./boost/concept_check.hpp:18,
+                 from ./boost/property_map.hpp:15,
+                 from ./boost/graph/adjacency_list.hpp:38,
+                 from source/dofs/dof_renumbering.cc:35:
+./boost/concept/detail/general.hpp: In instantiation of 'static void boost::concept::requirement<Model>::failed() [with Model = boost::concept::usage_requirements<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >]':
+./boost/concept_check.hpp:196:5:   required from 'struct boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>'
+./boost/concept/detail/has_constraints.hpp:30:62:   required by substitution of 'template<class Model> boost::concept::detail::yes boost::concept::detail::has_constraints_(Model*, boost::concept::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>]'
+./boost/concept/detail/has_constraints.hpp:40:5:   required from 'const bool boost::concept::not_satisfied<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >::value'
+./boost/concept/detail/has_constraints.hpp:43:31:   required from 'struct boost::concept::not_satisfied<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >'
+./boost/mpl/if.hpp:63:11:   required from 'struct boost::mpl::if_<boost::concept::not_satisfied<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >, boost::concept::constraint<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >, boost::concept::requirement<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> > >'
+./boost/concept/detail/general.hpp:41:8:   [ skipping 7 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+./boost/concept_check.hpp:43:7:   required from 'void boost::function_requires(Model*) [with Model = boost::concepts::IncidenceGraphConcept<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > > >]'
+./boost/graph/depth_first_search.hpp:84:64:   required from 'void boost::detail::depth_first_visit_impl(const IncidenceGraph&, typename boost::graph_traits<Graph>::vertex_descriptor, DFSVisitor&, ColorMap, TerminatorFunc) [with IncidenceGraph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; DFSVisitor = boost::dfs_visitor<>; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; TerminatorFunc = boost::detail::nontruth2; typename boost::graph_traits<Graph>::vertex_descriptor = long unsigned int]'
+./boost/graph/depth_first_search.hpp:347:35:   required from 'void boost::depth_first_visit(const IncidenceGraph&, typename boost::graph_traits<Graph>::vertex_descriptor, DFSVisitor, ColorMap) [with IncidenceGraph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; DFSVisitor = boost::dfs_visitor<>; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; typename boost::graph_traits<Graph>::vertex_descriptor = long unsigned int]'
+./boost/graph/cuthill_mckee_ordering.hpp:151:26:   required from 'OutputIterator boost::cuthill_mckee_ordering(const Graph&, OutputIterator, ColorMap, DegreeMap) [with Graph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; OutputIterator = std::reverse_iterator<__gnu_cxx::__normal_iterator<long unsigned int*, std::vector<long unsigned int> > >; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; DegreeMap = boost::degree_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > > >]'
+source/dofs/dof_renumbering.cc:208:33:   required from 'void dealii::DoFRenumbering::boost::compute_Cuthill_McKee(std::vector<unsigned int>&, const DH&, bool, bool) [with DH = dealii::DoFHandler<3, 3>]'
+source/dofs/dof_renumbering.cc:1484:56:   required from here
+./boost/concept/detail/general.hpp:29:47: warning: 'this' pointer is null [-Wnonnull]
+   29 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from ./boost/concept_check.hpp:30,
+                 from ./boost/property_map.hpp:15,
+                 from ./boost/graph/adjacency_list.hpp:38,
+                 from source/dofs/dof_renumbering.cc:35:
+./boost/concept/usage.hpp:21:5: note: in a call to non-static member function 'boost::concept::usage_requirements<Model>::~usage_requirements() [with Model = boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>]'
+   21 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from ./boost/concept/assert.hpp:36,
+                 from ./boost/concept_check.hpp:18,
+                 from ./boost/property_map.hpp:15,
+                 from ./boost/graph/adjacency_list.hpp:38,
+                 from source/dofs/dof_renumbering.cc:35:
+./boost/concept/detail/general.hpp: In instantiation of 'static void boost::concept::requirement<Model>::failed() [with Model = boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>]':
+./boost/concept_check.hpp:459:9:   required from 'boost::InputIterator<TT>::~InputIterator() [with TT = boost::detail::out_edge_iter<__gnu_cxx::__normal_iterator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>*, std::vector<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>, std::allocator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property> > > >, long unsigned int, boost::detail::edge_desc_impl<boost::undirected_tag, long unsigned int>, long int>]'
+./boost/concept/detail/general.hpp:29:47:   required from 'static void boost::concept::requirement<Model>::failed() [with Model = boost::InputIterator<boost::detail::out_edge_iter<__gnu_cxx::__normal_iterator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>*, std::vector<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>, std::allocator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property> > > >, long unsigned int, boost::detail::edge_desc_impl<boost::undirected_tag, long unsigned int>, long int> >]'
+./boost/graph/graph_concepts.hpp:47:9:   required from 'boost::concepts::MultiPassInputIterator<T>::~MultiPassInputIterator() [with T = boost::detail::out_edge_iter<__gnu_cxx::__normal_iterator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>*, std::vector<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>, std::allocator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property> > > >, long unsigned int, boost::detail::edge_desc_impl<boost::undirected_tag, long unsigned int>, long int>]'
+./boost/concept/detail/general.hpp:29:47:   required from 'static void boost::concept::requirement<Model>::failed() [with Model = boost::concepts::MultiPassInputIterator<boost::detail::out_edge_iter<__gnu_cxx::__normal_iterator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>*, std::vector<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property>, std::allocator<boost::detail::sei_<long unsigned int, std::_List_iterator<boost::list_edge<long unsigned int, boost::no_property> >, boost::no_property> > > >, long unsigned int, boost::detail::edge_desc_impl<boost::undirected_tag, long unsigned int>, long int> >]'
+./boost/graph/graph_concepts.hpp:81:11:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+./boost/concept_check.hpp:43:7:   required from 'void boost::function_requires(Model*) [with Model = boost::concepts::IncidenceGraphConcept<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > > >]'
+./boost/graph/depth_first_search.hpp:84:64:   required from 'void boost::detail::depth_first_visit_impl(const IncidenceGraph&, typename boost::graph_traits<Graph>::vertex_descriptor, DFSVisitor&, ColorMap, TerminatorFunc) [with IncidenceGraph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; DFSVisitor = boost::dfs_visitor<>; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; TerminatorFunc = boost::detail::nontruth2; typename boost::graph_traits<Graph>::vertex_descriptor = long unsigned int]'
+./boost/graph/depth_first_search.hpp:347:35:   required from 'void boost::depth_first_visit(const IncidenceGraph&, typename boost::graph_traits<Graph>::vertex_descriptor, DFSVisitor, ColorMap) [with IncidenceGraph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; DFSVisitor = boost::dfs_visitor<>; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; typename boost::graph_traits<Graph>::vertex_descriptor = long unsigned int]'
+./boost/graph/cuthill_mckee_ordering.hpp:151:26:   required from 'OutputIterator boost::cuthill_mckee_ordering(const Graph&, OutputIterator, ColorMap, DegreeMap) [with Graph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; OutputIterator = std::reverse_iterator<__gnu_cxx::__normal_iterator<long unsigned int*, std::vector<long unsigned int> > >; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; DegreeMap = boost::degree_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > > >]'
+source/dofs/dof_renumbering.cc:208:33:   required from 'void dealii::DoFRenumbering::boost::compute_Cuthill_McKee(std::vector<unsigned int>&, const DH&, bool, bool) [with DH = dealii::DoFHandler<3, 3>]'
+source/dofs/dof_renumbering.cc:1484:56:   required from here
+./boost/concept/detail/general.hpp:29:47: warning: 'this' pointer is null [-Wnonnull]
+   29 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from ./boost/concept_check.hpp:30,
+                 from ./boost/property_map.hpp:15,
+                 from ./boost/graph/adjacency_list.hpp:38,
+                 from source/dofs/dof_renumbering.cc:35:
+./boost/concept/usage.hpp:35:7: note: in a call to non-static member function 'boost::Convertible<X, Y>::~Convertible() [with X = boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>; Y = std::input_iterator_tag]'
+   35 |       ~model()
+      |       ^
+./boost/concept_check.hpp:196:5: note: in expansion of macro 'BOOST_CONCEPT_USAGE'
+  196 |     BOOST_CONCEPT_USAGE(Convertible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+./boost/concept/usage.hpp: In instantiation of 'boost::concept::usage_requirements<Model>::~usage_requirements() [with Model = boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>]':
+./boost/concept/detail/general.hpp:29:47:   required from 'static void boost::concept::requirement<Model>::failed() [with Model = boost::concept::usage_requirements<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >]'
+./boost/concept_check.hpp:196:5:   required from 'struct boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>'
+./boost/concept/detail/has_constraints.hpp:30:62:   required by substitution of 'template<class Model> boost::concept::detail::yes boost::concept::detail::has_constraints_(Model*, boost::concept::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag>]'
+./boost/concept/detail/has_constraints.hpp:40:5:   required from 'const bool boost::concept::not_satisfied<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >::value'
+./boost/concept/detail/has_constraints.hpp:43:31:   required from 'struct boost::concept::not_satisfied<boost::Convertible<boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>, std::input_iterator_tag> >'
+./boost/mpl/if.hpp:63:11:   [ skipping 8 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+./boost/concept_check.hpp:43:7:   required from 'void boost::function_requires(Model*) [with Model = boost::concepts::IncidenceGraphConcept<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > > >]'
+./boost/graph/depth_first_search.hpp:84:64:   required from 'void boost::detail::depth_first_visit_impl(const IncidenceGraph&, typename boost::graph_traits<Graph>::vertex_descriptor, DFSVisitor&, ColorMap, TerminatorFunc) [with IncidenceGraph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; DFSVisitor = boost::dfs_visitor<>; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; TerminatorFunc = boost::detail::nontruth2; typename boost::graph_traits<Graph>::vertex_descriptor = long unsigned int]'
+./boost/graph/depth_first_search.hpp:347:35:   required from 'void boost::depth_first_visit(const IncidenceGraph&, typename boost::graph_traits<Graph>::vertex_descriptor, DFSVisitor, ColorMap) [with IncidenceGraph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; DFSVisitor = boost::dfs_visitor<>; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; typename boost::graph_traits<Graph>::vertex_descriptor = long unsigned int]'
+./boost/graph/cuthill_mckee_ordering.hpp:151:26:   required from 'OutputIterator boost::cuthill_mckee_ordering(const Graph&, OutputIterator, ColorMap, DegreeMap) [with Graph = boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >; OutputIterator = std::reverse_iterator<__gnu_cxx::__normal_iterator<long unsigned int*, std::vector<long unsigned int> > >; ColorMap = boost::vec_adj_list_vertex_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >, boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > >*, boost::default_color_type, boost::default_color_type&, boost::vertex_color_t>; DegreeMap = boost::degree_property_map<boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_color_t, boost::default_color_type, boost::property<boost::vertex_degree_t, int> > > >]'
+source/dofs/dof_renumbering.cc:208:33:   required from 'void dealii::DoFRenumbering::boost::compute_Cuthill_McKee(std::vector<unsigned int>&, const DH&, bool, bool) [with DH = dealii::DoFHandler<3, 3>]'
+source/dofs/dof_renumbering.cc:1484:56:   required from here
+./boost/concept/usage.hpp:21:48: warning: 'this' pointer is null [-Wnonnull]
+   21 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+./boost/concept/usage.hpp:35:7: note: in a call to non-static member function 'boost::Convertible<X, Y>::~Convertible() [with X = boost::detail::iterator_category_with_traversal<std::input_iterator_tag, boost::random_access_traversal_tag>; Y = std::input_iterator_tag]'
+   35 |       ~model()
+      |       ^
+./boost/concept_check.hpp:196:5: note: in expansion of macro 'BOOST_CONCEPT_USAGE'
+  196 |     BOOST_CONCEPT_USAGE(Convertible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+/usr/bin/g++-11             -m64 -c -o source/dofs/dof_tools.o -DSPEC -DNDEBUG -Iinclude -I. -DSPEC_AUTO_SUPPRESS_OPENMP  -O2 -march=x86-64 -mtune=generic -fno-unsafe-math-optimizations     -fpermissive    -DSPEC_LP64  source/dofs/dof_tools.cc
+In file included from ./boost/mem_fn.hpp:25,
+                 from ./boost/function/detail/prologue.hpp:18,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+./boost/get_pointer.hpp:21:40: warning: 'template<class> class std::auto_ptr' is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   21 | template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+      |                                        ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/function/function_base.hpp:16,
+                 from ./boost/function/detail/prologue.hpp:17,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:32,
+                 from include/base/std_cxx1x/shared_ptr.h:25,
+                 from include/base/thread_management.h:21,
+                 from source/dofs/dof_tools.cc:16:
+./boost/detail/shared_count.hpp:195:33: warning: 'template<class> class std::auto_ptr' is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  195 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/function/function_base.hpp:16,
+                 from ./boost/function/detail/prologue.hpp:17,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from include/base/std_cxx1x/shared_ptr.h:25,
+                 from include/base/thread_management.h:21,
+                 from source/dofs/dof_tools.cc:16:
+./boost/shared_ptr.hpp:146:65: warning: 'template<class> class std::auto_ptr' is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  146 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/function/function_base.hpp:16,
+                 from ./boost/function/detail/prologue.hpp:17,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from include/base/std_cxx1x/shared_ptr.h:25,
+                 from include/base/thread_management.h:21,
+                 from source/dofs/dof_tools.cc:16:
+./boost/shared_ptr.hpp:287:30: warning: 'template<class> class std::auto_ptr' is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  287 |     explicit shared_ptr(std::auto_ptr<Y> & r): px(r.get()), pn()
+      |                              ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/function/function_base.hpp:16,
+                 from ./boost/function/detail/prologue.hpp:17,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from include/base/std_cxx1x/shared_ptr.h:25,
+                 from include/base/thread_management.h:21,
+                 from source/dofs/dof_tools.cc:16:
+./boost/shared_ptr.hpp:324:34: warning: 'template<class> class std::auto_ptr' is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  324 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/function/function_base.hpp:16,
+                 from ./boost/function/detail/prologue.hpp:17,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from source/dofs/dof_tools.cc:36:
+include/fe/fe_values.h:2580:10: warning: 'template<class> class std::auto_ptr' is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+ 2580 |     std::auto_ptr<const CellIteratorBase> present_cell;
+      |          ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/function/function_base.hpp:16,
+                 from ./boost/function/detail/prologue.hpp:17,
+                 from ./boost/function.hpp:24,
+                 from include/base/std_cxx1x/function.h:25,
+                 from include/base/thread_management.h:20,
+                 from source/dofs/dof_tools.cc:16:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~

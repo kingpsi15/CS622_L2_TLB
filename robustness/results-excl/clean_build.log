@@ -1,0 +1,100 @@
+[2026-11-14 08:39:34] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 08:39:34] [csewsrm22] [excl] installing SCons 4.8.1 from the repository archive (offline)
+[2026-11-14 08:39:34] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:39:51] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed into the temporary tree
+[2026-11-14 08:39:53] [csewsrm22] [excl] SCons build failed (exit 1); see /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/clean_build_scons.log
+[2026-11-14 08:41:12] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 08:41:12] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:42:11] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 08:42:11] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:42:13] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:24:44] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 09:36:35] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 09:36:35] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 09:36:35] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 09:36:35] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:41:40] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 10:04:46] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 10:04:46] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:04:46] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 10:04:46] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:06:18] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 10:06:18] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:08:58] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 10:08:58] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:08:58] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 10:08:58] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:10:31] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 10:10:31] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:25:54] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 10:25:54] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:25:54] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 10:25:55] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:27:26] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 10:27:26] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:31:27] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 10:31:27] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:31:27] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 10:31:28] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:32:59] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 10:32:59] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 13:38:20] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 13:38:20] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 13:38:20] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 13:38:20] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 13:39:53] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 13:39:53] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 19:29:31] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 19:29:31] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 19:29:31] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 19:29:31] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 19:31:03] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 19:31:03] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 21:06:48] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 21:06:48] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 21:06:48] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 21:06:48] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 21:06:55] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 21:06:55] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 23:08:30] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-14 23:08:30] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 23:08:30] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-14 23:08:31] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 23:11:16] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-14 23:11:16] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 07:35:46] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-15 07:35:46] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 07:35:46] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-15 07:35:46] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 07:38:51] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-15 07:38:51] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 07:54:12] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-15 07:54:12] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 07:54:12] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-15 07:54:13] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 07:54:19] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-15 07:54:19] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 09:30:29] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-15 09:30:29] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 09:30:29] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-15 09:30:29] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 09:30:36] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-15 09:30:36] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 10:02:16] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-15 10:02:16] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 10:02:16] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-15 10:02:17] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 10:04:56] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-15 10:04:56] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 14:58:34] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-15 14:58:34] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 14:58:34] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-15 14:58:34] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 15:01:14] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-15 15:01:14] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 15:13:52] [csewsrm22] [excl] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl
+[2026-11-15 15:13:52] [csewsrm22] [excl] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 15:13:52] [csewsrm22] [excl] reusing existing temporary checkout for incremental build
+[2026-11-15 15:13:52] [csewsrm22] [excl] installed tlb.cc.excl.fixed and tlb.hh.excl.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 15:15:24] [csewsrm22] [excl] PASS: excl build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+[2026-11-15 15:15:24] [csewsrm22] [excl] starting the lane's full-system SPEC CPU2017 test run

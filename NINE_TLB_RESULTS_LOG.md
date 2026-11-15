@@ -1,0 +1,62 @@
+- 2026-11-12 21:45:35 — [csewsrm23] machine_run nine: START (W=/tmp/sahilag24/work-nine)
+- 2026-11-12 21:45:36 — stage m_lane_build: START
+- 2026-11-12 21:54:35 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-nine/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-nine/m_lane_build.fail.txt)
+- 2026-11-12 21:57:33 — [csewsrm23] machine_run nine: START (W=/tmp/sahilag24/work-nine)
+- 2026-11-12 21:57:33 — stage m_lane_build: START
+- 2026-11-12 21:59:13 — manual_link nine: OK 2582441000 bytes
+- 2026-11-12 21:59:13 — stage m_lane_build: OK
+- 2026-11-12 21:59:13 — stage m_base_build: START
+- 2026-11-12 22:03:39 — stage spec_download: START
+- 2026-11-12 22:03:40 — manual_link nine: OK 2582369120 bytes
+- 2026-11-12 22:03:40 — stage m_base_build: OK
+- 2026-11-12 22:03:40 — stage m_tests: START
+- 2026-11-12 22:03:41 — stage m_tests: **FAILED** (log: /tmp/sahilag24/work-nine/logs/m_tests.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-nine/m_tests.fail.txt)
+- 2026-11-12 22:06:30 — stage spec_download: OK
+- 2026-11-12 22:06:30 — stage spec_install: START
+- 2026-11-12 22:08:35 — stage spec_install: OK
+- 2026-11-12 22:08:35 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /tmp/sahilag24/work-nine/cpu2017
+- 2026-11-12 22:09:56 — [csewsrm23] machine_run nine: START (W=/tmp/sahilag24/work-nine)
+- 2026-11-12 22:09:56 — stage m_tests: START
+- 2026-11-12 22:09:57 — stage m_tests: OK
+- 2026-11-12 22:09:57 — runner nine_matrix: START 120 jobs, parallel=24
+- 2026-11-13 01:10:04 — runner nine_matrix: DONE 94/120 PASS; not-pass: base/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-atomic-interrupts_4_200, base/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, base/se-1c1p1t-timing-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, base/se-2c-atomic-fork-shared, inc/se-2c-atomic-fork-shared, base/se-2c-o3-fork-shared, inc/se-2c-o3-fork-shared, base/se-2c-timing-fork-shared, inc/se-2c-timing-fork-shared, base/se-4c4p-atomic-multiprog, inc/se-4c4p-atomic-multiprog, base/se-4c4p-o3-multiprog, inc/se-4c4p-o3-multiprog, base/se-4c4p-timing-multiprog, inc/se-4c4p-timing-multiprog, base/se-8c8p-atomic-multiprog, inc/se-8c8p-atomic-multiprog, base/se-8c8p-o3-multiprog, inc/se-8c8p-o3-multiprog, base/se-8c8p-timing-multiprog, inc/se-8c8p-timing-multiprog, base/se-smt4-o3-mixed, inc/se-smt4-o3-mixed (table: robustness/results/nine_matrix.md)
+- 2026-11-13 01:10:04 — [csewsrm23] machine_run nine: DONE -> robustness/results-nine/nine_matrix.md (see runner line above for PASS counts)
+- 2026-11-13 04:12:37 — fixed tree scons build: done, see /tmp/sahilag24/work-nine/logs/scons_gem5-nine-fixed.log
+- 2026-11-13 04:13:04 — manual_link nine: OK 2582609424 bytes
+- 2026-11-13 04:25:26 — runner nine_fixed_matrix: START 60 jobs, parallel=24
+- 2026-11-13 04:25:46 — runner nine_fixed_matrix: START 57 jobs, parallel=24
+- 2026-11-13 04:26:00 — runner nine_fixed_matrix: DONE 47/57 PASS; not-pass: inc/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, inc/se-4c4p-atomic-multiprog, inc/se-4c4p-o3-multiprog, inc/se-4c4p-timing-multiprog, inc/se-8c8p-atomic-multiprog, inc/se-8c8p-o3-multiprog, inc/se-8c8p-timing-multiprog, inc/se-smt4-o3-mixed (table: robustness/results/nine_fixed_matrix.md)
+- 2026-11-13 04:43:24 — LANE nine COMPLETE
+- 2026-11-13 09:05:59 — runner spec_test_stock: START 34 jobs, parallel=20
+- 2026-11-13 20:48:57 — [csewsrm23] fixed SPEC worker nine: START cores=32 spec_jobs=32
+- 2026-11-13 20:48:57 — [csewsrm23] machine_run nine: START (W=/tmp/sahilag24/work-nine)
+- 2026-11-13 20:48:57 — [csewsrm23] machine_run nine: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+- 2026-11-13 20:51:03 — manual_link nine: OK 2582605320 bytes
+- 2026-11-13 20:51:03 — stage spec_build: START
+- 2026-11-13 20:51:42 — stage spec_build: OK
+- 2026-11-13 20:51:42 — stage spec_setup: START
+- 2026-11-13 20:54:01 — stage spec_setup: OK
+- 2026-11-13 20:54:01 — SPEC exes built: 56 ; build errors: 6 make.out files with errors
+- 2026-11-13 20:54:01 — runner spec_test_nine_csewsrm23: START 68 jobs, parallel=32
+- 2026-11-14 05:21:03 — runner spec_test_nine_csewsrm23: DONE 42/68 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_nine_csewsrm23.md)
+- 2026-11-14 05:21:03 — runner spec_test_nine_csewsrm23: START 68 jobs, parallel=32
+- 2026-11-14 10:40:36 — stage spec_download: START
+- 2026-11-14 10:42:40 — stage spec_download: OK
+- 2026-11-14 10:42:40 — stage spec_install: START
+- 2026-11-14 10:44:59 — stage spec_install: OK
+- 2026-11-14 10:44:59 — SPEC: archive=/tmp/sahilag24/work-nine/spec-dl/spec2017.tar.xz bytes=2971382248; installed=/tmp/sahilag24/work-nine/cpu2017
+- 2026-11-14 10:44:59 — stage spec_build: START
+- 2026-11-14 10:58:46 — stage spec_build: OK
+- 2026-11-14 10:58:46 — stage spec_setup: START
+- 2026-11-14 11:00:37 — stage spec_setup: OK
+- 2026-11-14 11:00:37 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-14 19:31:26 — stage spec_build: START
+- 2026-11-14 19:32:02 — stage spec_build: **FAILED** (log: /tmp/sahilag24/work-nine/logs/spec_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-nine/spec_build.fail.txt)
+- 2026-11-14 19:32:02 — stage spec_setup: START
+- 2026-11-14 19:34:02 — stage spec_setup: OK
+- 2026-11-14 19:34:02 — SPEC exes built: 58 ; build errors: 5 make.out files with errors
+- 2026-11-14 21:14:10 — stage spec_build: START
+- 2026-11-14 21:15:34 — stage spec_build: OK
+- 2026-11-14 21:15:34 — stage spec_setup: START
+- 2026-11-14 21:17:17 — stage spec_setup: OK
+- 2026-11-14 21:17:17 — SPEC exes built: 59 ; build errors: 6 make.out files with errors

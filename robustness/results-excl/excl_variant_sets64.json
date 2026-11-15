@@ -1,0 +1,194 @@
+[
+ {
+  "name": "sets64-capacity_513_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39774,
+   "wrAccesses": 16436,
+   "exAccesses": 802920,
+   "rdMisses": 12225,
+   "wrMisses": 12657,
+   "exMisses": 68,
+   "chkOracleChecks": 858612,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_sets64/base/sets64-capacity_513_4",
+  "desc": "EXCL variant sets64: capacity 513 4"
+ },
+ {
+  "name": "sets64-capacity_513_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=4 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 39774,
+   "wrAccesses": 16436,
+   "exAccesses": 802920,
+   "rdMisses": 8860,
+   "wrMisses": 9777,
+   "exMisses": 68,
+   "chkOracleChecks": 858612,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 42491,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 6245,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_sets64/inc/sets64-capacity_513_4",
+  "desc": "EXCL variant sets64: capacity 513 4"
+ },
+ {
+  "name": "sets64-conflict_200_4",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7630,
+   "wrAccesses": 4754,
+   "exAccesses": 559964,
+   "rdMisses": 1553,
+   "wrMisses": 1744,
+   "exMisses": 68,
+   "chkOracleChecks": 572144,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_sets64/base/sets64-conflict_200_4",
+  "desc": "EXCL variant sets64: conflict 200 4"
+ },
+ {
+  "name": "sets64-conflict_200_4",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=200 set=2 passes=4"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7630,
+   "wrAccesses": 4754,
+   "exAccesses": 559964,
+   "rdMisses": 26,
+   "wrMisses": 423,
+   "exMisses": 68,
+   "chkOracleChecks": 572144,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 3346,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 2848,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_sets64/inc/sets64-conflict_200_4",
+  "desc": "EXCL variant sets64: conflict 200 4"
+ },
+ {
+  "name": "sets64-remap_20_96",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 12462,
+   "wrAccesses": 8355,
+   "exAccesses": 161692,
+   "rdMisses": 5840,
+   "wrMisses": 2028,
+   "exMisses": 165,
+   "chkOracleChecks": 180489,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_sets64/base/sets64-remap_20_96",
+  "desc": "EXCL variant sets64: remap 20 96"
+ },
+ {
+  "name": "sets64-remap_20_96",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=20 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 12462,
+   "wrAccesses": 8355,
+   "exAccesses": 161692,
+   "rdMisses": 3900,
+   "wrMisses": 204,
+   "exMisses": 165,
+   "chkOracleChecks": 180489,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 6803,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 3764,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-excl/runs/excl_variant_sets64/inc/sets64-remap_20_96",
+  "desc": "EXCL variant sets64: remap 20 96"
+ }
+]

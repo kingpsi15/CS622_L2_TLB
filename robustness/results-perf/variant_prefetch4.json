@@ -1,0 +1,482 @@
+[
+ {
+  "name": "v-atomic-chunk1",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 337546,
+   "wrAccesses": 127004,
+   "exAccesses": 2648735,
+   "rdMisses": 2260,
+   "wrMisses": 4268,
+   "exMisses": 292,
+   "chkOracleChecks": 3111201,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28764,
+   "coarseFilterCleanHits": 8842,
+   "coarseFilterEarlyRejects": 366,
+   "secondaryBitmapAccesses": 19556,
+   "l2BitmapHits": 13383,
+   "l2BitmapHoleMisses": 6173,
+   "estLookupCyclesSaved": 82506,
+   "estDynamicEnergyUnitsSaved": 739202
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-churn",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 228123,
+   "wrAccesses": 105496,
+   "exAccesses": 1959665,
+   "rdMisses": 3491,
+   "wrMisses": 4758,
+   "exMisses": 1962,
+   "chkOracleChecks": 2291184,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 26469,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1622,
+   "secondaryBitmapAccesses": 24847,
+   "l2BitmapHits": 17897,
+   "l2BitmapHoleMisses": 6950,
+   "estLookupCyclesSaved": 12976,
+   "estDynamicEnergyUnitsSaved": 141114
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-clustered",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 289524,
+   "wrAccesses": 112098,
+   "exAccesses": 2341030,
+   "rdMisses": 2756,
+   "wrMisses": 4556,
+   "exMisses": 1214,
+   "chkOracleChecks": 2740552,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 27224,
+   "coarseFilterCleanHits": 12308,
+   "coarseFilterEarlyRejects": 1067,
+   "secondaryBitmapAccesses": 13849,
+   "l2BitmapHits": 7423,
+   "l2BitmapHoleMisses": 6426,
+   "estLookupCyclesSaved": 119308,
+   "estDynamicEnergyUnitsSaved": 1077469
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-collide16",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 948762,
+   "wrAccesses": 369697,
+   "exAccesses": 7864735,
+   "rdMisses": 6940,
+   "wrMisses": 17039,
+   "exMisses": 1058,
+   "chkOracleChecks": 9174870,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 90970,
+   "coarseFilterCleanHits": 33667,
+   "coarseFilterEarlyRejects": 1333,
+   "secondaryBitmapAccesses": 55970,
+   "l2BitmapHits": 33372,
+   "l2BitmapHoleMisses": 22598,
+   "estLookupCyclesSaved": 313667,
+   "estDynamicEnergyUnitsSaved": 2809331
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-collide16",
+  "desc": "16 regions: set-collision/replacement"
+ },
+ {
+  "name": "v-atomic-collide48",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 21,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2076323,
+   "wrAccesses": 763926,
+   "exAccesses": 15861592,
+   "rdMisses": 28234,
+   "wrMisses": 55531,
+   "exMisses": 21424,
+   "chkOracleChecks": 18676973,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 199094,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 17402,
+   "secondaryBitmapAccesses": 181692,
+   "l2BitmapHits": 111149,
+   "l2BitmapHoleMisses": 70543,
+   "estLookupCyclesSaved": 139216,
+   "estDynamicEnergyUnitsSaved": 1513974
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "v-atomic-dense",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 273036,
+   "wrAccesses": 119269,
+   "exAccesses": 2321435,
+   "rdMisses": 12,
+   "wrMisses": 4108,
+   "exMisses": 29,
+   "chkOracleChecks": 2711688,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28563,
+   "coarseFilterCleanHits": 24309,
+   "coarseFilterEarlyRejects": 61,
+   "secondaryBitmapAccesses": 4193,
+   "l2BitmapHits": 117,
+   "l2BitmapHoleMisses": 4076,
+   "estLookupCyclesSaved": 219269,
+   "estDynamicEnergyUnitsSaved": 1950027
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-dispersed",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 304356,
+   "wrAccesses": 114146,
+   "exAccesses": 2423842,
+   "rdMisses": 2981,
+   "wrMisses": 4556,
+   "exMisses": 1252,
+   "chkOracleChecks": 2840244,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 27319,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1086,
+   "secondaryBitmapAccesses": 26233,
+   "l2BitmapHits": 19563,
+   "l2BitmapHoleMisses": 6670,
+   "estLookupCyclesSaved": 8688,
+   "estDynamicEnergyUnitsSaved": 94482
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-edge",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 302617,
+   "wrAccesses": 120859,
+   "exAccesses": 2518820,
+   "rdMisses": 2258,
+   "wrMisses": 4268,
+   "exMisses": 290,
+   "chkOracleChecks": 2940212,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28758,
+   "coarseFilterCleanHits": 12449,
+   "coarseFilterEarlyRejects": 365,
+   "secondaryBitmapAccesses": 15944,
+   "l2BitmapHits": 9774,
+   "l2BitmapHoleMisses": 6170,
+   "estLookupCyclesSaved": 114961,
+   "estDynamicEnergyUnitsSaved": 1027675
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-sparse",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 185474,
+   "wrAccesses": 32000,
+   "exAccesses": 1348060,
+   "rdMisses": 6337,
+   "wrMisses": 6316,
+   "exMisses": 8228,
+   "chkOracleChecks": 1563434,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 14686,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 6334,
+   "secondaryBitmapAccesses": 8352,
+   "l2BitmapHits": 118,
+   "l2BitmapHoleMisses": 8234,
+   "estLookupCyclesSaved": 50672,
+   "estDynamicEnergyUnitsSaved": 551058
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "v-atomic-tlbstress-capacity",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 30528,
+   "wrAccesses": 13352,
+   "exAccesses": 608261,
+   "rdMisses": 13,
+   "wrMisses": 1036,
+   "exMisses": 30,
+   "chkOracleChecks": 651623,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 18864,
+   "coarseFilterCleanHits": 15529,
+   "coarseFilterEarlyRejects": 18,
+   "secondaryBitmapAccesses": 3317,
+   "l2BitmapHits": 2264,
+   "l2BitmapHoleMisses": 1053,
+   "estLookupCyclesSaved": 139905,
+   "estDynamicEnergyUnitsSaved": 1243886
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-tlbstress-capacity",
+  "desc": "generic 4K stress"
+ },
+ {
+  "name": "v-atomic-tlbstress-conflict",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 5711,
+   "wrAccesses": 3755,
+   "exAccesses": 255384,
+   "rdMisses": 13,
+   "wrMisses": 168,
+   "exMisses": 30,
+   "chkOracleChecks": 264766,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 1392,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 122,
+   "secondaryBitmapAccesses": 1270,
+   "l2BitmapHits": 1227,
+   "l2BitmapHoleMisses": 43,
+   "estLookupCyclesSaved": 976,
+   "estDynamicEnergyUnitsSaved": 10614
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-tlbstress-conflict",
+  "desc": "generic 4K stress"
+ },
+ {
+  "name": "v-atomic-tlbstress-remap",
+  "build": "fixed",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7577,
+   "wrAccesses": 5450,
+   "exAccesses": 90087,
+   "rdMisses": 1954,
+   "wrMisses": 200,
+   "exMisses": 81,
+   "chkOracleChecks": 102054,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 4071,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 43,
+   "secondaryBitmapAccesses": 4028,
+   "l2BitmapHits": 1893,
+   "l2BitmapHoleMisses": 2135,
+   "estLookupCyclesSaved": 344,
+   "estDynamicEnergyUnitsSaved": 3741
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/variant_prefetch4/fixed/v-atomic-tlbstress-remap",
+  "desc": "generic 4K stress"
+ }
+]

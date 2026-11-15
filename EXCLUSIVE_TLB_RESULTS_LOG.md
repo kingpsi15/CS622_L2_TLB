@@ -1,0 +1,139 @@
+- 2026-11-12 21:46:16 — [csewsrm22] machine_run excl: START (W=/tmp/sahilag24/work-excl)
+- 2026-11-12 21:46:17 — stage m_lane_build: START
+- 2026-11-12 21:55:16 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-excl/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/m_lane_build.fail.txt)
+- 2026-11-12 21:57:12 — [csewsrm22] machine_run excl: START (W=/tmp/sahilag24/work-excl)
+- 2026-11-12 21:57:12 — stage m_lane_build: START
+- 2026-11-12 21:58:55 — manual_link excl: OK 2582455360 bytes
+- 2026-11-12 21:58:55 — stage m_lane_build: OK
+- 2026-11-12 21:58:55 — stage m_base_build: START
+- 2026-11-12 21:59:56 — stage spec_download: START
+- 2026-11-12 22:03:06 — stage spec_download: OK
+- 2026-11-12 22:03:06 — stage spec_install: START
+- 2026-11-12 22:03:27 — manual_link excl: OK 2582369120 bytes
+- 2026-11-12 22:03:27 — stage m_base_build: OK
+- 2026-11-12 22:03:27 — stage m_tests: START
+- 2026-11-12 22:03:28 — stage m_tests: **FAILED** (log: /tmp/sahilag24/work-excl/logs/m_tests.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/m_tests.fail.txt)
+- 2026-11-12 22:05:12 — stage spec_install: OK
+- 2026-11-12 22:05:12 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /tmp/sahilag24/work/cpu2017
+- 2026-11-13 12:08:10 — stage spec_download: START
+- 2026-11-13 12:08:53 — [csews28] machine_run excl: START (W=/tmp/sahilag24/work-excl)
+- 2026-11-13 12:08:54 — stage m_lane_build: START
+- 2026-11-13 12:11:38 — stage spec_download: OK
+- 2026-11-13 12:11:38 — stage spec_install: START
+- 2026-11-13 12:11:38 — stage spec_install: **FAILED** (log: /tmp/sahilag24/work-excl/logs/spec_install.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/spec_install.fail.txt)
+- 2026-11-13 12:11:38 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /var/tmp/sahilag24/cpu2017
+- 2026-11-13 12:15:07 — stage spec_install: START
+- 2026-11-13 12:17:54 — stage spec_install: OK
+- 2026-11-13 12:17:54 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /var/tmp/sahilag24/cpu2017
+- 2026-11-13 12:29:18 — manual_link excl: OK 2582455360 bytes
+- 2026-11-13 12:29:18 — stage m_lane_build: OK
+- 2026-11-13 12:29:18 — stage m_base_build: START
+- 2026-11-13 12:32:51 — [excl-chk] rsync fresh tree -> /tmp/sahilag24/work-excl/gem5-excl-chk
+- 2026-11-13 12:35:21 — [excl-chk] before build: START
+- 2026-11-13 12:40:55 — manual_link excl: OK 2582369120 bytes
+- 2026-11-13 12:40:55 — stage m_base_build: OK
+- 2026-11-13 12:41:33 — [csews28] machine_run excl: START (W=/tmp/sahilag24/work-excl)
+- 2026-11-13 12:41:33 — stage m_tests: START
+- 2026-11-13 12:41:34 — stage m_tests: OK
+- 2026-11-13 12:41:34 — runner excl_matrix: START 120 jobs, parallel=6
+- 2026-11-13 12:45:22 — runner excl_matrix: DONE 94/120 PASS; not-pass: base/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-atomic-interrupts_4_200, base/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, base/se-1c1p1t-timing-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, base/se-2c-atomic-fork-shared, inc/se-2c-atomic-fork-shared, base/se-2c-o3-fork-shared, inc/se-2c-o3-fork-shared, base/se-2c-timing-fork-shared, inc/se-2c-timing-fork-shared, base/se-4c4p-atomic-multiprog, inc/se-4c4p-atomic-multiprog, base/se-4c4p-o3-multiprog, inc/se-4c4p-o3-multiprog, base/se-4c4p-timing-multiprog, inc/se-4c4p-timing-multiprog, base/se-8c8p-atomic-multiprog, inc/se-8c8p-atomic-multiprog, base/se-8c8p-o3-multiprog, inc/se-8c8p-o3-multiprog, base/se-8c8p-timing-multiprog, inc/se-8c8p-timing-multiprog, base/se-smt4-o3-mixed, inc/se-smt4-o3-mixed (table: robustness/results/excl_matrix.md)
+- 2026-11-13 12:45:22 — [csews28] machine_run excl: DONE -> robustness/results-excl/excl_matrix.md (see runner line above for PASS counts)
+- 2026-11-13 12:57:10 — manual_link excl: OK 2582476664 bytes
+- 2026-11-13 12:57:11 — [excl-chk] before build: OK -> gem5.opt.before
+- 2026-11-13 12:57:28 — [excl-chk-test] before: runner START tag=excl_chk_before (INC=/tmp/sahilag24/work-excl/gem5-excl-chk BASE=/tmp/sahilag24/work-excl/gem5-base)
+- 2026-11-13 12:57:28 — runner excl_chk_before: START 120 jobs, parallel=6
+- 2026-11-13 13:01:18 — runner excl_chk_before: DONE 92/120 PASS; not-pass: base/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-atomic-interrupts_4_200, base/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, base/se-1c1p1t-timing-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, base/se-2c-atomic-fork-shared, inc/se-2c-atomic-fork-shared, base/se-2c-o3-fork-shared, inc/se-2c-o3-fork-shared, base/se-2c-timing-fork-shared, inc/se-2c-timing-fork-shared, base/se-4c4p-atomic-multiprog, inc/se-4c4p-atomic-multiprog, base/se-4c4p-o3-multiprog, inc/se-4c4p-o3-multiprog, base/se-4c4p-timing-multiprog, inc/se-4c4p-timing-multiprog, base/se-8c8p-atomic-multiprog, inc/se-8c8p-atomic-multiprog, base/se-8c8p-o3-multiprog, inc/se-8c8p-o3-multiprog, base/se-8c8p-timing-multiprog, inc/se-8c8p-timing-multiprog, inc/se-smt2-o3-mixed, inc/se-smt2-o3-same-test, base/se-smt4-o3-mixed, inc/se-smt4-o3-mixed (table: robustness/results/excl_chk_before.md)
+- 2026-11-13 19:42:05 — runner excl_chk_after: DONE 94/120 all-build jobs PASS; EXCL lane 47/60 PASS, all 26 non-passes shared with stock; 1,366,678 exclusivity checks, zero violations, zero oracle mismatches/walk faults (table: robustness/results-excl/excl_chk_after.md)
+- 2026-11-13 19:42:49 — focused variant sweep: 11 configurations × capacity/conflict/remap × fixed/stock; every EXCL case passed with zero invariant/oracle errors; lowest three-workload miss total was 5,891 at EXCL_L2_SETS=256 vs stock 36,348 (tables: robustness/results-excl/excl_variant_*.md/.json)
+- 2026-11-13 20:04:14 — one-set XOR-fold edge case (EXCL_L2_SETS=1, EXCL_L2_HASH=2) passed capacity test on fixed/stock; no hang and zero checker/oracle errors (table: robustness/results-excl/excl_variant_one_set_hashfold.md)
+- 2026-11-13 20:05:00 — preliminary EXCL report and generated source diff saved: EXCLUSIVE_TLB_ROBUSTNESS_REPORT.md; robustness/patches/excl_fixed.diff. SPEC comparisons remain in progress; lane is NOT complete.
+- 2026-11-13 20:06:00 — completed reference-window data: perlbench_r fixed 2,633 TLB misses vs stock 170,197 (−98.5%; both jobs PASS; outputs not diffed yet); mcf_r fixed 1,323,058 misses, stock counterpart still running. See EXCLUSIVE_TLB_ROBUSTNESS_REPORT.md §4 and robustness/results-excl run trees.
+- 2026-11-13 13:01:18 — [excl-chk-test] before: DONE -> robustness/results-excl/excl_chk_before.md
+- 2026-11-13 13:02:20 — [excl-chk] after build: START
+- 2026-11-13 19:07:24 — [csews28] machine_run excl: START (W=/tmp/sahilag24/work-excl)
+- 2026-11-13 19:07:26 — stage m_lane_build: START
+- 2026-11-13 19:24:28 — manual_link excl: OK 2582455360 bytes
+- 2026-11-13 19:24:28 — stage m_lane_build: OK
+- 2026-11-13 19:24:28 — stage m_base_build: START
+- 2026-11-13 19:27:17 — [excl-chk] seed checker tree from completed lane build -> /tmp/sahilag24/work-excl/gem5-excl-chk
+- 2026-11-13 19:27:21 — [excl-chk] after build: START
+- 2026-11-13 19:33:10 — manual_link excl: OK 2582369120 bytes
+- 2026-11-13 19:33:10 — stage m_base_build: OK
+- 2026-11-13 19:33:10 — stage m_tests: START
+- 2026-11-13 19:33:10 — stage m_tests: OK
+- 2026-11-13 19:33:10 — runner excl_matrix: START 120 jobs, parallel=8
+- 2026-11-13 19:35:07 — runner excl_matrix: DONE 94/120 PASS; not-pass: base/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-atomic-interrupts_4_200, base/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, base/se-1c1p1t-timing-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, base/se-2c-atomic-fork-shared, inc/se-2c-atomic-fork-shared, base/se-2c-o3-fork-shared, inc/se-2c-o3-fork-shared, base/se-2c-timing-fork-shared, inc/se-2c-timing-fork-shared, base/se-4c4p-atomic-multiprog, inc/se-4c4p-atomic-multiprog, base/se-4c4p-o3-multiprog, inc/se-4c4p-o3-multiprog, base/se-4c4p-timing-multiprog, inc/se-4c4p-timing-multiprog, base/se-8c8p-atomic-multiprog, inc/se-8c8p-atomic-multiprog, base/se-8c8p-o3-multiprog, inc/se-8c8p-o3-multiprog, base/se-8c8p-timing-multiprog, inc/se-8c8p-timing-multiprog, base/se-smt4-o3-mixed, inc/se-smt4-o3-mixed (table: robustness/results/excl_matrix.md)
+- 2026-11-13 19:35:07 — [csews28] machine_run excl: DONE -> robustness/results-excl/excl_matrix.md (see runner line above for PASS counts)
+- 2026-11-13 19:35:18 — [excl-chk] after build: START
+- 2026-11-13 19:38:38 — manual_link excl: OK 2582794520 bytes
+- 2026-11-13 19:38:39 — [excl-chk] after build: OK -> gem5.opt.after
+- 2026-11-13 19:38:55 — [excl-chk-test] after: runner START tag=excl_chk_after (INC=/tmp/sahilag24/work-excl/gem5-excl BASE=/tmp/sahilag24/work-excl/gem5-base)
+- 2026-11-13 19:38:55 — runner excl_chk_after: START 120 jobs, parallel=8
+- 2026-11-13 19:42:05 — runner excl_chk_after: DONE 94/120 PASS; not-pass: base/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-atomic-interrupts_4_200, base/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, base/se-1c1p1t-timing-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, base/se-2c-atomic-fork-shared, inc/se-2c-atomic-fork-shared, base/se-2c-o3-fork-shared, inc/se-2c-o3-fork-shared, base/se-2c-timing-fork-shared, inc/se-2c-timing-fork-shared, base/se-4c4p-atomic-multiprog, inc/se-4c4p-atomic-multiprog, base/se-4c4p-o3-multiprog, inc/se-4c4p-o3-multiprog, base/se-4c4p-timing-multiprog, inc/se-4c4p-timing-multiprog, base/se-8c8p-atomic-multiprog, inc/se-8c8p-atomic-multiprog, base/se-8c8p-o3-multiprog, inc/se-8c8p-o3-multiprog, base/se-8c8p-timing-multiprog, inc/se-8c8p-timing-multiprog, base/se-smt4-o3-mixed, inc/se-smt4-o3-mixed (table: robustness/results/excl_chk_after.md)
+- 2026-11-13 19:42:05 — [excl-chk-test] after: DONE -> robustness/results-excl/excl_chk_after.md
+- 2026-11-13 19:42:34 — runner excl_variant_default: START 6 jobs, parallel=2
+- 2026-11-13 19:42:36 — runner excl_variant_default: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_default.md)
+- 2026-11-13 19:42:36 — runner excl_variant_sets64: START 6 jobs, parallel=2
+- 2026-11-13 19:42:37 — runner excl_variant_sets64: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_sets64.md)
+- 2026-11-13 19:42:37 — runner excl_variant_sets256: START 6 jobs, parallel=2
+- 2026-11-13 19:42:38 — runner excl_variant_sets256: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_sets256.md)
+- 2026-11-13 19:42:38 — runner excl_variant_ways2: START 6 jobs, parallel=2
+- 2026-11-13 19:42:40 — runner excl_variant_ways2: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_ways2.md)
+- 2026-11-13 19:42:40 — runner excl_variant_hash_mod: START 6 jobs, parallel=2
+- 2026-11-13 19:42:41 — runner excl_variant_hash_mod: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_hash_mod.md)
+- 2026-11-13 19:42:41 — runner excl_variant_hash_fold: START 6 jobs, parallel=2
+- 2026-11-13 19:42:42 — runner excl_variant_hash_fold: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_hash_fold.md)
+- 2026-11-13 19:42:42 — runner excl_variant_fifo: START 6 jobs, parallel=2
+- 2026-11-13 19:42:43 — runner excl_variant_fifo: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_fifo.md)
+- 2026-11-13 19:42:43 — runner excl_variant_random: START 6 jobs, parallel=2
+- 2026-11-13 19:42:45 — runner excl_variant_random: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_random.md)
+- 2026-11-13 19:42:45 — runner excl_variant_dirty_hot: START 6 jobs, parallel=2
+- 2026-11-13 19:42:46 — runner excl_variant_dirty_hot: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_dirty_hot.md)
+- 2026-11-13 19:42:46 — runner excl_variant_no_spill: START 6 jobs, parallel=2
+- 2026-11-13 19:42:47 — runner excl_variant_no_spill: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_no_spill.md)
+- 2026-11-13 19:42:47 — runner excl_variant_l1_32: START 6 jobs, parallel=2
+- 2026-11-13 19:42:49 — runner excl_variant_l1_32: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_variant_l1_32.md)
+- 2026-11-13 19:43:23 — runner excl_spec_test_first: START 10 jobs, parallel=4
+- 2026-11-13 19:44:25 — runner excl_spec_ref_first3: START 6 jobs, parallel=3
+- 2026-11-13 20:03:43 — runner excl_spec_ref_first3: START 6 jobs, parallel=3
+- 2026-11-13 20:04:14 — runner excl_variant_one_set_hashfold: START 2 jobs, parallel=2
+- 2026-11-13 20:04:14 — runner excl_variant_one_set_hashfold: DONE 2/2 PASS; not-pass: none (table: robustness/results/excl_variant_one_set_hashfold.md)
+- 2026-11-13 20:18:11 — runner excl_spec_ref_first3: DONE 6/6 PASS; not-pass: none (table: robustness/results/excl_spec_ref_first3.md)
+- 2026-11-13 21:09:35 — [csewsrm22] fixed SPEC worker excl: START cores=32 spec_jobs=32
+- 2026-11-13 21:09:35 — [csewsrm22] SPEC available at /var/tmp/sahilag24/cpu2017
+- 2026-11-13 21:09:35 — [csewsrm22] machine_run excl: START (W=/tmp/sahilag24/work-excl)
+- 2026-11-13 21:09:35 — stage m_tests: START
+- 2026-11-13 21:09:36 — stage m_tests: OK
+- 2026-11-13 21:09:36 — [csewsrm22] machine_run excl: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+- 2026-11-13 21:09:36 — [excl-chk] after build: START
+- 2026-11-13 21:11:59 — manual_link excl: OK 2582794520 bytes
+- 2026-11-13 21:12:00 — [excl-chk] after build: OK -> gem5.opt.after
+- 2026-11-13 21:12:01 — stage spec_build: START
+- 2026-11-13 21:21:56 — stage spec_build: OK
+- 2026-11-13 21:21:56 — stage spec_setup: START
+- 2026-11-13 21:23:51 — stage spec_setup: OK
+- 2026-11-13 21:23:51 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-13 21:23:51 — runner spec_test_excl_csewsrm22: START 70 jobs, parallel=32
+- 2026-11-14 04:55:07 — runner excl_spec_test_first: DONE 2/10 PASS; not-pass: base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-557.xz_r-0, inc/spec-test-557.xz_r-0 (table: robustness/results/excl_spec_test_first.md)
+- 2026-11-14 05:55:41 — runner spec_test_excl_csewsrm22: DONE 44/70 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_excl_csewsrm22.md)
+- 2026-11-14 05:55:45 — runner spec_ref_excl_csewsrm22: START 66 jobs, parallel=32
+- 2026-11-14 10:36:18 — stage spec_download: START
+- 2026-11-14 10:38:16 — stage spec_download: OK
+- 2026-11-14 10:38:16 — stage spec_install: START
+- 2026-11-14 10:40:21 — stage spec_install: OK
+- 2026-11-14 10:40:21 — SPEC: archive=/tmp/sahilag24/work-excl/spec-dl/spec2017.tar.xz bytes=2971382248; installed=/tmp/sahilag24/work-excl/cpu2017
+- 2026-11-14 10:40:21 — stage spec_build: START
+- 2026-11-14 10:53:25 — stage spec_build: OK
+- 2026-11-14 10:53:25 — stage spec_setup: START
+- 2026-11-14 10:55:13 — stage spec_setup: OK
+- 2026-11-14 10:55:13 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-14 19:31:03 — stage spec_build: START
+- 2026-11-14 19:31:39 — stage spec_build: **FAILED** (log: /tmp/sahilag24/work-excl/logs/spec_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/spec_build.fail.txt)
+- 2026-11-14 19:31:39 — stage spec_setup: START
+- 2026-11-14 19:33:30 — stage spec_setup: OK
+- 2026-11-14 19:33:30 — SPEC exes built: 58 ; build errors: 5 make.out files with errors
+- 2026-11-14 21:06:55 — stage spec_build: START
+- 2026-11-14 21:08:17 — stage spec_build: OK
+- 2026-11-14 21:08:17 — stage spec_setup: START
+- 2026-11-14 21:09:58 — stage spec_setup: OK
+- 2026-11-14 21:09:58 — SPEC exes built: 59 ; build errors: 6 make.out files with errors

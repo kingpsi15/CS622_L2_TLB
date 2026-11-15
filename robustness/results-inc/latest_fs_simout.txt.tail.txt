@@ -1,0 +1,13 @@
+Global frequency set at 1000000000000 ticks per second
+      0: board.pc.south_bridge.cmos.rtc: Real-time clock set to Sun Jan  1 00:00:00 2012
+Redirecting stdout to /tmp/sahilag24/work/runs/spec_fs_inc_20261115_150225/simout.txt
+Redirecting stderr to /tmp/sahilag24/work/runs/spec_fs_inc_20261115_150225/simerr.txt
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.1.0.1
+gem5 compiled Nov 15 2026 15:00:21
+gem5 started Nov 15 2026 15:02:30
+gem5 executing on csews20, pid 1150482
+command line: /tmp/sahilag24/CS622_L2_TLB/gem5-inc/build/X86/gem5.opt -re -d /tmp/sahilag24/work/runs/spec_fs_inc_20261115_150225 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/work/jobs/spec_fs_guest.sh --spec-disk /tmp/sahilag24/work/spec2017.fs.img
+

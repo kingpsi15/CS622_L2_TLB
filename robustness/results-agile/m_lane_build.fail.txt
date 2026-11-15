@@ -1,0 +1,5 @@
+instrumented base: /tmp/sahilag24/work-agile/gem5-agile/src/arch/x86/tlb.cc
+/tmp/sahilag24/work-agile/ml_lane.sh: line 19: cd: /tmp/sahilag24/work-agile/gem5-agile/build/X86: No such file or directory
+ls: cannot access 'ext/*/*.a': No such file or directory
+/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o:function _start: error: undefined reference to 'main'
+collect2: error: ld returned 1 exit status
