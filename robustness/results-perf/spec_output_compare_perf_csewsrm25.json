@@ -1,0 +1,212 @@
+[
+  {
+    "job": "spec-test-500.perlbench_r-0",
+    "output": "makerand.out",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "job": "spec-test-500.perlbench_r-1",
+    "output": "test.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  t/base/cond ................................. ok\n       t/base/cond ................................. \n                                                   ^\n'/tmp/sahilag24/work-perf/runs/spec_test_perf_csewsrm25/inc/spec-test-500.perlbench_r-1/spec_stdout_1.txt' short\nspecdiff run completed; baseline vs SPEC: 0001:  t/base/cond ................................. ok\n       t/base/cond ................................. \n                                                   ^\n'/tmp/sahilag24/work-perf/runs/spec_test_perf_csewsrm25/base/spec-test-500.perlbench_r-1/spec_stdout_1.txt' short\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-502.gcc_r-0",
+    "output": "t1.opts-O3_-finline-limit_50000.s",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "job": "spec-test-503.bwaves_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-503.bwaves_r-1",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-505.mcf_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-507.cactuBSSN_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-508.namd_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-511.povray_r-0",
+    "output": "imagevalidate_SPEC-benchmark.tga.out",
+    "status": "FAIL",
+    "detail": "candidate output missing; baseline output missing"
+  },
+  {
+    "job": "spec-test-519.lbm_r-0",
+    "output": "lbm.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0007:  \tobstacle file  : 100_100_130_cf_a.of\n       \tobstacle file  : /var/tmp/sahilag24/cpu2017/benchspec/CPU/519.lbm_r/run/run_base_test_gem5static-m64.0000/100_100_130_cf_a.of\n                       ^\nspecdiff run completed; baseline vs SPEC: 0007:  \tobstacle file  : 100_100_130_cf_a.of\n       \tobstacle file  : /var/tmp/sahilag24/cpu2017/benchspec/CPU/519.lbm_r/run/run_base_test_gem5static-m64.0000/100_100_130_cf_a.of\n                       ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-520.omnetpp_r-0",
+    "output": "General-0.sca",
+    "status": "FAIL",
+    "detail": "candidate output missing; baseline output missing"
+  },
+  {
+    "job": "spec-test-521.wrf_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-523.xalancbmk_r-0",
+    "output": "test-test.out",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "job": "spec-test-525.x264_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-526.blender_r-0",
+    "output": "imagevalidate_cube_0001.out",
+    "status": "FAIL",
+    "detail": "candidate output missing; baseline output missing"
+  },
+  {
+    "job": "spec-test-527.cam4_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-531.deepsjeng_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-538.imagick_r-0",
+    "output": "test_validate.out",
+    "status": "FAIL",
+    "detail": "candidate output missing; baseline output missing"
+  },
+  {
+    "job": "spec-test-541.leela_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-544.nab_r-0",
+    "output": "hkrdenq.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: un/run_base_test_gem5static-m64.0000/hkrdenq 1930344093\n             ^\n0003:  Reading .pdb file (hkrdenq/hkrdenq.pdb)\n       Reading .pdb file (/var/tmp/sahilag24/cpu2017/benchspec/CPU/544.nab_r/run/run_base_test_gem5static-m64.0000/hkrdenq//var/tmp/sahilag24/cpu2017/benchspec/CPU/544.nab_r/run/run_base_test_gem5static-m64.0000/hkrdenq.pdb)\n                          ^\n'/tmp/sahilag24/work-perf/runs/spec_test_perf_csewsrm25/inc/spec-test-544.nab_r-0/spec_stdout_0.txt' short\nspecdiff run completed; baseline vs SPEC: n/run_base_test_gem5static-m64.0000/hkrdenq 1930344093\n             ^\n0003:  Reading .pdb file (hkrdenq/hkrdenq.pdb)\n       Reading .pdb file (/var/tmp/sahilag24/cpu2017/benchspec/CPU/544.nab_r/run/run_base_test_gem5static-m64.0000/hkrdenq//var/tmp/sahilag24/cpu2017/benchspec/CPU/544.nab_r/run/run_base_test_gem5static-m64.0000/hkrdenq.pdb)\n                          ^\n'/tmp/sahilag24/work-perf/runs/spec_test_perf_csewsrm25/base/spec-test-544.nab_r-0/spec_stdout_0.txt' short\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-548.exchange2_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-549.fotonik3d_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-554.roms_r-0",
+    "output": "-",
+    "status": "NOT_RUN",
+    "detail": "candidate or baseline job is missing or did not pass"
+  },
+  {
+    "job": "spec-test-557.xz_r-0",
+    "output": "cpu2006docs.tar-4-0.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-1",
+    "output": "cpu2006docs.tar-4-1.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-10",
+    "output": "cpu2006docs.tar-1-4.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-11",
+    "output": "cpu2006docs.tar-1-4e.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-2",
+    "output": "cpu2006docs.tar-4-2.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-3",
+    "output": "cpu2006docs.tar-4-3e.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-4",
+    "output": "cpu2006docs.tar-4-4.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-5",
+    "output": "cpu2006docs.tar-4-4e.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=4\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=4\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-6",
+    "output": "cpu2006docs.tar-1-0.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-7",
+    "output": "cpu2006docs.tar-1-1.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-8",
+    "output": "cpu2006docs.tar-1-2.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed"
+  },
+  {
+    "job": "spec-test-557.xz_r-9",
+    "output": "cpu2006docs.tar-1-3e.out",
+    "status": "FAIL",
+    "detail": "candidate vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed; baseline vs SPEC: 0001:  SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=1\n       SPEC CPU XZ driver: input=/var/tmp/sahilag24/cpu2017/benchspec/CPU/557.xz_r/run/run_base_test_gem5static-m64.0001/cpu2006docs.tar.xz insize=1\n                                 ^\nspecdiff run completed"
+  }
+]

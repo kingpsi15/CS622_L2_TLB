@@ -1,0 +1,126 @@
+unknown lane: inc}
+unknown lane: inc}
+[20:46:16] [csewsrm21] fixed SPEC worker inc: START cores=32 spec_jobs=32
+[20:46:16] [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+skip m_lane_build (done)
+skip m_base_build (done)
+skip m_tests (done)
+120 jobs
+[20:46:16] [csewsrm21] machine_run inc: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+instrumented inc: /tmp/sahilag24/work/gem5-inc/src/arch/x86/tlb.cc
+[20:50:13] manual_link inc: OK 2582646128 bytes
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/approach_spec_worker.sh: line 98: syntax error near unexpected token `('
+[20:53:42] [csewsrm21] fixed SPEC worker inc: START cores=32 spec_jobs=32
+[20:53:42] [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+skip m_lane_build (done)
+skip m_base_build (done)
+skip m_tests (done)
+120 jobs
+[20:53:42] [csewsrm21] machine_run inc: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+instrumented inc: /tmp/sahilag24/work/gem5-inc/src/arch/x86/tlb.cc
+[20:55:40] manual_link inc: OK 2582646128 bytes
+[20:55:40] stage spec_build: START
+[20:56:37] stage spec_build: OK
+[20:56:37] stage spec_setup: START
+[21:00:12] stage spec_setup: OK
+[21:00:12] SPEC exes built: 56 ; build errors: 7 make.out files with errors
+benchmarks=41 test_jobs=68 ref_jobs=62
+/tmp/sahilag24/work/jobs/spec_test.json: 68 jobs
+/tmp/sahilag24/work/jobs/spec_ref.json: 62 jobs
+runner spec_test_inc_csewsrm21: START 68 jobs, parallel=32
+[21:00:51] PASS base/spec-test-500.perlbench_r-1 39s []
+[21:00:52] PASS base/spec-test-502.gcc_r-0 40s []
+[21:00:59] PASS inc/spec-test-500.perlbench_r-1 47s []
+[21:01:04] PASS inc/spec-test-502.gcc_r-0 52s []
+[21:01:55] PASS base/spec-test-520.omnetpp_r-0 102s []
+[21:01:56] PASS inc/spec-test-544.nab_r-0 1s []
+[21:01:57] PASS base/spec-test-544.nab_r-0 1s []
+[21:02:01] PASS inc/spec-test-520.omnetpp_r-0 109s []
+[21:04:34] PASS base/spec-test-538.imagick_r-0 221s []
+[21:04:36] PASS inc/spec-test-538.imagick_r-0 225s []
+[21:16:09] PASS base/spec-test-523.xalancbmk_r-0 956s []
+[21:17:44] PASS inc/spec-test-523.xalancbmk_r-0 1052s []
+[22:36:10] PASS base/spec-test-500.perlbench_r-0 5758s []
+[22:47:33] PASS inc/spec-test-500.perlbench_r-0 6441s []
+[22:57:22] PASS base/spec-test-511.povray_r-0 7030s []
+[23:09:12] PASS inc/spec-test-511.povray_r-0 7739s []
+[00:19:58] PASS inc/spec-test-557.xz_r-0 6228s []
+[00:22:08] PASS base/spec-test-557.xz_r-0 5675s []
+[00:39:44] PASS inc/spec-test-557.xz_r-1 6143s []
+[00:44:51] PASS base/spec-test-557.xz_r-1 5740s []
+[01:51:43] PASS base/spec-test-557.xz_r-2 5375s []
+[02:06:58] PASS inc/spec-test-557.xz_r-2 6421s []
+[02:14:09] PASS base/spec-test-519.lbm_r-0 18837s []
+[02:50:21] PASS inc/spec-test-519.lbm_r-0 21009s []
+[04:26:46] PASS inc/spec-test-557.xz_r-4 9303s []
+[04:33:39] PASS base/spec-test-557.xz_r-4 8800s []
+[05:00:12] FAIL inc/spec-test-505.mcf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-505.mcf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-507.cactuBSSN_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-508.namd_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-507.cactuBSSN_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-503.bwaves_r-1 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-503.bwaves_r-1 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-503.bwaves_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-503.bwaves_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-508.namd_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-521.wrf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-521.wrf_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-525.x264_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-525.x264_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-527.cam4_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-531.deepsjeng_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL inc/spec-test-531.deepsjeng_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:12] FAIL base/spec-test-527.cam4_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:00:59] FAIL inc/spec-test-541.leela_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:01:04] FAIL base/spec-test-541.leela_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:01:57] FAIL inc/spec-test-548.exchange2_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:02:01] FAIL base/spec-test-548.exchange2_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:04:34] FAIL inc/spec-test-549.fotonik3d_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:04:36] FAIL base/spec-test-549.fotonik3d_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:11:01] PASS inc/spec-test-557.xz_r-6 2655s []
+[05:13:51] PASS base/spec-test-557.xz_r-6 2412s []
+[05:16:09] FAIL inc/spec-test-554.roms_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:17:18] PASS base/spec-test-557.xz_r-7 1026s []
+[05:17:44] FAIL base/spec-test-554.roms_r-0 28800s ['gem5 rc=TIMEOUT']
+[05:25:06] PASS base/spec-test-557.xz_r-8 1494s []
+[05:28:21] PASS inc/spec-test-557.xz_r-10 1689s []
+[05:32:12] PASS base/spec-test-557.xz_r-9 1920s []
+[05:35:09] PASS base/spec-test-557.xz_r-10 2097s []
+[05:36:02] PASS inc/spec-test-557.xz_r-9 2150s []
+[05:38:36] PASS inc/spec-test-557.xz_r-8 2304s []
+[05:41:08] PASS inc/spec-test-557.xz_r-7 2456s []
+[05:44:12] PASS inc/spec-test-557.xz_r-3 18267s []
+[05:44:58] PASS base/spec-test-557.xz_r-11 2686s []
+[05:46:56] PASS base/spec-test-557.xz_r-3 18124s []
+[05:48:03] PASS inc/spec-test-557.xz_r-11 2870s []
+[06:05:21] PASS inc/spec-test-557.xz_r-5 13872s []
+[06:08:11] PASS base/spec-test-557.xz_r-5 11870s []
+runner spec_test_inc_csewsrm21: DONE 42/68 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_inc_csewsrm21.md)
+runner spec_test_inc_csewsrm21: START 68 jobs, parallel=32
+[06:08:11] retrying base/spec-test-503.bwaves_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-503.bwaves_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-505.mcf_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-505.mcf_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-507.cactuBSSN_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-503.bwaves_r-1: previous verdict FAIL
+[06:08:11] retrying base/spec-test-503.bwaves_r-1: previous verdict FAIL
+[06:08:11] retrying base/spec-test-508.namd_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-507.cactuBSSN_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-508.namd_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-521.wrf_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-525.x264_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-527.cam4_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-525.x264_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-527.cam4_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-521.wrf_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-531.deepsjeng_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-531.deepsjeng_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-541.leela_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-541.leela_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-548.exchange2_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-548.exchange2_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-549.fotonik3d_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-549.fotonik3d_r-0: previous verdict FAIL
+[06:08:11] retrying base/spec-test-554.roms_r-0: previous verdict FAIL
+[06:08:11] retrying inc/spec-test-554.roms_r-0: previous verdict FAIL

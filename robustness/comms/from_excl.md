@@ -1,0 +1,37 @@
+[2026-11-12 21:56:51 csewsrm22] ack 21:49. Correcting earlier msg: I had wrongly flagged SPEC as 'corrupt' based on ~/Downloads/spec2017.tar.xz (now know that's the wrong/partial file per your 21:47 note) - ignoring it, starting 03_get_spec.sh now via Drive. ALSO FOUND: machine_run.sh's link() helper is broken for every lane - it sed-copies manual_link.sh into $W/ml_<tag>.sh, but manual_link.sh's first line is 'source "$(dirname "$0")/env.sh"', and $(dirname "$0") resolves to $W (the copy's location) not robustness/scripts, so env.sh is not found there -> m_lane_build FAILED immediately after linking. This looks lane-independent so likely hits inc/nine/agile/perf too. I'm applying a minimal backward-compatible fix in machine_run.sh (hardcode the sourced env.sh path to $R/scripts/env.sh in the copied script) and retrying. Will report if it breaks anything.
+[2026-11-13 08:41:06 csewsrm22] ack 08:20. Resuming session (had a long gap). Checking current state of build/tests now, will report shortly.
+[2026-11-13 12:08:10 csews28] Main session taking over EXCL. Rechecking original snapshot and rebuilding evidence; SPEC download started through 03_get_spec.sh into /tmp. Will report real blockers/results, not assume the previous completion.
+[2026-11-13 12:25:13 csews28] ack; verified archive (2,971,382,248 bytes), repaired 03_get_spec path resolution and installed to /var/tmp; original baseline build on csews28 is still running. Fixed files are in the repo workspace; next run fixed checker/matrix, variants, and SPEC.
+[2026-11-13 12:42:33 csews28] ACK. Resumed EXCL-vs-stock 120-job SE matrix after repairing runner parse timing; static pthread/tests now compile. Current observed common failures: gem5 SE setitimer unimplemented, multiprogram remap stale on both lane and stock. Original-with-checker build running; fixed builds/matrix and SPEC remain.
+[2026-11-13 13:02:03 csews28] Original source is now tested under the dedicated EXCL invariant checker: 1,368,154 checks, 391,950 L1/L2 duplicate violations, concentrated in SMT2/SMT4 promotion/eviction; zero oracle mismatches. Evidence saved in results-excl/before_after/original_excl_checked_matrix.{md,json}. Fixed build/test is next.
+[2026-11-13 19:28:21 csews28] Fresh EXCL lane binary rebuilt successfully at 19:24; stock baseline rebuild active. Fixed after-checker now planned as incremental overlay in the same completed build tree to avoid a second full compile. SPEC install remains available under /var/tmp.
+[2026-11-13 19:49:30 csews28] User notes same shared home/files with per-machine private /tmp and offers five machines to accelerate EXCL SPEC. I inspected START_HERE/env/comms/job scripts and confirm that model; current board shows inc/nine/agile/perf still running their own SPEC campaigns. Please advise/allocate any hosts safe to borrow; no other lane will be interrupted.
+[2026-11-13 19:52:07 csews28] Correction: user says other hosts may be inactive. My statement that inc/nine/agile/perf are running was based only on stale shared heartbeat/last messages, not live process checks. I cannot SSH to them; please treat availability as unknown until host is activated.
+[2026-11-14 13:38:20 csewsrm22] ack; starting clean SPEC run
+[2026-11-14 13:41:36 csewsrm22] ERROR robustness/results-excl/incident-20261114-133953.md: full-system SPEC failed before guest boot because /dev/kvm could not open; 0/43 markers; awaiting orchestrator fix
+[2026-11-14 19:29:31 csewsrm22] SUPERVISOR START host=csewsrm22; command=five_lane_clean_build.sh excl
+[2026-11-14 19:29:31 csewsrm22] RUNNING attempt=1 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261114-192931-1.log
+[2026-11-14 21:00:48 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261114-192931-1.md: attempt=1 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-14 21:06:48 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-14 21:06:48 csewsrm22] RUNNING attempt=2 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261114-210648-2.log
+[2026-11-14 22:53:30 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261114-210648-2.md: attempt=2 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-14 23:08:30 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-14 23:08:30 csewsrm22] RUNNING attempt=3 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261114-230830-3.log
+[2026-11-15 00:37:37 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261114-230830-3.md: attempt=3 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-15 07:35:46 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-15 07:35:46 csewsrm22] RUNNING attempt=4 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261115-073546-4.log
+[2026-11-15 07:51:12 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261115-073546-4.md: attempt=4 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-15 07:54:12 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-15 07:54:12 csewsrm22] RUNNING attempt=5 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261115-075412-5.log
+[2026-11-15 08:52:28 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261115-075412-5.md: attempt=5 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-15 09:30:29 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-15 09:30:29 csewsrm22] RUNNING attempt=6 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261115-093029-6.log
+[2026-11-15 10:01:16 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261115-093029-6.md: attempt=6 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-15 10:02:16 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-15 10:02:16 csewsrm22] RUNNING attempt=7 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261115-100216-7.log
+[2026-11-15 13:00:31 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261115-100216-7.md: attempt=7 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-15 14:58:34 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-15 14:58:34 csewsrm22] RUNNING attempt=8 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261115-145834-8.log
+[2026-11-15 15:12:51 csewsrm22] ERROR /users/btech/sahilag24/CS622_L2_TLB/robustness/results-excl/incident-20261115-145834-8.md: attempt=8 exit=1 PASS=0 FAIL=43 OTHER=0; awaiting orchestrator fix
+[2026-11-15 15:13:52 csewsrm22] RESUMING after new ADMIN instruction; board=/users/btech/sahilag24/CS622_L2_TLB/robustness/comms/to_excl.md
+[2026-11-15 15:13:52 csewsrm22] RUNNING attempt=9 host=csewsrm22 log=/tmp/sahilag24/tlb-supervisor-excl/attempt-20261115-151352-9.log

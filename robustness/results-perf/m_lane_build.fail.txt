@@ -1,0 +1,3 @@
+instrumented base: /tmp/sahilag24/work-perf/gem5-perf/src/arch/x86/tlb.cc
+/tmp/sahilag24/work-perf/ml_lane.sh: line 4: /tmp/sahilag24/work-perf/env.sh: No such file or directory
+/tmp/sahilag24/work-perf/ml_lane.sh: line 16: log: command not found

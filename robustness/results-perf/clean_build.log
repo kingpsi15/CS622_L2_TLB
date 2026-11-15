@@ -1,0 +1,121 @@
+[2026-11-14 08:40:04] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 08:40:04] [csewsrm25] [perf] installing SCons 4.8.1 from the repository archive (offline)
+[2026-11-14 08:40:04] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:40:19] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed into the temporary tree
+[2026-11-14 08:40:21] [csewsrm25] [perf] SCons build failed (exit 1); see /users/btech/sahilag24/CS622_L2_TLB/robustness/results-perf/clean_build_scons.log
+[2026-11-14 08:42:21] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 08:42:21] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:42:26] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:23:40] [csewsrm25] [perf] SCons build failed (exit 2); see /users/btech/sahilag24/CS622_L2_TLB/robustness/results-perf/clean_build_scons.log
+[2026-11-14 09:36:46] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 09:36:46] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 09:36:46] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 09:36:46] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:41:30] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 09:45:41] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 09:45:41] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 09:45:41] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 09:45:41] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:48:41] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 10:04:27] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 10:04:27] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:04:27] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 10:04:27] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:04:34] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 10:04:34] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:10:54] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 10:10:54] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:10:54] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 10:10:54] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:13:38] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 10:13:38] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:26:28] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 10:26:28] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:26:28] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 10:26:28] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:29:08] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 10:29:08] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:31:51] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 10:31:51] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:31:51] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 10:31:52] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:34:35] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 10:34:35] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:39:12] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 10:39:12] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:39:12] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 10:39:13] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:41:56] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 10:41:56] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 13:39:06] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 13:39:06] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 13:39:06] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 13:39:06] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 13:41:47] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 13:41:47] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 19:29:43] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 19:29:43] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 19:29:43] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 19:29:43] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 19:31:16] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 19:31:16] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 19:44:00] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 19:44:00] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 19:44:00] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 19:44:00] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 19:45:49] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 19:45:49] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 20:06:37] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 20:06:37] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 20:06:37] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 20:06:37] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 20:09:20] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 20:09:20] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 20:57:47] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 20:57:47] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 20:57:47] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 20:57:48] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 21:00:54] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 21:00:54] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 21:11:38] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 21:11:38] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 21:11:38] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 21:11:39] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 21:14:18] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 21:14:18] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 23:32:49] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-14 23:32:49] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 23:32:49] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-14 23:32:49] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 23:34:20] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-14 23:34:20] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 07:35:54] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-15 07:35:54] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 07:35:54] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-15 07:35:54] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 07:37:25] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-15 07:37:25] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 07:58:56] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-15 07:58:56] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 07:58:56] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-15 07:58:56] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 08:01:35] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-15 08:01:35] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 10:02:06] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-15 10:02:06] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 10:02:06] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-15 10:02:07] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 10:05:08] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-15 10:05:08] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 14:59:01] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-15 14:59:01] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 14:59:01] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-15 14:59:02] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 15:00:34] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-15 15:00:34] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 15:14:11] [csewsrm25] [perf] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf
+[2026-11-15 15:14:11] [csewsrm25] [perf] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 15:14:11] [csewsrm25] [perf] reusing existing temporary checkout for incremental build
+[2026-11-15 15:14:12] [csewsrm25] [perf] installed tlb.cc.perf.fixed and tlb.hh.perf.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 15:15:44] [csewsrm25] [perf] PASS: perf build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+[2026-11-15 15:15:44] [csewsrm25] [perf] starting the lane's full-system SPEC CPU2017 test run

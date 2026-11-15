@@ -1,0 +1,162 @@
+- 2026-11-12 19:55:50 — build_lane perf: scons START (gcc-11, py3.10)
+- 2026-11-12 20:00:54 — build_lane perf: **FAILED** no gem5.opt; tail: Warning: Protocol buffer compiler (protoc) not found.          Please install protobuf-compiler for tracing support. Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support. 
+- 2026-11-12 20:01:03 — perf_pipeline: ABORT build failed
+- 2026-11-12 20:06:02 — build_lane perf: scons4.8.1 START (gcc-11, py3.10)
+- 2026-11-12 20:06:08 — build_lane perf: **FAILED** no gem5.opt; tail: Warning: Protocol buffer compiler (protoc) not found.          Please install protobuf-compiler for tracing support. Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support. 
+- 2026-11-12 20:12:44 — PERF build: scons skipped gem5.opt and libelf.a although files absent => stale sconsign copied from partial tree; deleted sconsign, full rebuild with scons 4.8.1 (tmux tlbperf-build).
+- 2026-11-12 20:12:44 — build_lane perf: scons4.8.1 START (gcc-11, py3.10)
+- 2026-11-12 20:20:29 — build_lane perf: **FAILED** no gem5.opt; tail: Warning: Protocol buffer compiler (protoc) not found.          Please install protobuf-compiler for tracing support. Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support. 
+- 2026-11-12 20:26:54 — ROOT CAUSE of 'no gem5.opt': ext/libelf/native-elf-format (shell script) lost its +x bit in git -> empty native-elf-format.h -> libelf never built -> link skipped silently. Fix: chmod +x ALL shebang files (00_setup.sh make_tree updated). Rebuilding perf tree.
+- 2026-11-12 20:26:54 — build_lane perf: scons4.8.1 START (gcc-11, py3.10)
+- 2026-11-12 20:27:27 — build_lane perf: **FAILED** no gem5.opt; tail: Warning: Protocol buffer compiler (protoc) not found.          Please install protobuf-compiler for tracing support. Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support. 
+- 2026-11-12 20:29:51 — PERF: gem5.opt linked manually (scripts/manual_link.sh). First test: perf_holes edge on Timing CPU PASS; oracle 123036 data translations, 0 mismatch; coarse-filter stats live. Launching 44-job SE matrix (tlbperf-run).
+- 2026-11-12 20:30:00 — stage smoke: START
+- 2026-11-12 20:30:01 — stage smoke: OK
+- 2026-11-12 20:30:01 — runner perf_matrix: START 44 jobs, parallel=20
+- 2026-11-12 20:30:50 — runner perf_matrix: DONE 36/44 PASS; not-pass: inc/perf-4c4p-atomic-holes, inc/perf-4c4p-o3-holes, inc/perf-4c4p-timing-holes, inc/perf-8c8p-atomic-mixed, inc/perf-8c8p-o3-mixed, inc/perf-8c8p-timing-mixed, inc/perf-smt2-o3, inc/perf-smt4-o3 (table: robustness/results/perf_matrix.md)
+- 2026-11-12 20:30:50 — perf_pipeline: SE matrix done -> robustness/results-perf/perf_matrix.md
+- 2026-11-12 20:41:16 — FINDING perf-1: Perforated Pages (item2.verified) SE matrix on csewsrm20: 36/44 PASS (all 1-core runs on Atomic/Timing/O3 incl. real holes at edge/clustered/dispersed/chunk1/sparse/churn, 16 and 48 colliding 2MiB regions; oracle 0 mismatches). 8 FAIL, all multi-process: perf-4c4p-{atomic,timing,o3}-holes and perf-8c8p-*-mixed -> process with 'edge' pattern reads zeros/foreign frame (va 0x7ffff76xx000) when several processes share the same VA layout; perf-smt2-o3/smt4-o3 panic 'Tried to write unmapped address' + ORACLE-MISMATCH at tick 1000 (itb va 0x401e00 TLB pa 0x1e00 vs page table pa 0x119e00, pid 101). Suspected cause: 2MiB perforated entries/bitmap keyed by vpn_2mb with no PCID/process id (as the audit predicted). Stock-TLB baseline being built to classify (stock SE-SMT may share the limitation).
+- 2026-11-12 20:41:16 — BUILD NOTE: scons on this host never links gem5.opt (libelf.a skipped; also git dropped +x on ext/libelf/native-elf-format). Workaround: scripts/manual_link.sh (hand-build libelf, link objects). Perf tree: /tmp/sahilag24/work-perf/gem5-perf
+- 2026-11-12 20:42:00 — runner perf_matrix: START 88 jobs, parallel=24
+- 2026-11-12 20:42:47 — runner perf_matrix: DONE 72/88 PASS; not-pass: base/perf-4c4p-atomic-holes, inc/perf-4c4p-atomic-holes, base/perf-4c4p-o3-holes, inc/perf-4c4p-o3-holes, base/perf-4c4p-timing-holes, inc/perf-4c4p-timing-holes, base/perf-8c8p-atomic-mixed, inc/perf-8c8p-atomic-mixed, base/perf-8c8p-o3-mixed, inc/perf-8c8p-o3-mixed, base/perf-8c8p-timing-mixed, inc/perf-8c8p-timing-mixed, base/perf-smt2-o3, inc/perf-smt2-o3, base/perf-smt4-o3, inc/perf-smt4-o3 (table: robustness/results/perf_matrix.md)
+- 2026-11-12 20:45:09 — RESULT perf-2: 88 jobs (44 x perforated|stock) -> 72/88 PASS; the 16 non-pass are the IDENTICAL set on both builds (multi-process same-VA on 4/8 cores, SMT2/4) => not perforated-specific (gem5 SE limitations). 1-core real-hole tests all PASS, oracle 0 mismatches. Effectiveness: dense read-misses 24402 (stock) -> 9 (perforated); clustered 22448 -> 1852; dispersed 22505 -> 1946 (timing CPU). Report: PERFORATED_TLB_REPORT.md. Per-machine scripts: robustness/scripts/run_{inc,excl,nine,agile,perf}.sh (one per machine).
+- 2026-11-12 21:43:57 — [csewsrm25] machine_run perf: START (W=/tmp/sahilag24/work-perf)
+- 2026-11-12 21:43:58 — stage m_lane_build: START
+- 2026-11-12 21:53:24 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work-perf/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-perf/m_lane_build.fail.txt)
+- 2026-11-12 21:55:28 — [csewsrm25] machine_run perf: START (W=/tmp/sahilag24/work-perf)
+- 2026-11-12 21:55:28 — stage m_base_build: START
+- 2026-11-12 21:58:04 — stage spec_download: START
+- 2026-11-12 22:00:22 — manual_link perf: OK 2582369120 bytes
+- 2026-11-12 22:00:22 — stage m_base_build: OK
+- 2026-11-12 22:00:37 — [csewsrm25] machine_run perf: START (W=/tmp/sahilag24/work-perf)
+- 2026-11-12 22:00:37 — stage m_tests: START
+- 2026-11-12 22:00:38 — stage m_tests: **FAILED** (log: /tmp/sahilag24/work-perf/logs/m_tests.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-perf/m_tests.fail.txt)
+- 2026-11-12 22:00:53 — stage spec_download: OK
+- 2026-11-12 22:00:53 — stage spec_install: START
+- 2026-11-12 22:01:15 — [csewsrm25] machine_run perf: START (W=/tmp/sahilag24/work-perf)
+- 2026-11-12 22:01:15 — stage m_tests: START
+- 2026-11-12 22:01:16 — stage m_tests: OK
+- 2026-11-12 22:01:16 — runner perf_matrix: START 88 jobs, parallel=24
+- 2026-11-12 22:02:19 — runner perf_matrix: DONE 72/88 PASS; not-pass: base/perf-4c4p-atomic-holes, inc/perf-4c4p-atomic-holes, base/perf-4c4p-o3-holes, inc/perf-4c4p-o3-holes, base/perf-4c4p-timing-holes, inc/perf-4c4p-timing-holes, base/perf-8c8p-atomic-mixed, inc/perf-8c8p-atomic-mixed, base/perf-8c8p-o3-mixed, inc/perf-8c8p-o3-mixed, base/perf-8c8p-timing-mixed, inc/perf-8c8p-timing-mixed, base/perf-smt2-o3, inc/perf-smt2-o3, base/perf-smt4-o3, inc/perf-smt4-o3 (table: robustness/results/perf_matrix.md)
+- 2026-11-12 22:02:19 — [csewsrm25] machine_run perf: DONE -> robustness/results-perf/perf_matrix.md (see runner line above for PASS counts)
+- 2026-11-12 22:03:15 — stage spec_install: OK
+- 2026-11-12 22:03:15 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /tmp/sahilag24/work/cpu2017
+- 2026-11-12 22:07:41 — manual_link perf: OK 2582308992 bytes
+- 2026-11-12 22:08:03 — runner perf_fixed_matrix: START 44 jobs, parallel=24
+- 2026-11-12 22:08:51 — runner perf_fixed_matrix: DONE 36/44 PASS; not-pass: fixed/perf-4c4p-atomic-holes, fixed/perf-4c4p-o3-holes, fixed/perf-4c4p-timing-holes, fixed/perf-8c8p-atomic-mixed, fixed/perf-8c8p-o3-mixed, fixed/perf-8c8p-timing-mixed, fixed/perf-smt2-o3, fixed/perf-smt4-o3 (table: robustness/results/perf_fixed_matrix.md)
+- 2026-11-13 04:12:57 — manual_link perf: OK 2582508848 bytes
+- 2026-11-13 04:13:31 — runner perf_fixed_matrix: START 44 jobs, parallel=20
+- 2026-11-13 04:14:23 — runner perf_fixed_matrix: DONE 36/44 PASS; not-pass: fixed/perf-4c4p-atomic-holes, fixed/perf-4c4p-o3-holes, fixed/perf-4c4p-timing-holes, fixed/perf-8c8p-atomic-mixed, fixed/perf-8c8p-o3-mixed, fixed/perf-8c8p-timing-mixed, fixed/perf-smt2-o3, fixed/perf-smt4-o3 (table: robustness/results/perf_fixed_matrix.md)
+- 2026-11-13 04:17:17 — FIXES: 6 bugs fixed in tlb.cc.perf.fixed/tlb.hh.perf.fixed (demapPage/flushNonGlobal not clearing L2, no PCID tag in L2, hardcoded L2 permissions, dup L2 insert, no checkpoint L2 clear). patch: robustness/patches/perf_fixed.diff
+- 2026-11-13 04:17:17 — VERIFY: fixed-tree full 44-job SE matrix: 36/44 PASS, oracle 0 mismatches on every pass, IDENTICAL L1-miss counts to pre-fix build on all 27 1-core combos (zero regression). Non-pass 8 configs confirmed pre-existing gem5 SE limitations (fail identically on stock too, and on the original pre-fix matrix: results-perf/before_after/)
+- 2026-11-13 04:17:17 — SPEC: tarball verified (2.97GB), 5 benchmarks (perlbench/mcf/deepsjeng/leela/xz) built static on first try, test+ref dirs staged. BLOCKED on completion: no KVM access (no sudo), interpreted CPU models too slow for real SPEC codebases within session budget; mcf test launched+confirmed actively computing on fixed+base but left running past this report without finishing. No SPEC numbers invented; see PERFORATED_TLB_REPORT.md Sec 5-6 for honest detail.
+- 2026-11-13 04:17:17 — LANE perf COMPLETE
+- 2026-11-13 08:52:32 — manual_link perf: OK 2582656632 bytes
+- 2026-11-13 08:53:11 — runner perf_fixed_matrix: START 44 jobs, parallel=12
+- 2026-11-13 08:54:39 — runner variant_baseline: START 12 jobs, parallel=12
+- 2026-11-13 08:54:46 — runner perf_fixed_matrix: DONE 36/44 PASS; not-pass: fixed/perf-4c4p-atomic-holes, fixed/perf-4c4p-o3-holes, fixed/perf-4c4p-timing-holes, fixed/perf-8c8p-atomic-mixed, fixed/perf-8c8p-o3-mixed, fixed/perf-8c8p-timing-mixed, fixed/perf-smt2-o3, fixed/perf-smt4-o3 (table: robustness/results/perf_fixed_matrix.md)
+- 2026-11-13 08:54:52 — runner variant_baseline: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_baseline.md)
+- 2026-11-13 08:55:02 — runner variant_fix_demap_off: START 12 jobs, parallel=12
+- 2026-11-13 08:55:24 — runner variant_fix_demap_off: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_fix_demap_off.md)
+- 2026-11-13 08:55:24 — runner variant_fix_flushnonglob_off: START 12 jobs, parallel=12
+- 2026-11-13 08:55:45 — runner variant_fix_flushnonglob_off: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_fix_flushnonglob_off.md)
+- 2026-11-13 08:55:45 — runner variant_fix_pcid_off: START 12 jobs, parallel=12
+- 2026-11-13 08:56:04 — runner variant_fix_pcid_off: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_fix_pcid_off.md)
+- 2026-11-13 08:56:05 — runner variant_fix_perms_off: START 12 jobs, parallel=12
+- 2026-11-13 08:56:26 — runner variant_fix_perms_off: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_fix_perms_off.md)
+- 2026-11-13 08:56:26 — runner variant_all_fixes_off: START 12 jobs, parallel=12
+- 2026-11-13 08:56:47 — runner variant_all_fixes_off: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_all_fixes_off.md)
+- 2026-11-13 08:57:03 — runner variant_sets16: START 12 jobs, parallel=12
+- 2026-11-13 08:57:24 — runner variant_sets16: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_sets16.md)
+- 2026-11-13 08:57:24 — runner variant_sets32: START 12 jobs, parallel=12
+- 2026-11-13 08:57:45 — runner variant_sets32: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_sets32.md)
+- 2026-11-13 08:57:45 — runner variant_sets64: START 12 jobs, parallel=12
+- 2026-11-13 08:58:06 — runner variant_sets64: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_sets64.md)
+- 2026-11-13 08:58:06 — runner variant_sets256: START 12 jobs, parallel=12
+- 2026-11-13 08:58:28 — runner variant_sets256: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_sets256.md)
+- 2026-11-13 08:58:57 — runner variant_extreme_tiny: START 12 jobs, parallel=12
+- 2026-11-13 08:59:19 — runner variant_extreme_tiny: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_extreme_tiny.md)
+- 2026-11-13 08:59:35 — runner variant_ways1: START 12 jobs, parallel=12
+- 2026-11-13 08:59:56 — runner variant_ways1: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_ways1.md)
+- 2026-11-13 08:59:56 — runner variant_ways2: START 12 jobs, parallel=12
+- 2026-11-13 09:00:17 — runner variant_ways2: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_ways2.md)
+- 2026-11-13 09:00:17 — runner variant_ways8: START 12 jobs, parallel=12
+- 2026-11-13 09:00:36 — runner variant_ways8: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_ways8.md)
+- 2026-11-13 09:00:36 — runner variant_sets16_ways1: START 12 jobs, parallel=12
+- 2026-11-13 09:00:50 — runner variant_sets16_ways1: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_sets16_ways1.md)
+- 2026-11-13 09:01:00 — runner variant_chunks4: START 12 jobs, parallel=12
+- 2026-11-13 09:01:10 — runner variant_chunks4: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_chunks4.md)
+- 2026-11-13 09:01:11 — runner variant_chunks16: START 12 jobs, parallel=12
+- 2026-11-13 09:01:32 — runner variant_chunks16: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_chunks16.md)
+- 2026-11-13 09:01:32 — runner variant_chunks32: START 12 jobs, parallel=12
+- 2026-11-13 09:01:53 — runner variant_chunks32: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_chunks32.md)
+- 2026-11-13 09:01:53 — runner variant_chunks64: START 12 jobs, parallel=12
+- 2026-11-13 09:02:15 — runner variant_chunks64: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_chunks64.md)
+- 2026-11-13 09:02:28 — runner variant_prefetch1: START 12 jobs, parallel=12
+- 2026-11-13 09:02:49 — runner variant_prefetch1: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_prefetch1.md)
+- 2026-11-13 09:02:49 — runner variant_prefetch2: START 12 jobs, parallel=12
+- 2026-11-13 09:03:11 — runner variant_prefetch2: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_prefetch2.md)
+- 2026-11-13 09:03:11 — runner variant_prefetch4: START 12 jobs, parallel=12
+- 2026-11-13 09:03:32 — runner variant_prefetch4: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_prefetch4.md)
+- 2026-11-13 09:03:32 — runner variant_prefetch16: START 12 jobs, parallel=12
+- 2026-11-13 09:03:54 — runner variant_prefetch16: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_prefetch16.md)
+- 2026-11-13 09:04:05 — runner variant_prefetch32: START 12 jobs, parallel=12
+- 2026-11-13 09:04:26 — runner variant_prefetch32: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_prefetch32.md)
+- 2026-11-13 09:04:26 — runner variant_prefetch64: START 12 jobs, parallel=12
+- 2026-11-13 09:04:37 — runner variant_prefetch64: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_prefetch64.md)
+- 2026-11-13 09:04:48 — runner variant_replace_fifo: START 12 jobs, parallel=12
+- 2026-11-13 09:05:09 — runner variant_replace_fifo: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_replace_fifo.md)
+- 2026-11-13 09:05:09 — runner variant_replace_random: START 12 jobs, parallel=12
+- 2026-11-13 09:05:30 — runner variant_replace_random: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_replace_random.md)
+- 2026-11-13 09:05:30 — runner variant_replace_fifo_tiny: START 12 jobs, parallel=12
+- 2026-11-13 09:05:51 — runner variant_replace_fifo_tiny: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_replace_fifo_tiny.md)
+- 2026-11-13 09:05:51 — runner variant_replace_random_tiny: START 12 jobs, parallel=12
+- 2026-11-13 09:06:02 — runner variant_replace_random_tiny: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_replace_random_tiny.md)
+- 2026-11-13 09:06:12 — runner variant_lru_sets8ways2: START 12 jobs, parallel=12
+- 2026-11-13 09:06:22 — runner variant_lru_sets8ways2: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_lru_sets8ways2.md)
+- 2026-11-13 09:06:22 — runner variant_fifo_sets8ways2: START 12 jobs, parallel=12
+- 2026-11-13 09:06:32 — runner variant_fifo_sets8ways2: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_fifo_sets8ways2.md)
+- 2026-11-13 09:06:32 — runner variant_random_sets8ways2: START 12 jobs, parallel=12
+- 2026-11-13 09:06:54 — runner variant_random_sets8ways2: DONE 12/12 PASS; not-pass: none (table: robustness/results/variant_random_sets8ways2.md)
+- 2026-11-13 20:51:28 — [csewsrm25] fixed SPEC worker perf: START cores=32 spec_jobs=32
+- 2026-11-13 20:51:28 — [csewsrm25] machine_run perf: START (W=/tmp/sahilag24/work-perf)
+- 2026-11-13 20:51:28 — [csewsrm25] machine_run perf: BUILD_ONLY=1; binaries, tests, and perf_matrix.json ready
+- 2026-11-13 20:53:45 — manual_link perf: OK 2582656592 bytes
+- 2026-11-13 20:53:45 — stage spec_build: START
+- 2026-11-13 21:03:22 — stage spec_build: OK
+- 2026-11-13 21:03:22 — stage spec_setup: START
+- 2026-11-13 21:05:18 — stage spec_setup: OK
+- 2026-11-13 21:05:18 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-13 21:05:18 — stage spec_build: START
+- 2026-11-13 21:05:52 — stage spec_build: OK
+- 2026-11-13 21:05:52 — stage spec_setup: START
+- 2026-11-13 21:07:58 — stage spec_setup: OK
+- 2026-11-13 21:07:58 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-13 21:07:58 — runner spec_test_perf_csewsrm25: START 70 jobs, parallel=32
+- 2026-11-14 05:45:26 — runner spec_test_perf_csewsrm25: DONE 44/70 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_perf_csewsrm25.md)
+- 2026-11-14 05:45:30 — runner spec_ref_perf_csewsrm25: START 66 jobs, parallel=32
+- 2026-11-14 10:41:56 — stage spec_download: START
+- 2026-11-14 10:43:49 — stage spec_download: OK
+- 2026-11-14 10:43:49 — stage spec_install: START
+- 2026-11-14 10:46:06 — stage spec_install: OK
+- 2026-11-14 10:46:06 — SPEC: archive=/tmp/sahilag24/work-perf/spec-dl/spec2017.tar.xz bytes=2971382248; installed=/tmp/sahilag24/work-perf/cpu2017
+- 2026-11-14 10:46:06 — stage spec_build: START
+- 2026-11-14 10:59:33 — stage spec_build: OK
+- 2026-11-14 10:59:33 — stage spec_setup: START
+- 2026-11-14 11:01:22 — stage spec_setup: OK
+- 2026-11-14 11:01:22 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-14 19:31:16 — stage spec_build: START
+- 2026-11-14 19:31:54 — stage spec_build: **FAILED** (log: /tmp/sahilag24/work-perf/logs/spec_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-perf/spec_build.fail.txt)
+- 2026-11-14 19:31:54 — stage spec_setup: START
+- 2026-11-14 19:33:54 — stage spec_setup: OK
+- 2026-11-14 19:33:54 — SPEC exes built: 58 ; build errors: 5 make.out files with errors
+- 2026-11-14 19:45:49 — stage spec_build: START
+- 2026-11-14 19:46:27 — stage spec_build: **FAILED** (log: /tmp/sahilag24/work-perf/logs/spec_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results-perf/spec_build.fail.txt)
+- 2026-11-14 19:46:27 — stage spec_setup: START
+- 2026-11-14 19:48:27 — stage spec_setup: OK
+- 2026-11-14 19:48:27 — SPEC exes built: 58 ; build errors: 5 make.out files with errors
+- 2026-11-14 20:09:21 — stage spec_build: START
+- 2026-11-14 20:10:40 — stage spec_build: OK
+- 2026-11-14 20:10:40 — stage spec_setup: START
+- 2026-11-14 20:12:16 — stage spec_setup: OK
+- 2026-11-14 20:12:16 — SPEC exes built: 59 ; build errors: 6 make.out files with errors

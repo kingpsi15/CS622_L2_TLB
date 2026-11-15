@@ -1,0 +1,60 @@
+ [    SHCC] ext/softfloat/s_mulAddF128.c -> X86/ext/softfloat/s_mulAddF128.os
+ [    SHCC] ext/softfloat/s_mul64ByShifted32To128.c -> X86/ext/softfloat/s_mul64ByShifted32To128.os
+ [    SHCC] ext/softfloat/s_mul64To128.c -> X86/ext/softfloat/s_mul64To128.os
+ [    SHCC] ext/softfloat/s_mul128By32.c -> X86/ext/softfloat/s_mul128By32.os
+ [    SHCC] ext/softfloat/s_mul128To256M.c -> X86/ext/softfloat/s_mul128To256M.os
+ [    SHCC] ext/softfloat/s_normRoundPackToExtF80.c -> X86/ext/softfloat/s_normRoundPackToExtF80.os
+ [    SHCC] ext/softfloat/s_normRoundPackToF128.c -> X86/ext/softfloat/s_normRoundPackToF128.os
+ [    SHCC] ext/softfloat/s_normSubnormalExtF80Sig.c -> X86/ext/softfloat/s_normSubnormalExtF80Sig.os
+ [    SHCC] ext/softfloat/s_normSubnormalF128Sig.c -> X86/ext/softfloat/s_normSubnormalF128Sig.os
+ [    SHCC] ext/softfloat/s_propagateNaNF128UI.c -> X86/ext/softfloat/s_propagateNaNF128UI.os
+ [    SHCC] ext/softfloat/s_roundPackToExtF80.c -> X86/ext/softfloat/s_roundPackToExtF80.os
+ [    SHCC] ext/softfloat/s_roundPackToF128.c -> X86/ext/softfloat/s_roundPackToF128.os
+ [    SHCC] ext/softfloat/s_roundToUI64.c -> X86/ext/softfloat/s_roundToUI64.os
+ [    SHCC] ext/softfloat/s_shiftRightJam128.c -> X86/ext/softfloat/s_shiftRightJam128.os
+ [    SHCC] ext/softfloat/s_shiftRightJam128Extra.c -> X86/ext/softfloat/s_shiftRightJam128Extra.os
+ [    SHCC] ext/softfloat/s_shiftRightJam256M.c -> X86/ext/softfloat/s_shiftRightJam256M.os
+ [    SHCC] ext/softfloat/s_shiftRightJam64Extra.c -> X86/ext/softfloat/s_shiftRightJam64Extra.os
+ [    SHCC] ext/softfloat/s_shortShiftLeft128.c -> X86/ext/softfloat/s_shortShiftLeft128.os
+ [    SHCC] ext/softfloat/s_shortShiftRight128.c -> X86/ext/softfloat/s_shortShiftRight128.os
+ [    SHCC] ext/softfloat/s_shortShiftRightJam64Extra.c -> X86/ext/softfloat/s_shortShiftRightJam64Extra.os
+ [    SHCC] ext/softfloat/s_shortShiftRightJam128.c -> X86/ext/softfloat/s_shortShiftRightJam128.os
+ [    SHCC] ext/softfloat/s_shortShiftRightJam128Extra.c -> X86/ext/softfloat/s_shortShiftRightJam128Extra.os
+ [    SHCC] ext/softfloat/s_subMagsExtF80.c -> X86/ext/softfloat/s_subMagsExtF80.os
+ [    SHCC] ext/softfloat/s_subMagsF128.c -> X86/ext/softfloat/s_subMagsF128.os
+ [    SHCC] ext/softfloat/s_sub128.c -> X86/ext/softfloat/s_sub128.os
+ [    SHCC] ext/softfloat/s_sub256M.c -> X86/ext/softfloat/s_sub256M.os
+ [    SHCC] ext/softfloat/ui32_to_extF80.c -> X86/ext/softfloat/ui32_to_extF80.os
+ [    SHCC] ext/softfloat/ui32_to_f128.c -> X86/ext/softfloat/ui32_to_f128.os
+ [    SHCC] ext/softfloat/ui64_to_extF80.c -> X86/ext/softfloat/ui64_to_extF80.os
+ [    SHCC] ext/softfloat/ui64_to_f128.c -> X86/ext/softfloat/ui64_to_f128.os
+ [   SHCXX] ext/drampower/src/CommandAnalysis.cc -> X86/ext/drampower/src/CommandAnalysis.os
+ [   SHCXX] ext/drampower/src/MemArchitectureSpec.cc -> X86/ext/drampower/src/MemArchitectureSpec.os
+ [   SHCXX] ext/drampower/src/MemCommand.cc -> X86/ext/drampower/src/MemCommand.os
+ [   SHCXX] ext/drampower/src/MemPowerSpec.cc -> X86/ext/drampower/src/MemPowerSpec.os
+ [   SHCXX] ext/drampower/src/MemTimingSpec.cc -> X86/ext/drampower/src/MemTimingSpec.os
+ [      AR]  -> X86/ext/softfloat/libsoftfloat.a
+ [  RANLIB]  -> X86/ext/softfloat/libsoftfloat.a
+ [   SHCXX] ext/drampower/src/MemoryPowerModel.cc -> X86/ext/drampower/src/MemoryPowerModel.os
+ [   SHCXX] ext/drampower/src/MemorySpecification.cc -> X86/ext/drampower/src/MemorySpecification.os
+ [   SHCXX] ext/drampower/src/Parameter.cc -> X86/ext/drampower/src/Parameter.os
+ [   SHCXX] ext/drampower/src/Parametrisable.cc -> X86/ext/drampower/src/Parametrisable.os
+ [   SHCXX] ext/drampower/src/libdrampower/LibDRAMPower.cc -> X86/ext/drampower/src/libdrampower/LibDRAMPower.os
+ [   SHCXX] ext/drampower/src/CAHelpers.cc -> X86/ext/drampower/src/CAHelpers.os
+ [   SHCXX] ext/drampower/src/CmdHandlers.cc -> X86/ext/drampower/src/CmdHandlers.os
+ [   SHCXX] ext/drampower/src/MemBankWiseParams.cc -> X86/ext/drampower/src/MemBankWiseParams.os
+ [      AR]  -> X86/ext/drampower/libdrampower.a
+ [  RANLIB]  -> X86/ext/drampower/libdrampower.a
+ [     CXX] src/base/date.cc -> X86/base/date.o
+scons: done building targets.
+*** Summary of Warnings ***
+Warning: You can get a 12% performance improvement by installing tcmalloc
+         (libgoogle-perftools-dev package on Ubuntu or RedHat).
+Warning: Header file <capstone/capstone.h> not found.
+         This host has no capstone library installed.
+Warning: While checking protoc version: [Errno 2] No such file or directory:
+         'protoc'
+Warning: Protocol buffer compiler (protoc) not found.
+         Please install protobuf-compiler for tracing support.
+Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support.
+ls: cannot access 'build/X86/gem5.opt': No such file or directory

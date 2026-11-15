@@ -1,0 +1,21 @@
+[20:48:08] [csewsrm22] fixed SPEC worker inc: START cores=32 spec_jobs=32
+[20:48:08] [csewsrm22] machine_run inc: START (W=/tmp/sahilag24/work)
+[20:48:08] stage m_lane_build: START
+[20:56:47] stage m_lane_build: OK
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/machine_run.sh: line 62: syntax error near unexpected token `('
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/machine_run.sh: line 62: `log "[$HOSTN] machine_run $LANE: DONE -> robustness/results-$LANE/${LANE}_matrix.md (see runner line above for PASS counts)"'
+[20:56:56] [csewsrm22] fixed SPEC worker inc: START cores=32 spec_jobs=32
+[20:56:56] [csewsrm22] machine_run inc: START (W=/tmp/sahilag24/work)
+skip m_lane_build (done)
+[20:56:56] stage m_base_build: START
+[21:01:44] stage m_base_build: OK
+[21:01:44] stage m_tests: START
+[21:01:44] stage m_tests: OK
+120 jobs
+[21:01:44] [csewsrm22] machine_run inc: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+[21:01:44] stage spec_download: START
+[21:03:31] stage spec_download: OK
+[21:03:31] stage spec_install: START
+[21:05:36] stage spec_install: OK
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/03_get_spec.sh: line 21: syntax error near unexpected token `}'
+/users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/03_get_spec.sh: line 21: `}'

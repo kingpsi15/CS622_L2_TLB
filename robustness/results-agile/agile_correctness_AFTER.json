@@ -1,0 +1,702 @@
+[
+ {
+  "name": "agile-huge-atomic",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 1752,
+   "wrMisses": 4110,
+   "exMisses": 66,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-huge-atomic",
+  "desc": "THP split/remap while prefetcher is active on 4KiB neighbors"
+ },
+ {
+  "name": "agile-huge-atomic",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 782,
+   "wrMisses": 4106,
+   "exMisses": 19,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-huge-atomic",
+  "desc": "THP split/remap while prefetcher is active on 4KiB neighbors"
+ },
+ {
+  "name": "agile-huge-timing",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 1752,
+   "wrMisses": 4110,
+   "exMisses": 66,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-huge-timing",
+  "desc": "THP split/remap while prefetcher is active on 4KiB neighbors"
+ },
+ {
+  "name": "agile-huge-timing",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "huge",
+    "SKIP",
+    "mprotect not enforced (SE mode?)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 4704,
+   "wrAccesses": 6536,
+   "exAccesses": 118097,
+   "rdMisses": 782,
+   "wrMisses": 4106,
+   "exMisses": 19,
+   "chkOracleChecks": 127285,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-huge-timing",
+  "desc": "THP split/remap while prefetcher is active on 4KiB neighbors"
+ },
+ {
+  "name": "agile-procs-atomic",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=4 rounds=10 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 23439,
+   "wrAccesses": 22408,
+   "exAccesses": 444549,
+   "rdMisses": 672,
+   "wrMisses": 336,
+   "exMisses": 78,
+   "chkOracleChecks": 490232,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-procs-atomic",
+  "desc": "fork + same-VA multi-process: PCID-tagged L1/L2 must not cross-contaminate"
+ },
+ {
+  "name": "agile-procs-atomic",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=4 rounds=10 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 23439,
+   "wrAccesses": 22408,
+   "exAccesses": 444549,
+   "rdMisses": 97,
+   "wrMisses": 332,
+   "exMisses": 31,
+   "chkOracleChecks": 490232,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-procs-atomic",
+  "desc": "fork + same-VA multi-process: PCID-tagged L1/L2 must not cross-contaminate"
+ },
+ {
+  "name": "agile-procs-timing",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=4 rounds=10 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 23439,
+   "wrAccesses": 22408,
+   "exAccesses": 444549,
+   "rdMisses": 672,
+   "wrMisses": 336,
+   "exMisses": 78,
+   "chkOracleChecks": 490232,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-procs-timing",
+  "desc": "fork + same-VA multi-process: PCID-tagged L1/L2 must not cross-contaminate"
+ },
+ {
+  "name": "agile-procs-timing",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "procs",
+    "PASS",
+    "procs=4 rounds=10 same_va=0x600000000000 pages=160"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 23439,
+   "wrAccesses": 22408,
+   "exAccesses": 444549,
+   "rdMisses": 97,
+   "wrMisses": 332,
+   "exMisses": 31,
+   "chkOracleChecks": 490232,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-procs-timing",
+  "desc": "fork + same-VA multi-process: PCID-tagged L1/L2 must not cross-contaminate"
+ },
+ {
+  "name": "agile-remap-atomic",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=30 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 17346,
+   "wrAccesses": 11260,
+   "exAccesses": 233297,
+   "rdMisses": 5835,
+   "wrMisses": 204,
+   "exMisses": 205,
+   "chkOracleChecks": 258923,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-remap-atomic",
+  "desc": "munmap+MAP_FIXED remap same VA: stale L2 must not resurface in L1"
+ },
+ {
+  "name": "agile-remap-atomic",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=30 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 17346,
+   "wrAccesses": 11260,
+   "exAccesses": 233297,
+   "rdMisses": 5819,
+   "wrMisses": 200,
+   "exMisses": 147,
+   "chkOracleChecks": 258923,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-remap-atomic",
+  "desc": "munmap+MAP_FIXED remap same VA: stale L2 must not resurface in L1"
+ },
+ {
+  "name": "agile-remap-big-atomic",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=60 pages=512"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 156806,
+   "wrAccesses": 95273,
+   "exAccesses": 2296037,
+   "rdMisses": 61920,
+   "wrMisses": 1567,
+   "exMisses": 325,
+   "chkOracleChecks": 2516880,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-remap-big-atomic",
+  "desc": "remap sized to span multiple 8-page prefetch windows"
+ },
+ {
+  "name": "agile-remap-big-atomic",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=60 pages=512"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 156806,
+   "wrAccesses": 95273,
+   "exAccesses": 2296037,
+   "rdMisses": 61904,
+   "wrMisses": 1327,
+   "exMisses": 267,
+   "chkOracleChecks": 2516880,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-remap-big-atomic",
+  "desc": "remap sized to span multiple 8-page prefetch windows"
+ },
+ {
+  "name": "agile-remap-big-timing",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=60 pages=512"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 156806,
+   "wrAccesses": 95273,
+   "exAccesses": 2296037,
+   "rdMisses": 61920,
+   "wrMisses": 1567,
+   "exMisses": 325,
+   "chkOracleChecks": 2516880,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-remap-big-timing",
+  "desc": "remap sized to span multiple 8-page prefetch windows"
+ },
+ {
+  "name": "agile-remap-big-timing",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=60 pages=512"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 156806,
+   "wrAccesses": 95273,
+   "exAccesses": 2296037,
+   "rdMisses": 61904,
+   "wrMisses": 1327,
+   "exMisses": 267,
+   "chkOracleChecks": 2516880,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-remap-big-timing",
+  "desc": "remap sized to span multiple 8-page prefetch windows"
+ },
+ {
+  "name": "agile-remap-timing",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=30 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 17346,
+   "wrAccesses": 11260,
+   "exAccesses": 233297,
+   "rdMisses": 5835,
+   "wrMisses": 204,
+   "exMisses": 205,
+   "chkOracleChecks": 258923,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-remap-timing",
+  "desc": "munmap+MAP_FIXED remap same VA: stale L2 must not resurface in L1"
+ },
+ {
+  "name": "agile-remap-timing",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=30 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 17346,
+   "wrAccesses": 11260,
+   "exAccesses": 233297,
+   "rdMisses": 5819,
+   "wrMisses": 200,
+   "exMisses": 147,
+   "chkOracleChecks": 258923,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-remap-timing",
+  "desc": "munmap+MAP_FIXED remap same VA: stale L2 must not resurface in L1"
+ },
+ {
+  "name": "agile-shared-atomic",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=-15",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": -15,
+  "secs": 106,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-shared-atomic",
+  "desc": "fork + MAP_SHARED: prefetch of a shared page must stay coherent"
+ },
+ {
+  "name": "agile-shared-atomic",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=-15",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": -15,
+  "secs": 106,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-shared-atomic",
+  "desc": "fork + MAP_SHARED: prefetch of a shared page must stay coherent"
+ },
+ {
+  "name": "agile-shared-timing",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=-15",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": -15,
+  "secs": 104,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-shared-timing",
+  "desc": "fork + MAP_SHARED: prefetch of a shared page must stay coherent"
+ },
+ {
+  "name": "agile-shared-timing",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=-15",
+   "only 0/1 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": -15,
+  "secs": 105,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-shared-timing",
+  "desc": "fork + MAP_SHARED: prefetch of a shared page must stay coherent"
+ },
+ {
+  "name": "agile-shootdown-atomic",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "shootdown",
+    "SKIP",
+    "mprotect not enforced (SE mode)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2690,
+   "wrAccesses": 2453,
+   "exAccesses": 18025,
+   "rdMisses": 16,
+   "wrMisses": 14,
+   "exMisses": 67,
+   "chkOracleChecks": 23163,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-shootdown-atomic",
+  "desc": "mprotect cross-thread shootdown: no stale writable translation (flushNonGlobal/L2)"
+ },
+ {
+  "name": "agile-shootdown-atomic",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "shootdown",
+    "SKIP",
+    "mprotect not enforced (SE mode)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2690,
+   "wrAccesses": 2453,
+   "exAccesses": 18025,
+   "rdMisses": 9,
+   "wrMisses": 10,
+   "exMisses": 19,
+   "chkOracleChecks": 23163,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-shootdown-atomic",
+  "desc": "mprotect cross-thread shootdown: no stale writable translation (flushNonGlobal/L2)"
+ },
+ {
+  "name": "agile-shootdown-timing",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "shootdown",
+    "SKIP",
+    "mprotect not enforced (SE mode)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2690,
+   "wrAccesses": 2453,
+   "exAccesses": 18025,
+   "rdMisses": 16,
+   "wrMisses": 14,
+   "exMisses": 67,
+   "chkOracleChecks": 23163,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/base/agile-shootdown-timing",
+  "desc": "mprotect cross-thread shootdown: no stale writable translation (flushNonGlobal/L2)"
+ },
+ {
+  "name": "agile-shootdown-timing",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "shootdown",
+    "SKIP",
+    "mprotect not enforced (SE mode)"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2690,
+   "wrAccesses": 2453,
+   "exAccesses": 18025,
+   "rdMisses": 9,
+   "wrMisses": 10,
+   "exMisses": 19,
+   "chkOracleChecks": 23163,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-agile/runs/agile_correctness_AFTER/inc/agile-shootdown-timing",
+  "desc": "mprotect cross-thread shootdown: no stale writable translation (flushNonGlobal/L2)"
+ }
+]

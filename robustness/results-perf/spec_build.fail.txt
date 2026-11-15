@@ -1,0 +1,60 @@
+Running "specperl /tmp/sahilag24/work-perf/cpu2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Retrieving flags file (/tmp/sahilag24/work-perf/cpu2017/config/flags/gcc.xml)...
+Benchmarks selected: 600.perlbench_s, 602.gcc_s, 605.mcf_s, 620.omnetpp_s, 623.xalancbmk_s, 625.x264_s, 631.deepsjeng_s, 641.leela_s, 648.exchange2_s, 657.xz_s, 998.specrand_is
+Compiling Binaries
+  Up to date 600.perlbench_s base gem5static-m64
+  Up to date 602.gcc_s base gem5static-m64
+  Up to date 605.mcf_s base gem5static-m64
+  Up to date 620.omnetpp_s base gem5static-m64
+  Up to date 623.xalancbmk_s base gem5static-m64
+  Up to date 625.x264_s base gem5static-m64
+  Up to date 631.deepsjeng_s base gem5static-m64
+  Up to date 641.leela_s base gem5static-m64
+  Up to date 648.exchange2_s base gem5static-m64
+  Up to date 657.xz_s base gem5static-m64
+  Up to date 998.specrand_is base gem5static-m64
+
+
+Build Complete
+-------------------------------------------------------------------------------
+
+Setting up environment for running fpspeed...
+Starting runcpu for fpspeed...
+Running "specperl /tmp/sahilag24/work-perf/cpu2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Retrieving flags file (/tmp/sahilag24/work-perf/cpu2017/config/flags/gcc.xml)...
+Benchmarks selected: 603.bwaves_s, 607.cactuBSSN_s, 619.lbm_s, 621.wrf_s, 627.cam4_s, 628.pop2_s, 638.imagick_s, 644.nab_s, 649.fotonik3d_s, 654.roms_s, 996.specrand_fs
+Compiling Binaries
+  Up to date 603.bwaves_s base gem5static-m64
+  Up to date 607.cactuBSSN_s base gem5static-m64
+  Up to date 619.lbm_s base gem5static-m64
+  Up to date 621.wrf_s base gem5static-m64
+  Up to date 627.cam4_s base gem5static-m64
+  Up to date 628.pop2_s base gem5static-m64
+  Up to date 638.imagick_s base gem5static-m64
+  Up to date 644.nab_s base gem5static-m64
+  Up to date 649.fotonik3d_s base gem5static-m64
+  Up to date 654.roms_s base gem5static-m64
+  Up to date 996.specrand_fs base gem5static-m64
+
+
+Build Complete
+The log for this run is in /tmp/sahilag24/work-perf/cpu2017/result/CPU2017.007.log
+
+runcpu finished at 2026-11-14 19:46:27; 37 total seconds elapsed
+510.parest_r still has no static executable; inspect its make.out

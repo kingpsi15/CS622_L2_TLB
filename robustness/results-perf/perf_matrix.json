@@ -1,0 +1,3476 @@
+[
+ {
+  "name": "perf-1c-atomic-chunk1",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 337546,
+   "wrAccesses": 127004,
+   "exAccesses": 2648735,
+   "rdMisses": 24446,
+   "wrMisses": 4274,
+   "exMisses": 325,
+   "chkOracleChecks": 3111201,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-chunk1",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 337546,
+   "wrAccesses": 127004,
+   "exAccesses": 2648735,
+   "rdMisses": 1226,
+   "wrMisses": 4266,
+   "exMisses": 282,
+   "chkOracleChecks": 3111201,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28764,
+   "coarseFilterCleanHits": 9114,
+   "coarseFilterEarlyRejects": 366,
+   "secondaryBitmapAccesses": 19284,
+   "l2BitmapHits": 14157,
+   "l2BitmapHoleMisses": 5127,
+   "estLookupCyclesSaved": 84954,
+   "estDynamicEnergyUnitsSaved": 760962
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-churn",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 228123,
+   "wrAccesses": 105496,
+   "exAccesses": 1959665,
+   "rdMisses": 21349,
+   "wrMisses": 4764,
+   "exMisses": 1995,
+   "chkOracleChecks": 2291184,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-churn",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 228123,
+   "wrAccesses": 105496,
+   "exAccesses": 1959665,
+   "rdMisses": 2456,
+   "wrMisses": 4756,
+   "exMisses": 1954,
+   "chkOracleChecks": 2291184,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 26469,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1622,
+   "secondaryBitmapAccesses": 24847,
+   "l2BitmapHits": 18942,
+   "l2BitmapHoleMisses": 5905,
+   "estLookupCyclesSaved": 12976,
+   "estDynamicEnergyUnitsSaved": 141114
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-clustered",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 289524,
+   "wrAccesses": 112098,
+   "exAccesses": 2341030,
+   "rdMisses": 22448,
+   "wrMisses": 4562,
+   "exMisses": 1247,
+   "chkOracleChecks": 2740552,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-clustered",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 289524,
+   "wrAccesses": 112098,
+   "exAccesses": 2341030,
+   "rdMisses": 1852,
+   "wrMisses": 4554,
+   "exMisses": 1204,
+   "chkOracleChecks": 2740552,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 27224,
+   "coarseFilterCleanHits": 12692,
+   "coarseFilterEarlyRejects": 1067,
+   "secondaryBitmapAccesses": 13465,
+   "l2BitmapHits": 7955,
+   "l2BitmapHoleMisses": 5510,
+   "estLookupCyclesSaved": 122764,
+   "estDynamicEnergyUnitsSaved": 1108189
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-collide16",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 7,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 948762,
+   "wrAccesses": 369697,
+   "exAccesses": 7864735,
+   "rdMisses": 73929,
+   "wrMisses": 17056,
+   "exMisses": 1091,
+   "chkOracleChecks": 9174870,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-collide16",
+  "desc": "16 regions: set-collision/replacement of 2MiB entries"
+ },
+ {
+  "name": "perf-1c-atomic-collide16",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 948762,
+   "wrAccesses": 369697,
+   "exAccesses": 7864735,
+   "rdMisses": 3856,
+   "wrMisses": 17036,
+   "exMisses": 1048,
+   "chkOracleChecks": 9174870,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 90970,
+   "coarseFilterCleanHits": 34695,
+   "coarseFilterEarlyRejects": 1333,
+   "secondaryBitmapAccesses": 54942,
+   "l2BitmapHits": 35441,
+   "l2BitmapHoleMisses": 19501,
+   "estLookupCyclesSaved": 322919,
+   "estDynamicEnergyUnitsSaved": 2891571
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-collide16",
+  "desc": "16 regions: set-collision/replacement of 2MiB entries"
+ },
+ {
+  "name": "perf-1c-atomic-collide48",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 20,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2076323,
+   "wrAccesses": 763926,
+   "exAccesses": 15861592,
+   "rdMisses": 139306,
+   "wrMisses": 55575,
+   "exMisses": 21457,
+   "chkOracleChecks": 18676973,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "perf-1c-atomic-collide48",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 22,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2076323,
+   "wrAccesses": 763926,
+   "exAccesses": 15861592,
+   "rdMisses": 22068,
+   "wrMisses": 55523,
+   "exMisses": 21416,
+   "chkOracleChecks": 18676973,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 199094,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 17402,
+   "secondaryBitmapAccesses": 181692,
+   "l2BitmapHits": 117331,
+   "l2BitmapHoleMisses": 64361,
+   "estLookupCyclesSaved": 139216,
+   "estDynamicEnergyUnitsSaved": 1513974
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "perf-1c-atomic-dense",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 273036,
+   "wrAccesses": 119269,
+   "exAccesses": 2321435,
+   "rdMisses": 24402,
+   "wrMisses": 4114,
+   "exMisses": 59,
+   "chkOracleChecks": 2711688,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-dense",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 273036,
+   "wrAccesses": 119269,
+   "exAccesses": 2321435,
+   "rdMisses": 9,
+   "wrMisses": 4106,
+   "exMisses": 18,
+   "chkOracleChecks": 2711688,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28563,
+   "coarseFilterCleanHits": 24309,
+   "coarseFilterEarlyRejects": 61,
+   "secondaryBitmapAccesses": 4193,
+   "l2BitmapHits": 133,
+   "l2BitmapHoleMisses": 4060,
+   "estLookupCyclesSaved": 219269,
+   "estDynamicEnergyUnitsSaved": 1950027
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-dispersed",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 304356,
+   "wrAccesses": 114146,
+   "exAccesses": 2423842,
+   "rdMisses": 22505,
+   "wrMisses": 4562,
+   "exMisses": 1285,
+   "chkOracleChecks": 2840244,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-dispersed",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 304356,
+   "wrAccesses": 114146,
+   "exAccesses": 2423842,
+   "rdMisses": 1946,
+   "wrMisses": 4554,
+   "exMisses": 1242,
+   "chkOracleChecks": 2840244,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 27319,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1086,
+   "secondaryBitmapAccesses": 26233,
+   "l2BitmapHits": 20610,
+   "l2BitmapHoleMisses": 5623,
+   "estLookupCyclesSaved": 8688,
+   "estDynamicEnergyUnitsSaved": 94482
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-edge",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 302617,
+   "wrAccesses": 120859,
+   "exAccesses": 2518820,
+   "rdMisses": 24442,
+   "wrMisses": 4274,
+   "exMisses": 323,
+   "chkOracleChecks": 2940212,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-edge",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 302617,
+   "wrAccesses": 120859,
+   "exAccesses": 2518820,
+   "rdMisses": 1224,
+   "wrMisses": 4266,
+   "exMisses": 280,
+   "chkOracleChecks": 2940212,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28758,
+   "coarseFilterCleanHits": 12833,
+   "coarseFilterEarlyRejects": 365,
+   "secondaryBitmapAccesses": 15560,
+   "l2BitmapHits": 10436,
+   "l2BitmapHoleMisses": 5124,
+   "estLookupCyclesSaved": 118417,
+   "estDynamicEnergyUnitsSaved": 1058395
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-sparse",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 185474,
+   "wrAccesses": 32000,
+   "exAccesses": 1348060,
+   "rdMisses": 6416,
+   "wrMisses": 6322,
+   "exMisses": 8261,
+   "chkOracleChecks": 1563434,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-sparse",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 185474,
+   "wrAccesses": 32000,
+   "exAccesses": 1348060,
+   "rdMisses": 6320,
+   "wrMisses": 6314,
+   "exMisses": 8218,
+   "chkOracleChecks": 1563434,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 14686,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 6334,
+   "secondaryBitmapAccesses": 8352,
+   "l2BitmapHits": 147,
+   "l2BitmapHoleMisses": 8205,
+   "estLookupCyclesSaved": 50672,
+   "estDynamicEnergyUnitsSaved": 551058
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-atomic-tlbstress-capacity",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 30528,
+   "wrAccesses": 13352,
+   "exAccesses": 608261,
+   "rdMisses": 9176,
+   "wrMisses": 9628,
+   "exMisses": 68,
+   "chkOracleChecks": 651623,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-tlbstress-capacity",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-atomic-tlbstress-capacity",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 30528,
+   "wrAccesses": 13352,
+   "exAccesses": 608261,
+   "rdMisses": 9,
+   "wrMisses": 1036,
+   "exMisses": 19,
+   "chkOracleChecks": 651623,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 18864,
+   "coarseFilterCleanHits": 15529,
+   "coarseFilterEarlyRejects": 18,
+   "secondaryBitmapAccesses": 3317,
+   "l2BitmapHits": 2279,
+   "l2BitmapHoleMisses": 1038,
+   "estLookupCyclesSaved": 139905,
+   "estDynamicEnergyUnitsSaved": 1243886
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-tlbstress-capacity",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-atomic-tlbstress-conflict",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 5711,
+   "wrAccesses": 3755,
+   "exAccesses": 255384,
+   "rdMisses": 623,
+   "wrMisses": 747,
+   "exMisses": 68,
+   "chkOracleChecks": 264766,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-tlbstress-conflict",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-atomic-tlbstress-conflict",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 5711,
+   "wrAccesses": 3755,
+   "exAccesses": 255384,
+   "rdMisses": 9,
+   "wrMisses": 168,
+   "exMisses": 19,
+   "chkOracleChecks": 264766,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 1392,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 122,
+   "secondaryBitmapAccesses": 1270,
+   "l2BitmapHits": 1242,
+   "l2BitmapHoleMisses": 28,
+   "estLookupCyclesSaved": 976,
+   "estDynamicEnergyUnitsSaved": 10614
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-tlbstress-conflict",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-atomic-tlbstress-remap",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7577,
+   "wrAccesses": 5450,
+   "exAccesses": 90087,
+   "rdMisses": 2935,
+   "wrMisses": 1068,
+   "exMisses": 125,
+   "chkOracleChecks": 102054,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-atomic-tlbstress-remap",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-atomic-tlbstress-remap",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 0,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7577,
+   "wrAccesses": 5450,
+   "exAccesses": 90087,
+   "rdMisses": 1949,
+   "wrMisses": 200,
+   "exMisses": 67,
+   "chkOracleChecks": 102054,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 4071,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 43,
+   "secondaryBitmapAccesses": 4028,
+   "l2BitmapHits": 1912,
+   "l2BitmapHoleMisses": 2116,
+   "estLookupCyclesSaved": 344,
+   "estDynamicEnergyUnitsSaved": 3741
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-atomic-tlbstress-remap",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-o3-chunk1",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 340830,
+   "wrAccesses": 168978,
+   "exAccesses": 295596,
+   "rdMisses": 24521,
+   "wrMisses": 16519,
+   "exMisses": 363,
+   "chkOracleChecks": 790974,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-chunk1",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 340830,
+   "wrAccesses": 168978,
+   "exAccesses": 295596,
+   "rdMisses": 1300,
+   "wrMisses": 16510,
+   "exMisses": 312,
+   "chkOracleChecks": 790974,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 40961,
+   "coarseFilterCleanHits": 9114,
+   "coarseFilterEarlyRejects": 1123,
+   "secondaryBitmapAccesses": 30724,
+   "l2BitmapHits": 14167,
+   "l2BitmapHoleMisses": 16557,
+   "estLookupCyclesSaved": 91010,
+   "estDynamicEnergyUnitsSaved": 826821
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-churn",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 12,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 238245,
+   "wrAccesses": 151618,
+   "exAccesses": 243783,
+   "rdMisses": 21589,
+   "wrMisses": 17350,
+   "exMisses": 2608,
+   "chkOracleChecks": 619200,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-churn",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 12,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 238245,
+   "wrAccesses": 151618,
+   "exAccesses": 243783,
+   "rdMisses": 2688,
+   "wrMisses": 17341,
+   "exMisses": 2452,
+   "chkOracleChecks": 619200,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 39747,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 2426,
+   "secondaryBitmapAccesses": 37321,
+   "l2BitmapHits": 19066,
+   "l2BitmapHoleMisses": 18255,
+   "estLookupCyclesSaved": 19408,
+   "estDynamicEnergyUnitsSaved": 211062
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-clustered",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 297859,
+   "wrAccesses": 157147,
+   "exAccesses": 284727,
+   "rdMisses": 22843,
+   "wrMisses": 16808,
+   "exMisses": 1617,
+   "chkOracleChecks": 725287,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-clustered",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 297859,
+   "wrAccesses": 157147,
+   "exAccesses": 284727,
+   "rdMisses": 2233,
+   "wrMisses": 16799,
+   "exMisses": 1526,
+   "chkOracleChecks": 725287,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 40074,
+   "coarseFilterCleanHits": 12692,
+   "coarseFilterEarlyRejects": 1842,
+   "secondaryBitmapAccesses": 25540,
+   "l2BitmapHits": 8018,
+   "l2BitmapHoleMisses": 17522,
+   "estLookupCyclesSaved": 128964,
+   "estDynamicEnergyUnitsSaved": 1175614
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-collide16",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 21,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 955993,
+   "wrAccesses": 535453,
+   "exAccesses": 963633,
+   "rdMisses": 74007,
+   "wrMisses": 66096,
+   "exMisses": 1132,
+   "chkOracleChecks": 2397613,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-collide16",
+  "desc": "16 regions: set-collision/replacement of 2MiB entries"
+ },
+ {
+  "name": "perf-1c-o3-collide16",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 21,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 955993,
+   "wrAccesses": 535453,
+   "exAccesses": 963633,
+   "rdMisses": 3933,
+   "wrMisses": 66075,
+   "exMisses": 1081,
+   "chkOracleChecks": 2397613,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 139716,
+   "coarseFilterCleanHits": 34697,
+   "coarseFilterEarlyRejects": 4359,
+   "secondaryBitmapAccesses": 100660,
+   "l2BitmapHits": 35449,
+   "l2BitmapHoleMisses": 65211,
+   "estLookupCyclesSaved": 347145,
+   "estDynamicEnergyUnitsSaved": 3154993
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-collide16",
+  "desc": "16 regions: set-collision/replacement of 2MiB entries"
+ },
+ {
+  "name": "perf-1c-o3-collide48",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 49,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2152871,
+   "wrAccesses": 1299053,
+   "exAccesses": 2216643,
+   "rdMisses": 140545,
+   "wrMisses": 206996,
+   "exMisses": 27311,
+   "chkOracleChecks": 5496446,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "perf-1c-o3-collide48",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 52,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2152871,
+   "wrAccesses": 1299053,
+   "exAccesses": 2216643,
+   "rdMisses": 23158,
+   "wrMisses": 206937,
+   "exMisses": 26519,
+   "chkOracleChecks": 5496446,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 356523,
+   "coarseFilterCleanHits": 2,
+   "coarseFilterEarlyRejects": 26832,
+   "secondaryBitmapAccesses": 329689,
+   "l2BitmapHits": 118236,
+   "l2BitmapHoleMisses": 211453,
+   "estLookupCyclesSaved": 214674,
+   "estDynamicEnergyUnitsSaved": 2334544
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "perf-1c-o3-dense",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 9,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 274877,
+   "wrAccesses": 160826,
+   "exAccesses": 252792,
+   "rdMisses": 24476,
+   "wrMisses": 16360,
+   "exMisses": 92,
+   "chkOracleChecks": 674097,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-dense",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 7,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 274877,
+   "wrAccesses": 160826,
+   "exAccesses": 252792,
+   "rdMisses": 82,
+   "wrMisses": 16351,
+   "exMisses": 47,
+   "chkOracleChecks": 674097,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 40755,
+   "coarseFilterCleanHits": 24309,
+   "coarseFilterEarlyRejects": 817,
+   "secondaryBitmapAccesses": 15629,
+   "l2BitmapHits": 139,
+   "l2BitmapHoleMisses": 15490,
+   "estLookupCyclesSaved": 225317,
+   "estDynamicEnergyUnitsSaved": 2015799
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-dispersed",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 311170,
+   "wrAccesses": 159374,
+   "exAccesses": 289574,
+   "rdMisses": 22586,
+   "wrMisses": 17108,
+   "exMisses": 1841,
+   "chkOracleChecks": 745671,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-dispersed",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 311170,
+   "wrAccesses": 159374,
+   "exAccesses": 289574,
+   "rdMisses": 2025,
+   "wrMisses": 17070,
+   "exMisses": 1551,
+   "chkOracleChecks": 745671,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 40340,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1843,
+   "secondaryBitmapAccesses": 38497,
+   "l2BitmapHits": 20889,
+   "l2BitmapHoleMisses": 17608,
+   "estLookupCyclesSaved": 14744,
+   "estDynamicEnergyUnitsSaved": 160341
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-edge",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 305796,
+   "wrAccesses": 162809,
+   "exAccesses": 285337,
+   "rdMisses": 24518,
+   "wrMisses": 16520,
+   "exMisses": 363,
+   "chkOracleChecks": 739512,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-edge",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 14,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 305796,
+   "wrAccesses": 162809,
+   "exAccesses": 285337,
+   "rdMisses": 1299,
+   "wrMisses": 16511,
+   "exMisses": 312,
+   "chkOracleChecks": 739512,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 40959,
+   "coarseFilterCleanHits": 12833,
+   "coarseFilterEarlyRejects": 1123,
+   "secondaryBitmapAccesses": 27003,
+   "l2BitmapHits": 10446,
+   "l2BitmapHoleMisses": 16557,
+   "estLookupCyclesSaved": 124481,
+   "estDynamicEnergyUnitsSaved": 1124341
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-sparse",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 210838,
+   "wrAccesses": 98045,
+   "exAccesses": 266898,
+   "rdMisses": 6505,
+   "wrMisses": 20590,
+   "exMisses": 12334,
+   "chkOracleChecks": 561335,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-sparse",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 10,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 210838,
+   "wrAccesses": 98045,
+   "exAccesses": 266898,
+   "rdMisses": 6408,
+   "wrMisses": 20581,
+   "exMisses": 10276,
+   "chkOracleChecks": 561335,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 32955,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 7091,
+   "secondaryBitmapAccesses": 25864,
+   "l2BitmapHits": 2164,
+   "l2BitmapHoleMisses": 23700,
+   "estLookupCyclesSaved": 56728,
+   "estDynamicEnergyUnitsSaved": 616917
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-o3-tlbstress-capacity",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 36161,
+   "wrAccesses": 16573,
+   "exAccesses": 58557,
+   "rdMisses": 9250,
+   "wrMisses": 12189,
+   "exMisses": 106,
+   "chkOracleChecks": 108115,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-tlbstress-capacity",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-o3-tlbstress-capacity",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 36161,
+   "wrAccesses": 16573,
+   "exAccesses": 58557,
+   "rdMisses": 76,
+   "wrMisses": 3596,
+   "exMisses": 51,
+   "chkOracleChecks": 108115,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 21419,
+   "coarseFilterCleanHits": 15529,
+   "coarseFilterEarlyRejects": 158,
+   "secondaryBitmapAccesses": 5732,
+   "l2BitmapHits": 2293,
+   "l2BitmapHoleMisses": 3439,
+   "estLookupCyclesSaved": 141025,
+   "estDynamicEnergyUnitsSaved": 1256066
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-tlbstress-capacity",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-o3-tlbstress-conflict",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7996,
+   "wrAccesses": 4904,
+   "exAccesses": 10830,
+   "rdMisses": 701,
+   "wrMisses": 1142,
+   "exMisses": 106,
+   "chkOracleChecks": 23151,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-tlbstress-conflict",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-o3-tlbstress-conflict",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7996,
+   "wrAccesses": 4904,
+   "exAccesses": 10830,
+   "rdMisses": 78,
+   "wrMisses": 563,
+   "exMisses": 51,
+   "chkOracleChecks": 23151,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 1471,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 180,
+   "secondaryBitmapAccesses": 1291,
+   "l2BitmapHits": 1257,
+   "l2BitmapHoleMisses": 34,
+   "estLookupCyclesSaved": 1440,
+   "estDynamicEnergyUnitsSaved": 15660
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-tlbstress-conflict",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-o3-tlbstress-remap",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 25709,
+   "wrAccesses": 16325,
+   "exAccesses": 59771,
+   "rdMisses": 10385,
+   "wrMisses": 1644,
+   "exMisses": 182,
+   "chkOracleChecks": 92696,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-o3-tlbstress-remap",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-o3-tlbstress-remap",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 25709,
+   "wrAccesses": 16325,
+   "exAccesses": 59771,
+   "rdMisses": 9395,
+   "wrMisses": 775,
+   "exMisses": 105,
+   "chkOracleChecks": 92696,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 12016,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 501,
+   "secondaryBitmapAccesses": 11515,
+   "l2BitmapHits": 1936,
+   "l2BitmapHoleMisses": 9579,
+   "estLookupCyclesSaved": 4008,
+   "estDynamicEnergyUnitsSaved": 43587
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-o3-tlbstress-remap",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-timing-chunk1",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 337546,
+   "wrAccesses": 127004,
+   "exAccesses": 2648735,
+   "rdMisses": 24446,
+   "wrMisses": 4274,
+   "exMisses": 325,
+   "chkOracleChecks": 3111201,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-chunk1",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 337546,
+   "wrAccesses": 127004,
+   "exAccesses": 2648735,
+   "rdMisses": 1226,
+   "wrMisses": 4266,
+   "exMisses": 282,
+   "chkOracleChecks": 3111201,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28764,
+   "coarseFilterCleanHits": 9114,
+   "coarseFilterEarlyRejects": 366,
+   "secondaryBitmapAccesses": 19284,
+   "l2BitmapHits": 14157,
+   "l2BitmapHoleMisses": 5127,
+   "estLookupCyclesSaved": 84954,
+   "estDynamicEnergyUnitsSaved": 760962
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-chunk1",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-churn",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 228123,
+   "wrAccesses": 105496,
+   "exAccesses": 1959665,
+   "rdMisses": 21349,
+   "wrMisses": 4764,
+   "exMisses": 1995,
+   "chkOracleChecks": 2291184,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-churn",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 228123,
+   "wrAccesses": 105496,
+   "exAccesses": 1959665,
+   "rdMisses": 2456,
+   "wrMisses": 4756,
+   "exMisses": 1954,
+   "chkOracleChecks": 2291184,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 26469,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1622,
+   "secondaryBitmapAccesses": 24847,
+   "l2BitmapHits": 18942,
+   "l2BitmapHoleMisses": 5905,
+   "estLookupCyclesSaved": 12976,
+   "estDynamicEnergyUnitsSaved": 141114
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-churn",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-clustered",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 289524,
+   "wrAccesses": 112098,
+   "exAccesses": 2341030,
+   "rdMisses": 22448,
+   "wrMisses": 4562,
+   "exMisses": 1247,
+   "chkOracleChecks": 2740552,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-clustered",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 289524,
+   "wrAccesses": 112098,
+   "exAccesses": 2341030,
+   "rdMisses": 1852,
+   "wrMisses": 4554,
+   "exMisses": 1204,
+   "chkOracleChecks": 2740552,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 27224,
+   "coarseFilterCleanHits": 12692,
+   "coarseFilterEarlyRejects": 1067,
+   "secondaryBitmapAccesses": 13465,
+   "l2BitmapHits": 7955,
+   "l2BitmapHoleMisses": 5510,
+   "estLookupCyclesSaved": 122764,
+   "estDynamicEnergyUnitsSaved": 1108189
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-clustered",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-collide16",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 948762,
+   "wrAccesses": 369697,
+   "exAccesses": 7864735,
+   "rdMisses": 73929,
+   "wrMisses": 17056,
+   "exMisses": 1091,
+   "chkOracleChecks": 9174870,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-collide16",
+  "desc": "16 regions: set-collision/replacement of 2MiB entries"
+ },
+ {
+  "name": "perf-1c-timing-collide16",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 13,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=16 passes=3 holes=128 valid_reads=73008 remaps=128 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 948762,
+   "wrAccesses": 369697,
+   "exAccesses": 7864735,
+   "rdMisses": 3856,
+   "wrMisses": 17036,
+   "exMisses": 1048,
+   "chkOracleChecks": 9174870,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 90970,
+   "coarseFilterCleanHits": 34695,
+   "coarseFilterEarlyRejects": 1333,
+   "secondaryBitmapAccesses": 54942,
+   "l2BitmapHits": 35441,
+   "l2BitmapHoleMisses": 19501,
+   "estLookupCyclesSaved": 322919,
+   "estDynamicEnergyUnitsSaved": 2891571
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-collide16",
+  "desc": "16 regions: set-collision/replacement of 2MiB entries"
+ },
+ {
+  "name": "perf-1c-timing-collide48",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 21,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2076323,
+   "wrAccesses": 763926,
+   "exAccesses": 15861592,
+   "rdMisses": 139306,
+   "wrMisses": 55575,
+   "exMisses": 21457,
+   "chkOracleChecks": 18676973,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "perf-1c-timing-collide48",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 12,
+  "results": [
+   [
+    "perf_churn",
+    "PASS",
+    "regions=48 passes=2 holes=4915 valid_reads=117966 remaps=288 late_unmaps=288"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 2076323,
+   "wrAccesses": 763926,
+   "exAccesses": 15861592,
+   "rdMisses": 22068,
+   "wrMisses": 55523,
+   "exMisses": 21416,
+   "chkOracleChecks": 18676973,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 199094,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 17402,
+   "secondaryBitmapAccesses": 181692,
+   "l2BitmapHits": 117331,
+   "l2BitmapHoleMisses": 64361,
+   "estLookupCyclesSaved": 139216,
+   "estDynamicEnergyUnitsSaved": 1513974
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-collide48",
+  "desc": "48 regions + churn"
+ },
+ {
+  "name": "perf-1c-timing-dense",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 273036,
+   "wrAccesses": 119269,
+   "exAccesses": 2321435,
+   "rdMisses": 24402,
+   "wrMisses": 4114,
+   "exMisses": 59,
+   "chkOracleChecks": 2711688,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-dense",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=4 holes=0 valid_reads=24576 remaps=0 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 273036,
+   "wrAccesses": 119269,
+   "exAccesses": 2321435,
+   "rdMisses": 9,
+   "wrMisses": 4106,
+   "exMisses": 18,
+   "chkOracleChecks": 2711688,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28563,
+   "coarseFilterCleanHits": 24309,
+   "coarseFilterEarlyRejects": 61,
+   "secondaryBitmapAccesses": 4193,
+   "l2BitmapHits": 133,
+   "l2BitmapHoleMisses": 4060,
+   "estLookupCyclesSaved": 219269,
+   "estDynamicEnergyUnitsSaved": 1950027
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-dense",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-dispersed",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 304356,
+   "wrAccesses": 114146,
+   "exAccesses": 2423842,
+   "rdMisses": 22505,
+   "wrMisses": 4562,
+   "exMisses": 1285,
+   "chkOracleChecks": 2840244,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-dispersed",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 304356,
+   "wrAccesses": 114146,
+   "exAccesses": 2423842,
+   "rdMisses": 1946,
+   "wrMisses": 4554,
+   "exMisses": 1242,
+   "chkOracleChecks": 2840244,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 27319,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 1086,
+   "secondaryBitmapAccesses": 26233,
+   "l2BitmapHits": 20610,
+   "l2BitmapHoleMisses": 5623,
+   "estLookupCyclesSaved": 8688,
+   "estDynamicEnergyUnitsSaved": 94482
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-dispersed",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-edge",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 302617,
+   "wrAccesses": 120859,
+   "exAccesses": 2518820,
+   "rdMisses": 24442,
+   "wrMisses": 4274,
+   "exMisses": 323,
+   "chkOracleChecks": 2940212,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-edge",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "perf_edge",
+    "PASS",
+    "regions=4 passes=4 holes=32 valid_reads=24396 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 302617,
+   "wrAccesses": 120859,
+   "exAccesses": 2518820,
+   "rdMisses": 1224,
+   "wrMisses": 4266,
+   "exMisses": 280,
+   "chkOracleChecks": 2940212,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 28758,
+   "coarseFilterCleanHits": 12833,
+   "coarseFilterEarlyRejects": 365,
+   "secondaryBitmapAccesses": 15560,
+   "l2BitmapHits": 10436,
+   "l2BitmapHoleMisses": 5124,
+   "estLookupCyclesSaved": 118417,
+   "estDynamicEnergyUnitsSaved": 1058395
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-edge",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-sparse",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 185474,
+   "wrAccesses": 32000,
+   "exAccesses": 1348060,
+   "rdMisses": 6416,
+   "wrMisses": 6322,
+   "exMisses": 8261,
+   "chkOracleChecks": 1563434,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-sparse",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 3,
+  "results": [
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=4 holes=2016 valid_reads=600 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 185474,
+   "wrAccesses": 32000,
+   "exAccesses": 1348060,
+   "rdMisses": 6320,
+   "wrMisses": 6314,
+   "exMisses": 8218,
+   "chkOracleChecks": 1563434,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 14686,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 6334,
+   "secondaryBitmapAccesses": 8352,
+   "l2BitmapHits": 147,
+   "l2BitmapHoleMisses": 8205,
+   "estLookupCyclesSaved": 50672,
+   "estDynamicEnergyUnitsSaved": 551058
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-sparse",
+  "desc": "1 core/1 process, real holes"
+ },
+ {
+  "name": "perf-1c-timing-tlbstress-capacity",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 30528,
+   "wrAccesses": 13352,
+   "exAccesses": 608261,
+   "rdMisses": 9176,
+   "wrMisses": 9628,
+   "exMisses": 68,
+   "chkOracleChecks": 651623,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-tlbstress-capacity",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-timing-tlbstress-capacity",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 2,
+  "results": [
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 30528,
+   "wrAccesses": 13352,
+   "exAccesses": 608261,
+   "rdMisses": 9,
+   "wrMisses": 1036,
+   "exMisses": 19,
+   "chkOracleChecks": 651623,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 18864,
+   "coarseFilterCleanHits": 15529,
+   "coarseFilterEarlyRejects": 18,
+   "secondaryBitmapAccesses": 3317,
+   "l2BitmapHits": 2279,
+   "l2BitmapHoleMisses": 1038,
+   "estLookupCyclesSaved": 139905,
+   "estDynamicEnergyUnitsSaved": 1243886
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-tlbstress-capacity",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-timing-tlbstress-conflict",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 5711,
+   "wrAccesses": 3755,
+   "exAccesses": 255384,
+   "rdMisses": 623,
+   "wrMisses": 747,
+   "exMisses": 68,
+   "chkOracleChecks": 264766,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-tlbstress-conflict",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-timing-tlbstress-conflict",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=6"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 5711,
+   "wrAccesses": 3755,
+   "exAccesses": 255384,
+   "rdMisses": 9,
+   "wrMisses": 168,
+   "exMisses": 19,
+   "chkOracleChecks": 264766,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 1392,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 122,
+   "secondaryBitmapAccesses": 1270,
+   "l2BitmapHits": 1242,
+   "l2BitmapHoleMisses": 28,
+   "estLookupCyclesSaved": 976,
+   "estDynamicEnergyUnitsSaved": 10614
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-tlbstress-conflict",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-timing-tlbstress-remap",
+  "build": "base",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7577,
+   "wrAccesses": 5450,
+   "exAccesses": 90087,
+   "rdMisses": 2935,
+   "wrMisses": 1068,
+   "exMisses": 125,
+   "chkOracleChecks": 102054,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-1c-timing-tlbstress-remap",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-1c-timing-tlbstress-remap",
+  "build": "inc",
+  "verdict": "PASS",
+  "reasons": [],
+  "rc": 0,
+  "secs": 1,
+  "results": [
+   [
+    "remap",
+    "PASS",
+    "rounds=10 pages=96"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 7577,
+   "wrAccesses": 5450,
+   "exAccesses": 90087,
+   "rdMisses": 1949,
+   "wrMisses": 200,
+   "exMisses": 67,
+   "chkOracleChecks": 102054,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 4071,
+   "coarseFilterCleanHits": 0,
+   "coarseFilterEarlyRejects": 43,
+   "secondaryBitmapAccesses": 4028,
+   "l2BitmapHits": 1912,
+   "l2BitmapHoleMisses": 2116,
+   "estLookupCyclesSaved": 344,
+   "estDynamicEnergyUnitsSaved": 3741
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-1c-timing-tlbstress-remap",
+  "desc": "generic 4K stress on perforated TLB"
+ },
+ {
+  "name": "perf-4c4p-atomic-holes",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 5,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 871795,
+   "wrAccesses": 346638,
+   "exAccesses": 7091347,
+   "rdMisses": 75391,
+   "wrMisses": 18665,
+   "exMisses": 12710,
+   "chkOracleChecks": 8301428,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-4c4p-atomic-holes",
+  "desc": "4 cores, 4 processes, SAME VA layout, different hole patterns"
+ },
+ {
+  "name": "perf-4c4p-atomic-holes",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 4,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 871795,
+   "wrAccesses": 346638,
+   "exAccesses": 7091347,
+   "rdMisses": 22391,
+   "wrMisses": 18630,
+   "exMisses": 12526,
+   "chkOracleChecks": 8301428,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 93708,
+   "coarseFilterCleanHits": 5693,
+   "coarseFilterEarlyRejects": 8711,
+   "secondaryBitmapAccesses": 79304,
+   "l2BitmapHits": 47526,
+   "l2BitmapHoleMisses": 31778,
+   "estLookupCyclesSaved": 120925,
+   "estDynamicEnergyUnitsSaved": 1213297
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-4c4p-atomic-holes",
+  "desc": "4 cores, 4 processes, SAME VA layout, different hole patterns"
+ },
+ {
+  "name": "perf-4c4p-o3-holes",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 28,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 899135,
+   "wrAccesses": 524562,
+   "exAccesses": 913953,
+   "rdMisses": 75316,
+   "wrMisses": 69172,
+   "exMisses": 13854,
+   "chkOracleChecks": 2279906,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-4c4p-o3-holes",
+  "desc": "4 cores, 4 processes, SAME VA layout, different hole patterns"
+ },
+ {
+  "name": "perf-4c4p-o3-holes",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 25,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 899135,
+   "wrAccesses": 524562,
+   "exAccesses": 913953,
+   "rdMisses": 19335,
+   "wrMisses": 69110,
+   "exMisses": 13246,
+   "chkOracleChecks": 2279906,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 144370,
+   "coarseFilterCleanHits": 8917,
+   "coarseFilterEarlyRejects": 11598,
+   "secondaryBitmapAccesses": 123855,
+   "l2BitmapHits": 47734,
+   "l2BitmapHoleMisses": 76121,
+   "estLookupCyclesSaved": 173037,
+   "estDynamicEnergyUnitsSaved": 1722386
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-4c4p-o3-holes",
+  "desc": "4 cores, 4 processes, SAME VA layout, different hole patterns"
+ },
+ {
+  "name": "perf-4c4p-timing-holes",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 871795,
+   "wrAccesses": 346638,
+   "exAccesses": 7091347,
+   "rdMisses": 74400,
+   "wrMisses": 19194,
+   "exMisses": 12399,
+   "chkOracleChecks": 8301428,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-4c4p-timing-holes",
+  "desc": "4 cores, 4 processes, SAME VA layout, different hole patterns"
+ },
+ {
+  "name": "perf-4c4p-timing-holes",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 6,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 5 va 0x7ffff7605000 got 0 want 0x5b0f7aa1629edc29 (stale/foreign translation)"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=4 holes=410 valid_reads=19656 remaps=48 late_unmaps=48"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 871795,
+   "wrAccesses": 346638,
+   "exAccesses": 7091347,
+   "rdMisses": 18308,
+   "wrMisses": 19158,
+   "exMisses": 12207,
+   "chkOracleChecks": 8301428,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 92671,
+   "coarseFilterCleanHits": 8850,
+   "coarseFilterEarlyRejects": 7818,
+   "secondaryBitmapAccesses": 76003,
+   "l2BitmapHits": 47470,
+   "l2BitmapHoleMisses": 28533,
+   "estLookupCyclesSaved": 142194,
+   "estDynamicEnergyUnitsSaved": 1388166
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-4c4p-timing-holes",
+  "desc": "4 cores, 4 processes, SAME VA layout, different hole patterns"
+ },
+ {
+  "name": "perf-8c8p-atomic-mixed",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 8,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=3 holes=0 valid_reads=18432 remaps=0 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=3 holes=32 valid_reads=18252 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1166485,
+   "wrAccesses": 429478,
+   "exAccesses": 9747006,
+   "rdMisses": 129040,
+   "wrMisses": 41028,
+   "exMisses": 47239,
+   "chkOracleChecks": 11329915,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-8c8p-atomic-mixed",
+  "desc": "8 processes"
+ },
+ {
+  "name": "perf-8c8p-atomic-mixed",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 9,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=3 holes=0 valid_reads=18432 remaps=0 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=3 holes=32 valid_reads=18252 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1166485,
+   "wrAccesses": 429478,
+   "exAccesses": 9747006,
+   "rdMisses": 73986,
+   "wrMisses": 36364,
+   "exMisses": 46345,
+   "chkOracleChecks": 11329915,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 159802,
+   "coarseFilterCleanHits": 8483,
+   "coarseFilterEarlyRejects": 33289,
+   "secondaryBitmapAccesses": 118030,
+   "l2BitmapHits": 52129,
+   "l2BitmapHoleMisses": 65901,
+   "estLookupCyclesSaved": 342659,
+   "estDynamicEnergyUnitsSaved": 3574783
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-8c8p-atomic-mixed",
+  "desc": "8 processes"
+ },
+ {
+  "name": "perf-8c8p-o3-mixed",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 38,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=3 holes=0 valid_reads=18432 remaps=0 late_unmaps=0"
+   ],
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=3 holes=32 valid_reads=18252 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1223199,
+   "wrAccesses": 715548,
+   "exAccesses": 1303526,
+   "rdMisses": 118014,
+   "wrMisses": 123701,
+   "exMisses": 43621,
+   "chkOracleChecks": 3151813,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-8c8p-o3-mixed",
+  "desc": "8 processes"
+ },
+ {
+  "name": "perf-8c8p-o3-mixed",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 39,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=3 holes=0 valid_reads=18432 remaps=0 late_unmaps=0"
+   ],
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=3 holes=32 valid_reads=18252 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1223199,
+   "wrAccesses": 715548,
+   "exAccesses": 1303526,
+   "rdMisses": 52583,
+   "wrMisses": 114674,
+   "exMisses": 41049,
+   "chkOracleChecks": 3151813,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 234190,
+   "coarseFilterCleanHits": 29403,
+   "coarseFilterEarlyRejects": 28980,
+   "secondaryBitmapAccesses": 175807,
+   "l2BitmapHits": 47627,
+   "l2BitmapHoleMisses": 128180,
+   "estLookupCyclesSaved": 496467,
+   "estDynamicEnergyUnitsSaved": 4873500
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-8c8p-o3-mixed",
+  "desc": "8 processes"
+ },
+ {
+  "name": "perf-8c8p-timing-mixed",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 13,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=3 holes=0 valid_reads=18432 remaps=0 late_unmaps=0"
+   ],
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=3 holes=32 valid_reads=18252 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1166485,
+   "wrAccesses": 429478,
+   "exAccesses": 9747006,
+   "rdMisses": 122505,
+   "wrMisses": 43653,
+   "exMisses": 44679,
+   "chkOracleChecks": 11329915,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-8c8p-timing-mixed",
+  "desc": "8 processes"
+ },
+ {
+  "name": "perf-8c8p-timing-mixed",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 22,
+  "results": [
+   [
+    "conflict",
+    "PASS",
+    "same-set pages=80 set=2 passes=4"
+   ],
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "capacity",
+    "PASS",
+    "pages=513 passes=3 orders=6"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_dense",
+    "PASS",
+    "regions=4 passes=3 holes=0 valid_reads=18432 remaps=0 late_unmaps=0"
+   ],
+   [
+    "perf_chunk1",
+    "PASS",
+    "regions=4 passes=3 holes=32 valid_reads=18252 remaps=32 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 1166485,
+   "wrAccesses": 429478,
+   "exAccesses": 9747006,
+   "rdMisses": 61521,
+   "wrMisses": 38143,
+   "exMisses": 43532,
+   "chkOracleChecks": 11329915,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0,
+   "coarseFilterLookups": 153810,
+   "coarseFilterCleanHits": 18545,
+   "coarseFilterEarlyRejects": 27329,
+   "secondaryBitmapAccesses": 107936,
+   "l2BitmapHits": 49096,
+   "l2BitmapHoleMisses": 58840,
+   "estLookupCyclesSaved": 385537,
+   "estDynamicEnergyUnitsSaved": 3861223
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-8c8p-timing-mixed",
+  "desc": "8 processes"
+ },
+ {
+  "name": "perf-smt2-o3",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 100 va 0x7ffff7664000 got 0 want 0x5736db6cd7f4d247 (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 11,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 100 va 0x7ffff7664000 got 0 want 0x5736db6cd7f4d247 (stale/foreign translation)"
+   ],
+   [
+    "perf_clustered",
+    "PASS",
+    "regions=4 passes=4 holes=256 valid_reads=21720 remaps=48 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 359882,
+   "wrAccesses": 174663,
+   "exAccesses": 383726,
+   "rdMisses": 23737,
+   "wrMisses": 20455,
+   "exMisses": 2705,
+   "chkOracleChecks": 902341,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-smt2-o3",
+  "desc": "SMT: 2 processes share TLB, same VAs"
+ },
+ {
+  "name": "perf-smt2-o3",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=-6",
+   "panic: Tried to write unmapped address 0x960fbc.",
+   "TLBCHK ORACLE-MISMATCH in system.cpu.mmu.itb @tick 1000: va 0x401e00: TLB pa 0x1e00 w1, page table pa 0x119e00 ro0 (pid 101 mode 2)",
+   "TLBCHK ORACLE-MISMATCH in system.cpu.mmu.itb @tick 91000: va 0x401e40: TLB pa 0x1e40 w1, page table pa 0x119e40 ro0 (pid 101 mode 2)",
+   "TLBCHK ORACLE-MISMATCH in system.cpu.mmu.dtb @tick 92000: va 0x7fffffffee10: TLB pa 0x22ee10 w1, page table pa 0x116e10 ro0 (pid 100 mode 0)",
+   "only 0/2 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": -6,
+  "secs": 1,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-smt2-o3",
+  "desc": "SMT: 2 processes share TLB, same VAs"
+ },
+ {
+  "name": "perf-smt4-o3",
+  "build": "base",
+  "verdict": "FAIL",
+  "reasons": [
+   "test perf_edge FAIL: pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+  ],
+  "rc": 0,
+  "secs": 22,
+  "results": [
+   [
+    "perf_edge",
+    "FAIL",
+    "pass 0 region 0 page 1 va 0x7ffff7601000 got 0 want 0x83dac0eb70270e4f (stale/foreign translation)"
+   ],
+   [
+    "perf_sparse",
+    "PASS",
+    "regions=4 passes=3 holes=2016 valid_reads=396 remaps=36 late_unmaps=0"
+   ],
+   [
+    "perf_churn",
+    "PASS",
+    "regions=4 passes=3 holes=410 valid_reads=14742 remaps=36 late_unmaps=36"
+   ],
+   [
+    "perf_dispersed",
+    "PASS",
+    "regions=4 passes=3 holes=256 valid_reads=16236 remaps=36 late_unmaps=0"
+   ]
+  ],
+  "stats": {
+   "rdAccesses": 709550,
+   "wrAccesses": 274968,
+   "exAccesses": 878453,
+   "rdMisses": 59177,
+   "wrMisses": 30144,
+   "exMisses": 32328,
+   "chkOracleChecks": 1846351,
+   "chkOracleMismatch": 0,
+   "chkOracleWalkFault": 0,
+   "chkInclusionChecks": 0,
+   "chkInclusionViolations": 0,
+   "chkL2Hits": 0,
+   "chkBackInvalidations": 0
+  },
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/base/perf-smt4-o3",
+  "desc": "SMT4"
+ },
+ {
+  "name": "perf-smt4-o3",
+  "build": "inc",
+  "verdict": "FAIL",
+  "reasons": [
+   "gem5 rc=-6",
+   "panic: Tried to write unmapped address 0xa82ec80.",
+   "TLBCHK ORACLE-MISMATCH in system.cpu.mmu.itb @tick 1000: va 0x401e00: TLB pa 0x1e00 w1, page table pa 0x119e00 ro0 (pid 101 mode 2)",
+   "TLBCHK ORACLE-MISMATCH in system.cpu.mmu.itb @tick 1500: va 0x401e00: TLB pa 0x1e00 w1, page table pa 0x231e00 ro0 (pid 102 mode 2)",
+   "TLBCHK ORACLE-MISMATCH in system.cpu.mmu.itb @tick 2000: va 0x401e00: TLB pa 0x1e00 w1, page table pa 0x349e00 ro0 (pid 103 mode 2)",
+   "only 0/4 test RESULT lines (guest/workload did not finish)"
+  ],
+  "rc": -6,
+  "secs": 1,
+  "results": [],
+  "stats": {},
+  "outdir": "/tmp/sahilag24/work-perf/runs/perf_matrix/inc/perf-smt4-o3",
+  "desc": "SMT4"
+ }
+]

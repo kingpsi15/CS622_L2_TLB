@@ -1,0 +1,9 @@
+# Worker prompt: Approach 5 of 5 — Perforated Pages
+
+Assigned lane: perf. Expected host: csewsrm25. This lane tests tlb.cc.perf.fixed and tlb.hh.perf.fixed against the review's Perforated Pages architecture: sparse 2 MiB regions, validity bitmap, coarse filter, and bitmap caching.
+
+First, run `hostname -s` and `bash ~/CS622_L2_TLB/robustness/scripts/comms.sh read perf`. Read ORCHESTRATION_PROTOCOL.md fully, CS622_Mid_Review_Doc.pdf section 6, PERFORATED_TLB_REPORT.md, and the current fixed source. Follow the protocol over older task files.
+
+Run `bash /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/launch_lane.sh perf` **once** if the supervisor is not already running. It starts a persistent tmux supervisor on this host and installs reboot startup through cron. The supervisor builds and runs SPEC CPU2017 in this host's /tmp; after reboot it recreates missing assets. Do not start a second build for this lane.
+
+Stay in this Codex session as the lane investigator. Block on `bash /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/watch_lane_event.sh perf --current`; after each event, use `--next` for the next one. Keep the tool session waiting rather than repeatedly thinking or printing status. On ERROR, read the incident and shared evidence under `robustness/results-perf/`. Check `hostname -s` before accessing /tmp: Codex sessions on csewsrm21 cannot read another host's /tmp. Write a short diagnosis to `robustness/comms/from_perf.md`. You may fix this lane's fixed TLB source, but leave shared scripts and other lanes to the orchestrator. After a verified lane-local fix, run `bash robustness/scripts/comms.sh resume perf "<fix and evidence>"`; the supervisor will rerun automatically. If shared evidence is insufficient or a shared-script fix is needed, report it and wait for the orchestrator's RESUME. On DONE, verify the result table and report the measured verdicts. Do not claim output equality without a separate comparison.

@@ -1,0 +1,92 @@
+[2026-11-14 08:39:53] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 08:39:53] [csewsrm24] [agile] installing SCons 4.8.1 from the repository archive (offline)
+[2026-11-14 08:39:53] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:40:10] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed into the temporary tree
+[2026-11-14 08:40:12] [csewsrm24] [agile] SCons build failed (exit 1); see /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/clean_build_scons.log
+[2026-11-14 08:42:18] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 08:42:18] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 08:42:23] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:26:50] [csewsrm24] [agile] SCons build failed (exit 2); see /users/btech/sahilag24/CS622_L2_TLB/robustness/results-agile/clean_build_scons.log
+[2026-11-14 09:36:43] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 09:36:43] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 09:36:43] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 09:36:43] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 09:40:45] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 10:04:34] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 10:04:34] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:04:34] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 10:04:34] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:07:15] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 10:07:15] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:26:23] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 10:26:23] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:26:23] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 10:26:23] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:27:54] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 10:27:54] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:31:43] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 10:31:43] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:31:43] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 10:31:43] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:34:43] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 10:34:43] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 10:39:19] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 10:39:19] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 10:39:19] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 10:39:20] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 10:40:51] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 10:40:51] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 13:39:04] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 13:39:04] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 13:39:04] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 13:39:05] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 13:40:54] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 13:40:55] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 19:24:40] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 19:24:40] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 19:24:40] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 19:24:40] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 19:24:48] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 19:24:48] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 21:12:23] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 21:12:23] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 21:12:23] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 21:12:23] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 21:12:30] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 21:12:30] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-14 23:32:58] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-14 23:32:58] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-14 23:32:58] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-14 23:32:58] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-14 23:35:44] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-14 23:35:44] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 07:35:27] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-15 07:35:27] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 07:35:27] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-15 07:35:27] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 07:38:27] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-15 07:38:27] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 07:58:23] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-15 07:58:23] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 07:58:23] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-15 07:58:23] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 07:59:55] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-15 07:59:55] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 10:03:05] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-15 10:03:05] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 10:03:05] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-15 10:03:05] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 10:04:37] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-15 10:04:37] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 14:58:29] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-15 14:58:29] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 14:58:29] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-15 14:58:30] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 15:00:01] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-15 15:00:01] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-15 15:14:07] [csewsrm24] [agile] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-agile
+[2026-11-15 15:14:07] [csewsrm24] [agile] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-15 15:14:07] [csewsrm24] [agile] reusing existing temporary checkout for incremental build
+[2026-11-15 15:14:07] [csewsrm24] [agile] installed tlb.cc.agile.fixed and tlb.hh.agile.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-15 15:15:39] [csewsrm24] [agile] PASS: agile build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+[2026-11-15 15:15:39] [csewsrm24] [agile] starting the lane's full-system SPEC CPU2017 test run

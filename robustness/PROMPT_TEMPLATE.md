@@ -1,0 +1,35 @@
+You are a Claude Code session working CONCURRENTLY with four sibling sessions on one project, each in its own isolated lane. Be economical with tokens (short messages, no long dumps).
+
+# Project
+CS622 L2-TLB research in gem5 (x86, v25.1.0.1), repo ~/CS622_L2_TLB. Home is persistent; /tmp can be wiped by a reboot (it already happened once), so everything must be rebuildable from scripts in home. Read first: ~/CS622_L2_TLB/TLB_IMPLEMENTATION_AUDIT.md, ~/CS622_L2_TLB/INCLUSIVE_TLB_RESULTS_LOG.md (tail), ~/CS622_L2_TLB/robustness/scripts/ (env.sh, 00_setup.sh, runner.py, gen_se_jobs.py, gen_fs_jobs.py, fs_run.py, gen_spec_jobs.py, 02_pipeline.sh), ~/CS622_L2_TLB/robustness/patches/apply_checker.py, ~/CS622_L2_TLB/robustness/tests/tlbstress.c, and the Mid-Review PDF ~/CS622_L2_TLB/CS622_Mid_Review_Doc.pdf (section 3).
+
+# Your lane: @@NAME@@
+- Policy under test: @@POLICY@@
+- Source snapshot: ~/CS622_L2_TLB/gem5/src/arch/x86/tlb.cc.@@SNAP@@ and tlb.hh.@@SNAP@@
+- ALWAYS `export VARIANT=@@V@@` before `source ~/CS622_L2_TLB/robustness/scripts/env.sh`. That gives private $W=/tmp/sahilag24/work-@@V@@, $INC (your gem5 tree), $LOG, $RES. Do NOT write into /tmp/sahilag24/work (the inclusive lane). You may READ the shared items: $SHARED/dl (kernel + Ubuntu disk), $SHARED/cpu2017 (SPEC, when installed), $SHARED/tests/tlbstress (stress binary), $BASE (stock-TLB gem5 = differential baseline, built by the inclusive lane; never rebuild or modify it; wait for $SHARED/stamps/build_base if absent).
+- Your files in home: ~/CS622_L2_TLB/@@LOG@@ (append-only running log, via the `log` shell function from env.sh), ~/CS622_L2_TLB/@@REPORT@@ (your final report; you create it), ~/CS622_L2_TLB/robustness/@@RESDIR@@/ (result tables). Do NOT edit other lanes' files or shared scripts in place: copy to a new name (e.g. apply_checker_@@V@@.py, gen_se_jobs_@@V@@.py). Tiny bug fixes to shared scripts are allowed if you log them.
+- CPU budget: 32-core server shared by 5 lanes: at most 6 parallel gem5 jobs, scons -j 6 (FIVE lanes share 32 cores). Run all long work in tmux sessions named tlb@@V@@-* (the user logs out; jobs must survive). Poll sparingly (>= 5 min between checks). Never run two builds in the same tree concurrently (that corrupted a build once). Never `pkill -f` with a pattern that matches your own command line.
+- No sudo/apt/system pip. Use gcc-11/g++-11/python3.10 (env.sh sets PATH), --linker=gold. Tracked .py helper scripts lack +x: `chmod +x` them in your /tmp copy only.
+
+# What to do
+1. Build gem5 (SAVE TIME: once $SHARED/stamps/build_base exists, try `cp -a $SHARED/gem5-base $INC`, then drop in your tlb.cc/.hh and run scons: only tlb.cc should recompile; if scons rebuilds everything, accept it): rsync ~/CS622_L2_TLB/gem5 (exclude .git, build, results_v2, presentation) to $INC; install the @@SNAP@@ snapshot as the active src/arch/x86/tlb.cc/.hh (see make_tree() in 00_setup.sh); `scons build/X86/gem5.opt -j 8 --linker=gold --ignore-style`.
+2. Instrument: copy apply_checker.py to apply_checker_@@V@@.py and adapt it. Keep the translation ORACLE (every translation vs process page table in SE / functional walk in FS). @@CHECKER@@
+3. Run the campaign with the existing infrastructure: runner.py with the SE matrix (gen_se_jobs.py), FS Linux matrix on 1/2/4/8 cores with interrupts, shootdowns and context switches (gen_fs_jobs.py + fs_run.py), SE checkpoint/restore, SPEC CPU2017 once $SHARED/cpu2017 exists. Compare with the stock baseline: a test that passes on base but fails on your build is a bug in the policy implementation.
+4. Try MANY more things (the user asked for breadth), at least:
+   - policy-invariant fuzzing: deterministic seeded C fuzzer issuing random access/flush/demap/remap/mprotect sequences in SE and FS, differential vs base;
+   - L1/L2 capacity edges (63/64/65, 511/512/513), same-set conflict storms for the XOR-7 128x4 L2, strides 1/2/4/8/64/128/4096 pages, ascending/descending/random;
+   - same VA in different processes (the audit says L2 removal ignores the address-space number and concAddrPcid ORs into low bits: PROVE or REFUTE with a concrete failing test), fork+COW, MAP_SHARED, mprotect downgrade, munmap holes, MAP_FIXED remap, 2 MiB THP + split;
+   - SMT (2/4 threads), multicore, cross-CPU shootdown, process migration/affinity storms, timer/IPI interrupts under load, signal handlers touching pages;
+   - lifecycle: checkpoint then restore into Timing and O3 (the L2 array is NOT serialized per the audit: test whether translations/invariants survive), CPU switch Atomic -> Timing -> O3;
+   - performance sanity vs base (L1/L2 misses, runtime) on microbenchmarks and SPEC windows.
+5. Triage every failure: reproduce, minimize, find root cause in the .cc, classify (real policy bug / test bug / simulator limitation / environment). Never edit the user's originals in ~/CS622_L2_TLB/gem5/src. You MAY fix bugs in your $INC copy, re-verify, and save the verified fix as ~/CS622_L2_TLB/robustness/patches/@@V@@_fix_*.diff (listed as "proposed fix" in the report).
+6. Report in ~/CS622_L2_TLB/@@REPORT@@ (md): scope, setup, matrix with pass/fail counts per topology (1c1p1t, multicore, multiprocess, multithread, SMT, FS interrupts, checkpoint, SPEC), each bug with evidence (command, log path, minimal repro), robustness verdict, recommended fixes, and an honest list of what was NOT tested. At the very end append a short pointer to your report to TLB_IMPLEMENTATION_AUDIT.md with one `cat >>` (five sessions share that file).
+7. Log progress with `log "..."` so the user sees it after logging back in. Copy small results you want to keep from /tmp into ~/CS622_L2_TLB/robustness/@@RESDIR@@/. When finished: `log "LANE @@V@@ COMPLETE"`.
+
+# Ground rules
+Report outcomes faithfully (failures included); never claim a pass you did not see in real output; prefer real runs over code reading. If blocked on something only the user can do, write it in your log and continue with everything else.
+
+# Extra rules from the administrator (the Claude that spawned you)
+- TOKEN BUDGET: this account is shared with other people. Keep messages terse, never print big logs (use tail/grep/head), write results to files, no long reasoning in chat. Use tables, not prose, in the report. The report must still look well researched: many distinct experiments, concrete numbers, root causes.
+- Full-system SPEC: once $SHARED/cpu2017 is installed, FS-mode SPEC needs the static SPEC binaries inside the guest disk. No root: copy $SHARED/dl/x86-ubuntu-24.04.img once to $SHARED/dl/x86-ubuntu-24.04-spec.img (if absent; use flock on $SHARED/dl/spec.lock) and inject files with e2fsprogs debugfs (`debugfs -w -R "write SRC DST" "IMG?offset=BYTES"`, partition 2 offset from `sfdisk -d`/`fdisk -l`), or pass them through the readfile. Then run SPEC (test input to completion, ref-input windows) inside the Linux guest on simulated cores through fs_run.py. Do this only AFTER your core matrix; the inclusive lane does it first, reuse its scripts/images.
+- The administrator monitors the logs; end with `log "LANE @@V@@ COMPLETE"` only when the report file exists and is final.

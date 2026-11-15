@@ -1,0 +1,13 @@
+variant                      l1miss  l2hits  l2ins  l2evict  violations  pass_lines
+default  l1miss=48727  l2hits=2624  l2ins=46671  l2evict=46159  violations=0  pass_lines=1
+sets64  l1miss=50587  l2hits=764  l2ins=48531  l2evict=48275  violations=0  pass_lines=1
+sets256  l1miss=41763  l2hits=9588  l2ins=39707  l2evict=38683  violations=0  pass_lines=1
+ways2  l1miss=50576  l2hits=775  l2ins=48520  l2evict=48264  violations=0  pass_lines=1
+ways8  l1miss=42395  l2hits=8956  l2ins=40339  l2evict=39315  violations=0  pass_lines=1
+hash_lowbits  l1miss=48003  l2hits=3348  l2ins=45947  l2evict=45435  violations=0  pass_lines=1
+hash_mult  l1miss=48596  l2hits=2755  l2ins=46540  l2evict=46028  violations=0  pass_lines=1
+repl_fifo  l1miss=48668  l2hits=2683  l2ins=46612  l2evict=46100  violations=0  pass_lines=1
+repl_random  l1miss=47832  l2hits=3519  l2ins=45776  l2evict=45264  violations=0  pass_lines=1
+noinsert_on_hit  l1miss=48727  l2hits=2624  l2ins=46671  l2evict=46159  violations=0  pass_lines=1
+l1_32  l1miss=48727  l2hits=2705  l2ins=46671  l2evict=46159  violations=0  pass_lines=1
+l1_128  l1miss=48724  l2hits=2452  l2ins=46668  l2evict=46156  violations=0  pass_lines=1

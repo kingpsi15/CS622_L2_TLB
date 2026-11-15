@@ -1,0 +1,212 @@
+# Inclusive L2 TLB — running results log
+
+Append-only. Each entry: timestamp, step, exact command(s), outcome, evidence path.
+
+## 2026-11-12 10:15 — Step 0 (discovery)
+- Found SPEC installer `spec2017.tar.xz` (2.97 GB; contains `install.sh` + `install_archives/cpu2017.tar.xz`).
+- Inclusive design is the snapshot `src/arch/x86/tlb.cc.inclusive.sa`; the active `tlb.cc` differs (NINE-like). No gem5 binary is present.
+- Toolchain: gcc/g++/gfortran 11, Python 3.10, gold linker, internet access available. No sudo.
+- Host: 32 cores, 62 GiB RAM, /tmp has 319 GB free; mostly idle.
+- Pending user decisions: code fixes, FS-mode download, CPU budget, SPEC depth.
+- 2026-11-12 10:21:31 — stage dl_kernel: START
+- 2026-11-12 10:21:31 — stage spec_install: START
+- 2026-11-12 10:21:31 — stage tree_inc: START
+- 2026-11-12 10:21:31 — stage tree_base: START
+- 2026-11-12 10:21:34 — stage tree_inc: OK
+- 2026-11-12 10:21:34 — stage tree_base: OK
+- 2026-11-12 10:21:34 — stage build_inc: START
+- 2026-11-12 10:21:34 — stage build_base: START
+- 2026-11-12 10:21:36 — stage build_inc: **FAILED** (log: /tmp/sahilag24/work/logs/build_inc.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_inc.fail.txt)
+- 2026-11-12 10:21:36 — stage build_base: **FAILED** (log: /tmp/sahilag24/work/logs/build_base.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_base.fail.txt)
+- 2026-11-12 10:21:53 — stage dl_kernel: START
+- 2026-11-12 10:21:53 — stage spec_install: START
+- 2026-11-12 10:21:53 — stage tree_inc: START
+- 2026-11-12 10:21:53 — stage tree_base: START
+- 2026-11-12 10:21:53 — stage tree_inc: OK
+- 2026-11-12 10:21:53 — stage build_inc: START
+- 2026-11-12 10:21:53 — stage tree_base: OK
+- 2026-11-12 10:21:53 — stage build_base: START
+- 2026-11-12 10:21:55 — stage build_inc: **FAILED** (log: /tmp/sahilag24/work/logs/build_inc.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_inc.fail.txt)
+- 2026-11-12 10:21:55 — stage build_base: **FAILED** (log: /tmp/sahilag24/work/logs/build_base.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_base.fail.txt)
+- 2026-11-12 10:22:07 — stage dl_kernel: **FAILED** (log: /tmp/sahilag24/work/logs/dl_kernel.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/dl_kernel.fail.txt)
+- 2026-11-12 10:22:07 — stage dl_disk: START
+- 2026-11-12 10:23:35 — stage tree_inc: START
+- 2026-11-12 10:23:35 — stage tree_base: START
+- 2026-11-12 10:23:35 — stage tree_inc: OK
+- 2026-11-12 10:23:35 — stage build_inc: START
+- 2026-11-12 10:23:35 — stage tree_base: OK
+- 2026-11-12 10:23:35 — stage build_base: START
+- 2026-11-12 10:24:07 — stage spec_install: OK
+- 2026-11-12 10:27:18 — dl_kernel: accepted vmlinux-x86-ubuntu-6.8.0-52-generic (valid static x86-64 ELF, 64584864 B, md5 341f1c156725d8611c2fcd32d42459fa). gem5 resources DB lists md5 b52643ae…/64582420 B — the dist.gem5.org file was evidently replaced; using local path, not obtain_resource.
+- 2026-11-12 10:29:25 — stage dl_disk: OK
+- 2026-11-12 10:29:25 — 00_setup.sh finished; stamps: dl_disk dl_kernel spec_install tree_base tree_inc 
+- 2026-11-12 10:29:37 — HANDOFF: user moving the Claude session into tmux. Running in tmux: tlbinc-setup (disk download), tlbinc-build (gem5-inc + gem5-base builds). Written, not yet run: patches/apply_checker.py (inclusion invariant + page-table oracle; dry-run OK), tests/tlbstress.c (10 self-checking tests). Next: compile tlbstress natively, apply checker after builds, then SE matrix, FS (KVM boot -> timing) matrix, SPEC.
+- 2026-11-12 10:32:41 — tlbstress.c native host validation (gcc-11 -static -Wall -Wextra -Werror): all 16 runs PASS (capacity 63/64/65/511/512/513/2048, conflict 80, remap, protect, huge(THP), shootdown 8 thr, threads 8, procs 8 same-VA+COW, interrupts(itimer), shared). Fixed 3 test-logic bugs first (non-permutation stride order; shootdown warm-up race; no-op huge last-page check). Host = real hardware, so this validates the tests, not gem5.
+- 2026-11-12 10:35:12 — stage spec_build: START
+- 2026-11-12 10:38:21 — PIPELINE launched in tmux tlbinc-pipe (waits for gem5 builds -> applies checker -> smoke test -> SE matrix (120 jobs) -> FS matrix -> SPEC matrix). Other sessions: tlbinc-build (gem5 builds), tlbinc-spec (SPEC build). Model switched Opus->Sonnet 5.5 at user's request (token budget). SPEC: 502.gcc_r failed first build (fortify-source); config fixed, needs rebuild pass.
+- 2026-11-12 19:07:37 — REBOOT DETECTED: server rebooted ~13:05 (uptime 6h at 19:07, kernel 6.8.0-110). /tmp wiped: gem5 builds, SPEC install, kernel/disk downloads, AND the original spec2017.tar.xz (it only existed in /tmp/sahilag24/CS622_L2_TLB) are gone; all tmux jobs died after ~10:41 with no results. Home copy (plan, scripts, patches, tests) intact. Relaunching 00_setup.sh + 02_pipeline.sh; SPEC needs the tarball re-supplied by user.
+- 2026-11-12 19:07:37 — stage spec_install: START
+- 2026-11-12 19:07:37 — stage tree_base: START
+- 2026-11-12 19:07:37 — stage dl_kernel: START
+- 2026-11-12 19:07:37 — PIPELINE: start
+- 2026-11-12 19:07:37 — stage tree_inc: START
+- 2026-11-12 19:07:37 — stage spec_install: OK
+- 2026-11-12 19:07:37 — PIPELINE: plain builds missing/failed - retrying builds
+- 2026-11-12 19:07:37 — stage tree_inc: START
+- 2026-11-12 19:07:37 — stage tree_base: START
+- 2026-11-12 19:07:40 — stage dl_kernel: OK
+- 2026-11-12 19:07:40 — stage dl_disk: START
+- 2026-11-12 19:07:55 — stage tree_inc: OK
+- 2026-11-12 19:07:55 — stage tree_inc: OK
+- 2026-11-12 19:07:55 — stage build_inc: START
+- 2026-11-12 19:07:55 — stage build_inc: START
+- 2026-11-12 19:07:55 — stage tree_base: OK
+- 2026-11-12 19:07:55 — stage tree_base: OK
+- 2026-11-12 19:07:55 — stage build_base: START
+- 2026-11-12 19:07:55 — stage build_base: START
+- 2026-11-12 19:08:02 — tlbstress rebuilt after reboot (native sanity OK)
+- 2026-11-12 19:08:26 — stage build_inc: **FAILED** (log: /tmp/sahilag24/work/logs/build_inc.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_inc.fail.txt)
+- 2026-11-12 19:08:26 — stage build_base: **FAILED** (log: /tmp/sahilag24/work/logs/build_base.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_base.fail.txt)
+- 2026-11-12 19:08:26 — stage instr_inc: START
+- 2026-11-12 19:08:26 — stage instr_base: START
+- 2026-11-12 19:09:14 — stage dl_disk: OK
+- 2026-11-12 19:11:15 — stage build_inc: **FAILED** (log: /tmp/sahilag24/work/logs/build_inc.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_inc.fail.txt)
+- 2026-11-12 19:11:15 — stage build_base: **FAILED** (log: /tmp/sahilag24/work/logs/build_base.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_base.fail.txt)
+- 2026-11-12 19:11:15 — 00_setup.sh finished; stamps: dl_disk dl_kernel spec_install tree_base tree_inc 
+- 2026-11-12 19:18:11 — stage spec_download: START
+- 2026-11-12 19:20:01 — CLEANUP: killed duplicate pipelines (two copies ran concurrently in the same build trees -> empty .pyo -> link failure). Build dirs wiped; rebuilding with a single 00b_builds.sh (JOBS=28). SPEC Drive link is not public (redirects to Google sign-in) -> need user to supply tarball.
+- 2026-11-12 19:20:01 — stage tree_base: START
+- 2026-11-12 19:20:01 — stage tree_inc: START
+- 2026-11-12 19:20:01 — stage tree_inc: OK
+- 2026-11-12 19:20:01 — stage tree_base: OK
+- 2026-11-12 19:20:01 — stage build_inc: START
+- 2026-11-12 19:20:01 — stage build_base: START
+- 2026-11-12 19:23:34 — MULTI-SESSION: env.sh now lane-aware (VARIANT=inc|excl|nine; private W/LOG/RES/INC per lane; shared dl/SPEC/tests/BASE read-only). Prompts for sibling sessions: robustness/PROMPT_EXCL.md, robustness/PROMPT_NINE.md (generated from PROMPT_TEMPLATE.md). SPEC: Drive link needs the user's Google login; waiting for tarball in ~/Downloads.
+- 2026-11-12 19:33:06 — PIPELINE: start
+- 2026-11-12 19:35:31 — stage build_inc: **FAILED** (log: /tmp/sahilag24/work/logs/build_inc.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_inc.fail.txt)
+- 2026-11-12 19:35:33 — stage build_base: **FAILED** (log: /tmp/sahilag24/work/logs/build_base.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/build_base.fail.txt)
+- 2026-11-12 19:45:34 — BUILD DEBUG: gem5-inc scons reports 'done building targets' but never links build/X86/gem5.opt (only gem5py, gem5py_m5 exist; config OK). Clearing build/X86/gem5.build/sconsign.dblite and rebuilding gem5-inc once (28 jobs) in tmux tlbinc-build; stock tree will then be cp -a of it with stock tlb.cc swapped (recompile only tlb.cc).
+- 2026-11-12 20:53:43 — stage spec_download: START
+- 2026-11-12 20:56:16 — stage spec_download: OK
+- 2026-11-12 20:56:16 — stage spec_install: START
+- 2026-11-12 20:58:22 — stage spec_install: OK
+- 2026-11-12 20:58:22 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /tmp/sahilag24/work/cpu2017
+- 2026-11-12 21:04:12 — ADMIN: comms board created (robustness/comms/, scripts/comms.sh: hb/say/read/tell/board). Welcome + protocol sent to all 5 lanes; task files updated. SPEC tarball downloaded+installed on csewsrm20 (/tmp/sahilag24/{spec-dl,work/cpu2017}); other machines must run 'VARIANT=<lane> 03_get_spec.sh' (in their prompts). Admin (csewsrm20) now only monitors + instructs.
+- 2026-11-12 21:44:00 — [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-12 21:44:01 — stage m_lane_build: START
+- 2026-11-12 21:44:09 — stage spec_download: START
+- 2026-11-12 21:48:34 — stage spec_download: OK
+- 2026-11-12 21:48:34 — stage spec_install: START
+- 2026-11-12 21:52:21 — stage spec_install: OK
+- 2026-11-12 21:52:21 — SPEC: tarball at /tmp/sahilag24/spec-dl/spec2017.tar.xz (2971382248 bytes), installed in /tmp/sahilag24/work/cpu2017
+- 2026-11-12 21:53:42 — stage m_lane_build: **FAILED** (log: /tmp/sahilag24/work/logs/m_lane_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/m_lane_build.fail.txt)
+- 2026-11-12 21:54:22 — [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-12 21:54:22 — stage m_base_build: START
+- 2026-11-12 21:58:55 — [csewsrm21] manual_link.sh copy (ml_lane.sh) failed: env.sh not found at $W (script loses its own dirname when copied) - but scons itself already linked gem5-inc/build/X86/gem5.opt successfully (2.58GB) before that step ran, so the lane binary is valid; touched stamps/m_lane_build manually and continued. Same scons-links-fine behavior confirmed for gem5-base currently building.
+- 2026-11-12 21:58:55 — Fixed files written: gem5/src/arch/x86/{tlb.cc,tlb.hh}.inc.fixed + robustness/patches/inc_fixed.diff. Bugs fixed: (1) l2_remove(va) stripped PCID bits before comparing -> demapPage() in one process could invalidate another process's unrelated, correct L2 entry (ASID-unaware removal); fixed by passing asn through and matching the full concatenated key. (2) serialize()/unserialize() only covered L1 -> checkpoint restore produced L1 entries with no L2 copy, violating the inclusion invariant immediately; fixed by saving/restoring L2 contents+geometry. Also added runtime-selectable L2 geometry (TLB_L2_GEOM=64x8|128x4|256x2|fa), hash (TLB_L2_HASH=mod|xor7|xorfold), replacement (TLB_L2_REPL=lru|fifo|random|plru), and L1 size (TLB_L1_SIZE) via env vars read once at TLB construction. apply_checker.py anchor-tested OK against both fixed files (verified in /tmp/sahilag24/anchor_test).
+- 2026-11-12 21:59:15 — stage m_base_build: **FAILED** (log: /tmp/sahilag24/work/logs/m_base_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/m_base_build.fail.txt)
+- 2026-11-12 21:59:33 — [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-12 21:59:33 — stage m_tests: START
+- 2026-11-12 21:59:34 — stage m_tests: OK
+- 2026-11-12 21:59:34 — runner inc_matrix: START 120 jobs, parallel=24
+- 2026-11-13 00:59:42 — runner inc_matrix: DONE 94/120 PASS; not-pass: base/se-1c1p1t-atomic-interrupts_4_200, inc/se-1c1p1t-atomic-interrupts_4_200, base/se-1c1p1t-o3-interrupts_4_200, inc/se-1c1p1t-o3-interrupts_4_200, base/se-1c1p1t-timing-interrupts_4_200, inc/se-1c1p1t-timing-interrupts_4_200, base/se-2c-atomic-fork-shared, inc/se-2c-atomic-fork-shared, base/se-2c-o3-fork-shared, inc/se-2c-o3-fork-shared, base/se-2c-timing-fork-shared, inc/se-2c-timing-fork-shared, base/se-4c4p-atomic-multiprog, inc/se-4c4p-atomic-multiprog, base/se-4c4p-o3-multiprog, inc/se-4c4p-o3-multiprog, base/se-4c4p-timing-multiprog, inc/se-4c4p-timing-multiprog, base/se-8c8p-atomic-multiprog, inc/se-8c8p-atomic-multiprog, base/se-8c8p-o3-multiprog, inc/se-8c8p-o3-multiprog, base/se-8c8p-timing-multiprog, inc/se-8c8p-timing-multiprog, base/se-smt4-o3-mixed, inc/se-smt4-o3-mixed (table: robustness/results/inc_matrix.md)
+- 2026-11-13 00:59:42 — [csewsrm21] machine_run inc: DONE -> robustness/results-inc/inc_matrix.md (see runner line above for PASS counts)
+- 2026-11-13 03:42:55 — stage spec_build: START
+[03:42:55] stage spec_build: START
+- 2026-11-13 03:50:23 — runner fixed_matrix: START 60 jobs, parallel=12
+- 2026-11-13 03:50:49 — runner fixed_matrix: START 54 jobs, parallel=16
+- 2026-11-13 03:51:08 — runner fixed_matrix: DONE 47/54 PASS; not-pass: inc/se-4c4p-atomic-multiprog, inc/se-4c4p-o3-multiprog, inc/se-4c4p-timing-multiprog, inc/se-8c8p-atomic-multiprog, inc/se-8c8p-o3-multiprog, inc/se-8c8p-timing-multiprog, inc/se-smt4-o3-mixed (table: robustness/results/fixed_matrix.md)
+- 2026-11-13 03:55:49 — stage spec_build: OK
+[03:55:49] stage spec_build: OK
+- 2026-11-13 03:55:49 — stage spec_setup: START
+[03:55:49] stage spec_setup: START
+- 2026-11-13 03:58:05 — stage spec_setup: OK
+[03:58:05] stage spec_setup: OK
+- 2026-11-13 03:58:05 — SPEC exes built: 56 ; build errors: 6 make.out files with errors
+[03:58:05] SPEC exes built: 56 ; build errors: 6 make.out files with errors
+- 2026-11-13 04:13:18 — runner spec_test: START 68 jobs, parallel=20
+- 2026-11-13 04:21:38 — runner spec_test: DONE 62/68 PASS; not-pass: base/spec-test-500.perlbench_r-0, inc/spec-test-500.perlbench_r-0, base/spec-test-500.perlbench_r-1, inc/spec-test-500.perlbench_r-1, base/spec-test-520.omnetpp_r-0, inc/spec-test-520.omnetpp_r-0 (table: robustness/results/spec_test.md)
+- 2026-11-13 05:15:45 — REPORT: wrote INCLUSIVE_TLB_ROBUSTNESS_REPORT.md. Summary: 2 real bugs found+fixed in tlb.cc.inclusive.sa/tlb.hh.inclusive.sa (ASID-unaware l2_remove causing spurious cross-process L2 invalidation; no L2 checkpoint serialization causing immediate inclusion-invariant violation on restore). 3 bugs in my OWN first fix attempt caught by re-testing before calling it done (checkpoint-key-name mismatch, then two rounds of gem5's checkpoint format being positional/INI-style misattributing scalars to the wrong section) - documented in report sec 2 as 'what was wrong, how fixed' per the mandatory format. Added runtime-selectable L2 geometry/hash/replacement/L1-size via env vars (TLB_L2_GEOM/TLB_L2_HASH/TLB_L2_REPL/TLB_L1_SIZE), documented at top of tlb.cc.inc.fixed.
+- 2026-11-13 05:15:45 — EVIDENCE: 120-job baseline SE matrix (original inc vs stock base) 94/120 PASS, 0/0 incl.viol/oracle-mismatch, all 26 fails identical on both builds (stock gem5 SE-mode limits: setitimer unimplemented, fork+MAP_SHARED timeout, multiprog/SMT remap-stale). 54-job matrix on FIXED tree: 47/54 PASS, same 7 stock-limitation fails verbatim, 0/0 incl.viol/oracle-mismatch -> no regression. Checkpoint bug proven dynamically on ORIGINAL (20/20 TLBCHK INCLUSION-VIOLATION warnings right after restore) and proven STATICALLY on FIXED (checkpoint file has correct l2Sets/L2Entry* sections, zero l2Idx, no fatal()); FIXED binary's dynamic restore-to-completion did not finish in 3 attempts up to 3600s each (no fatal/panic/TLBCHK in any attempt, but genuinely time-boxed out - documented honestly in report sec 5/8, not claimed as confirmed).
+- 2026-11-13 05:15:45 — SPEC: 56/62 benchmarks built (6 pre-existing gcc-11 portability failures, not investigated). 31/31 runnable rate-benchmark test-input invocations on FIXED vs stock: PASS, 0/0 incl.viol/oracle-mismatch, 19/19 spot-checked stdout byte-identical. 2 invocations (perlbench_r, omnetpp_r) fail identically on both builds before simulation starts (gen_spec_jobs.py arg-quoting gap, not a TLB bug). ref-input jobs generated (spec_ref.json, 62 jobs) but not executed (time budget).
+- 2026-11-13 05:15:45 — VARIANTS: 11-combo sweep (geometry/hash/replacement/L1-size) via env vars on fixed binary, conflict+capacity battery: 0 violations in every combo. Found TLB_L2_HASH=mod avoids a collision pathology the original xor7 hash has against the conflict test's adversarial pattern (1973 L2 hits / 0 back-inval vs 0 hits / 3130 back-inval), matching higher-associativity (64x8/fully-assoc) results without extra ways; replacement policy (lru/fifo/random/plru) made no difference once a set is oversubscribed.
+- 2026-11-13 05:15:45 — DELIVERABLES: gem5/src/arch/x86/{tlb.cc,tlb.hh}.inc.fixed (new files, originals untouched), robustness/patches/inc_fixed.diff (regenerated, confirmed current against final fixed source), apply_checker.py anchor-compatibility verified 4x across fix iterations.
+- 2026-11-13 05:15:45 — LANE inc COMPLETE
+- 2026-11-13 05:59:04 — FOLLOWUP: the 3600s checkpoint-restore attempt finished (killed by timeout, not crashed). simout.txt shows it reached '**** REAL SIMULATION ****' (CPU switch / unserialize() / post-restore chkInclusion() all executed) with ZERO TLBCHK warnings in simerr.txt - i.e. the actual fix-relevant check (restore + immediate inclusion check) passed dynamically. What didn't finish was the rest of the workload reaching gem5's end-of-run stats dump (stats.txt stayed 0 bytes - timeout sends SIGTERM, gem5 doesn't flush final stats on that). Updated report sec 2/5/8 to reflect this more precise, more positive finding instead of a blanket 'pending'.
+- 2026-11-13 07:36:35 — ADMIN 07:42 Nov13: lanes inc/nine/agile/perf COMPLETE (fixed files + reports in home). excl stalled since 22:03 (m_tests failed from MY env.sh symlink bug; fixed) - told csewsrm22 to continue.
+- 2026-11-13 07:39:58 — ADMIN 07:56 Nov13: reviewed reports. inc: SPEC 31 invocations PASS (perlbench/omnetpp harness fail), 11 variants; nine: SPEC only 2 benchmarks both failed (SPEC in /tmp -> gem5 redirect), 12 variants; agile: SPEC test run default-only, variants only on microbench, best=aimd (not SPEC-measured); perf: SPEC not determined, no variant sweep; excl: not delivered. Follow-up orders sent to all lanes.
+- 2026-11-13 07:41:23 — ADMIN 08:00: BREADTH ORDER sent to all lanes (>=25 measured variants each, SPEC-backed, negative results included).
+- 2026-11-13 07:43:57 — ADMIN 08:11: new rules sent to all lanes: no fabricated data (cite log paths), 7-8 real variants each, SPEC via Drive link/03_get_spec.sh, fixed 5-section per-approach report 'Approach N of 5' (1 Inclusive,2 Exclusive,3 NINE,4 Agile,5 Perforated); admin assembles FINAL_REPORT.md.
+- 2026-11-13 08:48:28 — runner variant_test: START 72 jobs, parallel=20
+- 2026-11-13 09:22:50 — runner spec_test: START 68 jobs, parallel=12
+- 2026-11-13 20:46:16 — [csewsrm21] fixed SPEC worker inc: START cores=32 spec_jobs=32
+- 2026-11-13 20:46:16 — [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-13 20:46:16 — [csewsrm21] machine_run inc: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+- 2026-11-13 20:48:08 — [csewsrm22] fixed SPEC worker inc: START cores=32 spec_jobs=32
+- 2026-11-13 20:48:08 — [csewsrm22] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-13 20:48:08 — stage m_lane_build: START
+- 2026-11-13 20:50:13 — manual_link inc: OK 2582646128 bytes
+- 2026-11-13 20:53:42 — [csewsrm21] fixed SPEC worker inc: START cores=32 spec_jobs=32
+- 2026-11-13 20:53:42 — [csewsrm21] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-13 20:53:42 — [csewsrm21] machine_run inc: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+- 2026-11-13 20:55:40 — manual_link inc: OK 2582646128 bytes
+- 2026-11-13 20:55:40 — stage spec_build: START
+- 2026-11-13 20:56:37 — stage spec_build: OK
+- 2026-11-13 20:56:37 — stage spec_setup: START
+- 2026-11-13 20:56:47 — manual_link inc: OK 2582549904 bytes
+- 2026-11-13 20:56:47 — stage m_lane_build: OK
+- 2026-11-13 20:56:56 — [csewsrm22] fixed SPEC worker inc: START cores=32 spec_jobs=32
+- 2026-11-13 20:56:56 — [csewsrm22] machine_run inc: START (W=/tmp/sahilag24/work)
+- 2026-11-13 20:56:56 — stage m_base_build: START
+- 2026-11-13 21:00:12 — stage spec_setup: OK
+- 2026-11-13 21:00:12 — SPEC exes built: 56 ; build errors: 7 make.out files with errors
+- 2026-11-13 21:00:12 — runner spec_test_inc_csewsrm21: START 68 jobs, parallel=32
+- 2026-11-13 21:01:44 — manual_link inc: OK 2582369112 bytes
+- 2026-11-13 21:01:44 — stage m_base_build: OK
+- 2026-11-13 21:01:44 — stage m_tests: START
+- 2026-11-13 21:01:44 — stage m_tests: OK
+- 2026-11-13 21:01:44 — [csewsrm22] machine_run inc: BUILD_ONLY=1; binaries, tests, and se_matrix.json ready
+- 2026-11-13 21:01:44 — stage spec_download: START
+- 2026-11-13 21:03:31 — stage spec_download: OK
+- 2026-11-13 21:03:31 — stage spec_install: START
+- 2026-11-13 21:05:36 — stage spec_install: OK
+- 2026-11-13 21:39:52 — runner spec_test: DONE 60/68 PASS; not-pass: base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0 (table: robustness/results/spec_test.md)
+- 2026-11-14 06:08:11 — runner spec_test_inc_csewsrm21: DONE 42/68 PASS; not-pass: base/spec-test-503.bwaves_r-0, inc/spec-test-503.bwaves_r-0, base/spec-test-503.bwaves_r-1, inc/spec-test-503.bwaves_r-1, base/spec-test-505.mcf_r-0, inc/spec-test-505.mcf_r-0, base/spec-test-507.cactuBSSN_r-0, inc/spec-test-507.cactuBSSN_r-0, base/spec-test-508.namd_r-0, inc/spec-test-508.namd_r-0, base/spec-test-521.wrf_r-0, inc/spec-test-521.wrf_r-0, base/spec-test-525.x264_r-0, inc/spec-test-525.x264_r-0, base/spec-test-527.cam4_r-0, inc/spec-test-527.cam4_r-0, base/spec-test-531.deepsjeng_r-0, inc/spec-test-531.deepsjeng_r-0, base/spec-test-541.leela_r-0, inc/spec-test-541.leela_r-0, base/spec-test-548.exchange2_r-0, inc/spec-test-548.exchange2_r-0, base/spec-test-549.fotonik3d_r-0, inc/spec-test-549.fotonik3d_r-0, base/spec-test-554.roms_r-0, inc/spec-test-554.roms_r-0 (table: robustness/results/spec_test_inc_csewsrm21.md)
+- 2026-11-14 06:08:11 — runner spec_test_inc_csewsrm21: START 68 jobs, parallel=32
+- 2026-11-14 10:33:26 — stage spec_download: START
+- 2026-11-14 10:35:30 — stage spec_download: OK
+- 2026-11-14 10:35:30 — stage spec_install: START
+- 2026-11-14 10:37:43 — stage spec_install: OK
+- 2026-11-14 10:37:43 — SPEC: archive=/tmp/sahilag24/work/spec-dl/spec2017.tar.xz bytes=2971382248; installed=/tmp/sahilag24/work/cpu2017
+- 2026-11-14 10:37:43 — stage spec_build: START
+- 2026-11-14 10:51:09 — stage spec_build: OK
+- 2026-11-14 10:51:09 — stage spec_setup: START
+- 2026-11-14 10:53:03 — stage spec_setup: OK
+- 2026-11-14 10:53:03 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-14 14:46:17 — stage spec_download: START
+- 2026-11-14 14:48:34 — stage spec_download: OK
+- 2026-11-14 14:48:34 — stage spec_install: START
+- 2026-11-14 14:51:24 — stage spec_install: OK
+- 2026-11-14 14:51:24 — SPEC: archive=/tmp/sahilag24/work/spec-dl/spec2017.tar.xz bytes=2971382248; installed=/tmp/sahilag24/work/cpu2017
+- 2026-11-14 14:51:24 — stage spec_build: START
+- 2026-11-14 15:09:07 — stage spec_build: OK
+- 2026-11-14 15:09:07 — stage spec_setup: START
+- 2026-11-14 15:11:31 — stage spec_setup: OK
+- 2026-11-14 15:11:31 — SPEC exes built: 58 ; build errors: 6 make.out files with errors
+- 2026-11-14 19:32:51 — stage spec_build: START
+- 2026-11-14 19:33:39 — stage spec_build: **FAILED** (log: /tmp/sahilag24/work/logs/spec_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/spec_build.fail.txt)
+- 2026-11-14 19:33:39 — stage spec_setup: START
+- 2026-11-14 19:36:22 — stage spec_setup: OK
+- 2026-11-14 19:36:22 — SPEC exes built: 58 ; build errors: 5 make.out files with errors
+- 2026-11-14 20:00:34 — stage spec_build: START
+- 2026-11-14 20:01:16 — stage spec_build: **FAILED** (log: /tmp/sahilag24/work/logs/spec_build.log; tail copied to /users/btech/sahilag24/CS622_L2_TLB/robustness/results/spec_build.fail.txt)
+- 2026-11-14 20:01:31 — stage spec_build: START
+- 2026-11-14 20:02:55 — stage spec_build: OK
+- 2026-11-14 20:02:55 — stage spec_setup: START
+- 2026-11-14 20:04:33 — stage spec_setup: OK
+- 2026-11-14 20:04:33 — SPEC exes built: 59 ; build errors: 6 make.out files with errors
+- 2026-11-14 21:14:46 — stage spec_build: START
+- 2026-11-14 21:16:35 — stage spec_build: OK
+- 2026-11-14 21:16:35 — stage spec_setup: START
+- 2026-11-14 21:18:51 — stage spec_setup: OK
+- 2026-11-14 21:18:51 — SPEC exes built: 59 ; build errors: 6 make.out files with errors

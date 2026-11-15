@@ -1,0 +1,47 @@
+# AGILE SPEC CPU2017 full-system test-input results
+
+| Benchmark | Verdict | Detail | Run time |
+|---|---|---|---|
+| 500.perlbench_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 502.gcc_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 503.bwaves_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 505.mcf_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 507.cactuBSSN_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 508.namd_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 510.parest_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 511.povray_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 519.lbm_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 520.omnetpp_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 521.wrf_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 523.xalancbmk_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 525.x264_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 526.blender_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 527.cam4_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 531.deepsjeng_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 538.imagick_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 541.leela_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 544.nab_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 548.exchange2_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 549.fotonik3d_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 554.roms_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 557.xz_r | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 600.perlbench_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 602.gcc_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 603.bwaves_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 605.mcf_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 607.cactuBSSN_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 619.lbm_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 620.omnetpp_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 621.wrf_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 623.xalancbmk_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 625.x264_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 627.cam4_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 628.pop2_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 631.deepsjeng_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 638.imagick_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 641.leela_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 644.nab_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 648.exchange2_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 649.fotonik3d_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 654.roms_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
+| 657.xz_s | **FAIL** | missing-result-marker | 2026-11-15 15:13:06 |
