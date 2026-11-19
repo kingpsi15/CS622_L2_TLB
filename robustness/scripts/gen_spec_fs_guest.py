@@ -31,11 +31,16 @@ available = {
     and glob.glob(f"{SPEC}/benchspec/CPU/{bench}/run/run_base_test_gem5static*")
 }
 
+# Optional subset (for sharding): SPEC_FS_BENCHES="505.mcf_r 519.lbm_r ..."
+subset = os.environ.get("SPEC_FS_BENCHES", "").split()
+if subset:
+    benchmarks = [b for b in benchmarks if b in subset]
+
 if not benchmarks:
     raise SystemExit(f"No SPEC CPU2017 benchmark directories found under {SPEC}")
 
-guest_script = os.path.join(W, "jobs", "spec_fs_guest.sh")
-benchmark_list = os.path.join(W, "jobs", "spec_fs_benchmarks.txt")
+guest_script = os.environ.get("SPEC_FS_GUEST_SCRIPT") or os.path.join(W, "jobs", "spec_fs_guest.sh")
+benchmark_list = os.environ.get("SPEC_FS_BENCH_LIST") or os.path.join(W, "jobs", "spec_fs_benchmarks.txt")
 os.makedirs(os.path.dirname(guest_script), exist_ok=True)
 with open(benchmark_list, "w", encoding="utf-8") as f:
     f.write("\n".join(benchmarks) + "\n")
@@ -61,8 +66,25 @@ lines = [
     "fi",
     'mkdir -p "$SPEC/fs-results"',
 ]
+window = os.environ.get("SPEC_FS_WINDOW") == "1"
+if window:
+    # Wrap every benchmark executable with hypercalls 11 (exe begin) / 12
+    # (exe end) via SPEC's submit hook, so the host measures the benchmark
+    # itself rather than runcpu's Perl. Config edits go to the COW disk only.
+    lines += [
+        'GB=$(command -v gem5-bridge || command -v m5 || ls /usr/local/bin/gem5-bridge /sbin/m5 2>/dev/null | head -1)',
+        'echo "SPEC_WINDOW bridge=$GB"',
+        'for c in "$SPEC"/config/gem5-static.cfg "$SPEC"/config/gem5-static-parest.cfg; do',
+        '  [ -f "$c" ] || continue',
+        r"""  awk -v gb="$GB" '!d && /^default:/ {print; print "use_submit_for_speed = 1"; print "submit = " gb " hypercall 11; $command; rc=$?; " gb " hypercall 12; exit $rc"; d=1; next} {print}' "$c" > "$c.win" && mv "$c.win" "$c" """,
+        '  grep -n -m2 "^submit\|^use_submit" "$c" | sed "s/^/SPEC_WINDOW cfg: /"',
+        'done',
+    ]
+
 
 for bench in benchmarks:
+    if window:
+        lines.append('"$GB" hypercall 10')   # host advances its benchmark index
     if bench in cached_passes:
         lines.append(f'echo "SPEC_RESULT {bench} PASS cached-pass"')
         continue
@@ -75,7 +97,7 @@ for bench in benchmarks:
         [
             f"echo SPEC_START {bench}",
             f'timeout "${{SPEC_GUEST_TIMEOUT:-28800}}" "$SPEC/bin/runcpu" '
-            f'--config={config_name} --nobuild --action=run --size=test --noreportable '
+            f'--config={config_name} --nobuild --action=run --size={os.environ.get("SPEC_FS_SIZE", "test")} --noreportable '
             f'--iterations=1 {shlex.quote(bench)} > "{log_path}" 2>&1',
             "rc=$?",
             f'if [ "$rc" -eq 0 ] && grep "^Success:" "{log_path}" | grep -Fq {shlex.quote("1x" + bench)}; then',
@@ -83,6 +105,8 @@ for bench in benchmarks:
             "else",
             f'  echo "SPEC_RESULT {bench} FAIL rc=$rc"',
             f'  tail -n 8 "{log_path}"',
+            f'  grep -a -i "miscompare\|error\|signal\|core dumped\|non-zero\|exit code" "{log_path}" | head -n 15 | sed "s/^/SPEC_DIAG /"',
+            f'  for rd in $(ls -dt "$SPEC/benchspec/CPU/{bench}/run/"run_base_* 2>/dev/null | head -1); do for e in "$rd"/*.err "$rd"/*.mis; do [ -s "$e" ] && {{ echo "SPEC_DIAG == $e"; tail -n 12 "$e" | sed "s/^/SPEC_DIAG /"; }}; done; done',
             "fi",
         ]
     )

@@ -2,7 +2,7 @@
 # Usage: bash robustness/scripts/check_all.sh
 ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
 C="$ROOT/robustness/comms"
-U=${USER:-sahilag24}
+U=${TLB_USER:-$(id -un)}
 HOST=$(hostname -s)
 now=$(date +%s)
 WORRY=()

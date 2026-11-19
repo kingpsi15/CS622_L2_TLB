@@ -7,9 +7,10 @@ ref  : ref input, fast-forward 1e9 insts (atomic), then 2e8 insts on
        TimingSimpleCPU 1 core; plus 4-core multiprogrammed mixes and
        OpenMP SPECspeed (4 threads, multicore) windows.
 """
-import glob, json, os, re, shlex, subprocess
+import getpass, glob, json, os, re, shlex, subprocess
 W = os.environ["W"]; SPEC = os.environ["SPEC"]; INC = os.environ["INC"]
 SE = f"{INC}/configs/deprecated/example/se.py"
+TU = os.environ.get("TLB_USER") or getpass.getuser()  # account-agnostic scratch paths
 
 
 def cmds(bench, size):
@@ -104,7 +105,7 @@ for b in rate:
             a += ["--input", os.path.join(rd, stdin)]
         expected_outputs = command_outputs(expected, stdout_target, len(cs))
         for bd in ("inc", "base"):
-            test_jobs.append({"name": f"spec-test-{b}-{i}", "build": bd, "args": a, "cwd": f"/var/tmp/sahilag24/spec_cwd/test-{b}-{i}-{bd}",
+            test_jobs.append({"name": f"spec-test-{b}-{i}", "build": bd, "args": a, "cwd": f"/var/tmp/{TU}/spec_cwd/test-{b}-{i}-{bd}",
                               "env": ENV, "timeout": 8 * 3600, "desc": "SPEC test input, full run, 1 core",
                               "spec_rundir": rd, "stdout_target": stdout_target,
                               "expected_outputs": expected_outputs})
@@ -124,7 +125,7 @@ for b in rate:
     if stdin:
         a += ["--input", os.path.join(rd, stdin)]
     for bd in ("inc", "base"):
-        ref_jobs.append({"name": f"spec-ref-1c-{b}", "build": bd, "args": a, "cwd": f"/var/tmp/sahilag24/spec_cwd/ref1-{b}-{bd}", "spec_rundir": rd,
+        ref_jobs.append({"name": f"spec-ref-1c-{b}", "build": bd, "args": a, "cwd": f"/var/tmp/{TU}/spec_cwd/ref1-{b}-{bd}", "spec_rundir": rd,
                          "env": ENV, "timeout": 8 * 3600, "desc": "SPEC ref, FF 1e9 + 2e8 timing, 1 core"})
 
 # 4-core multiprogrammed mixes (no stdin-driven benchmarks in a mix; se.py has one --input)
@@ -136,7 +137,7 @@ for k in range(0, len(mixable) - 3, 4):
          "--output", "spec_stdout.txt"] + FF
     for bd in ("inc", "base"):
         ref_jobs.append({"name": "spec-ref-4c4p-" + "+".join(b.split(".")[1] for b in mix), "build": bd,
-                         "args": a, "cwd": f"/var/tmp/sahilag24/spec_cwd/mix{k}-{bd}", "spec_rundir": first[mix[0]][0], "env": ENV, "timeout": 10 * 3600,
+                         "args": a, "cwd": f"/var/tmp/{TU}/spec_cwd/mix{k}-{bd}", "spec_rundir": first[mix[0]][0], "env": ENV, "timeout": 10 * 3600,
                          "desc": "4 cores, 4 SPEC ref processes"})
 
 # OpenMP SPECspeed: 4 threads on 5 cores (multicore, multithreaded, one process)
@@ -151,7 +152,7 @@ for b in speed_omp:
     if stdin:
         a += ["--input", os.path.join(rd, stdin)]
     for bd in ("inc", "base"):
-        ref_jobs.append({"name": f"spec-ref-omp4-{b}", "build": bd, "args": a, "cwd": f"/var/tmp/sahilag24/spec_cwd/omp-{b}-{bd}", "spec_rundir": rd, "env": ENV,
+        ref_jobs.append({"name": f"spec-ref-omp4-{b}", "build": bd, "args": a, "cwd": f"/var/tmp/{TU}/spec_cwd/omp-{b}-{bd}", "spec_rundir": rd, "env": ENV,
                          "timeout": 10 * 3600, "desc": "OpenMP SPECspeed, 4 threads, 5 cores"})
 
 os.makedirs(f"{W}/jobs", exist_ok=True)

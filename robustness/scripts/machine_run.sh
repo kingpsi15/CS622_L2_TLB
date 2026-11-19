@@ -26,7 +26,7 @@ for candidate in "$SRC/tlb.hh.$SNAP" "$SRC/tlb.hh.${SNAP%.fixed}"; do
     break
   fi
 done
-BASEDIR=$W/gem5-base; SC=/tmp/sahilag24/sc
+BASEDIR=$W/gem5-base; SC=/tmp/${TLB_USER:-$(id -un)}/sc
 if [ ! -d "$SC/SCons" ]; then
   mkdir -p "$SC"
   if [ -f "$R/vendor/scons-4.8.1.tar.gz" ]; then

@@ -2,3 +2,6 @@ gem5/build/
 gem5/m5out*/
 gem5/tlb_*
 !gem5/tlb_*.c
+fs_results/
+fs_assets_backup/
+gem5/CS622_L2_TLB/

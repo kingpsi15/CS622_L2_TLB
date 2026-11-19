@@ -1,7 +1,7 @@
 #!/bin/bash
-# usage: VARIANT=perf build_lane.sh  (single scons run in the lane's tree; stable SCons 4.8.1 from /tmp/sahilag24/sc)
+# usage: VARIANT=perf build_lane.sh  (single scons run in the lane's tree; stable SCons 4.8.1 from /tmp/${TLB_USER:-$(id -un)}/sc)
 source "$(dirname "$0")/env.sh"
-SC=/tmp/sahilag24/sc
+SC=/tmp/${TLB_USER:-$(id -un)}/sc
 [ -d $SC/SCons ] || /usr/bin/python3 -m pip install -q --target $SC "scons==4.8.1"
 cd $INC || exit 1
 log "build_lane $VARIANT: scons4.8.1 START (gcc-11, py3.10)"

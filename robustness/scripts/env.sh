@@ -2,17 +2,22 @@
 # Source this file; do not execute it.
 #   H   = persistent home copy (scripts, verified patches, and results)
 #   W   = this lane's scratch work area in /tmp (may be wiped; rebuildable)
+#   TLB_USER = account whose /tmp scratch tree is used (default: the login
+#              user, e.g. sahilag24 or adityasv24). Override to reuse another.
+export TLB_USER=${TLB_USER:-$(id -un)}
 export H=$HOME/CS622_L2_TLB
 export R=$H/robustness
 # VARIANT selects this machine's lane. Each lane runs on its own computer and
 # keeps its build, downloaded assets, and SPEC installation in its local /tmp.
 export VARIANT=${VARIANT:-inc}
 case $VARIANT in
-  inc)  export W=/tmp/sahilag24/work;      LANELOG=INCLUSIVE_TLB_RESULTS_LOG.md;  RESDIR=results ;;
-  excl) export W=/tmp/sahilag24/work-excl; LANELOG=EXCLUSIVE_TLB_RESULTS_LOG.md;  RESDIR=results-excl ;;
-  nine) export W=/tmp/sahilag24/work-nine; LANELOG=NINE_TLB_RESULTS_LOG.md;       RESDIR=results-nine ;;
-  agile) export W=/tmp/sahilag24/work-agile; LANELOG=AGILE_TLB_RESULTS_LOG.md;     RESDIR=results-agile ;;
-  perf) export W=/tmp/sahilag24/work-perf;  LANELOG=PERFORATED_TLB_RESULTS_LOG.md; RESDIR=results-perf ;;
+  inc)  export W=/tmp/${TLB_USER:-$(id -un)}/work;      LANELOG=INCLUSIVE_TLB_RESULTS_LOG.md;  RESDIR=results ;;
+  excl) export W=/tmp/${TLB_USER:-$(id -un)}/work-excl; LANELOG=EXCLUSIVE_TLB_RESULTS_LOG.md;  RESDIR=results-excl ;;
+  nine) export W=/tmp/${TLB_USER:-$(id -un)}/work-nine; LANELOG=NINE_TLB_RESULTS_LOG.md;       RESDIR=results-nine ;;
+  agile) export W=/tmp/${TLB_USER:-$(id -un)}/work-agile; LANELOG=AGILE_TLB_RESULTS_LOG.md;     RESDIR=results-agile ;;
+  perf) export W=/tmp/${TLB_USER:-$(id -un)}/work-perf;  LANELOG=PERFORATED_TLB_RESULTS_LOG.md; RESDIR=results-perf ;;
+  colt) export W=/tmp/${TLB_USER:-$(id -un)}/work-colt;  LANELOG=COLT_TLB_RESULTS_LOG.md;       RESDIR=results-colt ;;
+  perfstrict) export W=/tmp/${TLB_USER:-$(id -un)}/work-perfstrict; LANELOG=PERFSTRICT_TLB_RESULTS_LOG.md; RESDIR=results-perfstrict ;;
   *) echo "unknown VARIANT"; return 1 ;;
 esac
 export SHARED=$W

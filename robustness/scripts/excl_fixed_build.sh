@@ -15,7 +15,7 @@ FIX=$SRC
 CHKTREE=${EXCL_CHECK_TREE:-$W/gem5-excl}
 J=${JOBS:-16}
 
-scons_build() { ( cd "$CHKTREE" && PYTHONPATH=/tmp/sahilag24/sc /usr/bin/python3 -m SCons build/X86/gem5.opt -j "$J" --linker=gold --ignore-style ) > "$W/logs/scons_excl_chk_$STAGE.log" 2>&1; }
+scons_build() { ( cd "$CHKTREE" && PYTHONPATH=/tmp/${TLB_USER:-$(id -un)}/sc /usr/bin/python3 -m SCons build/X86/gem5.opt -j "$J" --linker=gold --ignore-style ) > "$W/logs/scons_excl_chk_$STAGE.log" 2>&1; }
 link() {
   sed "s|^T=\$INC|T=$CHKTREE|; s|stamps/build_\$VARIANT|stamps/linked_chk_$STAGE|; s|O=\$W/elfobj|O=$W/elfobj_chk_$STAGE|; s|\\\$(dirname \"\\\$0\")/env.sh|$R/scripts/env.sh|" "$R/scripts/manual_link.sh" > "$W/ml_chk_$STAGE.sh"
   VARIANT=$VARIANT bash "$W/ml_chk_$STAGE.sh"

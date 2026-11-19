@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="${ROOT:-$HOME/CS622_L2_TLB}"
 GEM5_SRC="${GEM5_SRC:-$ROOT/gem5}"
 PYTHON_BIN="${PYTHON_BIN:-/usr/bin/python3.10}"
-WORK_ROOT="${WORK_ROOT:-/tmp/${USER:-sahilag24}/CS622_L2_TLB}"
+WORK_ROOT="${WORK_ROOT:-/tmp/${TLB_USER:-$(id -un)}/CS622_L2_TLB}"
 SCONS_DIR="${SCONS_DIR:-$WORK_ROOT/scons}"
 
 usage() {

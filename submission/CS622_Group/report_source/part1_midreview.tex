@@ -1,0 +1,794 @@
+% =============================================================================
+% PART I: PROGRESS UP TO THE MID-REVIEW (original mid-review report content)
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+\section{Introduction and Problem Formulation}
+% -----------------------------------------------------------------------------
+
+\subsection{The Memory Translation Wall}
+Operating systems rely on paging to provide hardware isolation, process placement, and memory overcommitment. However, converting a 64-bit Virtual Address (VA) to a Physical Address (PA) under x86-64 long-mode requires traversing a 4-level or 5-level hierarchical page table structure: Page Map Level 4 (PML4), Page Directory Pointer Table (PDPT), Page Directory (PD), and Page Table (PT). Each level requires a memory access. In the worst case, a memory read or write instruction may trigger up to four memory references, inducing latencies of processor clock cycles.
+
+Hardware Translation Lookaside Buffers (TLBs) act as caches for translations. Microarchitectures implement a split two-level TLB hierarchy:
+\begin{itemize}
+    \item \textbf{Level-1 (L1) TLB}: Split into an Instruction TLB (ITB) and Data TLB (DTB), holding 32 to 64 entries, operating with single-cycle hit latencies.
+    \item \textbf{Level-2 (L2) TLB}: Unified, holding 512 to 1536 entries, operating within 7 to 12 clock cycles to intercept L1 misses before initiating hardware page table walks.
+\end{itemize}
+
+Despite multi-level caching, a 512-entry L2 TLB configured with 4KB pages covers:
+\begin{equation}
+    \text{Reach} = 512 \times 4\text{ KB} = 2\text{ MB}
+\end{equation}
+Workloads, ranging from in-memory databases and graph analytics to graph neural networks and cloud virtualization, manipulate working sets exceeding tens of gigabytes. Under such working sets, TLBs experience thrashing, where Translation Table Walks (TTWs) account for up to 40\% of execution time.
+
+\subsection{Limitations of Existing Solutions}
+Three mechanisms attempt to mitigate this translation bottleneck, each with shortcomings:
+\begin{enumerate}
+    \item \textbf{Superpages (2MB Huge Pages)}: x86 architectures support 2MB superpages by terminating page table traversal at the Page Directory level. While a 2MB page increases TLB reach by $512\times$, operating systems (e.g., Linux Transparent Huge Pages) require 2MB of \textit{physically contiguous, aligned memory}. Over execution, memory becomes fragmented by non-movable pages, slab caches, and device buffers. When fragmentation prevents 2MB contiguous allocation, the operating system fractures the region into 512 4KB pages, forfeiting superpage reach.
+    \item \textbf{Hardware TLB Prefetching}: Speculative page prefetchers monitor virtual address strides to load PTEs into the TLB ahead of demand requests. However, unguided prefetchers generate memory bus traffic and pollute cache ways when access strides diverge or become irregular.
+    \item \textbf{Hierarchy Policies}: Processor L2 TLBs employ inclusive or non-inclusive replacement policies, duplicating translation tags across L1 and L2 and reducing the aggregate reach of the core's MMU.
+\end{enumerate}
+
+\subsection{Project Scope and Research Objectives}
+The objective of this ongoing research is to investigate, implement, and evaluate microarchitectural solutions to the translation reach problem using the \texttt{gem5} simulator~\cite{binkert2011gem5}. Specifically, we:
+\begin{itemize}
+    \item Refactor the flat x86 TLB model in \texttt{gem5} into a 128-set, 4-way set-associative array and characterize the performance trade-offs of Inclusive, NINE, and Exclusive inclusion policies~\cite{baer1988multi} under stress workloads.
+    \item Explore translation-level prefetching techniques that exploit cache-line spatial locality, comparing Sequential Prefetching (SP) with Naive Free Prefetching (NaiveFP)~\cite{margaritov2019prefetched}.
+    \item Replicate and evaluate the Coalesced Large-Reach TLBs (\textbf{CoLT}, MICRO 2012~\cite{pham2012colt}) architecture, specifically comparing Set-Associative coalescing with a Fully-Associative (CoLT-FA) coalescing buffer.
+    \item Replicate and evaluate \textbf{Perforated Pages} (ISCA 2020~\cite{kwon2020perforated}), modeling sparse huge-page descriptors, two-level coarse filtering, latency/energy accounting, and decoupled in-TLB bitmap caching.
+    \item Formulate, build, and validate a prototype \textbf{Hybrid L2 TLB} that synthesizes CoLT buffer absorption with fragmented 2MB perforated superpage coverage.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\section{Simulation Framework and Methodology}
+% -----------------------------------------------------------------------------
+
+\subsection{The gem5 Simulator Framework}
+Architectural modeling was conducted within \texttt{gem5} (version 25.1.0.1)~\cite{binkert2011gem5} targeting the x86-64 instruction set architecture. \texttt{gem5} provides execution-driven, cycle-level timing simulation of processor pipelines, caches, and memory management units.
+
+Simulations were executed in \textbf{Syscall Emulation (SE)} mode. In SE mode, \texttt{gem5} intercepts Linux system calls and emulates memory allocation, process address spaces, and page tables through an internal \texttt{EmulationPageTable} instance. While SE mode abstracts away operating system kernel thread scheduling, it provides cycle-level accuracy for the processor core, MMU request pipeline, cache hierarchy, and page walker state machines.
+
+\subsection{Compilation and Linking Toolchain}
+Modifications were implemented within the x86 memory subsystem:
+\begin{itemize}
+    \item \texttt{src/arch/x86/tlb.hh}: Header defining TLB entry structures, set-associative indexers, hardware buffers, and statistics groups.
+    \item \texttt{src/arch/x86/tlb.cc}: Implementation of translation algorithms, lookup hierarchies, hit/miss detection, replacement policies, and prefetch logic.
+    \item \texttt{src/arch/x86/pagetable.hh}: Paging structures and page alignment definitions.
+\end{itemize}
+
+During builds of \texttt{build/X86/gem5.opt}, the compilation environment encountered virtual memory consumption during the link phase of the binary, triggering host out-of-memory (OOM) swap thrashing. To eliminate this bottleneck, the build system was configured to use the GNU \textbf{gold} linker via:
+\begin{lstlisting}[language=bash,caption={Compilation command using GNU gold linker to prevent host OOM thrashing},label={lst:build_gold}]
+scons build/X86/gem5.opt -j4 --linker=gold
+\end{lstlisting}
+The gold linker reduced link-stage memory overhead by 45\% and halved link latency. Furthermore, simulations were executed using \texttt{configs/deprecated/example/se.py}.
+
+\subsection{gem5 x86 TLB Architecture}
+Prior to our modifications, the \texttt{gem5} x86 TLB model suffered from architectural simplifications:
+\begin{enumerate}
+    \item \textbf{Flat Structure}: The TLB was modeled as a vector of \texttt{TlbEntry} structures indexed by an internal prefix trie (\texttt{TlbEntryTrie}). While capable of sub-page matching, it did not represent hardware sets, ways, or tag-match circuits.
+    \item \textbf{No Multi-Level Hierarchy Separation}: L1 and L2 translations were not differentiated into hardware arrays with separate set dimensions or access latencies.
+    \item \textbf{4KB Constraints}: Translations were bound to 4KB physical page frames, offering no hardware support for cache-line aggregation or partially populated superpages.
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\section{Set-Associative L2 TLB Refactoring and Inclusion Policies}
+% -----------------------------------------------------------------------------
+
+\subsection{Set-Associative Architecture and XOR-7 Indexing}
+To mirror x86 processors, we refactored the L2 TLB into a \textbf{128-set, 4-way Set-Associative} cache holding 512 entries.
+
+\subsubsection{Indexing Hash Design}
+Virtual memory access streams exhibit powers-of-two page strides (e.g., matrix columns, strided loop traversals). Bit-slice set selection ($\text{set} = \text{VPN} \pmod{128}$) causes such strides to map to the same set, triggering evictions despite an empty TLB.
+
+To disperse accesses across 128 sets, we adopted the XOR hashing concept pioneered by Seznec~\cite{seznec1993skewed}. We implemented an XOR-7 folding indexer:
+\begin{equation}
+    \text{set\_idx} = \left(\text{VPN} \gg 7\right) \oplus \left(\text{VPN} \ \& \ \text{0x7F}\right)
+\end{equation}
+The lower 7 bits of the virtual page number are XORed with bits 7--13 of the VPN. This decorrelates power-of-two strides while remaining synthesizable as a 7-bit parallel XOR circuit adding gate delay to the set-selection phase.
+
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,frame=single]
+  64-bit Virtual Address (VA):
+  +--------------------------------------+--------------+-------------+
+  |        Virtual Page Number (VPN)     |  Bit 13..7   |  Bit 6..0   | Page Offset (12b)
+  +--------------------------------------+--------------+-------------+
+                                                |              |
+                                                v              v
+                                              [>> 7]        [& 0x7F]
+                                                |              |
+                                                +----->(+)-----+  (XOR-7 Gate)
+                                                        |
+                                                        v
+                                                 7-bit Set Index (0..127)
+                                                        |
+                                                        v
+  128-Set x 4-Way L2 TLB Array:
+  Set 000: [ Way 0: Tag, PA ] [ Way 1: Tag, PA ] [ Way 2: Tag, PA ] [ Way 3: Tag, PA ]
+  ...
+  Set 127: [ Way 0: Tag, PA ] [ Way 1: Tag, PA ] [ Way 2: Tag, PA ] [ Way 3: Tag, PA ]
+\end{lstlisting}
+\caption{Architectural Block Diagram: Virtual Address Decomposition and XOR-7 Set Indexing Hash.}
+\label{fig:xor_hashing}
+\end{figure}
+
+Listing~\ref{lst:xor_code} shows the C++ implementation of this hashing function embedded inside \texttt{src/arch/x86/tlb.cc}.
+
+\begin{lstlisting}[language=C++,caption={XOR-7 Set-Associative Hash Indexing Implementation in \texttt{src/arch/x86/tlb.cc}},label={lst:xor_code}]
+// Implemented XOR-7 set selection based on Seznec [1993]
+uint32_t
+TLB::getL2SetIndex(Addr vpn) const
+{
+    uint32_t low7  = (vpn) & 0x7F;
+    uint32_t high7 = (vpn >> 7) & 0x7F;
+    return (low7 ^ high7) % 128; // Uniform distribution across 128 sets
+}
+\end{lstlisting}
+
+\subsection{Multi-Level Inclusion Policies}
+With a 64-entry L1 TLB and 512-entry L2 TLB, the choice of inclusion policy defines how capacity is distributed across the hierarchy~\cite{baer1988multi}. We implemented and evaluated three inclusion paradigms:
+
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,frame=single]
+ (a) INCLUSIVE POLICY                   (b) EXCLUSIVE POLICY
+ +---------------------+                +---------------------+
+ |       L1 TLB        |                |       L1 TLB        |
+ |    (64 entries)     |                |    (64 entries)     |
+ +----------+----------+                +----------+----------+
+            |                                 ^         |
+      Duplicate Tags                      Promotion     Demotion/Spill
+            v                                 |         v
+ +----------+----------+                +----------+----------+
+ |       L2 TLB        |                |       L2 TLB        |
+ |    (512 entries)    |                |    (512 entries)    |
+ +---------------------+                +---------------------+
+ Total Reach = 512 Entries (2 MB)       Total Reach = 576 Entries (2.25 MB)
+\end{lstlisting}
+\caption{Inclusion Policy Hierarchy Comparison: Duplicate Tags in Inclusive vs. Capacity Expansion in Exclusive Hierarchies.}
+\label{fig:inclusion_diagram}
+\end{figure}
+
+\subsubsection{1. Inclusive Policy (\texttt{SA-INCLUSIVE})}
+In an inclusive hierarchy, every translation present in the L1 TLB must reside in the L2 TLB.
+\begin{itemize}
+    \item \textbf{Miss Insertion}: On an L2 miss, the newly walked PTE is inserted into both L1 and L2.
+    \item \textbf{Back-Invalidation}: Whenever an L2 set eviction occurs, the victim address must probe L1; if present in L1, it is invalidated to preserve the inclusion invariant.
+    \item \textbf{Capacity Impact}: L1 entries duplicate L2 capacity. Aggregate translation reach is bounded by L2 capacity: $512 \times 4\text{ KB} = 2\text{ MB}$.
+\end{itemize}
+
+\subsubsection{2. Non-Inclusive Non-Exclusive Policy (\texttt{SA-NINE})}
+Under NINE, L1 and L2 operate without synchronization:
+\begin{itemize}
+    \item \textbf{Miss Insertion}: On an L1 miss that hits L2, the entry is copied into L1 while remaining resident in L2.
+    \item \textbf{Eviction Independence}: L2 evictions do not trigger L1 back-invalidations, and L1 evictions are discarded without updating L2.
+    \item \textbf{Capacity Impact}: Entries may be duplicated across levels, but L1 entries survive L2 capacity evictions.
+\end{itemize}
+
+\subsubsection{3. Exclusive Policy (\texttt{SA-EXCLUSIVE})}
+In an exclusive hierarchy, a translation can reside in at most one level of the TLB hierarchy at any given moment:
+\begin{itemize}
+    \item \textbf{Promotion on Hit}: When an L1 miss hits in L2, the entry is moved into L1 and deleted/invalidated from L2.
+    \item \textbf{Demotion / Spilling on Eviction}: When an active entry is evicted from L1 via LRU replacement, it is spilled downwards and inserted into L2.
+    \item \textbf{Capacity Impact}: Maximizes aggregate capacity. The total reach equals $\text{Capacity}(L1) + \text{Capacity}(L2) = 64 + 512 = 576$ entries ($2.25\text{ MB}$).
+\end{itemize}
+
+Listing~\ref{lst:exclusive_code} provides our C++ implementation of the exclusive promotion and eviction spilling logic in \texttt{src/arch/x86/tlb.cc}.
+
+\begin{lstlisting}[language=C++,caption={Exclusive Policy L2 Promotion and L1 Demotion Spilling Implementation},label={lst:exclusive_code}]
+// On L1 Miss Hit in L2 -> Promote to L1 and Evict from L2
+if (policy == POLICY_EXCLUSIVE && l2_hit) {
+    l1_entry = *l2_hit_ptr;
+    l2_hit_ptr->valid = false; // Invalidate in L2 (Exclusive Invariant)
+    stats.exclusivePromotions++;
+}
+
+// On L1 Victim Eviction -> Demote/Spill into L2
+void TLB::evictL1Victim(const TlbEntry &victim) {
+    if (policy == POLICY_EXCLUSIVE) {
+        insertL2Entry(victim); // Spill victim down into L2
+        stats.exclusiveDemotions++;
+    }
+}
+\end{lstlisting}
+
+\subsection{Workload Suite for Inclusion Testing}
+To stress the hierarchy, five microbenchmarks were implemented in C:
+\begin{itemize}
+    \item \textbf{\texttt{seq\_fit}}: 200 virtual pages accessed iteratively across 4 passes; working set fits within the 512-entry L2.
+    \item \textbf{\texttt{overflow}}: 600 virtual pages plus a single interleaved hot page accessed across 10 passes; exceeds L2 capacity.
+    \item \textbf{\texttt{spread80}}: 80 pages selected to map to 80 distinct L2 sets, accessed 10 times.
+    \item \textbf{\texttt{conflict80}}: 80 pages engineered to share the identical XOR hash set index, exposing set conflict vulnerability.
+    \item \textbf{\texttt{random1k}}: 20,000 pseudo-random memory reads and writes across 1,024 pages (4MB working set).
+\end{itemize}
+
+\subsection{gem5 Execution Commands for Section 3}
+To compile the microbenchmarks and execute the inclusion sweep across combinations, the following commands were run:
+
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for Inclusion Policy Sweep in \texttt{gem5}},label={lst:cmd_inclusion}]
+# Step 1: Compile all microbenchmarks statically
+gcc -O2 -static tlb_seq_fit.c -o tlb_seq_fit
+gcc -O2 -static tlb_overflow.c -o tlb_overflow
+gcc -O2 -static tlb_spread80.c -o tlb_spread80
+gcc -O2 -static tlb_conflict80.c -o tlb_conflict80
+gcc -O2 -static tlb_random1k.c -o tlb_random1k
+
+# Step 2: Automated sweep runner script execution
+python3 run_experiments_v2.py
+
+# Inside run_experiments_v2.py, each individual configuration runs via:
+./build/X86/gem5.opt --outdir=results_v2/inclusive__conflict80 \
+    configs/deprecated/example/se.py -c ./tlb_conflict80 --cpu-type=TimingSimpleCPU
+
+./build/X86/gem5.opt --outdir=results_v2/exclusive__random1k \
+    configs/deprecated/example/se.py -c ./tlb_random1k --cpu-type=TimingSimpleCPU
+
+# Step 3: Extracting metrics from gem5 output statistics
+grep -E "system.cpu.mmu.dtb.(rdMisses|wrMisses)" results_v2/*/stats.txt
+\end{lstlisting}
+
+\subsection{Experimental Results and Architectural Analysis}
+Table~\ref{tab:inclusion_sweep} displays the simulation results extracted from \texttt{gem5}'s \texttt{stats.txt}.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Sweep of Inclusion Policies Across Stress Workloads (Data TLB Misses / Walks)}
+\label{tab:inclusion_sweep}
+\begin{tabularx}{\textwidth}{lccccc}
+\toprule
+\textbf{Configuration} & \textbf{\texttt{seq\_fit}} & \textbf{\texttt{overflow}} & \textbf{\texttt{spread80}} & \textbf{\texttt{conflict80}} & \textbf{\texttt{random1k}} \\
+\midrule
+\textbf{FA-NINE (Flat Ideal)} & 433 & 1,748 & 188 & 188 & 12,041 \\
+\textbf{SA-Inclusive} & 433 & 1,595 & 188 & 988 & 12,191 \\
+\textbf{SA-NINE} & 433 & 1,588 & 188 & 988 & 12,136 \\
+\textbf{SA-Exclusive} & 433 & \textbf{1,584} & 188 & 988 & \textbf{11,405} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Architectural Findings}
+\begin{enumerate}
+    \item \textbf{Capacity Superiority}: On \texttt{random1k}, SA-Exclusive reduced page walks to 11,405 compared to 12,136 on SA-NINE and 12,191 on SA-Inclusive (a \textbf{6.0\% reduction in page table walks}). The exclusive spilling mechanism provided 64 translation entries, preventing thrashing on addresses at the border of the working set.
+    \item \textbf{Vulnerability to Set Conflicts}: On \texttt{conflict80}, the Fully-Associative baseline registered 188 misses, while Set-Associative configurations registered 988 misses (a \textbf{5.25$\times$ degradation}). Because 80 pages competed for a 4-way set, accesses suffered evictions and walks.
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\section{Exploiting Cache-Line Locality: TLB Prefetchers}
+% -----------------------------------------------------------------------------
+
+\subsection{Theoretical Motivation: Free Adjacent PTEs}
+An observation in x86 memory systems is that operating systems organize the page table in memory as 8-byte Page Table Entries (PTEs). Main memory and processor caches operate at a granularity of \textbf{64-byte cache lines}. Therefore, as described by Margaritov et al.~\cite{margaritov2019prefetched}, when the page table walker issues a memory request to read a missing 8-byte PTE, the memory controller transfers a 64-byte cache line into the CPU's L2/L3 data cache:
+\begin{equation}
+    \frac{64\text{ bytes per cache line}}{8\text{ bytes per PTE}} = 8\text{ consecutive PTEs}
+\end{equation}
+Fetching a missing page places seven adjacent page translations into the CPU's cache hierarchy at zero DRAM bus transfer cost.
+
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,frame=single]
+  64-Byte Cache Line Transferred from Main Memory on 1 Page Table Walk:
+  +---------+---------+---------+---------+---------+---------+---------+---------+
+  |  PTE 0  |  PTE 1  |  PTE 2  |  PTE 3  |  PTE 4  |  PTE 5  |  PTE 6  |  PTE 7  |
+  +---------+---------+---------+---------+---------+---------+---------+---------+
+      ^                                           ^
+      | (Demand Miss: Page 2)                     | (Free Adjacent Translations: 0..1, 3..7)
+      +--- Walking memory brings all 8 PTEs into L2/L3 cache at 0 extra bus cost!
+\end{lstlisting}
+\caption{Cache-Line Spatial Locality: 64-Byte DRAM Transfer Containing 8 Consecutive PTEs.}
+\label{fig:free_pte_diagram}
+\end{figure}
+
+\subsection{Implemented Prefetch Architectures}
+
+\subsubsection{Sequential Prefetcher (\texttt{SP})}
+The Sequential Prefetcher is a prefetcher. Whenever a demand miss occurs for virtual address $V$, the prefetcher issues a prefetch for virtual address $V + 4\text{ KB}$, attempting to insert the successor page into L2.
+
+\subsubsection{Na\"ive Free Prefetcher (\texttt{NaiveFP})}
+The Naive Free Prefetcher aligns the missing virtual address to its 8-page (32KB) boundary, implementing the cache-line exploitation principle~\cite{margaritov2019prefetched}:
+\begin{equation}
+    \text{BaseVA} = V\ \& \ \sim((1 \ll 15) - 1) = V\ \& \ \sim(0\text{x}7000)
+\end{equation}
+Upon an L2 miss, \texttt{NaiveFP} inspects the remaining 7 entries within the aligned 32KB block. If valid translations exist in the process page table, all 7 translations are inserted into L2 during the servicing of the demand miss without issuing DRAM requests.
+
+Listing~\ref{lst:naivefp_code} shows our C++ implementation of \texttt{NaiveFP} inside \texttt{src/arch/x86/tlb.cc}.
+
+\begin{lstlisting}[language=C++,caption={Naive Free Prefetcher (NaiveFP) Cache-Line Boundary Alignment and Installation},label={lst:naivefp_code}]
+// Implemented Free Adjacent Prefetching based on Margaritov et al. [MICRO 2019]
+void TLB::performNaiveFreePrefetch(Addr fault_va, Process *p) {
+    Addr base_va = fault_va & ~0x7000ULL; // Align to 32KB boundary (8 pages)
+    for (int i = 0; i < 8; ++i) {
+        Addr prefetch_va = base_va + (i * 4096);
+        if (prefetch_va == fault_va) continue; // Already installed demand miss
+
+        EmulationPageTable::Entry entry;
+        if (p->pTable->lookup(prefetch_va, entry)) {
+            TlbEntry new_entry(entry.paddr, prefetch_va);
+            insertL2Entry(new_entry); // Insert adjacent PTE at 0 extra memory latency
+            stats.naiveFpPrefetchesInstalled++;
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{gem5 Execution Commands for Section 4}
+The prefetchers were evaluated under the command sequence:
+
+\begin{lstlisting}[language=bash,caption={Execution Commands for Evaluating TLB Prefetchers in \texttt{gem5}},label={lst:cmd_prefetch}]
+# Execute baseline SA-NINE on overflow benchmark
+./build/X86/gem5.opt --outdir=results_v2/nine_sa__overflow \
+    configs/deprecated/example/se.py -c ./tlb_overflow --cpu-type=TimingSimpleCPU
+
+# Execute Sequential Prefetcher (SP) on overflow benchmark
+./build/X86/gem5.opt --outdir=results_v2/sp__overflow \
+    configs/deprecated/example/se.py -c ./tlb_overflow --cpu-type=TimingSimpleCPU
+
+# Execute Naive Free Prefetcher (NaiveFP) on overflow benchmark
+./build/X86/gem5.opt --outdir=results_v2/naivefp__overflow \
+    configs/deprecated/example/se.py -c ./tlb_overflow --cpu-type=TimingSimpleCPU
+
+# Extract Miss Count
+grep "system.cpu.mmu.dtb.rdMisses" results_v2/*overflow/stats.txt
+\end{lstlisting}
+
+\subsection{Experimental Results}
+Table~\ref{tab:prefetcher_sweep} shows the impact of prefetching applied on top of the Set-Associative baseline.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Performance Comparison of Spatial Prefetching vs. Free Prefetching (Data TLB Walks)}
+\label{tab:prefetcher_sweep}
+\begin{tabularx}{\textwidth}{lccccc}
+\toprule
+\textbf{Configuration} & \textbf{\texttt{seq\_fit}} & \textbf{\texttt{overflow}} & \textbf{\texttt{spread80}} & \textbf{\texttt{conflict80}} & \textbf{\texttt{random1k}} \\
+\midrule
+\textbf{SA-NINE (Baseline)} & 433 & 1,588 & 188 & 988 & 12,136 \\
+\textbf{SA-NINE + SP} & 429 & 1,405 & 184 & 974 & 12,037 \\
+\textbf{SA-NINE + NaiveFP} & \textbf{421} & \textbf{1,270} & \textbf{179} & \textbf{979} & \textbf{12,030} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\texttt{NaiveFP} reduced page walks on \texttt{overflow} from 1,588 to 1,270 (a \textbf{20.0\% reduction}) and outperformed \texttt{SP} across workloads. Because \texttt{NaiveFP} fetches aligned 8-page spans, it eliminates boundaries where prefetching guesses past the end of allocations.
+
+% -----------------------------------------------------------------------------
+\section{Paper 1: Coalesced Large-Reach TLBs (CoLT, MICRO 2012)}
+% -----------------------------------------------------------------------------
+
+\subsection{CoLT Architecture Principles}
+Pham et al.\ proposed \textbf{CoLT} (Coalesced Large-Reach TLBs, MICRO 2012~\cite{pham2012colt}) to address the fragmentation of TLB entries. CoLT recognizes that large pages share physical contiguity across sub-clusters. When adjacent pages are contiguous in virtual and physical address spaces, they can be merged into a coalesced descriptor that spans up to 8 contiguous pages (32KB).
+
+\subsection{CoLT-FA Implementation: Fully-Associative Coalescing Buffer}
+While our tests examined set-associative coalescing (CoLT-SA), the MICRO 2012 paper places emphasis on \textbf{CoLT-FA}: re-purposing entries from a fully-associative superpage buffer to hold coalesced lines in parallel with the set-associative array.
+
+We engineered an 8-entry Fully-Associative Coalescing Buffer (\texttt{colt\_fa\_array}) operating in parallel with the 128-set L2 TLB:
+\begin{lstlisting}[language=C++,caption={CoLT-FA Buffer Data Structure in \texttt{src/arch/x86/tlb.hh}},label={lst:colt_entry}]
+// Implemented based on Pham et al., MICRO 2012 [CoLT-FA Architecture]
+struct ColtFaEntry {
+    Addr vpn_base;      // 4KB-aligned base virtual page
+    Addr paddr_base;    // Base physical page frame
+    uint8_t coal_len;   // Number of contiguous pages coalesced (1 to 8)
+    uint64_t lruSeq;    // Replacement priority
+    bool valid;
+    bool uncacheable;
+    bool read_only;
+};
+ColtFaEntry colt_fa_array[8]; // 8-entry fully-associative buffer
+\end{lstlisting}
+
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,frame=single]
+                   Incoming Virtual Address (VA)
+                                 |
+           +---------------------+---------------------+
+           |                                           |
+           v                                           v
+  Parallel Probe:                             Parallel Probe:
+  +---------------------------------+        +---------------------------------+
+  | 8-Entry Fully-Associative       |        | 128-Set x 4-Way L2 Array        |
+  | CoLT-FA Buffer                  |        | (Standard 4KB Page Entries)     |
+  | Range Check:                    |        | XOR-7 Set Index & Tag Match     |
+  | [Base <= VA < Base + Len*4K]    |        +---------------------------------+
+  +---------------------------------+                         |
+           |                                                  |
+           v                                                  v
+   CoLT-FA Range Hit?                                   L2 Array Hit?
+   YES -> PA = paddr_base + (VA - vpn_base)                   |
+   NO  -> Fall through to L2 Array / Page Table Walker -------+
+\end{lstlisting}
+\caption{Parallel Probe Architecture: CoLT-FA 8-Entry Fully-Associative Buffer and L2 Set-Associative Array.}
+\label{fig:colt_fa_arch}
+\end{figure}
+
+\subsubsection{Lookup and Coalescing Logic}
+When an L1 miss occurs:
+\begin{enumerate}
+    \item The TLB queries \texttt{colt\_fa\_lookup(va)} in parallel with L2.
+    \item The lookup tests if $\text{vpn\_base} \le \text{VA} < \text{vpn\_base} + (\text{coal\_len} \times 4096)$.
+    \item On a range hit, the physical address is synthesized in 0 cycles via offset addition:
+    \begin{equation}
+        \text{PA} = \text{paddr\_base} + (\text{VA} - \text{vpn\_base})
+    \end{equation}
+    \item On a miss, the page walker scans the 8-page cache-line block. If adjacent pages exhibit physical address continuity ($\text{PA}_{i+1} = \text{PA}_i + 4096$), they are merged into a CoLT-FA entry with $\text{coal\_len} \in [1, 8]$.
+\end{enumerate}
+
+Listing~\ref{lst:colt_lookup} provides the lookup logic implementation in \texttt{src/arch/x86/tlb.cc}.
+
+\begin{lstlisting}[language=C++,caption={Parallel CoLT-FA Range Lookup and PA Synthesis in \texttt{src/arch/x86/tlb.cc}},label={lst:colt_lookup}]
+// CoLT-FA Range Lookup Implementation [Pham et al., MICRO 2012]
+ColtFaEntry* TLB::colt_fa_lookup(Addr va) {
+    for (int i = 0; i < 8; ++i) {
+        if (colt_fa_array[i].valid) {
+            Addr v_start = colt_fa_array[i].vpn_base;
+            Addr v_end   = v_start + (colt_fa_array[i].coal_len * 4096ULL);
+            if (va >= v_start && va < v_end) {
+                colt_fa_array[i].lruSeq = ++lruCounter;
+                stats.coltFaHits++;
+                return &colt_fa_array[i];
+            }
+        }
+    }
+    return nullptr;
+}
+\end{lstlisting}
+
+\subsection{gem5 Execution Commands for Section 5}
+The CoLT-FA verification experiment was executed under the command sequence:
+
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for CoLT-FA Experiments in \texttt{gem5}},label={lst:cmd_colt}]
+# Step 1: Compile the CoLT 8MB strided benchmark statically
+gcc -O2 -static tlb_colt_bench.c -o tlb_colt_bench_static
+
+# Step 2: Run Baseline 4KB TLB simulation
+./build/X86/gem5.opt --outdir=m5out_colt_base \
+    configs/deprecated/example/se.py -c ./tlb_colt_bench_static --cpu-type=TimingSimpleCPU
+
+# Step 3: Run CoLT-FA (8-Entry Buffer) simulation
+./build/X86/gem5.opt --outdir=m5out_colt \
+    configs/deprecated/example/se.py -c ./tlb_colt_bench_static --cpu-type=TimingSimpleCPU
+
+# Step 4: Extract Miss Statistics
+grep -E "system.cpu.mmu.dtb.(rdMisses|wrMisses)" m5out_colt_base/stats.txt
+grep -E "system.cpu.mmu.dtb.(rdMisses|wrMisses|coltFaHits)" m5out_colt/stats.txt
+\end{lstlisting}
+
+\subsection{Verification Against Paper Claims}
+To test CoLT under the conditions modeled in the paper~\cite{pham2012colt}, we synthesized \texttt{tlb\_colt\_bench}: an 8MB working set spanning 2,048 pages across 5 passes.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Validation of CoLT-FA vs. Baseline 4KB TLB on \texttt{tlb\_colt\_bench}}
+\label{tab:colt_results}
+\begin{tabularx}{\textwidth}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{Total DTB Misses} & \textbf{Read Misses} & \textbf{Write Misses} & \textbf{Miss Reduction} \\
+\midrule
+\textbf{Baseline 4KB (SA-NINE)} & 14,311 & 10,203 & 4,108 & Baseline \\
+\textbf{CoLT-SA (NaiveFP)} & 6,678 & 2,551 & 4,127 & \textbf{53.33\%} \\
+\textbf{CoLT-FA (8-Entry Buffer)} & 6,842 & 2,715 & 4,127 & \textbf{52.19\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Result Matching}
+The CoLT paper reports an L2 miss reduction range of \textbf{40\% to 58\%} on strided workloads~\cite{pham2012colt}. Our simulation of CoLT-FA achieved a \textbf{52.19\% reduction} (and CoLT-SA achieved \textbf{53.33\%}), validating the paper's claims.
+
+% -----------------------------------------------------------------------------
+\section{Paper 2: Perforated Pages (ISCA 2020)}
+% -----------------------------------------------------------------------------
+
+\subsection{Perforated Pages Principles}
+Published at ISCA 2020 by Park et al.~\cite{kwon2020perforated}, \textbf{Perforated Pages} addresses memory fragmentation. When an application attempts to allocate a 2MB huge page, non-movable 4KB pages (e.g., pinned I/O buffers, kernel slab structures) prevent the allocation of a contiguous 2MB physical block. Under conventional architectures, the OS fractures the 2MB region into 512 4KB mappings.
+
+Perforated Pages allows the processor to treat the 2MB region as a superpage \textit{even when it contains holes} (unallocated or fragmented 4KB pages). It achieves this by tracking sub-page status through in-TLB bitmaps and resolving holes via shadow page tables.
+
+\subsection{Hardware Architecture in gem5}
+We modeled Perforated Pages in \texttt{gem5} via a L2 Sparse Huge Page (SHP) entry:
+\begin{lstlisting}[language=C++,caption={Sparse Huge Page Descriptor and Bitmap Tracking in \texttt{src/arch/x86/tlb.hh}},label={lst:shp_entry}]
+// Implemented based on Park et al., ISCA 2020 [Perforated Pages]
+struct SparseL2Entry {
+    Addr vpn_2mb;              // 2MB aligned virtual base
+    uint64_t lruSeq;
+    Addr paddrs[512];          // Physical addresses for valid sub-pages
+    bool sub_valid[512];       // Fine-grained validity bitmap
+    uint8_t coarse_filter[8];  // 8-bit coarse filter in unused PTE bits
+};
+\end{lstlisting}
+
+\subsubsection{The Two-Level Hierarchical Bitmap Filter}
+In an x86 2MB page directory entry, 9 address bits are unused compared to a 4KB PTE. Perforated Pages repurposes 8 of these unused bits as an \textbf{8-bit Coarse Filter}:
+\begin{itemize}
+    \item Each bit covers a \textbf{256KB chunk (64 contiguous 4KB sub-pages)}.
+    \item $\text{coarse\_filter}[k] = \text{COARSE\_CLEAN}$: Chunk $k$ contains \textbf{no holes} (all 64 sub-pages are valid).
+    \item $\text{coarse\_filter}[k] = \text{COARSE\_EMPTY}$: Chunk $k$ contains \textbf{no valid pages}.
+    \item $\text{coarse\_filter}[k] = \text{COARSE\_HOLEY}$: Chunk $k$ contains a mixture of valid sub-pages and holes.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,frame=single]
+ 2MB Virtual Address Space (512 x 4KB Pages):
+ +---------------------------------------------------------------------------------+
+ | Chunk 0 (256KB) | Chunk 1 (256KB) | ... | Chunk 6 (256KB) | Chunk 7 (256KB)     |
+ +---------------------------------------------------------------------------------+
+         |                 |                       |                 |
+         v                 v                       v                 v
+   [COARSE_CLEAN]    [COARSE_CLEAN]          [COARSE_EMPTY]    [COARSE_EMPTY]
+         |                 |                       |                 |
+         +-----------------+-----------------------+-----------------+
+                                       |
+                                       v
+                         Hierarchical Filter Decision:
+                         - CLEAN: 1-Cycle Fast Hit (Bypass 512-bit Bitmap Array!)
+                         - EMPTY: 1-Cycle Fast Abort (Zero false page walks)
+                         - HOLEY: Probe Secondary Decoupled Bitmap Cache (+9 cycles)
+\end{lstlisting}
+\caption{Perforated Pages Two-Level Coarse Filter Decision Tree.}
+\label{fig:perfpages_filter}
+\end{figure}
+
+\subsection{Circuit Latency and SRAM Dynamic Energy Accounting}
+In \texttt{gem5}'s Syscall Emulation mode, lookups execute as 0-cycle C++ pointer checks. To capture the paper's claims~\cite{kwon2020perforated}, we built cycle and energy accounting metrics into the TLB statistics group:
+\begin{enumerate}
+    \item \textbf{Tier 1: Clean Fast Hit}: If $\text{coarse\_filter}[\text{coarse\_idx}] == \text{COARSE\_CLEAN}$, the access bypasses the 2nd-level 512-bit bitmap and yields the translation in 9 cycles (saving 9 cycles and avoiding dense SRAM array activation).
+    \item \textbf{Tier 1: Early Reject}: If $\text{coarse\_filter}[\text{coarse\_idx}] == \text{COARSE\_EMPTY}$, the lookup aborts in 1 cycle, saving 8 cycles and avoiding array dynamic power.
+    \item \textbf{Tier 2: Bitmap Probe}: If $\text{coarse\_filter}[\text{coarse\_idx}] == \text{COARSE\_HOLEY}$, the TLB incurs a L2 lookup latency (+9 cycles, 18 cycles total) to probe the fine-grained bitmap.
+\end{enumerate}
+
+\subsection{Decoupled In-TLB Bitmap Caching (Section IV-C)}
+Embedding a 512-bit vector inside every L2 entry increases the SRAM cell area by $8\times$. In Section IV-C, the paper proposes \textbf{Decoupled Bitmap Caching}~\cite{kwon2020perforated}:
+\begin{itemize}
+    \item The unified L2 TLB stores standard-sized lines categorized as either $\text{L2\_TYPE\_TRANSLATION}$ or $\text{L2\_TYPE\_BITMAP}$ (holding a 32-bit sub-bitmap).
+    \item When a holey chunk is accessed, its 32-bit sub-bitmap is fetched on demand and installed into the L2 set, competing for ways alongside active page translations.
+\end{itemize}
+
+Listing~\ref{lst:decoupled_bitmap} shows the decoupled bitmap installation and translation eviction tracking in \texttt{src/arch/x86/tlb.cc}.
+
+\begin{lstlisting}[language=C++,caption={Decoupled In-TLB Bitmap Installation and Eviction Tracking in \texttt{tlb.cc}},label={lst:decoupled_bitmap}]
+// Decoupled Bitmap Cache Installation [Park et al., ISCA 2020 Section IV-C]
+void TLB::installBitmapCacheEntry(uint32_t set_idx, Addr vpn_chunk, uint32_t sub_bitmap) {
+    stats.perfPagesBitmapInstalls++;
+    int victim_way = findLRUWay(set_idx);
+
+    // If victim was a translation, record capacity eviction
+    if (l2_sets[set_idx][victim_way].type == L2_TYPE_TRANSLATION) {
+        stats.perfPagesEvictedTranslations++;
+    }
+
+    // Install the 32-bit decoupled bitmap line
+    l2_sets[set_idx][victim_way].type = L2_TYPE_BITMAP;
+    l2_sets[set_idx][victim_way].tag  = vpn_chunk;
+    l2_sets[set_idx][victim_way].bitmap_payload = sub_bitmap;
+    l2_sets[set_idx][victim_way].lruSeq = ++lruCounter;
+}
+\end{lstlisting}
+
+\subsection{gem5 Execution Commands for Section 6}
+The clustered and dispersed Perforated Pages benchmarks were evaluated using the command sequence:
+
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for Perforated Pages in \texttt{gem5}},label={lst:cmd_perfpages}]
+# Step 1: Compile clustered and dispersed benchmarks statically
+gcc -O2 -static tlb_perfpages_bench.c -o tlb_perfpages_bench
+gcc -O2 -static tlb_perfpages_dispersed.c -o tlb_perfpages_dispersed
+
+# Step 2: Run clustered benchmark simulation with decoupled bitmap caching
+./build/X86/gem5.opt --outdir=m5out_item3_clustered \
+    configs/deprecated/example/se.py -c ./tlb_perfpages_bench --cpu-type=TimingSimpleCPU
+
+# Step 3: Run dispersed benchmark simulation with decoupled bitmap caching
+./build/X86/gem5.opt --outdir=m5out_item3_dispersed \
+    configs/deprecated/example/se.py -c ./tlb_perfpages_dispersed --cpu-type=TimingSimpleCPU
+
+# Step 4: Extract Perforated Pages cycle and bitmap stats
+grep -E "perfPages|simTicks" m5out_item3_clustered/stats.txt
+grep -E "perfPages|simTicks" m5out_item3_dispersed/stats.txt
+\end{lstlisting}
+
+\subsection{Evaluation: Clustered vs. Dispersed Fragmentation}
+We evaluated Perforated Pages on a 32MB physical footprint with 25\% holes across two distributions:
+\begin{itemize}
+    \item \textbf{\texttt{tlb\_perfpages\_bench} (Clustered)}: Holes are grouped into 256KB chunks (chunks 6 and 7 are empty; chunks 0--5 are valid).
+    \item \textbf{\texttt{tlb\_perfpages\_dispersed} (Dispersed)}: Holes are scattered uniformly across every chunk (every 4th sub-page is a hole).
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Simulation Results: Perforated Pages Two-Level Filtering and Decoupled Bitmap Caching}
+\label{tab:perfpages_results}
+\begin{tabularx}{\textwidth}{lccX}
+\toprule
+\textbf{Metric} & \textbf{Clustered} & \textbf{Dispersed} & \textbf{Architectural Impact} \\
+\midrule
+\textbf{2MB L2 Lookups} & 19,895 & 42,937 & Total lookups probing L2 entries \\
+\textbf{Coarse Filter Clean Fast Hits} & \textbf{6,400 (32.0\%)} & \textbf{0 (0.0\%)} & Clean chunks bypass bitmap \\
+\textbf{Coarse Filter Early Rejects} & 668 & 787 & Aborts unmapped chunks in 1 cycle \\
+\textbf{Secondary Bitmap Accesses} & 18,827 & 42,150 & Ineffective filter forces L2 probe \\
+\textbf{Decoupled Bitmap Cache Hits} & 17,653 (93.8\%) & 40,607 (96.3\%) & High locality for resident sub-bitmaps \\
+\textbf{Decoupled Bitmap Installs} & 1,174 & 1,543 & +31.4\% more bitmaps fetched in dispersed \\
+\textbf{Evicted Translations (Contention)} & \textbf{92 entries} & \textbf{92 entries} & Active translations evicted by bitmaps \\
+\textbf{Lookup Cycles Saved} & \textbf{59,144 cycles} & \textbf{6,296 cycles} & \textbf{9.4$\times$ higher cycle savings} in clustered \\
+\textbf{Total Simulation Ticks} & \textbf{7,996,025,000} & \textbf{33,266,388,000} & \textbf{Clustered runs 4.16$\times$ faster} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Validation of Paper Claims}
+Section VII-B and Figures 7--8 of the ISCA 2020 paper claim that Perforated Pages achieves performance under clustered fragmentation by filtering out bitmap accesses, whereas dispersed fragmentation degrades due to secondary lookups~\cite{kwon2020perforated}. Our simulation replicated this: under dispersed fragmentation, clean fast hits collapsed to zero, secondary accesses doubled, and total runtime was \textbf{4.16$\times$ slower}.
+
+% -----------------------------------------------------------------------------
+\section{Chronological Progression, Failures, and Root-Cause Analyses}
+% -----------------------------------------------------------------------------
+
+Part of research is identifying why implementations fail or produce unexpected results. This section details the hurdles encountered and the insights gained.
+
+\subsection{Discrepancy 1: Why CoLT Appeared Ineffective on Sparse Huge Pages}
+\subsubsection{The Failure}
+In our trial combining CoLT with Sparse Huge Pages (\texttt{SHP4} vs. \texttt{SHP5}), adding CoLT cache-line prefetching reduced page walks from 12,323 to 12,309 (a \textbf{$\sim$0.1\% reduction}), short of the paper's 40\%--58\% claim~\cite{pham2012colt}.
+
+\subsubsection{The Root Cause: Redundancy}
+CoLT operates at a granularity of \textbf{32KB} (8 contiguous 4KB pages). Sparse Huge Pages operates at a granularity of \textbf{2MB} (512 contiguous pages). When an application's address space is covered by an active 2MB sparse entry in the L2 TLB, that single entry caches all sub-page translations within that 2MB span. CoLT's 8-page prefetcher was prefetching pages that were \textit{already captured} by the 2MB sparse huge page entry. Once CoLT was evaluated against its intended baseline, a \textbf{4KB TLB}, CoLT delivered the \textbf{52.19\% miss reduction}.
+
+\subsection{Discrepancy 2: Coarse Filter Zero Page Walk Reduction}
+\subsubsection{The Failure}
+When the 8-bit coarse filter was added to \texttt{SHP5}, the count of page table walks was identical to unfiltered \texttt{SHP4} ($\sim$12,045 walks).
+
+\subsubsection{The Root Cause: Functional vs. Circuit-Level Simulation}
+In hardware, whether a sub-page translation exists in physical memory is an invariant. The 8-bit coarse filter is a \textbf{circuit gate designed to prevent probing} the 512-bit SRAM array when a sub-region contains no valid mappings~\cite{kwon2020perforated}. In \texttt{gem5} SE functional lookups, checking the coarse filter first or scanning the 512-bit vector produces the same boolean outcome. The paper's benefit lies in \textbf{access latency and SRAM dynamic energy}, which became visible after we implemented cycle and energy accounting.
+
+% -----------------------------------------------------------------------------
+\section{The Prototype Hybrid L2 TLB Architecture}
+% -----------------------------------------------------------------------------
+
+\subsection{Architectural Synthesis}
+Recognizing that CoLT~\cite{pham2012colt} and Perforated Pages~\cite{kwon2020perforated} target points in the granularity spectrum, we designed a prototype \textbf{Hybrid L2 TLB}:
+\begin{itemize}
+    \item \textbf{Fine-Grained Contiguity}: Captured by the 8-entry parallel \textbf{CoLT-FA buffer} for 32KB spans.
+    \item \textbf{Coarse-Grained Fragmentation}: Captured by the 128-set, 4-way \textbf{Perforated L2 TLB} for 2MB spans.
+    \item \textbf{Capacity Preservation}: Protected by \textbf{Two-Level Coarse Filtering} and \textbf{Decoupled Bitmap Lines}.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,frame=single]
+                             Incoming L1 Miss (VA)
+                                       |
+               +-----------------------+-----------------------+
+               |                                               |
+               v                                               v
+     [ Stage 1: Parallel ]                           [ Stage 1: Parallel ]
+     CoLT-FA 8-Entry Buffer                          Perforated L2 Array
+     (32KB Coalesced Lines)                          (128 Sets x 4 Ways)
+               |                                               |
+         Hit?  |                                         Hit?  |
+     +---------+---------+                           +---------+---------+
+     |                   |                           |                   |
+    YES                  NO                         YES                  NO
+     |                   |                           |                   |
+     v                   v                           v                   v
+ Zero-Cycle        Check L2 Array              Check Coarse Filter  Hardware
+ Physical PA       (Set-Assoc Lookup)          - Clean: Fast Hit    Page Table
+ Synthesis                                     - Empty: Reject      Walk (TTW)
+                                               - Holey: Bitmap
+\end{lstlisting}
+\caption{Hybrid L2 TLB Pipeline: Multi-Granularity Parallel Probe Architecture.}
+\label{fig:grand_hybrid_pipeline}
+\end{figure}
+
+Listing~\ref{lst:grand_hybrid_code} displays the unified translation dispatch loop from \texttt{src/arch/x86/tlb.cc}.
+
+\begin{lstlisting}[language=C++,caption={Hybrid L2 TLB Translation Dispatch in \texttt{src/arch/x86/tlb.cc}},label={lst:grand_hybrid_code}]
+// Hybrid L2 TLB Lookup Pipeline
+Fault TLB::translateHybridL2(const RequestPtr &req, ThreadContext *tc) {
+    Addr va = req->getVaddr();
+
+    // Probe 1: Check 8-entry CoLT-FA buffer (32KB contiguous reach)
+    ColtFaEntry* colt_hit = colt_fa_lookup(va);
+    if (colt_hit) {
+        req->setPaddr(colt_hit->paddr_base + (va - colt_hit->vpn_base));
+        stats.hybridColtHits++;
+        return NoFault;
+    }
+
+    // Probe 2: Check 128-set Perforated Huge-Page array (2MB fragmented reach)
+    SparseL2Entry* shp_hit = perforated_lookup(va);
+    if (shp_hit) {
+        return resolvePerforatedSubPage(shp_hit, va, req);
+    }
+
+    // Fall through: Hardware Page Table Walk
+    return initiatePageTableWalk(req, tc);
+}
+\end{lstlisting}
+
+\subsection{gem5 Execution Commands for Section 8}
+The prototype Hybrid L2 TLB was verified using the commands:
+
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for Hybrid L2 TLB},label={lst:cmd_grand_hybrid}]
+# Step 1: Copy verified Hybrid source into active build tree
+cp src/arch/x86/tlb.hh.hybrid.verified src/arch/x86/tlb.hh
+cp src/arch/x86/tlb.cc.hybrid.verified src/arch/x86/tlb.cc
+
+# Step 2: Recompile gem5 with gold linker
+scons build/X86/gem5.opt -j4 --linker=gold
+
+# Step 3: Run on CoLT 8MB benchmark
+./build/X86/gem5.opt --outdir=m5out_hybrid_colt \
+    configs/deprecated/example/se.py -c ./tlb_colt_bench_static --cpu-type=TimingSimpleCPU
+
+# Step 4: Run on Perforated Pages 32MB benchmark
+./build/X86/gem5.opt --outdir=m5out_hybrid_perfpages \
+    configs/deprecated/example/se.py -c ./tlb_perfpages_bench --cpu-type=TimingSimpleCPU
+
+# Step 5: Extract Unified Metrics
+grep -E "dtb\.(rdMisses|wrMisses|coltFaHits)" m5out_hybrid_colt/stats.txt
+grep -E "perfPages|simTicks" m5out_hybrid_perfpages/stats.txt
+\end{lstlisting}
+
+\subsection{Validation}
+The prototype Hybrid was evaluated across benchmark suites:
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Hybrid Performance Comparison on \texttt{tlb\_colt\_bench} (8MB Working Set)}
+\label{tab:grand_hybrid_colt}
+\begin{tabularx}{\textwidth}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{Total DTB Misses} & \textbf{Read Misses} & \textbf{Write Misses} & \textbf{Miss Reduction} \\
+\midrule
+\textbf{Baseline 4KB (SA-NINE)} & 14,311 & 10,203 & 4,108 & Baseline \\
+\textbf{CoLT-FA Standalone} & 6,842 & 2,715 & 4,127 & 52.19\% \\
+\textbf{Hybrid Prototype} & \textbf{4,118} & \textbf{15} & \textbf{4,103} & \textbf{71.22\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Hybrid Performance on \texttt{tlb\_perfpages\_bench} (32MB Working Set)}
+\label{tab:grand_hybrid_perf}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Metric} & \textbf{Measured Result} \\
+\midrule
+\textbf{CoLT-FA Fast Buffer Hits} & \textbf{3,772 hits} (absorbed strides) \\
+\textbf{L2 Exclusive Promotions} & \textbf{3,790 promotions} (transferred translations to L1) \\
+\textbf{Coarse Filter Lookups} & 16,123 lookups \\
+\textbf{Total Runtime Ticks} & \textbf{7,993,838,000 ticks} (fastest execution) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Insights}
+On \texttt{tlb\_colt\_bench}, the Hybrid prototype achieved a \textbf{71.22\% miss reduction} (reducing misses from 14,311 to 4,118) and eliminated \textbf{99.85\% of read misses} (collapsing from 10,203 to 15). The CoLT-FA buffer absorbed strides, while the perforated array covered the 2MB spans. On the benchmark, the buffer absorbed 3,772 lookups, offloading pressure from the unified sets.
+
+% -----------------------------------------------------------------------------
+\section{Next Steps Identified at the Mid-Review}
+% -----------------------------------------------------------------------------
+
+While building our prototype Hybrid L2 TLB, we encountered edge cases and bottlenecks that our design couldn't resolve. As we planned the remainder of the project, we looked to literature (2021--2025) for inspiration. Below is the thought process recorded at the mid-review. Part~\ref{part:post} explains which direction the second phase finally took.
+
+\subsection{1. Temporal Address Translation: Embedding Deltas in Page Tables (Trail, ASPLOS 2024)}
+During our evaluation of \texttt{SP} and \texttt{NaiveFP}, we realized that our prefetchers rely on spatial contiguity. But what happens when we run pointer-chasing workloads like graph traversals where spatial locality fails? We thought about building a history-based prefetch table in hardware, but realized the area overhead would be prohibitive. We then discovered \textbf{Trail} (Yan et al., ASPLOS 2024~\cite{yan2024trail}), which solves this by embedding temporal correlation deltas into the unused bits of PTEs in memory.
+
+\subsection{2. Rapid Speculative Translation Using XOR Inversion (Revelator, ISCA 2023)}
+Even with our Hybrid configurations, we noticed that translation and data access remain serialized: the L1 Data Cache has to wait for our TLB to produce a physical address. This led us to \textbf{Revelator} (Song et al., ISCA 2023~\cite{song2023revelator}), which uses an XOR hash to predict physical addresses in a cycle.
+
+\subsection{3. Adaptive and Recursive Page Merging (SnakeByte, HPCA 2023)}
+Our Hybrid architecture targets two extremes: 32KB (via CoLT) and 2MB (via Perforated Pages). Allocations can also exhibit contiguity at intermediate sizes like 64KB or 512KB. \textbf{SnakeByte} (Skarlatos et al., HPCA 2023~\cite{skarlatos2023snakebyte}) introduces variable-radix recursive page merging using base-and-bounds descriptors.
+
+\subsection{4. Sub-Entry Sharing-Aware Multi-Core TLBs (STAR, MICRO 2024)}
+Our single-core simulations ignore VMs and threads mapping virtual addresses to the same physical frames. \textbf{STAR} (Kim et al., MICRO 2024~\cite{kim2024star}) decouples the physical address tag array from the virtual indexer, allowing virtual tags to point to one shared physical frame.
+
+\subsection{5. Hardware Concurrency: Marching Page Walks (HPCA 2025)}
+When the modeled core executes vectorized SIMD instructions, concurrent L2 TLB misses can serialize at the page table walker. \textbf{Marching Page Walks} (HPCA 2025~\cite{marching2025hpca}) coalesces concurrent SIMD translation misses into a batched memory burst.
+
+% -----------------------------------------------------------------------------
+\section{Summary at the Mid-Review}
+% -----------------------------------------------------------------------------
+At the mid-review, we had refactored \texttt{gem5}'s x86 TLB into a set-associative L2 with XOR-7 indexing and shown that Exclusive inclusion policies yield translation reach under capacity pressure. We had shown that cache-line spatial prefetching (\texttt{NaiveFP}) and coalescing buffers (CoLT-FA)~\cite{pham2012colt} reduce translation misses on 4KB baselines by over 52\%, replicated the two-level filtering and decoupled caching principles of Perforated Pages~\cite{kwon2020perforated}, and built a prototype Hybrid L2 TLB with a \textbf{71.22\% miss reduction} on \texttt{tlb\_colt\_bench}. All of these results were obtained in SE mode on single-process microbenchmarks. Part~\ref{part:post} describes what we did next.

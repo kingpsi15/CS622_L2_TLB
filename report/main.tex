@@ -1,0 +1,159 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage[title,titletoc]{appendix}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\lstset{
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{teal},
+    breaklines=true,
+    frame=single,
+    tabsize=2,
+    showstringspaces=false,
+    captionpos=b,
+    numbers=none
+}
+
+\title{\textbf{Final Report: L2 TLB Support for Sparse Huge Pages}}
+\author{\textbf{CS622 Course Project}}
+\date{November 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Virtual memory address translation overhead represents a performance bottleneck in computing systems, accounting for 10\% to 40\% of execution cycles in data-intensive workloads. This report covers the whole project on L2 TLB architectures in the \texttt{gem5} simulator~\cite{binkert2011gem5}, in two parts.
+
+\textbf{Part I} is our mid-review report. It refactors the L2 TLB into a 128-set, 4-way set-associative array with XOR-7 indexing and evaluates Inclusive, NINE and Exclusive inclusion policies, Sequential and Naive Free Prefetching, CoLT-FA (\textbf{52.19\% L2 miss reduction}), Perforated Pages (\textbf{4.16$\times$ speedup} on clustered versus dispersed fragmentation) and a prototype Hybrid L2 TLB (\textbf{71.22\% L2 miss reduction}), all in syscall-emulation (SE) mode on microbenchmarks.
+
+\textbf{Part II} covers the work after the mid-review. An audit of all designs found problems that only appear under a real operating system: missing L2 invalidation on page unmaps and address-space switches, PCID handling, checkpointing and hard-coded permissions. We fixed six designs (Inclusive, Exclusive, NINE, Agile/NaiveFP, Perforated Pages and CoLT-FA), added a translation oracle and invariant checkers, and found \textbf{no translation error} in any design. We rebuilt CoLT-FA so that it coalesces pages from the hardware page walker, which made it work in full-system mode. In full-system \texttt{gem5} on an Ubuntu 24.04 guest, \textbf{37 of the 43 SPEC CPU2017 benchmarks pass on every design}, and none of the failures is caused by the TLB. On TLB-intensive workloads, CoLT-FA reduces page walks compared with NINE by \textbf{59\% to 64\%} on GAPBS bfs, cc and sssp with 4KB pages. A closer look at Perforated Pages shows that its large gains come from an unrealistic model. The report ends with an appendix describing the submitted artifact and how to evaluate it.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\part{Progress up to the Mid-Review}
+\label{part:mid}
+\input{part1_midreview}
+
+\newpage
+\part{Progress after the Mid-Review}
+\label{part:post}
+\input{part2_postmid}
+
+\newpage
+\begin{appendices}
+\input{appendix_artifact}
+\end{appendices}
+
+% -----------------------------------------------------------------------------
+\begin{thebibliography}{99}
+
+\bibitem{binkert2011gem5}
+N.~Binkert, B.~Beckmann, G.~Black, S.~K. Reinhardt, A.~Saidi, A.~Basu, J.~Hestness, D.~R. Hower, T.~Krishna, S.~Sardashti, et~al.,
+\newblock ``The gem5 simulator,''
+\newblock \textit{ACM SIGARCH Computer Architecture News}, vol.~39, no.~2, pp.~1--7, 2011.
+
+\bibitem{seznec1993skewed}
+A.~Seznec,
+\newblock ``A case for two-way skewed-associative caches,''
+\newblock in \textit{Proceedings of the 20th Annual International Symposium on Computer Architecture (ISCA)}, pp.~169--178, 1993.
+
+\bibitem{baer1988multi}
+J.-L. Baer and W.-H. Wang,
+\newblock ``On the inclusion properties for multi-level cache hierarchies,''
+\newblock in \textit{Proceedings of the 15th Annual International Symposium on Computer Architecture (ISCA)}, pp.~73--80, 1988.
+
+\bibitem{margaritov2019prefetched}
+A.~Margaritov, D.~Ustiugov, E.~Bugnion, and B.~Grot,
+\newblock ``Prefetched address translation,''
+\newblock in \textit{Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)}, pp.~1013--1026, 2019.
+
+\bibitem{vavouliotis2021agile}
+G.~Vavouliotis, L.~Alvarez, V.~Karakostas, K.~Nikas, N.~Koziris, D.~A. Jim\'enez, and M.~Casas,
+\newblock ``Exploiting page table locality for agile TLB prefetching,''
+\newblock in \textit{Proceedings of the 48th Annual International Symposium on Computer Architecture (ISCA)}, 2021.
+
+\bibitem{pham2012colt}
+B.~Pham, V.~Vaidyanathan, A.~Jaleel, and A.~Bhattacharjee,
+\newblock ``CoLT: Coalesced Large-Reach TLBs,''
+\newblock in \textit{Proceedings of the 45th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)}, pp.~258--269, 2012.
+
+\bibitem{kwon2020perforated}
+C.~H. Park, S.~Cha, B.~Kim, Y.~Kwon, D.~Black-Schaffer, and J.~Huh,
+\newblock ``Perforated Page: Supporting fragmented memory allocation for large pages,''
+\newblock in \textit{Proceedings of the 47th ACM/IEEE Annual International Symposium on Computer Architecture (ISCA)}, 2020.
+
+\bibitem{beamer2015gap}
+S.~Beamer, K.~Asanovi\'c, and D.~Patterson,
+\newblock ``The GAP benchmark suite,''
+\newblock \textit{arXiv:1508.03619}, 2015.
+
+\bibitem{tramm2014xsbench}
+J.~R. Tramm, A.~R. Siegel, T.~Islam, and M.~Schulz,
+\newblock ``XSBench: the development and verification of a performance abstraction for Monte Carlo reactor analysis,''
+\newblock in \textit{PHYSOR 2014: The Role of Reactor Physics toward a Sustainable Future}, 2014.
+
+\bibitem{mccalpin1995stream}
+J.~D. McCalpin,
+\newblock ``Memory bandwidth and machine balance in current high performance computers,''
+\newblock \textit{IEEE Computer Society Technical Committee on Computer Architecture (TCCA) Newsletter}, pp.~19--25, 1995.
+
+\bibitem{memcached}
+memcached, a distributed memory object caching system, \url{https://memcached.org}; load generator \texttt{mc-crusher}, \url{https://github.com/memcached/mc-crusher}.
+
+\bibitem{spec2017}
+Standard Performance Evaluation Corporation, ``SPEC CPU2017,'' \url{https://www.spec.org/cpu2017/}.
+
+\bibitem{yan2024trail}
+Z.~Yan, J.~Zhao, Y.~Zhang, and M.~Zhang,
+\newblock ``Trail: Scalable temporal address translation by embedding deltas in page tables,''
+\newblock in \textit{Proceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)}, pp.~412--426, 2024.
+
+\bibitem{song2023revelator}
+J.~Song, S.~Woo, H.~Park, and Y.~Kim,
+\newblock ``Revelator: Rapid speculative translation using XOR inversion for high-performance processors,''
+\newblock in \textit{Proceedings of the 50th Annual International Symposium on Computer Architecture (ISCA)}, pp.~1--14, 2023.
+
+\bibitem{skarlatos2023snakebyte}
+D.~Skarlatos, Q.~Zhang, E.~Bugg, and C.~Fletcher,
+\newblock ``SnakeByte: Adaptive and recursive page merging for virtual memory,''
+\newblock in \textit{Proceedings of the 29th IEEE International Symposium on High-Performance Computer Architecture (HPCA)}, pp.~589--602, 2023.
+
+\bibitem{kim2024star}
+D.~Kim, M.~Park, S.~Lee, and K.~Kang,
+\newblock ``STAR: Sub-entry sharing-aware TLB for multi-tenant and virtualized systems,''
+\newblock in \textit{Proceedings of the 57th IEEE/ACM International Symposium on Microarchitecture (MICRO)}, pp.~784--797, 2024.
+
+\bibitem{marching2025hpca}
+H.~Lin, C.~Peng, T.~Mao, and K.~Wang,
+\newblock ``Marching page walks: Hardware concurrency for massive translation outliers,''
+\newblock in \textit{Proceedings of the 31st IEEE International Symposium on High-Performance Computer Architecture (HPCA)}, 2025.
+
+\end{thebibliography}
+
+\end{document}

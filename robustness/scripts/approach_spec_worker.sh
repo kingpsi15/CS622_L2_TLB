@@ -27,7 +27,7 @@ export INC=$W/gem5-$LANE
 CORES=${JOBS:-32}
 SPEC_JOBS=${RJOBS:-$CORES}
 SRC=$H/gem5/src/arch/x86
-SC=/tmp/sahilag24/sc
+SC=/tmp/${TLB_USER:-$(id -un)}/sc
 
 log "[$HOSTN] fixed SPEC worker $LANE: START cores=$CORES spec_jobs=$SPEC_JOBS"
 

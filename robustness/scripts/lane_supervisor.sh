@@ -14,12 +14,12 @@ ROOT=$(cd -- "$SCRIPT_DIR/../.." && pwd)
 COMMS="$SCRIPT_DIR/comms.sh"
 TO="$ROOT/robustness/comms/to_$LANE.md"
 RESULTS="$ROOT/robustness/results-$LANE"
-SCRATCH="${LANE_SUPERVISOR_SCRATCH:-/tmp/${USER:-sahilag24}/tlb-supervisor-$LANE}"
+SCRATCH="${LANE_SUPERVISOR_SCRATCH:-/tmp/${TLB_USER:-$(id -un)}/tlb-supervisor-$LANE}"
 POLL_SECONDS=${LANE_SUPERVISOR_POLL_SECONDS:-60}
 [[ "$POLL_SECONDS" =~ ^[1-9][0-9]*$ ]] || { echo "invalid poll interval" >&2; exit 2; }
 case "$LANE" in
-  inc) WORK="/tmp/${USER:-sahilag24}/work" ;;
-  *) WORK="/tmp/${USER:-sahilag24}/work-$LANE" ;;
+  inc) WORK="/tmp/${TLB_USER:-$(id -un)}/work" ;;
+  *) WORK="/tmp/${TLB_USER:-$(id -un)}/work-$LANE" ;;
 esac
 mkdir -p "$RESULTS" "$SCRATCH"
 
