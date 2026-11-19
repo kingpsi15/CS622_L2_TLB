@@ -740,7 +740,29 @@ STREAM & 0.400 & 0.400 & $0.0\%$ \\
 \label{fig:colt_size}
 \end{figure}
 
-\paragraph{With huge pages on.} Following the same-machine rule, the comparison with huge pages on uses NINE and CoLT-FA runs from the same machine. On bc, walks went from 6.038 to 4.309 ($-28.6\%$), and on sssp from 3.619 to 2.742 ($-24.2\%$) (Figure~\ref{fig:colt_thpon}). So CoLT-FA still helps when the operating system uses huge pages, because some memory is still mapped with 4KB pages.
+\paragraph{With huge pages on.} Following the same-machine rule, the comparison with huge pages on uses NINE and CoLT-FA runs from the same machine (Table~\ref{tab:colt_thpon} and Figure~\ref{fig:colt_thpon}).
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{CoLT-FA (8 entries) against NINE with transparent huge pages on, each pair from the same machine (page walks per 1000 instructions).}
+\label{tab:colt_thpon}
+\begin{tabular}{l l r r r}
+\toprule
+\textbf{Workload} & \textbf{Machine} & \textbf{NINE} & \textbf{CoLT-FA} & \textbf{Change} \\
+\midrule
+GAPBS bfs & csews36 & 0.118 & 0.062 & $-47.5\%$ \\
+GAPBS pr & csews36 & 2.687 & 1.914 & $-28.8\%$ \\
+GAPBS bc & csews30 & 6.038 & 4.309 & $-28.6\%$ \\
+GAPBS sssp & csews30 & 3.619 & 2.742 & $-24.2\%$ \\
+GAPBS cc & csews36 & 0.028 & 0.024 & $-14.3\%$ \\
+XSBench & csews36 & 1.138 & 1.102 & $-3.2\%$ \\
+STREAM & csews36 & 0.012 & 0.010 & $-16.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent With huge pages on, CoLT-FA still reduces page walks, by 47.5\% on bfs and by about 24\% to 29\% on pr, bc and sssp. The absolute numbers are much smaller than with huge pages off, so the remaining walks come from memory that is still mapped with 4KB pages, which is the part CoLT-FA can coalesce. On cc and STREAM the values are very small (below 0.03), so their percentages rest on few walks.
 
 \begin{figure}[htbp]
 \centering
@@ -836,4 +858,4 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
 % -----------------------------------------------------------------------------
 In the first half of the project we built set-associative L2 TLB designs with different inclusion policies, prefetching, CoLT-FA, Perforated Pages and a Hybrid in \texttt{gem5}, and measured them in SE mode on microbenchmarks. In the second half we audited all of them and fixed the problems that only show up under a real operating system: missing L2 invalidation on unmaps and address-space switches, PCID handling, checkpointing, and hard-coded permissions. We added a translation oracle and invariant checkers and found no translation error in any design. We rebuilt CoLT-FA so that it coalesces pages from the hardware page walker, as in the original paper, which made it work in full-system mode for the first time.
 
-In full-system mode on an Ubuntu guest, every SPEC CPU2017 benchmark that the simulator can run passed on all six designs. The only failures came from a \texttt{gem5} floating-point emulation bug and from the 3 GiB memory limit, and the two large benchmarks passed in SE mode with more memory. On the graph and key-value workloads, CoLT-FA reduced page walks compared with NINE by 59\% to 64\% on bfs, cc and sssp, by 36\% on bc and by 24\% on pr with 4KB pages, and still by 24\% to 29\% on bc and sssp with huge pages on. Exclusive was the best of the inclusion policies. A closer look at Perforated Pages showed that its large gains came from an unrealistic model, and under the paper's rule it did worse than NINE on most workloads.
+In full-system mode on an Ubuntu guest, every SPEC CPU2017 benchmark that the simulator can run passed on all six designs. The only failures came from a \texttt{gem5} floating-point emulation bug and from the 3 GiB memory limit, and the two large benchmarks passed in SE mode with more memory. On the graph and key-value workloads, CoLT-FA reduced page walks compared with NINE by 59\% to 64\% on bfs, cc and sssp, by 36\% on bc and by 24\% on pr with 4KB pages, and, on the same machine with huge pages on, by 47.5\% on bfs and by about 24\% to 29\% on pr, bc and sssp. Exclusive was the best of the inclusion policies. A closer look at Perforated Pages showed that its large gains came from an unrealistic model, and under the paper's rule it did worse than NINE on most workloads.

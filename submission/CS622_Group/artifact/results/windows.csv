@@ -438,6 +438,7 @@ csews35,std,agile,agile,thpoff,off,gapbs_bfs_kron20,partial-exe-ended,852563505,
 csews30,std,colt,colt,colt32_thpoff,off,gapbs_bfs_kron20,partial-exe-ended,850859687,2507975815,0.3393,360835,0.424,76408,752078,147347
 csews30,std,colt,colt,colt32_thpon,on,gapbs_bfs_kron20,partial-exe-ended,651294846,2030995561,0.3207,36661,0.056,149147,164950,28324
 csews36,std,colt,colt,colt8_thpoff,off,gapbs_bfs_kron20,partial-exe-ended,850549791,2510932959,0.3387,381121,0.448,105578,698505,144260
+csews36,std,colt,colt,colt8_thpon_same,on,gapbs_bfs_kron20,partial-exe-ended,650870939,2029494828,0.3207,40347,0.062,228409,79684,26991
 csews24,std,colt,colt,default,on,gapbs_bfs_kron20,partial-exe-ended,651142799,2033061739,0.3203,42427,0.065,235248,77528,28948
 csews36,std,colt,nine(colt-bin),nine_thpoff,off,gapbs_bfs_kron20,partial-exe-ended,850603428,2543308849,0.3344,1049820,1.234,135943,0,144375
 csews36,std,colt,nine(colt-bin),nine_thpon,on,gapbs_bfs_kron20,partial-exe-ended,650905565,2031500034,0.3204,76762,0.118,271881,0,26926
@@ -455,6 +456,7 @@ csews35,std,agile,agile,thpoff,off,gapbs_cc_urand20,partial-exe-ended,898564062,
 csews30,std,colt,colt,colt32_thpoff,off,gapbs_cc_urand20,partial-exe-ended,896980846,3294422345,0.2723,140686,0.157,2088342,2349123,95850
 csews30,std,colt,colt,colt32_thpon,on,gapbs_cc_urand20,partial-exe-ended,683867597,2791485325,0.245,15977,0.023,754193,3262309,16139
 csews36,std,colt,colt,colt8_thpoff,off,gapbs_cc_urand20,partial-exe-ended,895710557,3294273013,0.2719,159816,0.178,4106669,307428,95731
+csews36,std,colt,colt,colt8_thpon_same,on,gapbs_cc_urand20,partial-exe-ended,683401926,2789477626,0.245,16250,0.024,3481139,531663,16640
 csews24,std,colt,colt,default,on,gapbs_cc_urand20,partial-exe-ended,683607496,2791190208,0.2449,17849,0.026,3361851,656131,18030
 csews36,std,colt,nine(colt-bin),nine_thpoff,off,gapbs_cc_urand20,partial-exe-ended,895734605,3306316265,0.2709,412866,0.461,4161230,0,94320
 csews36,std,colt,nine(colt-bin),nine_thpon,on,gapbs_cc_urand20,partial-exe-ended,683399616,2789613685,0.245,19429,0.028,4009719,0,16903
@@ -472,6 +474,7 @@ csews35,std,agile,agile,thpoff,off,gapbs_pr_kron20,full,1000000000,21530851858,0
 csews30,std,colt,colt,colt32_thpoff,off,gapbs_pr_kron20,full,1000000000,20749101264,0.0482,38420179,38.42,25322872,23340913,396359
 csews30,std,colt,colt,colt32_thpon,on,gapbs_pr_kron20,full,1000000000,22237573600,0.045,1306050,1.306,25556966,23920049,722927
 csews36,std,colt,colt,colt8_thpoff,off,gapbs_pr_kron20,full,1000000000,20986299239,0.0476,41812269,41.812,27509919,18042072,383017
+csews36,std,colt,colt,colt8_thpon_same,on,gapbs_pr_kron20,full,1000000000,22243171689,0.045,1913916,1.914,43291976,5836733,570802
 csews24,std,colt,colt,default,on,gapbs_pr_kron20,full,1000000000,22286639550,0.0449,2488677,2.489,42774784,6301115,609410
 csews36,std,colt,nine(colt-bin),nine_thpoff,off,gapbs_pr_kron20,full,1000000000,21594013883,0.0463,54760367,54.76,33265885,0,389682
 csews36,std,colt,nine(colt-bin),nine_thpon,on,gapbs_pr_kron20,full,1000000000,22277607716,0.0449,2687467,2.687,48394252,0,565288
@@ -524,6 +527,7 @@ csews35,std,agile,agile,thpoff,off,stream_20M,full,500000000,1215878430,0.4112,1
 csews30,std,colt,colt,colt32_thpoff,off,stream_20M,full,500000000,1220460216,0.4097,199712,0.399,7674,1758,3269
 csews30,std,colt,colt,colt32_thpon,on,stream_20M,full,500000000,1856081334,0.2694,5747,0.011,4294,1949,7346
 csews36,std,colt,colt,colt8_thpoff,off,stream_20M,full,500000000,1218348508,0.4104,199824,0.4,7774,57,3421
+csews36,std,colt,colt,colt8_thpon_same,on,stream_20M,full,500000000,1854346389,0.2696,5221,0.01,4410,1096,7088
 csews24,std,colt,colt,default,on,stream_20M,full,500000000,1855027801,0.2695,5868,0.012,5183,1191,7215
 csews36,std,colt,nine(colt-bin),nine_thpoff,off,stream_20M,full,500000000,1218508896,0.4103,199864,0.4,7836,0,3367
 csews36,std,colt,nine(colt-bin),nine_thpon,on,stream_20M,full,500000000,1853700120,0.2697,5872,0.012,4909,0,7083
@@ -541,6 +545,7 @@ csews35,std,agile,agile,thpoff,off,xsbench_small_event,full,500000000,4145287525
 csews30,std,colt,colt,colt32_thpoff,off,xsbench_small_event,full,500000000,4097009534,0.122,6143073,12.286,1172534,993984,1371070
 csews30,std,colt,colt,colt32_thpon,on,xsbench_small_event,full,500000000,3574671912,0.1399,541261,1.083,436119,108208,109532
 csews36,std,colt,colt,colt8_thpoff,off,xsbench_small_event,full,500000000,4111091594,0.1216,6246019,12.492,1156978,912147,1409775
+csews36,std,colt,colt,colt8_thpon_same,on,xsbench_small_event,full,500000000,3575924473,0.1398,551052,1.102,478604,59157,115474
 csews24,std,colt,colt,default,on,xsbench_small_event,full,500000000,3576051695,0.1398,554538,1.109,487639,57292,112080
 csews36,std,colt,nine(colt-bin),nine_thpoff,off,xsbench_small_event,full,500000000,4152835483,0.1204,7128147,14.256,1185400,0,1409141
 csews36,std,colt,nine(colt-bin),nine_thpon,on,xsbench_small_event,full,500000000,3576643699,0.1398,569167,1.138,519118,0,115188

@@ -129,6 +129,7 @@ inc,519.lbm_r,PASS,runs
 inc,520.omnetpp_r,PASS,runs
 inc,521.wrf_r,PASS,runs
 inc,523.xalancbmk_r,PASS,runs
+inc,525.x264_r,PASS,runs
 inc,526.blender_r,PASS,runs
 inc,527.cam4_r,PASS,long
 inc,531.deepsjeng_r,PASS,runs
@@ -147,6 +148,7 @@ inc,607.cactuBSSN_s,PASS,runs
 inc,620.omnetpp_s,PASS,runs
 inc,621.wrf_s,PASS,long
 inc,623.xalancbmk_s,PASS,runs
+inc,625.x264_s,PASS,runs
 inc,627.cam4_s,PASS,runs
 inc,628.pop2_s,PASS,runs
 inc,631.deepsjeng_s,FAIL,runs
@@ -169,6 +171,7 @@ nine,519.lbm_r,PASS,runs
 nine,520.omnetpp_r,PASS,runs
 nine,521.wrf_r,PASS,runs
 nine,523.xalancbmk_r,PASS,runs
+nine,525.x264_r,PASS,runs
 nine,526.blender_r,PASS,runs
 nine,527.cam4_r,PASS,long
 nine,531.deepsjeng_r,PASS,runs

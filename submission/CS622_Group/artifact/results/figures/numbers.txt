@@ -1,11 +1,11 @@
 == SPEC CPU2017 test inputs, full system (43 benchmarks)
-inc    PASS=37 FAILx87=2 FAILmem=1 FAILother=0 none=3
+inc    PASS=39 FAILx87=2 FAILmem=1 FAILother=0 none=1
 excl   PASS=37 FAILx87=2 FAILmem=1 FAILother=0 none=3
-nine   PASS=37 FAILx87=2 FAILmem=1 FAILother=0 none=3
+nine   PASS=38 FAILx87=2 FAILmem=1 FAILother=0 none=2
 agile  PASS=36 FAILx87=2 FAILmem=1 FAILother=0 none=4
 perf   PASS=37 FAILx87=2 FAILmem=1 FAILother=0 none=3
 colt   PASS=36 FAILx87=2 FAILmem=1 FAILother=0 none=4
-pie totals {'PASS': 220, 'FAIL: gem5 x87 bug (perlbench)': 12, 'FAIL: needs > 3 GB (deepsjeng_s)': 6, 'No FS result': 20}
+pie totals {'PASS': 223, 'FAIL: gem5 x87 bug (perlbench)': 12, 'FAIL: needs > 3 GB (deepsjeng_s)': 6, 'No FS result': 17}
 
 == SPEC test-input page walks per kilo-inst (Inclusive, 200M window)
 638.imagick_s      1.145
@@ -83,6 +83,11 @@ STREAM       0.400    0.400    0.399
 == Huge pages ON, same-host CoLT vs NINE pairs (walks/kinst)
 csews30 sssp      NINE    3.619  CoLT-8    2.742  change  -24.2%
 csews30 bc        NINE    6.038  CoLT-8    4.309  change  -28.6%
+csews36 bfs       NINE    0.118  CoLT-8    0.062  change  -47.5%
+csews36 cc        NINE    0.028  CoLT-8    0.024  change  -14.3%
+csews36 pr        NINE    2.687  CoLT-8    1.914  change  -28.8%
+csews36 XSBench   NINE    1.138  CoLT-8    1.102  change   -3.2%
+csews36 STREAM    NINE    0.012  CoLT-8    0.010  change  -16.7%
 
 == Effect of transparent huge pages on NINE (same binary, host csews36)
 bfs       THP off    1.234  THP on    0.118
