@@ -1,0 +1,200 @@
+=== STUB FILES
+--- arithmetic/round.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FRNDINT
+"""
+--- data_transfer_and_conversion/extract.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FXTRACT
+"""
+--- compare_and_test/classify.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FXAM
+"""
+--- compare_and_test/test.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FTST
+"""
+--- compare_and_test/floating_point_ordered_compare.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FCOM
+# FCOMP
+# FCOMPP
+# FCOMIP
+
+def macroop FCOMI_R
+{
+    compfp st(0), sti
+};
+
+"""
+--- transcendental_functions/logarithmic_functions.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# F2XM1
+# FSCALE
+
+def macroop FYL2X {
+    yl2xfp st(1), st(0), st(1), spm=1
+};
+
+# FYL2XP1
+"""
+--- transcendental_functions/trigonometric_functions.py
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+def macroop FSIN {
+    sinfp st(0), st(0)
+};
+
+def macroop FCOS {
+    cosfp st(0), st(0)
+};
+
+def macroop FSINCOS {
+    sinfp ufp1, st(0)
+    cosfp ufp2, st(0)
+    movfp st(0), ufp1
+    movfp st(-1), ufp2, spm=-1
+};
+
+def macroop FPTAN {
+    tanfp st(0), st(0)
+    lfpimm ufp1, 1
+    movfp st(-1), ufp1, spm=-1
+};
+
+# FPATAN
+"""
+--- control/wait_for_exceptions.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FWAIT
+"""
+--- control/initialize.py
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FINIT
+# FNINIT
+"""
+--- decoder refs
+=== isa_patch.py
+import sys,os
+d=sys.argv[1]
+p=d+"/src/arch/x86/isa/insts/x87/compare_and_test/floating_point_ordered_compare.py"
+s=open(p).read()
+if "FCOMIP_R" not in s.replace("# FCOMIP",""):
+    old="def macroop FCOMI_R\n{\n    compfp st(0), sti\n};\n"
+    assert s.count(old)==1,"macroop pattern"
+    open(p,"w").write(s.replace(old,old+"\ndef macroop FCOMIP_R\n{\n    compfp st(0), sti, spm=1\n};\n"))
+p=d+"/src/arch/x86/isa/decoder/x87.isa"
+s=open(p).read()
+if "0x3: fcomip();" in s:
+    open(p,"w").write(s.replace("                0x3: fcomip();\n","                0x3: Inst::FCOMIP(Rq);\n"))
+print("isa patched")
+=== 12G 619 LAUNCHES
+## rm47
+extra-inc
+extra-inc-old
+extra-perf
+/tmp/sahilag24/CS622_L2_TLB/gem5-inc/build/X86/gem5.opt -re --listener-mode=off -d /tmp/sahilag24/extra-inc/run0 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run_big.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/extra-inc/guest0.sh --spec-disk /tmp/sahilag24/extra-inc/spec0.img 
+/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt -re --listener-mode=off -d /tmp/sahilag24/extra-perf/run0 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/extra-perf/guest0.sh --spec-disk /tmp/sahilag24/extra-perf/spec0.img 
+CS622_L2_TLB/gem5-inc
+CS622_L2_TLB/gem5-perf
+## rm48
+extra-excl
+extra-excl-old
+/tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt -re --listener-mode=off -d /tmp/sahilag24/extra-excl/run0 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run_big.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/extra-excl/guest0.sh --spec-disk /tmp/sahilag24/extra-excl/spec0.img 
+CS622_L2_TLB/gem5-excl
+## rm49
+extra-nine
+extra-nine-old
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/build/X86/gem5.opt -re --listener-mode=off -d /tmp/sahilag24/extra-nine/run0 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run_big.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/extra-nine/guest0.sh --spec-disk /tmp/sahilag24/extra-nine/spec0.img 
+CS622_L2_TLB/gem5-nine
+## rm50
+extra-agile
+extra-agile-old
+/tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt -re --listener-mode=off -d /tmp/sahilag24/extra-agile/run0 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run_big.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/extra-agile/guest0.sh --spec-disk /tmp/sahilag24/extra-agile/spec0.img 
+CS622_L2_TLB/gem5-agile
+## rm51
+extra-perf
+extra-perf-old
+/tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt -re --listener-mode=off -d /tmp/sahilag24/extra-perf/run0 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run_big.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/extra-perf/guest0.sh --spec-disk /tmp/sahilag24/extra-perf/spec0.img 
+CS622_L2_TLB/gem5-perf
+=== FIX BINARIES
+## csews20
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 13:38 gem5-inc
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 13:38 gem5-inc-fix
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 13:38 gem5-inc-isa
+-rwxr-xr-x 1 sahilag24 btech 948690744 Nov 16 14:58 /tmp/sahilag24/CS622_L2_TLB/gem5-inc-fix/build/X86/gem5.opt
+## csewsrm22
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-excl
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-excl-fix
+drwxr-xr-x 19 sahilag24 btech 4096 Nov 17 10:43 gem5-excl-isa
+-rwxr-xr-x 1 sahilag24 btech 948708712 Nov 16 15:30 /tmp/sahilag24/CS622_L2_TLB/gem5-excl-fix/build/X86/gem5.opt
+## csewsrm23
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-nine
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-nine-fix
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-nine-isa
+-rwxr-xr-x 1 sahilag24 btech 948713624 Nov 16 15:31 /tmp/sahilag24/CS622_L2_TLB/gem5-nine-fix/build/X86/gem5.opt
+## csewsrm24
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-agile
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-agile-fix
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-agile-isa
+-rwxr-xr-x 1 sahilag24 btech 948679096 Nov 16 15:28 /tmp/sahilag24/CS622_L2_TLB/gem5-agile-fix/build/X86/gem5.opt
+## csewsrm25
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-perf
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-perf-fix
+drwxr-xr-x 18 sahilag24 btech 4096 Nov 14 08:42 gem5-perf-isa
+-rwxr-xr-x 1 sahilag24 btech 948697280 Nov 16 15:29 /tmp/sahilag24/CS622_L2_TLB/gem5-perf-fix/build/X86/gem5.opt

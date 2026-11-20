@@ -1,0 +1,276 @@
+=== fpop microops
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+//////////////////////////////////////////////////////////////////////////
+//
+// FpOp Microop templates
+//
+//////////////////////////////////////////////////////////////////////////
+
+def template MicroFpOpExecute {{
+    Fault
+    %(class_name)s::execute(ExecContext *xc,
+            trace::InstRecord *traceData) const
+    {
+        Fault fault = NoFault;
+
+        DPRINTF(X86, "The data size is %d\n", dataSize);
+        %(op_decl)s;
+        %(op_rd)s;
+
+        if (%(cond_check)s) {
+            %(code)s;
+            %(flag_code)s;
+            %(tag_code)s;
+            %(top_code)s;
+        } else {
+            %(else_code)s;
+        }
+
+        //Write the resulting state to the execution context
+        if (fault == NoFault) {
+            %(op_wb)s;
+        }
+        return fault;
+    }
+}};
+
+def template MicroFpOpDeclare {{
+    class %(class_name)s : public %(base_class)s
+    {
+      private:
+        %(reg_idx_arr_decl)s;
+
+      public:
+        template <typename ...Args>
+        %(class_name)s(ExtMachInst mach_inst, const char *inst_mnem,
+                uint64_t set_flags, uint8_t data_size, int8_t _spm,
+                Args... args);
+
+        Fault execute(ExecContext *, trace::InstRecord *) const override;
+    };
+}};
+
+def template MicroFpOpConstructor {{
+    template <typename ...Args>
+    %(class_name)s::%(class_name)s(ExtMachInst mach_inst,
+            const char *inst_mnem, uint64_t set_flags,
+            uint8_t data_size, int8_t _spm, Args... args) :
+        %(base_class)s(mach_inst, "%(mnemonic)s", inst_mnem, set_flags,
+                %(op_class)s, { args... }, data_size, _spm)
+    {
+        %(set_reg_idx_arr)s;
+        %(constructor)s;
+    }
+}};
+
+let {{
+
+    header_output = ""
+    decoder_output = ""
+    exec_output = ""
+
+    class FpOpMeta(type):
+        def buildCppClasses(self, name, Name, suffix, code, big_code,
+                flag_code, cond_check, else_code, op_class, operand_types):
+
+            global header_output
+            global decoder_output
+            global exec_output
+
+            allCode = "|".join((code, flag_code, cond_check, else_code))
+
+            if flag_code != "" or cond_check != "true":
+                self.buildCppClasses(name, Name, suffix, code, big_code, "",
+                                     "true", "", op_class, operand_types)
+                suffix = "Flags" + suffix
+
+            if big_code:
+                self.buildCppClasses(name, Name, suffix + "Big", big_code, "",
+                                     flag_code, cond_check, else_code,
+                                     op_class, operand_types)
+
+            base = "X86ISA::InstOperands<" + \
+                ", ".join(["X86ISA::FpOp"] +
+                          [op.cxx_class() for op in operand_types]) + ">"
+
+            iop_tag = InstObjParams(name, Name + "TopTag" + suffix, base,
+                    {"code" : code,
+                     "flag_code" : flag_code,
+                     "cond_check" : cond_check,
+                     "else_code" : else_code,
+                     "tag_code" : "FTW = genX87Tags(FTW, TOP, spm);",
+                     "top_code" : "TOP = (TOP + spm + 8) % 8;",
+                     "op_class" : op_class})
+            iop_top = InstObjParams(name, Name + "Top" + suffix, base,
+                    {"code" : code,
+                     "flag_code" : flag_code,
+                     "cond_check" : cond_check,
+                     "else_code" : else_code,
+                     "tag_code" : ";",
+                     "top_code" : "TOP = (TOP + spm + 8) % 8;",
+                     "op_class" : op_class})
+            iop = InstObjParams(name, Name + suffix, base,
+                    {"code" : code,
+                     "flag_code" : flag_code,
+                     "cond_check" : cond_check,
+                     "else_code" : else_code,
+                     "tag_code" : ";",
+                     "top_code" : ";",
+                     "op_class" : op_class})
+
+            header_output += MicroFpOpDeclare.subst(iop_tag)
+            decoder_output += MicroFpOpConstructor.subst(iop_tag)
+            exec_output += MicroFpOpExecute.subst(iop_tag)
+            header_output += MicroFpOpDeclare.subst(iop_top)
+            decoder_output += MicroFpOpConstructor.subst(iop_top)
+            exec_output += MicroFpOpExecute.subst(iop_top)
+            header_output += MicroFpOpDeclare.subst(iop)
+            decoder_output += MicroFpOpConstructor.subst(iop)
+            exec_output += MicroFpOpExecute.subst(iop)
+
+
+        def __new__(mcls, Name, bases, dict):
+            abstract = False
+            name = Name.lower()
+            if "abstract" in dict:
+                abstract = dict['abstract']
+                del dict['abstract']
+
+            cls = super().__new__(mcls, Name, bases, dict)
+            if not abstract:
+                cls.className = Name
+                cls.mnemonic = name
+                code = cls.code
+                big_code = cls.big_code
+                flag_code = cls.flag_code
+                cond_check = cls.cond_check
+                else_code = cls.else_code
+                op_class = cls.op_class
+                operand_types = cls.operand_types
+
+                mcls.buildCppClasses(cls, name, Name, "",
+                        code, big_code, flag_code, cond_check, else_code,
+                        op_class, operand_types)
+
+                global microopClasses
+                microopClasses[name] = cls
+
+            return cls
+
+    class FpOp(X86Microop, metaclass=FpOpMeta):
+        abstract = True
+
+        big_code = ""
+        flag_code = ""
+        cond_check = "true"
+        else_code = ";"
+        op_class = "FloatAddOp"
+
+        def __init__(self, *ops, spm=0,
+                SetStatus=False, UpdateFTW=True, dataSize="env.dataSize"):
+            self.ops = list(map(str, ops))
+            self.spm = spm
+            self.dataSize = dataSize
+            if SetStatus:
+                self.className += "Flags"
+            if spm:
+                self.className += "Top"
+            if spm and UpdateFTW:
+                self.className += "Tag"
+
+        def getAllocator(self, microFlags):
+            op_iter = iter(self.ops)
+            ops = list([Type(op_iter).ctor_args() for
+                    Type in self.operand_types])
+            spm_ops = [str(self.spm)] + ops
+            alloc_fmt = """(StaticInstPtr) new {class_name}(
+                machInst, macrocodeBlock, {flags}, {dataSize},
+                {spm_ops})"""
+            alloc_subst = {
+                "flags": self.microFlagsText(microFlags),
+                "dataSize": self.dataSize,
+                "spm_ops": ", ".join(spm_ops),
+            }
+            alloc_small = alloc_fmt.format(
+                class_name=self.className, **alloc_subst)
+            alloc_big = alloc_fmt.format(
+                class_name=self.className + "Big", **alloc_subst)
+            if self.big_code:
+                alloc_str = f"""{self.dataSize} == 8 ?
+                                {alloc_big} : {alloc_small};"""
+            else:
+                alloc_str = f"{alloc_small};"
+            return alloc_str
+
+    class Fp0Op(FpOp):
+        abstract = True
+        operand_types = ()
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+
+    class Fp1Op(FpOp):
+        abstract = True
+        operand_types = (FloatDestOp)
+        def __init__(self, reg1, **kwargs):
+            super().__init__(reg1, **kwargs)
+
+    class Fp2Op(FpOp):
+        abstract = True
+        operand_types = (FloatDestOp, FloatSrc1Op)
+        def __init__(self, reg1, reg2, **kwargs):
+            super().__init__(reg1, reg2, **kwargs)
+
+    class Fp3Op(FpOp):
+        abstract = True
+        operand_types = (FloatDestOp, FloatSrc1Op, FloatSrc2Op)
+        def __init__(self, reg1, reg2, reg3, **kwargs):
+            super().__init__(reg1, reg2, reg3, **kwargs)
+
+    class Movfp(Fp2Op):
+        code = '''
+        if (dataSize == 4) {
+            FpDestReg_uqw = mbits(FpDestReg_uqw, 63, 32) |
+                            mbits(FpSrcReg1_uqw, 31, 0);
+        } else {
+            FpDestReg_uqw = FpSrcReg1_uqw;
+        }
+        '''
+        big_code = 'FpDestReg_uqw = FpSrcReg1_uqw;'
+        else_code = 'FpDestReg_uqw = FpDestReg_uqw;'
+        cond_check = "checkCondition(ccFlagBits | cfofBits | dfBit | \
+                                     ecfBit | ezfBit, src1)"
+        op_class = 'IntAluOp'
+
+    class Xorfp(Fp3Op):
+        code = 'FpDestReg_uqw = FpSrcReg1_uqw ^ FpSrcReg2_uqw;'
+
+    class Sqrtfp(Fp2Op):
+        code = 'FpDestReg = sqrt(FpSrcReg1);'
+        op_class = 'FloatSqrtOp'
+=== decoder lines
+67:                    0x4: ftst();
+68:                    0x5: fxam();
+86:                    0x0: f2xm1();
+89:                    0x3: fpatan();
+90:                    0x4: fxtract();
+100:                    0x1: fyl2xp1();
+103:                    0x4: frndint();
+104:                    0x5: fscale();
+108:                default: Inst::FNSTCW(Mw);
+169:                    0x3: fninit();
+245:                default: Inst::FNSTSW(Mw);
+307:                    0x0: Inst::FNSTSW(rAw);
+=== 619 12G binary sizes
+rm47
+-rwxr-xr-x 1 sahilag24 btech 948690744 Nov 16 14:58 /tmp/sahilag24/CS622_L2_TLB/gem5-inc/build/X86/gem5.opt
+-rwxr-xr-x 1 sahilag24 btech 948733232 Nov 17 10:50 /tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt
+rm48
+-rwxr-xr-x 1 sahilag24 btech 948708712 Nov 16 15:30 /tmp/sahilag24/CS622_L2_TLB/gem5-excl/build/X86/gem5.opt
+rm49
+-rwxr-xr-x 1 sahilag24 btech 948713624 Nov 16 15:31 /tmp/sahilag24/CS622_L2_TLB/gem5-nine/build/X86/gem5.opt
+rm50
+-rwxr-xr-x 1 sahilag24 btech 948679096 Nov 16 15:28 /tmp/sahilag24/CS622_L2_TLB/gem5-agile/build/X86/gem5.opt
+rm51
+-rwxr-xr-x 1 sahilag24 btech 948697280 Nov 16 15:29 /tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt

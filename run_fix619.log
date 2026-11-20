@@ -1,0 +1,17 @@
+== build inc on csews20
+patched
+554:            walker->port.sendFunctional(write);
+== build excl on csewsrm22
+patched
+554:            walker->port.sendFunctional(write);
+== build nine on csewsrm23
+patched
+554:            walker->port.sendFunctional(write);
+== build agile on csewsrm24
+patched
+554:            walker->port.sendFunctional(write);
+== build perf on csewsrm25
+patched
+554:            walker->port.sendFunctional(write);
+14:24:33 builds done: 0/5
+BUILD FAILED excl: done 2

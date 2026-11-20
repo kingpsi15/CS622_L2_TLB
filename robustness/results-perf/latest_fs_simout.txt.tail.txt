@@ -1,14 +1,16 @@
 Global frequency set at 1000000000000 ticks per second
       0: board.pc.south_bridge.cmos.rtc: Real-time clock set to Sun Jan  1 00:00:00 2012
-Redirecting stdout to /tmp/sahilag24/work-perf/runs/spec_fs_perf_20261115_150034/simout.txt
-Redirecting stderr to /tmp/sahilag24/work-perf/runs/spec_fs_perf_20261115_150034/simerr.txt
+Redirecting stdout to /tmp/sahilag24/work-perf/runs/spec_fs_perf_20261115_151544/simout.txt
+Redirecting stderr to /tmp/sahilag24/work-perf/runs/spec_fs_perf_20261115_151544/simerr.txt
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.1.0.1
-gem5 compiled Nov 15 2026 14:59:08
-gem5 started Nov 15 2026 15:00:37
-gem5 executing on csewsrm25, pid 1715324
-command line: /tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt -re -d /tmp/sahilag24/work-perf/runs/spec_fs_perf_20261115_150034 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/work-perf/jobs/spec_fs_guest.sh --spec-disk /tmp/sahilag24/work-perf/spec2017.fs.img
+gem5 compiled Nov 15 2026 15:14:18
+gem5 started Nov 15 2026 15:15:47
+gem5 executing on csewsrm25, pid 1720612
+command line: /tmp/sahilag24/CS622_L2_TLB/gem5-perf/build/X86/gem5.opt -re -d /tmp/sahilag24/work-perf/runs/spec_fs_perf_20261115_151544 /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/fs_run.py --cores 1 --cpu timing --start-cpu atomic --script /tmp/sahilag24/work-perf/jobs/spec_fs_guest.sh --spec-disk /tmp/sahilag24/work-perf/spec2017.fs.img
 
 TLBFS: kernel booted (ATOMIC)
+TLBFS: boot done -> switching to simulated cores with the TLB under test
+switching cpus

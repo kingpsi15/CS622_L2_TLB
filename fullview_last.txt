@@ -1,0 +1,617 @@
+FULLVIEW 2026-11-20 20:53:23 | hosts reporting 63/64
+ALERTS: 112
+  - agile csewsrm67: NO DATA (ssh: connect to host csewsrm67.cse.iitk.ac.in port 22: No route to host)
+  - excl csewsrm22/main: NOT RUNNING
+  - excl csewsrm22/x0: NOT RUNNING
+  - excl csewsrm22/x1: NOT RUNNING
+  - excl csewsrm22/x10: NOT RUNNING
+  - excl csewsrm22/x2: NOT RUNNING
+  - excl csewsrm22/x5: NOT RUNNING
+  - excl csewsrm22/x6: NOT RUNNING
+  - excl csewsrm22/x7: NOT RUNNING
+  - excl csewsrm22/x9: NOT RUNNING
+  - nine csewsrm23/main: NOT RUNNING
+  - nine csewsrm23/x0: NOT RUNNING
+  - nine csewsrm23/x1: NOT RUNNING
+  - nine csewsrm23/x2: NOT RUNNING
+  - nine csewsrm23/x3: NOT RUNNING
+  - nine csewsrm23/x5: NOT RUNNING
+  - nine csewsrm23/x7: NOT RUNNING
+  - nine csewsrm23/x8: NOT RUNNING
+  - nine csewsrm23/x9: NOT RUNNING
+  - agile csewsrm24/main: NOT RUNNING
+  - agile csewsrm24/x0: NOT RUNNING
+  - agile csewsrm24/x1: NOT RUNNING
+  - agile csewsrm24/x11: NOT RUNNING
+  - agile csewsrm24/x2: NOT RUNNING
+  - agile csewsrm24/x3: NOT RUNNING
+  - agile csewsrm24/x5: NOT RUNNING
+  - agile csewsrm24/x7: NOT RUNNING
+  - agile csewsrm24/x8: NOT RUNNING
+  - perf csewsrm25/main: NOT RUNNING
+  - perf csewsrm25/x0: NOT RUNNING
+  - perf csewsrm25/x1: NOT RUNNING
+  - perf csewsrm25/x12: NOT RUNNING
+  - perf csewsrm25/x2: NOT RUNNING
+  - perf csewsrm25/x3: NOT RUNNING
+  - perf csewsrm25/x5: NOT RUNNING
+  - perf csewsrm25/x7: NOT RUNNING
+  - perf csewsrm25/x8: NOT RUNNING
+  - nine csewsrm27/x3: NOT RUNNING (exit exited134)
+  - inc csewsrm28/x4: NOT RUNNING (exit exited134)
+  - excl csewsrm30/x3: NOT RUNNING (exit exited134)
+  - agile csewsrm32/x8: NOT RUNNING (exit exited139)
+  - agile csewsrm33/x3: NOT RUNNING (exit exited134)
+  - perf csewsrm35/x3: guest trouble lines=1
+  - perf csewsrm35/x3: NOT RUNNING (exit exited134)
+  - inc csewsrm36/x0: guest trouble lines=1
+  - excl csewsrm37/x0: NOT RUNNING (exit exited134)
+  - nine csewsrm38/x0: guest trouble lines=1
+  - agile csewsrm39/x0: guest trouble lines=1
+  - perf csewsrm40/x0: NOT RUNNING (exit exited134)
+  - inc csewsrm52/x0: NOT RUNNING (exit exited143)
+  - inc csewsrm52/x2: NOT RUNNING (exit exited143)
+  - inc csewsrm52/x7: NOT RUNNING (exit exited143)
+  - inc csewsrm54/x2: NOT RUNNING (exit exited143)
+  - inc csewsrm54/x3: NOT RUNNING (exit exited143)
+  - inc csewsrm54/x4: NOT RUNNING (exit exited143)
+  - inc csewsrm55/x5: NOT RUNNING (exit exited143)
+  - excl csewsrm56/x0: NOT RUNNING (exit exited143)
+  - excl csewsrm56/x2: NOT RUNNING (exit exited143)
+  - excl csewsrm56/x7: NOT RUNNING (exit exited143)
+  - excl csewsrm58/x2: NOT RUNNING (exit exited143)
+  - excl csewsrm58/x3: NOT RUNNING (exit exited143)
+  - excl csewsrm58/x4: NOT RUNNING (exit exited143)
+  - excl csewsrm58/x6: NOT RUNNING (exit exited143)
+  - excl csewsrm59/x5: NOT RUNNING (exit exited143)
+  - nine csewsrm60/x0: NOT RUNNING (exit exited143)
+  - nine csewsrm60/x2: NOT RUNNING (exit exited143)
+  - nine csewsrm60/x7: NOT RUNNING (exit exited143)
+  - nine csewsrm62/x2: NOT RUNNING (exit exited143)
+  - nine csewsrm62/x3: NOT RUNNING (exit exited143)
+  - nine csewsrm62/x4: NOT RUNNING (exit exited143)
+  - nine csewsrm63/x5: NOT RUNNING (exit exited143)
+  - agile csewsrm64/x0: NOT RUNNING (exit exited143)
+  - agile csewsrm64/x2: NOT RUNNING (exit exited143)
+  - agile csewsrm64/x7: NOT RUNNING (exit exited143)
+  - agile csewsrm66/x2: NOT RUNNING (exit exited143)
+  - agile csewsrm66/x3: NOT RUNNING (exit exited143)
+  - agile csewsrm66/x4: NOT RUNNING (exit exited143)
+  - perf csewsrm68/x0: NOT RUNNING (exit exited143)
+  - perf csewsrm68/x6: NOT RUNNING (exit exited143)
+  - perf csewsrm69/x10: NOT RUNNING (exit exited143)
+  - perf csewsrm69/x3: NOT RUNNING (exit exited143)
+  - perf csewsrm69/x6: NOT RUNNING (exit exited143)
+  - perf csewsrm69/x9: NOT RUNNING (exit exited143)
+  - perf csewsrm70/x2: NOT RUNNING (exit exited143)
+  - perf csewsrm70/x4: NOT RUNNING (exit exited143)
+  - perf csewsrm70/x7: NOT RUNNING (exit exited143)
+  - inc csews20: no main run dir/console found
+  - inc 600s: FAIL rc=0 on rm28/x0
+  - inc 631s: FAIL rc=0 on rm29/x0
+  - inc 619s: PASS/FAIL DISAGREE [('FAIL', 'rm36/x0', 'rc=0'), ('PASS', 'rm47/x0', 'rc=0')]
+  - inc 619s: FAIL rc=0 on rm36/x0
+  - excl 500r: FAIL rc=0 on rm22/main
+  - excl 500r: FAIL rc=0 on rm22/x8
+  - excl 631s: FAIL rc=0 on rm30/x9
+  - excl 600s: FAIL rc=0 on rm31/x5
+  - nine 500r: FAIL rc=0 on rm23/main
+  - nine 500r: FAIL rc=0 on rm23/x8
+  - nine 631s: FAIL rc=0 on rm23/x11
+  - nine 631s: FAIL rc=0 on rm27/x6
+  - nine 600s: FAIL rc=0 on rm26/x8
+  - nine 619s: PASS/FAIL DISAGREE [('FAIL', 'rm38/x0', 'rc=0'), ('PASS', 'rm44/x0', 'rc=0'), ('PASS', 'rm49/x0', 'rc=0')]
+  - nine 619s: FAIL rc=0 on rm38/x0
+  - agile 500r: FAIL rc=0 on rm24/main
+  - agile 500r: FAIL rc=0 on rm24/x8
+  - agile 631s: FAIL rc=0 on rm33/x6
+  - agile 619s: PASS/FAIL DISAGREE [('FAIL', 'rm39/x0', 'rc=0'), ('PASS', 'rm45/x0', 'rc=0'), ('PASS', 'rm50/x0', 'rc=0')]
+  - agile 619s: FAIL rc=0 on rm39/x0
+  - perf 500r: FAIL rc=0 on rm25/main
+  - perf 500r: FAIL rc=0 on rm25/x8
+  - perf 631s: FAIL rc=0 on rm25/x11
+  - perf 631s: FAIL rc=0 on rm35/x6
+  - perf 600s: FAIL rc=0 on rm34/x8
+
+HOSTS
+  host         lane  role          guests  load   memGB  tmpGB  others
+  csews20      inc   main+extras    0/0      0.02     60    318  0
+  csewsrm22    excl  main+extras    3/12     3.00     53     47  0
+  csewsrm23    nine  main+extras    3/14     3.00     54     54  0
+  csewsrm24    agile main+extras    3/14     3.01     54     58  0
+  csewsrm25    perf  main+extras    3/14     3.00     53     57  0
+  csewsrm26    nine  extras         0/9      0.00     60    141  0
+  csewsrm27    nine  extras         0/8      0.00     60    151  0
+  csewsrm28    inc   extras         0/7      0.00     60    187  0
+  csewsrm29    inc   extras         0/6      0.00     60    147  0
+  csewsrm30    excl  extras         0/11     0.00     60    130  0
+  csewsrm31    excl  extras         0/10     0.00     59     92  0
+  csewsrm32    agile extras         0/9      1.00     58    139  0
+  csewsrm33    agile extras         0/8      0.02     60    181  0
+  csewsrm34    perf  extras         0/9      1.00     58    146  0
+  csewsrm35    perf  extras         0/8      0.00     60    177  0
+  csewsrm2     inc   extras         0/8      1.00     54     81  0
+  csewsrm3     inc   extras         0/7      0.05     56     82  0
+  csewsrm4     excl  extras         0/6      0.01     56     94  0
+  csewsrm5     excl  extras         0/5      1.00     56    126  0
+  csewsrm6     nine  extras         0/7      0.00     60    195  0
+  csewsrm13    nine  extras         0/6      0.00     60    201  0
+  csewsrm8     agile extras         0/7      0.00     60    200  0
+  csewsrm10    agile extras         0/6      0.00     59    196  0
+  csewsrm11    perf  extras         0/7      0.02     60    186  0
+  csewsrm12    perf  extras         0/6      0.04     60    203  0
+  csewsrm14    inc   extras         0/8      0.01     59    175  0
+  csewsrm15    excl  extras         0/8      0.00     60    165  0
+  csewsrm17    nine  extras         0/8      0.00     60    173  0
+  csewsrm18    agile extras         0/8      0.03     60    175  0
+  csewsrm19    perf  extras         1/8      1.00     57    177  0
+  csewsrm36    inc   extras         0/1      0.00     60    208  0
+  csewsrm37    excl  extras         0/1      5.00     52     67  0
+  csewsrm38    nine  extras         0/1      0.00     60    205  0
+  csewsrm39    agile extras         0/1      0.00     59    208  0
+  csewsrm40    perf  extras         0/1      0.02     60    153  0
+  csewsrm42    inc   extras         0/0      0.00     60    317  0
+  csewsrm43    excl  extras         0/1      1.00     57    239  0
+  csewsrm44    nine  extras         0/1      0.00     60    202  0
+  csewsrm45    agile extras         0/1      2.00     57    197  0
+  csewsrm46    perf  extras         0/1      0.08     60    243  0
+  csewsrm47    inc   extras         0/1      1.00     58    233  0
+  csewsrm48    excl  extras         0/1      1.08     58    258  0
+  csewsrm49    nine  extras         0/1      1.00     58    258  0
+  csewsrm50    agile extras         1/1      1.00     58    252  0
+  csewsrm51    perf  extras         0/1      1.14     55    247  0
+  csewsrm52    inc   extras         1/8      1.00     58    171  0
+  csewsrm53    inc   extras         2/8      2.01     55    210  0
+  csewsrm54    inc   extras         0/8      0.04     60    180  0
+  csewsrm55    inc   extras         0/8      0.00     60    205  0
+  csewsrm56    excl  extras         1/8      1.00     59    171  0
+  csewsrm57    excl  extras         2/8      2.00     56    201  0
+  csewsrm58    excl  extras         0/8      0.06     60    173  0
+  csewsrm59    excl  extras         0/8      1.00     58    182  0
+  csewsrm60    nine  extras         1/8      1.00     58    184  0
+  csewsrm61    nine  extras         2/8      2.02     56    216  0
+  csewsrm62    nine  extras         0/8      0.00     60    191  0
+  csewsrm63    nine  extras         0/8      1.00     58    200  0
+  csewsrm64    agile extras         1/8      1.00     59    191  0
+  csewsrm65    agile extras         2/8      2.00     56    216  0
+  csewsrm66    agile extras         0/8      0.00     60    192  0
+  csewsrm67    agile NO DATA
+  csewsrm68    perf  extras         2/11     2.00     57    154  0
+  csewsrm69    perf  extras         1/11     2.01     55    163  0
+  csewsrm70    perf  extras         0/10     0.00     60    165  0
+
+== inc   guests alive 3/70 | cpu-hours 309 | PASS 40 FAIL 2 running 3 not-started-yet 0/43
+   PASS : 502r(rm53/x0) 503r(rm54/x0) 505r(rm55/x0) 507r(rm52/x1) 508r(rm53/x1) 510r(rm54/x1) 511r(rm2/x0) 519r(rm2/x1) 520r(rm14/x0) 521r(rm2/x2) 523r(rm2/x3) 525r(rm2/x4) 526r(rm2/x5) 527r(rm2/x6) 531r(rm2/x7) 538r(rm3/x0) 541r(rm3/x1) 544r(rm3/x2) 548r(rm3/x3) 549r(rm3/x4) 554r(rm3/x5) 557r(rm3/x6) 602s(rm28/x1) 603s(rm14/x2) 605s(rm28/x2) 607s(rm28/x3) 619s(rm36/x0) 620s(rm14/x1) 621s(rm14/x3) 623s(rm28/x5) 625s(rm28/x6) 627s(rm14/x4) 628s(rm14/x5) 638s(rm29/x1) 641s(rm29/x2) 644s(rm29/x3) 648s(rm29/x4) 649s(rm14/x6) 654s(rm14/x7) 657s(rm29/x5)
+   FAIL : 600s(rm28/x0,rc=0) 631s(rm29/x0,rc=0)
+   RUN  : 525r@rm53/x2 625s@rm52/x6 627s@rm53/x6
+   guest              state  cpu-h  starts results panic trouble idle  current
+   csewsrm14/x0       DONE     0.0      1       1     0       0 5602m  -
+   csewsrm14/x1       DONE     0.0      1       1     0       0 5696m  -
+   csewsrm14/x2       DONE     0.0      1       1     0       0 5470m  -
+   csewsrm14/x3       DONE     0.0      1       1     0       0 4822m  -
+   csewsrm14/x4       DONE     0.0      1       1     0       0  189m  -
+   csewsrm14/x5       DONE     0.0      1       1     0       0 5325m  -
+   csewsrm14/x6       DONE     0.0      1       1     0       0 5630m  -
+   csewsrm14/x7       DONE     0.0      1       1     0       0 5639m  -
+   csewsrm2/x0        DONE     0.0      1       1     0       0 6386m  -
+   csewsrm2/x1        DONE     0.0      1       1     0       0 6360m  -
+   csewsrm2/x2        DONE     0.0      1       1     0       0 5146m  -
+   csewsrm2/x3        DONE     0.0      1       1     0       0 6492m  -
+   csewsrm2/x4        DONE     0.0      1       1     0       0  684m  -
+   csewsrm2/x5        DONE     0.0      1       1     0       0 5124m  -
+   csewsrm2/x6        DONE     0.0      1       1     0       0 4241m  -
+   csewsrm2/x7        DONE     0.0      1       1     0       0 5965m  -
+   csewsrm28/x0       DONE     0.0      1       1     0       0 5140m  -
+   csewsrm28/x1       DONE     0.0      1       1     0       0 6270m  -
+   csewsrm28/x2       DONE     0.0      1       1     0       0 5966m  -
+   csewsrm28/x3       DONE     0.0      1       1     0       0 6052m  -
+   csewsrm28/x4       EXITexited134   0.0      1       0     0       0 6978m  619.lbm_s
+   csewsrm28/x5       DONE     0.0      1       1     0       0 6524m  -
+   csewsrm28/x6       DONE     0.0      1       1     0       0  528m  -
+   csewsrm29/x0       DONE     0.0      1       1     0       0 6524m  -
+   csewsrm29/x1       DONE     0.0      1       1     0       0 6398m  -
+   csewsrm29/x2       DONE     0.0      1       1     0       0 6153m  -
+   csewsrm29/x3       DONE     0.0      1       1     0       0 6326m  -
+   csewsrm29/x4       DONE     0.0      1       1     0       0 5223m  -
+   csewsrm29/x5       DONE     0.0      1       1     0       0 5706m  -
+   csewsrm3/x0        DONE     0.0      1       1     0       0 6462m  -
+   csewsrm3/x1        DONE     0.0      1       1     0       0 6184m  -
+   csewsrm3/x2        DONE     0.0      1       1     0       0 6441m  -
+   csewsrm3/x3        DONE     0.0      1       1     0       0 5307m  -
+   csewsrm3/x4        DONE     0.0      1       1     0       0 5948m  -
+   csewsrm3/x5        DONE     0.0      1       1     0       0 5972m  -
+   csewsrm3/x6        DONE     0.0      1       1     0       0 5721m  -
+   csewsrm36/x0       DONE     0.0      1       1     0       1 5637m  -
+   csewsrm47/x0       DONE     0.0      1       1     0       0 3643m  -
+   csewsrm52/x0       EXITexited143   0.0      1       0     0       0 6058m  500.perlbench_r
+   csewsrm52/x1       DONE     0.0      1       1     0       0 5018m  -
+   csewsrm52/x2       EXITexited143   0.0      1       0     0       0 6061m  521.wrf_r
+   csewsrm52/x3       DONE     0.0      1       1     0       0 4898m  -
+   csewsrm52/x4       DONE     0.0      1       1     0       0 4903m  -
+   csewsrm52/x5       DONE     0.0      1       1     0       0 4958m  -
+   csewsrm52/x6       RUN    103.0      1       0     0       0 6059m  625.x264_s
+   csewsrm52/x7       EXITexited143   0.0      1       0     0       0 6062m  648.exchange2_s
+   csewsrm53/x0       DONE     0.0      1       1     0       0 5312m  -
+   csewsrm53/x1       DONE     0.0      1       1     0       0 4905m  -
+   csewsrm53/x2       RUN    103.0      1       0     0       0 6059m  525.x264_r
+   csewsrm53/x3       DONE     0.0      1       1     0       0 5080m  -
+   csewsrm53/x4       DONE     0.0      1       1     0       0 4603m  -
+   csewsrm53/x5       DONE     0.0      1       1     0       0 5009m  -
+   csewsrm53/x6       RUN    103.0      1       0     0       0 6051m  627.cam4_s
+   csewsrm53/x7       DONE     0.0      1       1     0       0 4856m  -
+   csewsrm54/x0       DONE     0.0      1       1     0       0 4882m  -
+   csewsrm54/x1       DONE     0.0      1       1     0       0 4971m  -
+   csewsrm54/x2       EXITexited143   0.0      1       0     0       0 6065m  526.blender_r
+   csewsrm54/x3       EXITexited143   0.0      1       0     0       0 6067m  548.exchange2_r
+   csewsrm54/x4       EXITexited143   0.0      1       0     0       0 6065m  600.perlbench_s
+   csewsrm54/x5       DONE     0.0      1       1     0       0 4852m  -
+   csewsrm54/x6       DONE     0.0      1       1     0       0 4564m  -
+   csewsrm54/x7       DONE     0.0      1       1     0       0 4899m  -
+   csewsrm55/x0       DONE     0.0      1       1     0       0 5007m  -
+   csewsrm55/x1       DONE     0.0      1       1     0       0 4773m  -
+   csewsrm55/x2       DONE     0.0      1       1     0       0 3267m  -
+   csewsrm55/x3       DONE     0.0      1       1     0       0 4722m  -
+   csewsrm55/x4       DONE     0.0      1       1     0       0 4655m  -
+   csewsrm55/x5       EXITexited143   0.0      1       0     0       0 6044m  621.wrf_s
+   csewsrm55/x6       DONE     0.0      1       1     0       0 5192m  -
+   csewsrm55/x7       DONE     0.0      1       1     0       0 4610m  -
+== excl  guests alive 6/87 | cpu-hours 679 | PASS 40 FAIL 3 running 6 not-started-yet 0/43
+   PASS : 502r(rm22/main) 503r(rm22/x10) 505r(rm22/x0) 507r(rm22/x1) 508r(rm22/x2) 510r(rm22/x3) 511r(rm4/x4) 519r(rm22/x5) 520r(rm22/x0) 521r(rm5/x0) 523r(rm22/x7) 525r(rm5/x2) 526r(rm5/x3) 527r(rm5/x4) 531r(rm30/x0) 538r(rm30/x2) 541r(rm30/x4) 544r(rm22/x3) 548r(rm30/x8) 549r(rm30/x10) 554r(rm31/x1) 557r(rm31/x3) 602s(rm31/x7) 603s(rm22/x1) 605s(rm31/x9) 607s(rm30/x1) 619s(rm43/x0) 620s(rm22/x2) 621s(rm22/x3) 623s(rm30/x5) 625s(rm30/x7) 627s(rm15/x4) 628s(rm22/x5) 638s(rm31/x0) 641s(rm31/x2) 644s(rm31/x4) 648s(rm31/x6) 649s(rm22/x6) 654s(rm22/x7) 657s(rm31/x8)
+   FAIL : 500r(rm22/main,rc=0) 600s(rm31/x5,rc=0) 631s(rm30/x9,rc=0)
+   RUN  : 525r@rm22/x8 525r@rm57/x2 625s@rm22/x3 625s@rm56/x6 627s@rm22/x4 627s@rm57/x6
+   guest              state  cpu-h  starts results panic trouble idle  current
+   csewsrm15/x0       DONE     0.0      1       1     0       0 5699m  -
+   csewsrm15/x1       DONE     0.0      1       1     0       0 5776m  -
+   csewsrm15/x2       DONE     0.0      1       1     0       0 5472m  -
+   csewsrm15/x3       DONE     0.0      1       1     0       0 4921m  -
+   csewsrm15/x4       DONE     0.0      1       1     0       0  695m  -
+   csewsrm15/x5       DONE     0.0      1       1     0       0 5395m  -
+   csewsrm15/x6       DONE     0.0      1       1     0       0 5680m  -
+   csewsrm15/x7       DONE     0.0      1       1     0       0 5818m  -
+   csewsrm22/main     DEAD     0.0      3       2     0       0 3906m  503.bwaves_r
+   csewsrm22/x0       DEAD     0.0      3       2     0       0 4105m  531.deepsjeng_r
+   csewsrm22/x1       DEAD     0.0      3       2     0       0 4216m  538.imagick_r
+   csewsrm22/x2       DEAD     0.0      3       2     0       0 4002m  541.leela_r
+   csewsrm22/x3       RUN    123.2      4       3     0       0 2498m  625.x264_s
+   csewsrm22/x4       RUN    123.2      1       0     0       0 7162m  627.cam4_s
+   csewsrm22/x5       DEAD     0.0      3       2     0       0 3796m  549.fotonik3d_r
+   csewsrm22/x6       DEAD     0.0      2       1     0       0 5154m  521.wrf_r
+   csewsrm22/x7       DEAD     0.0      3       2     0       0 4422m  557.xz_r
+   csewsrm22/x8       RUN    123.2      2       1     0       0 4574m  525.x264_r
+   csewsrm22/x9       DEAD     0.0      2       1     0       0 6190m  526.blender_r
+   csewsrm22/x10      DEAD     0.0      2       1     0       0 5567m  527.cam4_r
+   csewsrm30/x0       DONE     0.0      1       1     0       0 5770m  -
+   csewsrm30/x1       DONE     0.0      1       1     0       0 5954m  -
+   csewsrm30/x2       DONE     0.0      1       1     0       0 6144m  -
+   csewsrm30/x3       EXITexited134   0.0      1       0     0       0 6984m  619.lbm_s
+   csewsrm30/x4       DONE     0.0      1       1     0       0 5950m  -
+   csewsrm30/x5       DONE     0.0      1       1     0       0 6286m  -
+   csewsrm30/x6       DONE     0.0      1       1     0       0 6253m  -
+   csewsrm30/x7       DONE     0.0      1       1     0       0  633m  -
+   csewsrm30/x8       DONE     0.0      1       1     0       0 5001m  -
+   csewsrm30/x9       DONE     0.0      1       1     0       0 6454m  -
+   csewsrm30/x10      DONE     0.0      1       1     0       0 5712m  -
+   csewsrm31/x0       DONE     0.0      1       1     0       0 6310m  -
+   csewsrm31/x1       DONE     0.0      1       1     0       0 5808m  -
+   csewsrm31/x2       DONE     0.0      1       1     0       0 5945m  -
+   csewsrm31/x3       DONE     0.0      1       1     0       0 5314m  -
+   csewsrm31/x4       DONE     0.0      1       1     0       0 6146m  -
+   csewsrm31/x5       DONE     0.0      1       1     0       0 5002m  -
+   csewsrm31/x6       DONE     0.0      1       1     0       0 5021m  -
+   csewsrm31/x7       DONE     0.0      1       1     0       0 5936m  -
+   csewsrm31/x8       DONE     0.0      1       1     0       0 5460m  -
+   csewsrm31/x9       DONE     0.0      1       1     0       0 5751m  -
+   csewsrm37/x0       EXITexited134   0.0      1       0     0       0 6392m  631.deepsjeng_s
+   csewsrm4/x0        DONE     0.0      1       1     0       0 6057m  -
+   csewsrm4/x1        DONE     0.0      1       1     0       0 6132m  -
+   csewsrm4/x2        DONE     0.0      1       1     0       0 6004m  -
+   csewsrm4/x3        DONE     0.0      1       1     0       0 6052m  -
+   csewsrm4/x4        DONE     0.0      1       1     0       0 6443m  -
+   csewsrm4/x5        DONE     0.0      1       1     0       0 6398m  -
+   csewsrm43/x0       DONE     0.0      1       1     0       0 4148m  -
+   csewsrm48/x0       DONE     0.0      1       1     0       0 3669m  -
+   csewsrm5/x0        DONE     0.0      1       1     0       0 5224m  -
+   csewsrm5/x1        DONE     0.0      1       1     0       0 6551m  -
+   csewsrm5/x2        DONE     0.0      1       1     0       0  796m  -
+   csewsrm5/x3        DONE     0.0      1       1     0       0 5199m  -
+   csewsrm5/x4        DONE     0.0      1       1     0       0 4354m  -
+   csewsrm56/x0       EXITexited143   0.0      1       0     0       0 6076m  500.perlbench_r
+   csewsrm56/x1       DONE     0.0      1       1     0       0 5132m  -
+   csewsrm56/x2       EXITexited143   0.0      1       0     0       0 6075m  521.wrf_r
+   csewsrm56/x3       DONE     0.0      1       1     0       0 4916m  -
+   csewsrm56/x4       DONE     0.0      1       1     0       0 4969m  -
+   csewsrm56/x5       DONE     0.0      1       1     0       0 5003m  -
+   csewsrm56/x6       RUN    103.2      1       0     0       0 6074m  625.x264_s
+   csewsrm56/x7       EXITexited143   0.0      1       0     0       0 6076m  648.exchange2_s
+   csewsrm57/x0       DONE     0.0      1       1     0       0 5286m  -
+   csewsrm57/x1       DONE     0.0      1       1     0       0 4910m  -
+   csewsrm57/x2       RUN    103.2      1       0     0       0 6057m  525.x264_r
+   csewsrm57/x3       DONE     0.0      1       1     0       0 5118m  -
+   csewsrm57/x4       DONE     0.0      1       1     0       0 4544m  -
+   csewsrm57/x5       DONE     0.0      1       1     0       0 5115m  -
+   csewsrm57/x6       RUN    103.2      1       0     0       0 6057m  627.cam4_s
+   csewsrm57/x7       DONE     0.0      1       1     0       0 4831m  -
+   csewsrm58/x0       DONE     0.0      1       1     0       0 4779m  -
+   csewsrm58/x1       DONE     0.0      1       1     0       0 4833m  -
+   csewsrm58/x2       EXITexited143   0.0      1       0     0       0 6078m  526.blender_r
+   csewsrm58/x3       EXITexited143   0.0      1       0     0       0 6055m  548.exchange2_r
+   csewsrm58/x4       EXITexited143   0.0      1       0     0       0 6054m  600.perlbench_s
+   csewsrm58/x5       DONE     0.0      1       1     0       0 4812m  -
+   csewsrm58/x6       EXITexited143   0.0      1       0     0       0 6067m  628.pop2_s
+   csewsrm58/x7       DONE     0.0      1       1     0       0 4745m  -
+   csewsrm59/x0       DONE     0.0      1       1     0       0 4998m  -
+   csewsrm59/x1       DONE     0.0      1       1     0       0 4696m  -
+   csewsrm59/x2       DONE     0.0      1       1     0       0 3077m  -
+   csewsrm59/x3       DONE     0.0      1       1     0       0 4867m  -
+   csewsrm59/x4       DONE     0.0      1       1     0       0 4635m  -
+   csewsrm59/x5       EXITexited143   0.0      1       0     0       0 6075m  621.wrf_s
+   csewsrm59/x6       DONE     0.0      1       1     0       0 5200m  -
+   csewsrm59/x7       DONE     0.0      1       1     0       0 4524m  -
+== nine  guests alive 6/87 | cpu-hours 679 | PASS 40 FAIL 3 running 6 not-started-yet 0/43
+   PASS : 502r(rm23/main) 503r(rm23/x10) 505r(rm23/x11) 507r(rm23/x12) 508r(rm6/x0) 510r(rm23/x1) 511r(rm23/x2) 519r(rm6/x3) 520r(rm23/x0) 521r(rm6/x4) 523r(rm23/x5) 525r(rm6/x6) 526r(rm13/x0) 527r(rm13/x1) 531r(rm23/x9) 538r(rm23/x10) 541r(rm23/x11) 544r(rm23/x12) 548r(rm26/x0) 549r(rm26/x2) 554r(rm26/x4) 557r(rm26/x6) 602s(rm27/x0) 603s(rm23/x1) 605s(rm27/x1) 607s(rm27/x2) 619s(rm38/x0) 620s(rm23/x2) 621s(rm23/x3) 623s(rm27/x4) 625s(rm27/x5) 627s(rm17/x4) 628s(rm23/x5) 638s(rm23/x12) 641s(rm26/x1) 644s(rm26/x3) 648s(rm26/x5) 649s(rm23/x6) 654s(rm23/x7) 657s(rm26/x7)
+   FAIL : 500r(rm23/main,rc=0) 600s(rm26/x8,rc=0) 631s(rm23/x11,rc=0)
+   RUN  : 525r@rm23/x6 525r@rm61/x2 625s@rm23/x10 625s@rm60/x6 627s@rm23/x4 627s@rm61/x6
+   guest              state  cpu-h  starts results panic trouble idle  current
+   csewsrm13/x0       DONE     0.0      1       1     0       0 5026m  -
+   csewsrm13/x1       DONE     0.0      1       1     0       0 4225m  -
+   csewsrm13/x2       DONE     0.0      1       1     0       0 6002m  -
+   csewsrm13/x3       DONE     0.0      1       1     0       0 6464m  -
+   csewsrm13/x4       DONE     0.0      1       1     0       0 6153m  -
+   csewsrm13/x5       DONE     0.0      1       1     0       0 6407m  -
+   csewsrm17/x0       DONE     0.0      1       1     0       0 5696m  -
+   csewsrm17/x1       DONE     0.0      1       1     0       0 5698m  -
+   csewsrm17/x2       DONE     0.0      1       1     0       0 5452m  -
+   csewsrm17/x3       DONE     0.0      1       1     0       0 4896m  -
+   csewsrm17/x4       DONE     0.0      1       1     0       0   33m  -
+   csewsrm17/x5       DONE     0.0      1       1     0       0 5453m  -
+   csewsrm17/x6       DONE     0.0      1       1     0       0 5730m  -
+   csewsrm17/x7       DONE     0.0      1       1     0       0 5594m  -
+   csewsrm23/main     DEAD     0.0      3       2     0       0 3770m  503.bwaves_r
+   csewsrm23/x0       DEAD     0.0      2       1     0       0 4799m  508.namd_r
+   csewsrm23/x1       DEAD     0.0      3       2     0       0 3937m  549.fotonik3d_r
+   csewsrm23/x2       DEAD     0.0      3       2     0       0 4590m  554.roms_r
+   csewsrm23/x3       DEAD     0.0      2       1     0       0 4215m  519.lbm_r
+   csewsrm23/x4       RUN    123.1      1       0     0       0 7141m  627.cam4_s
+   csewsrm23/x5       DEAD     0.0      3       2     0       0 3963m  602.gcc_s
+   csewsrm23/x6       RUN    123.1      2       1     0       0 5319m  525.x264_r
+   csewsrm23/x7       DEAD     0.0      2       1     0       0 5246m  526.blender_r
+   csewsrm23/x8       DEAD     0.0      2       1     0       0 4214m  527.cam4_r
+   csewsrm23/x9       DEAD     0.0      3       2     0       0 3744m  623.xalancbmk_s
+   csewsrm23/x10      RUN    123.2      3       2     0       0 4311m  625.x264_s
+   csewsrm23/x11      DONE     0.0      3       3     0       0 3877m  -
+   csewsrm23/x12      DONE     0.0      3       3     0       0 4126m  -
+   csewsrm26/x0       DONE     0.0      1       1     0       0 5131m  -
+   csewsrm26/x1       DONE     0.0      1       1     0       0 6077m  -
+   csewsrm26/x2       DONE     0.0      1       1     0       0 5676m  -
+   csewsrm26/x3       DONE     0.0      1       1     0       0 6239m  -
+   csewsrm26/x4       DONE     0.0      1       1     0       0 5794m  -
+   csewsrm26/x5       DONE     0.0      1       1     0       0 5110m  -
+   csewsrm26/x6       DONE     0.0      1       1     0       0 5522m  -
+   csewsrm26/x7       DONE     0.0      1       1     0       0 5548m  -
+   csewsrm26/x8       DONE     0.0      1       1     0       0 5118m  -
+   csewsrm27/x0       DONE     0.0      1       1     0       0 6301m  -
+   csewsrm27/x1       DONE     0.0      1       1     0       0 6039m  -
+   csewsrm27/x2       DONE     0.0      1       1     0       0 6108m  -
+   csewsrm27/x3       EXITexited134   0.0      1       0     0       0 6970m  619.lbm_s
+   csewsrm27/x4       DONE     0.0      1       1     0       0 6457m  -
+   csewsrm27/x5       DONE     0.0      1       1     0       0  407m  -
+   csewsrm27/x6       DONE     0.0      1       1     0       0 6550m  -
+   csewsrm27/x7       DONE     0.0      1       1     0       0 6381m  -
+   csewsrm38/x0       DONE     0.0      1       1     0       1 5586m  -
+   csewsrm44/x0       DONE     0.0      1       1     0       0 3898m  -
+   csewsrm49/x0       DONE     0.0      1       1     0       0 3666m  -
+   csewsrm6/x0        DONE     0.0      1       1     0       0 5914m  -
+   csewsrm6/x1        DONE     0.0      1       1     0       0 5977m  -
+   csewsrm6/x2        DONE     0.0      1       1     0       0 6306m  -
+   csewsrm6/x3        DONE     0.0      1       1     0       0 6312m  -
+   csewsrm6/x4        DONE     0.0      1       1     0       0 5172m  -
+   csewsrm6/x5        DONE     0.0      1       1     0       0 6464m  -
+   csewsrm6/x6        DONE     0.0      1       1     0       0  798m  -
+   csewsrm60/x0       EXITexited143   0.0      1       0     0       0 6083m  500.perlbench_r
+   csewsrm60/x1       DONE     0.0      1       1     0       0 4921m  -
+   csewsrm60/x2       EXITexited143   0.0      1       0     0       0 6060m  521.wrf_r
+   csewsrm60/x3       DONE     0.0      1       1     0       0 5032m  -
+   csewsrm60/x4       DONE     0.0      1       1     0       0 4798m  -
+   csewsrm60/x5       DONE     0.0      1       1     0       0 5007m  -
+   csewsrm60/x6       RUN    103.2      1       0     0       0 6070m  625.x264_s
+   csewsrm60/x7       EXITexited143   0.0      1       0     0       0 6061m  648.exchange2_s
+   csewsrm61/x0       DONE     0.0      1       1     0       0 5365m  -
+   csewsrm61/x1       DONE     0.0      1       1     0       0 4886m  -
+   csewsrm61/x2       RUN    103.2      1       0     0       0 6081m  525.x264_r
+   csewsrm61/x3       DONE     0.0      1       1     0       0 5241m  -
+   csewsrm61/x4       DONE     0.0      1       1     0       0 4655m  -
+   csewsrm61/x5       DONE     0.0      1       1     0       0 5101m  -
+   csewsrm61/x6       RUN    103.2      1       0     0       0 6060m  627.cam4_s
+   csewsrm61/x7       DONE     0.0      1       1     0       0 4934m  -
+   csewsrm62/x0       DONE     0.0      1       1     0       0 4891m  -
+   csewsrm62/x1       DONE     0.0      1       1     0       0 5038m  -
+   csewsrm62/x2       EXITexited143   0.0      1       0     0       0 6079m  526.blender_r
+   csewsrm62/x3       EXITexited143   0.0      1       0     0       0 6055m  548.exchange2_r
+   csewsrm62/x4       EXITexited143   0.0      1       0     0       0 6080m  600.perlbench_s
+   csewsrm62/x5       DONE     0.0      1       1     0       0 4895m  -
+   csewsrm62/x6       DONE     0.0      1       1     0       0 4584m  -
+   csewsrm62/x7       DONE     0.0      1       1     0       0 4853m  -
+   csewsrm63/x0       DONE     0.0      1       1     0       0 5027m  -
+   csewsrm63/x1       DONE     0.0      1       1     0       0 4904m  -
+   csewsrm63/x2       DONE     0.0      1       1     0       0 3390m  -
+   csewsrm63/x3       DONE     0.0      1       1     0       0 4839m  -
+   csewsrm63/x4       DONE     0.0      1       1     0       0 4798m  -
+   csewsrm63/x5       EXITexited143   0.0      1       0     0       0 6076m  621.wrf_s
+   csewsrm63/x6       DONE     0.0      1       1     0       0 5186m  -
+   csewsrm63/x7       DONE     0.0      1       1     0       0 4693m  -
+== agile guests alive 7/79 | cpu-hours 679 | PASS 40 FAIL 2 running 6 not-started-yet 0/43
+   PASS : 502r(rm24/main) 503r(rm24/x10) 505r(rm24/x11) 507r(rm24/x12) 508r(rm24/x0) 510r(rm8/x1) 511r(rm24/x2) 519r(rm8/x3) 520r(rm24/x0) 521r(rm8/x4) 523r(rm24/x5) 525r(rm8/x6) 526r(rm10/x0) 527r(rm10/x1) 531r(rm24/x9) 538r(rm24/x10) 541r(rm24/x11) 544r(rm24/x12) 548r(rm32/x0) 549r(rm32/x2) 554r(rm32/x4) 557r(rm32/x6) 602s(rm33/x0) 603s(rm24/x1) 605s(rm33/x1) 607s(rm33/x2) 619s(rm39/x0) 620s(rm24/x2) 621s(rm24/x3) 623s(rm24/x9) 625s(rm33/x5) 627s(rm18/x4) 628s(rm24/x5) 638s(rm24/x12) 641s(rm32/x1) 644s(rm32/x3) 648s(rm32/x5) 649s(rm24/x6) 654s(rm24/x7) 657s(rm32/x7)
+   FAIL : 500r(rm24/main,rc=0) 631s(rm33/x6,rc=0)
+   RUN  : 525r@rm24/x6 525r@rm65/x2 625s@rm24/x10 625s@rm64/x6 627s@rm24/x4 627s@rm65/x6
+   guest              state  cpu-h  starts results panic trouble idle  current
+   csewsrm10/x0       DONE     0.0      1       1     0       0 5243m  -
+   csewsrm10/x1       DONE     0.0      1       1     0       0 4450m  -
+   csewsrm10/x2       DONE     0.0      1       1     0       0 6051m  -
+   csewsrm10/x3       DONE     0.0      1       1     0       0 6498m  -
+   csewsrm10/x4       DONE     0.0      1       1     0       0 6220m  -
+   csewsrm10/x5       DONE     0.0      1       1     0       0 6474m  -
+   csewsrm18/x0       DONE     0.0      1       1     0       0 5770m  -
+   csewsrm18/x1       DONE     0.0      1       1     0       0 5589m  -
+   csewsrm18/x2       DONE     0.0      1       1     0       0 5458m  -
+   csewsrm18/x3       DONE     0.0      1       1     0       0 5049m  -
+   csewsrm18/x4       DONE     0.0      1       1     0       0  696m  -
+   csewsrm18/x5       DONE     0.0      1       1     0       0 5465m  -
+   csewsrm18/x6       DONE     0.0      1       1     0       0 5824m  -
+   csewsrm18/x7       DONE     0.0      1       1     0       0 5654m  -
+   csewsrm24/main     DEAD     0.0      3       2     0       0 4036m  503.bwaves_r
+   csewsrm24/x0       DEAD     0.0      3       2     0       0 3966m  548.exchange2_r
+   csewsrm24/x1       DEAD     0.0      2       1     0       0 4247m  510.parest_r
+   csewsrm24/x2       DEAD     0.0      3       2     0       0 4045m  554.roms_r
+   csewsrm24/x3       DEAD     0.0      2       1     0       0 4005m  519.lbm_r
+   csewsrm24/x4       RUN    123.1      1       0     0       0 7160m  627.cam4_s
+   csewsrm24/x5       DEAD     0.0      3       2     0       0 3664m  602.gcc_s
+   csewsrm24/x6       RUN    123.1      2       1     0       0 5551m  525.x264_r
+   csewsrm24/x7       DEAD     0.0      2       1     0       0 5555m  526.blender_r
+   csewsrm24/x8       DEAD     0.0      2       1     0       0 4442m  527.cam4_r
+   csewsrm24/x9       DONE     0.0      3       3     0       0 4073m  -
+   csewsrm24/x10      RUN    123.1      3       2     0       0 4904m  625.x264_s
+   csewsrm24/x11      DEAD     0.0      3       2     0       0 4073m  631.deepsjeng_s
+   csewsrm24/x12      DONE     0.0      3       3     0       0 3979m  -
+   csewsrm32/x0       DONE     0.0      1       1     0       0 5035m  -
+   csewsrm32/x1       DONE     0.0      1       1     0       0 6068m  -
+   csewsrm32/x2       DONE     0.0      1       1     0       0 5773m  -
+   csewsrm32/x3       DONE     0.0      1       1     0       0 6189m  -
+   csewsrm32/x4       DONE     0.0      1       1     0       0 5800m  -
+   csewsrm32/x5       DONE     0.0      1       1     0       0 4979m  -
+   csewsrm32/x6       DONE     0.0      1       1     0       0 5427m  -
+   csewsrm32/x7       DONE     0.0      1       1     0       0 5509m  -
+   csewsrm32/x8       EXITexited139   0.0      1       0     0       0 6972m  600.perlbench_s
+   csewsrm33/x0       DONE     0.0      1       1     0       0 6269m  -
+   csewsrm33/x1       DONE     0.0      1       1     0       0 5992m  -
+   csewsrm33/x2       DONE     0.0      1       1     0       0 6017m  -
+   csewsrm33/x3       EXITexited134   0.0      1       0     0       0 6989m  619.lbm_s
+   csewsrm33/x4       DONE     0.0      1       1     0       0 6444m  -
+   csewsrm33/x5       DONE     0.0      1       1     0       0  473m  -
+   csewsrm33/x6       DONE     0.0      1       1     0       0 6484m  -
+   csewsrm33/x7       DONE     0.0      1       1     0       0 6348m  -
+   csewsrm39/x0       DONE     0.0      1       1     0       1 5618m  -
+   csewsrm45/x0       DONE     0.0      1       1     0       0 3651m  -
+   csewsrm50/x0       DONE     0.0      1       1     0       0 3537m  -
+   csewsrm64/x0       EXITexited143   0.0      1       0     0       0 6081m  500.perlbench_r
+   csewsrm64/x1       DONE     0.0      1       1     0       0 5104m  -
+   csewsrm64/x2       EXITexited143   0.0      1       0     0       0 6079m  521.wrf_r
+   csewsrm64/x3       DONE     0.0      1       1     0       0 4960m  -
+   csewsrm64/x4       DONE     0.0      1       1     0       0 4796m  -
+   csewsrm64/x5       DONE     0.0      1       1     0       0 4925m  -
+   csewsrm64/x6       RUN    103.2      1       0     0       0 6081m  625.x264_s
+   csewsrm64/x7       EXITexited143   0.0      1       0     0       0 6063m  648.exchange2_s
+   csewsrm65/x0       DONE     0.0      1       1     0       0 5380m  -
+   csewsrm65/x1       DONE     0.0      1       1     0       0 5010m  -
+   csewsrm65/x2       RUN    103.2      1       0     0       0 6079m  525.x264_r
+   csewsrm65/x3       DONE     0.0      1       1     0       0 5122m  -
+   csewsrm65/x4       DONE     0.0      1       1     0       0 4700m  -
+   csewsrm65/x5       DONE     0.0      1       1     0       0 5144m  -
+   csewsrm65/x6       RUN    103.2      1       0     0       0 6077m  627.cam4_s
+   csewsrm65/x7       DONE     0.0      1       1     0       0 4956m  -
+   csewsrm66/x0       DONE     0.0      1       1     0       0 4914m  -
+   csewsrm66/x1       DONE     0.0      1       1     0       0 5005m  -
+   csewsrm66/x2       EXITexited143   0.0      1       0     0       0 6079m  526.blender_r
+   csewsrm66/x3       EXITexited143   0.0      1       0     0       0 6080m  548.exchange2_r
+   csewsrm66/x4       EXITexited143   0.0      1       0     0       0 6079m  600.perlbench_s
+   csewsrm66/x5       DONE     0.0      1       1     0       0 4903m  -
+   csewsrm66/x6       DONE     0.0      1       1     0       0 4543m  -
+   csewsrm66/x7       DONE     0.0      1       1     0       0 4900m  -
+   csewsrm8/x0        DONE     0.0      1       1     0       0 5903m  -
+   csewsrm8/x1        DONE     0.0      1       1     0       0 5971m  -
+   csewsrm8/x2        DONE     0.0      1       1     0       0 6364m  -
+   csewsrm8/x3        DONE     0.0      1       1     0       0 6345m  -
+   csewsrm8/x4        DONE     0.0      1       1     0       0 5055m  -
+   csewsrm8/x5        DONE     0.0      1       1     0       0 6473m  -
+   csewsrm8/x6        DONE     0.0      1       1     0       0  723m  -
+== perf  guests alive 7/87 | cpu-hours 797 | PASS 39 FAIL 3 running 7 not-started-yet 0/43
+   PASS : 502r(rm25/main) 503r(rm25/x10) 505r(rm25/x11) 507r(rm25/x12) 508r(rm25/x0) 510r(rm11/x1) 511r(rm25/x2) 519r(rm11/x3) 520r(rm25/x0) 521r(rm11/x4) 523r(rm25/x5) 525r(rm11/x6) 526r(rm12/x0) 527r(rm12/x1) 531r(rm25/x9) 538r(rm25/x10) 541r(rm25/x11) 544r(rm25/x12) 548r(rm34/x0) 549r(rm34/x2) 554r(rm34/x4) 557r(rm34/x6) 602s(rm35/x0) 603s(rm25/x1) 605s(rm35/x1) 607s(rm35/x2) 619s(rm46/x0) 620s(rm25/x2) 621s(rm25/x3) 623s(rm25/x9) 625s(rm35/x5) 628s(rm25/x5) 638s(rm35/x7) 641s(rm34/x1) 644s(rm34/x3) 648s(rm34/x5) 649s(rm25/x6) 654s(rm25/x7) 657s(rm34/x7)
+   FAIL : 500r(rm25/main,rc=0) 600s(rm34/x8,rc=0) 631s(rm25/x11,rc=0)
+   RUN  : 525r@rm25/x6 525r@rm68/x3 625s@rm25/x10 625s@rm68/x8 627s@rm19/x4 627s@rm25/x4 627s@rm69/x8
+   guest              state  cpu-h  starts results panic trouble idle  current
+   csewsrm11/x0       DONE     0.0      1       1     0       0 5939m  -
+   csewsrm11/x1       DONE     0.0      1       1     0       0 6013m  -
+   csewsrm11/x2       DONE     0.0      1       1     0       0 6394m  -
+   csewsrm11/x3       DONE     0.0      1       1     0       0 6346m  -
+   csewsrm11/x4       DONE     0.0      1       1     0       0 5156m  -
+   csewsrm11/x5       DONE     0.0      1       1     0       0 6467m  -
+   csewsrm11/x6       DONE     0.0      1       1     0       0  443m  -
+   csewsrm12/x0       DONE     0.0      1       1     0       0 5024m  -
+   csewsrm12/x1       DONE     0.0      1       1     0       0 4387m  -
+   csewsrm12/x2       DONE     0.0      1       1     0       0 5998m  -
+   csewsrm12/x3       DONE     0.0      1       1     0       0 6477m  -
+   csewsrm12/x4       DONE     0.0      1       1     0       0 6163m  -
+   csewsrm12/x5       DONE     0.0      1       1     0       0 6420m  -
+   csewsrm19/x0       DONE     0.0      1       1     0       0 5757m  -
+   csewsrm19/x1       DONE     0.0      1       1     0       0 5773m  -
+   csewsrm19/x2       DONE     0.0      1       1     0       0 5459m  -
+   csewsrm19/x3       DONE     0.0      1       1     0       0 4827m  -
+   csewsrm19/x4       RUN    117.6      1       0     0       0 6920m  627.cam4_s
+   csewsrm19/x5       DONE     0.0      1       1     0       0 5280m  -
+   csewsrm19/x6       DONE     0.0      1       1     0       0 5638m  -
+   csewsrm19/x7       DONE     0.0      1       1     0       0 5662m  -
+   csewsrm25/main     DEAD     0.0      3       2     0       0 4031m  503.bwaves_r
+   csewsrm25/x0       DEAD     0.0      3       2     0       0 3943m  548.exchange2_r
+   csewsrm25/x1       DEAD     0.0      2       1     0       0 5411m  510.parest_r
+   csewsrm25/x2       DEAD     0.0      3       2     0       0 4798m  554.roms_r
+   csewsrm25/x3       DEAD     0.0      2       1     0       0 3890m  519.lbm_r
+   csewsrm25/x4       RUN    123.2      1       0     0       0 7174m  627.cam4_s
+   csewsrm25/x5       DEAD     0.0      3       2     0       0 4462m  602.gcc_s
+   csewsrm25/x6       RUN    123.2      2       1     0       0 5067m  525.x264_r
+   csewsrm25/x7       DEAD     0.0      2       1     0       0 5452m  526.blender_r
+   csewsrm25/x8       DEAD     0.0      2       1     0       0 4237m  527.cam4_r
+   csewsrm25/x9       DONE     0.0      3       3     0       0 4152m  -
+   csewsrm25/x10      RUN    123.2      3       2     0       0 4615m  625.x264_s
+   csewsrm25/x11      DONE     0.0      3       3     0       0 3638m  -
+   csewsrm25/x12      DEAD     0.0      3       2     0       0 4044m  638.imagick_s
+   csewsrm34/x0       DONE     0.0      1       1     0       0 5104m  -
+   csewsrm34/x1       DONE     0.0      1       1     0       0 5982m  -
+   csewsrm34/x2       DONE     0.0      1       1     0       0 5637m  -
+   csewsrm34/x3       DONE     0.0      1       1     0       0 6210m  -
+   csewsrm34/x4       DONE     0.0      1       1     0       0 5880m  -
+   csewsrm34/x5       DONE     0.0      1       1     0       0 5153m  -
+   csewsrm34/x6       DONE     0.0      1       1     0       0 5596m  -
+   csewsrm34/x7       DONE     0.0      1       1     0       0 5436m  -
+   csewsrm34/x8       DONE     0.0      1       1     0       0 5074m  -
+   csewsrm35/x0       DONE     0.0      1       1     0       0 6213m  -
+   csewsrm35/x1       DONE     0.0      1       1     0       0 6041m  -
+   csewsrm35/x2       DONE     0.0      1       1     0       0 5989m  -
+   csewsrm35/x3       EXITexited134   0.0      1       0     0       1 6698m  619.lbm_s
+   csewsrm35/x4       DONE     0.0      1       1     0       0 6416m  -
+   csewsrm35/x5       DONE     0.0      1       1     0       0  489m  -
+   csewsrm35/x6       DONE     0.0      1       1     0       0 6476m  -
+   csewsrm35/x7       DONE     0.0      1       1     0       0 6348m  -
+   csewsrm40/x0       EXITexited134   0.0      1       0     0       0 6392m  631.deepsjeng_s
+   csewsrm46/x0       DONE     0.0      1       1     0       0 4123m  -
+   csewsrm51/x0       DONE     0.0      1       1     0       0 3665m  -
+   csewsrm68/x0       EXITexited143   0.0      1       0     0       0 6053m  500.perlbench_r
+   csewsrm68/x1       DONE     0.0      1       1     0       0 4781m  -
+   csewsrm68/x2       DONE     0.0      1       1     0       0 4731m  -
+   csewsrm68/x3       RUN    103.1      1       0     0       0 6041m  525.x264_r
+   csewsrm68/x4       DONE     0.0      1       1     0       0 4712m  -
+   csewsrm68/x5       DONE     0.0      1       1     0       0 4637m  -
+   csewsrm68/x6       EXITexited143   0.0      1       0     0       0 6025m  600.perlbench_s
+   csewsrm68/x7       DONE     0.0      1       1     0       0 4631m  -
+   csewsrm68/x8       RUN    103.1      1       0     0       0 6042m  625.x264_s
+   csewsrm68/x9       DONE     0.0      1       1     0       0 4473m  -
+   csewsrm68/x10      DONE     0.0      1       1     0       0 4665m  -
+   csewsrm69/x0       DONE     0.0      1       1     0       0 5225m  -
+   csewsrm69/x1       DONE     0.0      1       1     0       0 4845m  -
+   csewsrm69/x2       DONE     0.0      1       1     0       0 4635m  -
+   csewsrm69/x3       EXITexited143   0.0      1       0     0       0 6048m  526.blender_r
+   csewsrm69/x4       DONE     0.0      1       1     0       0 4980m  -
+   csewsrm69/x5       DONE     0.0      1       1     0       0 4760m  -
+   csewsrm69/x6       EXITexited143   0.0      1       0     0       0 6050m  603.bwaves_s
+   csewsrm69/x7       DONE     0.0      1       1     0       0 4680m  -
+   csewsrm69/x8       RUN    103.1      1       0     0       0 6049m  627.cam4_s
+   csewsrm69/x9       EXITexited143   0.0      1       0     0       0 6036m  648.exchange2_s
+   csewsrm69/x10      EXITexited143   0.0      1       0     0       0 6047m  657.xz_s
+   csewsrm70/x0       DONE     0.0      1       1     0       0 4873m  -
+   csewsrm70/x1       DONE     0.0      1       1     0       0 4813m  -
+   csewsrm70/x2       EXITexited143   0.0      1       0     0       0 6064m  521.wrf_r
+   csewsrm70/x3       DONE     0.0      1       1     0       0 3037m  -
+   csewsrm70/x4       EXITexited143   0.0      1       0     0       0 6064m  548.exchange2_r
+   csewsrm70/x5       DONE     0.0      1       1     0       0 4477m  -
+   csewsrm70/x6       DONE     0.0      1       1     0       0 4941m  -
+   csewsrm70/x7       EXITexited143   0.0      1       0     0       0 5993m  621.wrf_s
+   csewsrm70/x8       DONE     0.0      1       1     0       0 4440m  -
+   csewsrm70/x9       DONE     0.0      1       1     0       0 4759m  -
