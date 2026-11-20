@@ -18,12 +18,11 @@ Final report: [`docs/project/CS622_Final_Report.pdf`](docs/project/CS622_Final_R
 | `gem5/` | The modified gem5 tree. Design sources are `src/arch/x86/tlb.{cc,hh}.<design>.fixed` |
 | `robustness/` | Everything used to test and run the designs: `scripts/` (build, run, collect, plot), `patches/` (design generators, checkers), `tests/` (stress tests, benchmark drivers) |
 | `results_final/` | Collected results as CSV, every report figure, and `numbers.txt` |
-| `fullrun_campaign/` | The full-run SPEC campaign (five lanes, timing CPU end to end): launch and monitoring `scripts/`, `debugging/` logs (i8237, 619.lbm_s, x87/perlbench), `x87_tests/`, run `logs/`, `status/` snapshots and per-host `results/` |
+| `fullrun_campaign/` | The full-run SPEC campaign (five lanes, timing CPU end to end): launch and monitoring `scripts/`, `x87_tests/`, run `logs/`, `status/` snapshots and per-host `results/` |
 | `docs/project/` | Final report PDF, mid-review document, project scope |
 | `docs/ARTIFACT_README.md` | Artifact guide from the submission: features, test scenarios, getting started, detailed evaluation |
 | `docs/design_reports/` | Per-design robustness reports and result logs, the implementation audit, background notes |
 | `docs/papers/` | The CoLT (MICRO 2012) and Perforated Page (ISCA 2020) papers |
-| `context.md` | Running log of the windowed full-system campaign, in time order |
 
 Not in git (see `.gitignore`): `fs_results/` (mirror of the lab runs),
 `fs_assets_backup/` (built inputs), gem5 build output.

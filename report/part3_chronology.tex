@@ -189,7 +189,7 @@ The guest prints marker lines such as \texttt{SPEC\_START} and \texttt{SPEC\_RES
 
 How the full-run lanes were managed:
 \begin{itemize}
-    \item The lanes followed a written protocol (\texttt{robustness/ORCHESTRATION\_PROTOCOL.md}): one owner per lane, and errors handed over through shared files.
+    \item The lanes followed a written protocol: one owner per lane, and errors handed over through shared files.
     \item Each lane had a supervisor script in its own terminal session.
     \item When a run failed, the supervisor wrote an incident file, marked the lane as blocked, and waited.
     \item A run was restarted by adding a line \texttt{[ADMIN <time>] RESUME <lane>: <reason>} to a shared file.
