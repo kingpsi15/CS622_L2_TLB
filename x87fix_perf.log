@@ -1,0 +1,20 @@
+csewsrm25 15:49 lane=perf tree=/tmp/sahilag24/CS622_L2_TLB/gem5-perf-isa
+movfp lines: 22  with dataSize=8: 22
+ [     CXX] src/base/date.cc -> X86/base/date.o
+ [    LINK]  -> X86/gem5.opt
+scons: done building targets.
+*** Summary of Warnings ***
+Warning: Detected GCC version 15.2.0 is not officially supported.
+         gem5 supports GCC v11 up to v14.2.
+Warning: You can get a 12% performance improvement by installing tcmalloc
+         (libgoogle-perftools-dev package on Ubuntu or RedHat).
+Warning: Header file <capstone/capstone.h> not found.
+         This host has no capstone library installed.
+Warning: While checking protoc version: [Errno 2] No such file or directory:
+         'protoc'
+Warning: Protocol buffer compiler (protoc) not found.
+         Please install protobuf-compiler for tracing support.
+Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support.
+BUILD DONE 15:55
+-rwxr-xr-x 1 sahilag24 btech 948708808 17-15:55 build/X86/gem5.opt
+-rwxr-xr-x 1 sahilag24 btech 948733232 17-15:49 build/X86/gem5.opt.pre_x87

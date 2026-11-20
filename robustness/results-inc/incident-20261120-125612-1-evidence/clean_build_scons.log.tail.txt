@@ -1,0 +1,120 @@
+ [     CXX] X86/debug/ACPI.cc -> .o
+ [     CXX] X86/arch/x86/generated/decoder.cc -> .o
+ [     CXX] X86/arch/x86/generated/inst-constrs.cc -> .o
+ [     CXX] X86/arch/x86/generated/generic_cpu_exec.cc -> .o
+ [     CXX] src/arch/x86/linux/fs_workload.cc -> X86/arch/x86/linux/fs_workload.o
+ [     CXX] src/arch/x86/linux/se_workload.cc -> X86/arch/x86/linux/se_workload.o
+ [     CXX] src/arch/x86/linux/syscalls.cc -> X86/arch/x86/linux/syscalls.o
+ [     CXX] src/arch/x86/linux/syscall_tbl32.cc -> X86/arch/x86/linux/syscall_tbl32.o
+ [     CXX] src/arch/x86/linux/syscall_tbl64.cc -> X86/arch/x86/linux/syscall_tbl64.o
+ [     CXX] X86/arch/x86/kvm/X86KvmCPU.py.cc -> .o
+ [SO Param] m5.objects.X86KvmCPU, X86KvmCPU -> X86/python/_m5/param_X86KvmCPU.cc
+ [SO Param] m5.objects.X86KvmCPU, X86KvmCPU -> X86/params/X86KvmCPU.hh
+ [     CXX] X86/python/_m5/param_X86KvmCPU.cc -> .o
+ [     CXX] src/arch/x86/kvm/x86_cpu.cc -> X86/arch/x86/kvm/x86_cpu.o
+ [     CXX] src/arch/x86/regs/float.cc -> X86/arch/x86/regs/float.o
+ [     CXX] src/arch/x86/regs/int.cc -> X86/arch/x86/regs/int.o
+ [     CXX] src/arch/x86/regs/msr.cc -> X86/arch/x86/regs/msr.o
+ [     CXX] X86/arch/x86/bios/E820.py.cc -> .o
+ [SO Param] m5.objects.E820, X86E820Entry -> X86/python/_m5/param_X86E820Entry.cc
+ [     CXX] X86/python/_m5/param_X86E820Entry.cc -> .o
+ [SO Param] m5.objects.E820, X86E820Table -> X86/python/_m5/param_X86E820Table.cc
+ [     CXX] X86/python/_m5/param_X86E820Table.cc -> .o
+ [     CXX] src/arch/x86/bios/e820.cc -> X86/arch/x86/bios/e820.o
+ [     CXX] X86/arch/x86/bios/SMBios.py.cc -> .o
+ [SO Param] m5.objects.SMBios, X86SMBiosSMBiosStructure -> X86/python/_m5/param_X86SMBiosSMBiosStructure.cc
+ [     CXX] X86/python/_m5/param_X86SMBiosSMBiosStructure.cc -> .o
+ [SO Param] m5.objects.SMBios, X86SMBiosBiosInformation -> X86/python/_m5/param_X86SMBiosBiosInformation.cc
+ [SO Param] m5.objects.SMBios, X86SMBiosBiosInformation -> X86/params/X86SMBiosBiosInformation.hh
+ [     CXX] X86/python/_m5/param_X86SMBiosBiosInformation.cc -> .o
+ [SO Param] m5.objects.SMBios, X86SMBiosSMBiosTable -> X86/python/_m5/param_X86SMBiosSMBiosTable.cc
+ [     CXX] X86/python/_m5/param_X86SMBiosSMBiosTable.cc -> .o
+ [ENUM STR] m5.objects.SMBios, Characteristic -> X86/enums/Characteristic.cc
+ [     CXX] X86/enums/Characteristic.cc -> .o
+ [ENUM STR] m5.objects.SMBios, ExtCharacteristic -> X86/enums/ExtCharacteristic.cc
+ [     CXX] X86/enums/ExtCharacteristic.cc -> .o
+ [     CXX] src/arch/x86/bios/smbios.cc -> X86/arch/x86/bios/smbios.o
+ [     CXX] X86/arch/x86/bios/IntelMP.py.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPFloatingPointer -> X86/python/_m5/param_X86IntelMPFloatingPointer.cc
+ [     CXX] X86/python/_m5/param_X86IntelMPFloatingPointer.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPConfigTable -> X86/python/_m5/param_X86IntelMPConfigTable.cc
+ [     CXX] X86/python/_m5/param_X86IntelMPConfigTable.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPBaseConfigEntry -> X86/python/_m5/param_X86IntelMPBaseConfigEntry.cc
+ [     CXX] X86/python/_m5/param_X86IntelMPBaseConfigEntry.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPExtConfigEntry -> X86/python/_m5/param_X86IntelMPExtConfigEntry.cc
+ [     CXX] X86/python/_m5/param_X86IntelMPExtConfigEntry.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPProcessor -> X86/python/_m5/param_X86IntelMPProcessor.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPProcessor -> X86/params/X86IntelMPProcessor.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPProcessor.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPBus -> X86/python/_m5/param_X86IntelMPBus.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPBus -> X86/params/X86IntelMPBus.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPBus.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPIOAPIC -> X86/python/_m5/param_X86IntelMPIOAPIC.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPIOAPIC -> X86/params/X86IntelMPIOAPIC.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPIOAPIC.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPIOIntAssignment -> X86/python/_m5/param_X86IntelMPIOIntAssignment.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPIOIntAssignment -> X86/params/X86IntelMPIOIntAssignment.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPIOIntAssignment.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPLocalIntAssignment -> X86/python/_m5/param_X86IntelMPLocalIntAssignment.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPLocalIntAssignment -> X86/params/X86IntelMPLocalIntAssignment.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPLocalIntAssignment.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPAddrSpaceMapping -> X86/python/_m5/param_X86IntelMPAddrSpaceMapping.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPAddrSpaceMapping -> X86/params/X86IntelMPAddrSpaceMapping.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPAddrSpaceMapping.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPBusHierarchy -> X86/python/_m5/param_X86IntelMPBusHierarchy.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPBusHierarchy -> X86/params/X86IntelMPBusHierarchy.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPBusHierarchy.cc -> .o
+ [SO Param] m5.objects.IntelMP, X86IntelMPCompatAddrSpaceMod -> X86/python/_m5/param_X86IntelMPCompatAddrSpaceMod.cc
+ [SO Param] m5.objects.IntelMP, X86IntelMPCompatAddrSpaceMod -> X86/params/X86IntelMPCompatAddrSpaceMod.hh
+ [     CXX] X86/python/_m5/param_X86IntelMPCompatAddrSpaceMod.cc -> .o
+ [ENUM STR] m5.objects.IntelMP, X86IntelMPInterruptType -> X86/enums/X86IntelMPInterruptType.cc
+ [     CXX] X86/enums/X86IntelMPInterruptType.cc -> .o
+ [ENUM STR] m5.objects.IntelMP, X86IntelMPPolarity -> X86/enums/X86IntelMPPolarity.cc
+ [     CXX] X86/enums/X86IntelMPPolarity.cc -> .o
+ [ENUM STR] m5.objects.IntelMP, X86IntelMPTriggerMode -> X86/enums/X86IntelMPTriggerMode.cc
+ [     CXX] X86/enums/X86IntelMPTriggerMode.cc -> .o
+ [ENUM STR] m5.objects.IntelMP, X86IntelMPAddressType -> X86/enums/X86IntelMPAddressType.cc
+ [     CXX] X86/enums/X86IntelMPAddressType.cc -> .o
+ [ENUM STR] m5.objects.IntelMP, X86IntelMPRangeList -> X86/enums/X86IntelMPRangeList.cc
+ [     CXX] X86/enums/X86IntelMPRangeList.cc -> .o
+ [     CXX] src/arch/x86/bios/intelmp.cc -> X86/arch/x86/bios/intelmp.o
+ [     CXX] X86/arch/x86/bios/ACPI.py.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPISysDescTable -> X86/python/_m5/param_X86ACPISysDescTable.cc
+ [     CXX] X86/python/_m5/param_X86ACPISysDescTable.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIRSDT -> X86/python/_m5/param_X86ACPIRSDT.cc
+ [     CXX] X86/python/_m5/param_X86ACPIRSDT.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIXSDT -> X86/python/_m5/param_X86ACPIXSDT.cc
+ [     CXX] X86/python/_m5/param_X86ACPIXSDT.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadtRecord -> X86/python/_m5/param_X86ACPIMadtRecord.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadtRecord.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadt -> X86/python/_m5/param_X86ACPIMadt.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadt.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadtLAPIC -> X86/python/_m5/param_X86ACPIMadtLAPIC.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadtLAPIC.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadtIOAPIC -> X86/python/_m5/param_X86ACPIMadtIOAPIC.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadtIOAPIC.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadtIntSourceOverride -> X86/python/_m5/param_X86ACPIMadtIntSourceOverride.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadtIntSourceOverride.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadtNMI -> X86/python/_m5/param_X86ACPIMadtNMI.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadtNMI.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIMadtLAPICOverride -> X86/python/_m5/param_X86ACPIMadtLAPICOverride.cc
+ [     CXX] X86/python/_m5/param_X86ACPIMadtLAPICOverride.cc -> .o
+ [SO Param] m5.objects.ACPI, X86ACPIRSDP -> X86/python/_m5/param_X86ACPIRSDP.cc
+ [     CXX] X86/python/_m5/param_X86ACPIRSDP.cc -> .o
+ [     CXX] src/arch/x86/bios/acpi.cc -> X86/arch/x86/bios/acpi.o
+ [     CXX] src/arch/x86/bare_metal/workload.cc -> X86/arch/x86/bare_metal/workload.o
+ [     CXX] X86/python/m5/defines.py.cc -> .o
+ [     CXX] X86/python/m5/info.py.cc -> .o
+ [     CXX] src/base/date.cc -> X86/base/date.o
+ [    LINK]  -> X86/gem5.opt
+scons: done building targets.
+*** Summary of Warnings ***
+Warning: You can get a 12% performance improvement by installing tcmalloc
+         (libgoogle-perftools-dev package on Ubuntu or RedHat).
+Warning: Header file <capstone/capstone.h> not found.
+         This host has no capstone library installed.
+Warning: While checking protoc version: [Errno 2] No such file or directory:
+         'protoc'
+Warning: Protocol buffer compiler (protoc) not found.
+         Please install protobuf-compiler for tracing support.
+Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support.

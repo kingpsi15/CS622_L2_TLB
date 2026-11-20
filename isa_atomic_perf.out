@@ -1,0 +1,5 @@
+10:51:12 copying
+10:51:44 building disk
+slice 0 600.perlbench_s
+10:52:32 launching 1 guests
+gem5 processes: 2
