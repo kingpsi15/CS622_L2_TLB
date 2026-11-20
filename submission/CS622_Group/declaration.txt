@@ -16,8 +16,8 @@ Attributions:
   STREAM (https://github.com/jeffhammond/STREAM), memcached 1.6.29 and mc-crusher
   (https://memcached.org, https://github.com/memcached/mc-crusher), libevent 2.1.12,
   Redis 7.2.5 (https://redis.io): downloaded and built unmodified by artifact/scripts/build_stdbench.sh.
-- AI assistance: A large language model was used as a coding and writing assistant. It helped write and debug
-  the build, run, monitoring and analysis scripts, helped diagnose gem5 problems (including the i8237
-  panic, the page-walker write and the x87 fcomip/movfp bugs), processed the result files into tables
-  and plots, and helped draft and edit the report and slides. The group members ran all experiments
-  on the lab machines and checked the results reported.
+- AI assistance: Our group, Aditya Sai Vemparala (240068), Sahil Agarwal (240902) and Abhinav Singh
+  Baghel (241110004), who have taken up the project L2 TLB Support for Sparse Huge Pages, would like to
+  declare that we have taken the aid of Large Language Models (LLM) for generating scripts, code, and
+  refining writing, however we have ensured the correctness of the same by regular manual review. The
+  group members ran all experiments on the lab machines and checked the results reported.

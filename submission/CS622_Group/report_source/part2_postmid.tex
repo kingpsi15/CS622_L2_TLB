@@ -28,7 +28,7 @@ After the mid-review we wanted to check whether the designs from Part~\ref{part:
     \item Performance study on TLB-intensive workloads, including the graph and key-value store benchmarks suggested by the instructor, with CoLT-FA as the main focus.
 \end{enumerate}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.45cm and 0.5cm,
@@ -49,7 +49,7 @@ After the mid-review we wanted to check whether the designs from Part~\ref{part:
 
 Table~\ref{tab:designs} lists the six designs evaluated in this phase. All of them keep the 64-entry L1 TLB and the 128-set, 4-way L2 TLB with XOR-7 indexing from Part~\ref{part:mid}, unless a design changes the L2 itself.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{The six L2 TLB designs evaluated in the second phase.}
@@ -80,7 +80,7 @@ The first task was to read every TLB design from Part~\ref{part:mid} line by lin
 \end{itemize}
 Table~\ref{tab:audit} lists the findings.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Main findings of the implementation audit.}
@@ -136,7 +136,7 @@ This is why the second phase moved to full-system simulation (Section~\ref{sec:f
     \item Because of this, the first two attempts at the checkpoint fix failed on restore. The third attempt put all L2 values in their own section.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Inclusive design: issues found and fixed.}
@@ -175,7 +175,7 @@ This is why the second phase moved to full-system simulation (Section~\ref{sec:f
     \item New counters for issued, useful and unused prefetches.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Agile / NaiveFP design: issues found and fixed.}
@@ -201,7 +201,7 @@ This is why the second phase moved to full-system simulation (Section~\ref{sec:f
     \item Issue 4: every L2 hit returned fixed permissions (user access allowed, execution allowed). In full-system mode a user program could have been given access to a kernel page.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Perforated Pages design: issues found and fixed.}
@@ -276,7 +276,7 @@ Table~\ref{tab:se_matrix} gives the SE-mode results.
     \end{itemize}
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{SE-mode correctness results. "Same on stock" means every failing job also fails identically on unmodified \texttt{gem5}.}
@@ -306,7 +306,7 @@ For the Inclusive design:
 \subsection{Design Parameter Sweeps}
 Because the fixed designs take their parameters at runtime, each design was swept with a single binary. All variants kept 0 correctness errors. Tables~\ref{tab:sweep_inc} to~\ref{tab:sweep_perf} show selected rows.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Inclusive design: selected variants (adversarial set-conflict benchmark, Atomic CPU). L2 hits and back-invalidations of the L1 caused by L2 evictions.}
@@ -326,7 +326,7 @@ Random replacement & 128$\times$4 & XOR-7 & random & 0 & 3,151 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Exclusive design: selected variants. TLB misses of the design against stock \texttt{gem5} (36,348 misses).}
@@ -347,7 +347,7 @@ Smaller L1 & \texttt{EXCL\_L1\_SIZE=32} & 9,260 & $-74.5\%$ \\
 \end{tabular}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{NINE design: selected variants (L1 misses and L2 hits on the same workload).}
@@ -373,7 +373,7 @@ Random replacement & \texttt{NINE\_L2\_REPL=2} & 512 & 47,832 & 3,519 \\
     \item At a fixed size, the hash and replacement choice changed L2 hits less.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Agile prefetcher: selected variants (2,048 pages, 3 passes). Walks, issued prefetches, useful prefetches, and prefetches evicted unused (pollution).}
@@ -399,7 +399,7 @@ random & degree 8 & 8,767 & 422,793 & 1,601 & 289,525 \\
     \item On the random pattern most prefetches were never used.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Perforated Pages: selected variants out of 31 (total L1 misses, one knob changed at a time).}
@@ -456,7 +456,7 @@ The changes:
 
 Figure~\ref{fig:colt_flow} shows the new flow.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.5cm and 0.6cm,
@@ -501,7 +501,7 @@ Two choices made on purpose:
     \item Table~\ref{tab:colt_se} shows how often the buffer was used on the Atomic CPU.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{CoLT-FA SE-mode verification (Atomic CPU). CoLT hits are L1 misses answered by the buffer; runs inserted are coalesced entries created.}
@@ -531,7 +531,7 @@ Two choices made on purpose:
 \subsection{Simulated System}
 Table~\ref{tab:fs_setup} lists the simulated system. The configuration script \texttt{robustness/scripts/fs\_run.py} uses the \texttt{gem5} standard library \texttt{X86Board}.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Full-system configuration.}
@@ -561,7 +561,7 @@ Control & \texttt{gem5-bridge} hypercalls from the guest to the simulator \\
 \end{itemize}
 Figure~\ref{fig:window} shows the sequence.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.35cm and 0.35cm,
@@ -579,7 +579,7 @@ Figure~\ref{fig:window} shows the sequence.
 \label{fig:window}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Window settings used for each experiment.}
@@ -611,7 +611,7 @@ If a program ends before the window ends, the statistics up to that point are ke
     \item Results were copied back to the laptop every 30 minutes by \texttt{sync\_fs\_results.sh}.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.6cm and 1.0cm,
@@ -631,7 +631,7 @@ If a program ends before the window ends, the statistics up to that point are ke
 \subsection{Problems Met During the Campaign}
 Table~\ref{tab:campaign_issues} lists the problems that affected the runs and what was done. Some of them change how the results should be read. Part~\ref{part:chron} gives the full story of each.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Problems met during the full-system campaign.}
@@ -669,14 +669,14 @@ Speed of one \texttt{gem5} process:
 \end{itemize}
 Figure~\ref{fig:spec_outcome} and Table~\ref{tab:spec_outcome} give the results.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/spec_fs_outcome.png}
 \caption{Outcome of the 43 SPEC CPU2017 benchmarks (test inputs) on each design in full-system mode.}
 \label{fig:spec_outcome}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Full-system SPEC CPU2017 results (test inputs, out of 43).}
@@ -695,7 +695,7 @@ CoLT-FA & 36 & 2 & 1 & 4 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.45\textwidth]{figures/spec_fs_pie.png}
 \caption{Outcome of all 258 benchmark runs (6 designs $\times$ 43).}
@@ -728,7 +728,7 @@ CoLT-FA & 36 & 2 & 1 & 4 \\
     \item 619.lbm\_s is an OpenMP program and was run with one thread (\texttt{OMP\_NUM\_THREADS=1}).
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{SE-mode results with 8 GiB of memory.}
@@ -755,7 +755,7 @@ A second full-system campaign ran five designs with the timing CPU for the whole
     \item CoLT-FA was not part of this campaign.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Full-run campaign, SPEC CPU2017 test inputs (out of 43). Full list in \texttt{results\_final/fullrun\_spec\_matrix.csv}.}
@@ -779,7 +779,7 @@ Since the full-run campaign used the timing CPU for whole benchmarks, its runs a
     \item Spot check: the cycle counts for 605.mcf\_s and 507.cactuBSSN\_r match the raw \texttt{stats.txt} files exactly.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Full-run campaign: speedup over Inclusive in simulated cycles, SPEC CPU2017 test inputs, 43 benchmarks.}
@@ -817,7 +817,7 @@ Figure~\ref{fig:spec_pressure} shows page walks per 1000 instructions on the Inc
     \item \textbf{So the SPEC test-input runs are mainly a correctness result.} The performance comparison in Section~\ref{sec:perf} uses workloads with more TLB misses.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/spec_test_pressure.png}
 \caption{Page walks per 1000 instructions for the SPEC CPU2017 test inputs (Inclusive design, 200M-instruction window).}
@@ -837,7 +837,7 @@ Figure~\ref{fig:spec_pressure} shows page walks per 1000 instructions on the Inc
     \item The memcached load generator (\texttt{mc-crusher}) does not stop by itself, so a small script (\texttt{run\_memcached.sh}) watches memcached's counters and stops each phase.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{TLB-intensive workloads. Native data-TLB misses per 1000 instructions were measured with \texttt{perf} on a lab machine (Intel, transparent huge pages in \texttt{madvise} mode).}
@@ -878,14 +878,14 @@ The metric is \emph{page walks per 1000 instructions} in the measurement window:
 \subsection{All Designs With Huge Pages Off}
 Figure~\ref{fig:thpoff_all} and Table~\ref{tab:thpoff_all} compare all designs with transparent huge pages turned off in the guest, so every page is 4KB.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/thp_off_all_designs.png}
 \caption{Page walks per 1000 instructions with transparent huge pages off (log scale).}
 \label{fig:thpoff_all}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Page walks per 1000 instructions, transparent huge pages off. "Perf." is Perforated Pages as built and "Strict" is the strict variant from Section~\ref{sec:perf_strict}; a dash means not run.}
@@ -918,14 +918,14 @@ STREAM & 0.414 & 0.399 & 0.400 & 0.399 & 0.400 & 0.399 & 0.400 \\
 \subsection{CoLT-FA Compared With NINE}
 CoLT-FA is built on NINE, and the same binary runs both. Figure~\ref{fig:colt_vs_nine} shows the change in page walks with huge pages off.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/colt_vs_nine_thpoff.png}
 \caption{Change in page walks of CoLT-FA (8 entries) compared with NINE, transparent huge pages off.}
 \label{fig:colt_vs_nine}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{CoLT-FA (8 entries) against NINE, transparent huge pages off (page walks per 1000 instructions).}
@@ -961,7 +961,7 @@ STREAM & 0.400 & 0.400 & $0.0\%$ \\
     \item Most of the reduction already comes with 8 entries.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/colt_size.png}
 \caption{NINE, CoLT-FA with 8 entries and CoLT-FA with 32 entries, transparent huge pages off.}
@@ -970,7 +970,7 @@ STREAM & 0.400 & 0.400 & $0.0\%$ \\
 
 \paragraph{With huge pages on.} Following the same-machine rule, each NINE and CoLT-FA pair comes from one machine (Table~\ref{tab:colt_thpon} and Figure~\ref{fig:colt_thpon}).
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{CoLT-FA (8 entries) against NINE with transparent huge pages on, each pair from the same machine (page walks per 1000 instructions).}
@@ -1002,7 +1002,7 @@ STREAM & csews36 & 0.012 & 0.010 & $-16.7\%$ \\
     \item SPEC reference inputs, same machine and same binary: 79.7\% fewer walks on lbm, 44.3\% on xalancbmk, 21.3\% on omnetpp; mcf almost unchanged ($-1.1\%$).
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{figures/colt_vs_nine_thpon_samehost.png}
 \caption{CoLT-FA against NINE with transparent huge pages on, both runs on the same machine.}
@@ -1020,7 +1020,7 @@ The full-run campaign also ran two benchmark suites on its five designs.
     \item Per-run numbers are in \texttt{results\_final/fullrun\_suites.csv}.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{GAPBS suite in the full-run campaign. Data-TLB misses per 1000 instructions over the whole suite (graph generation included), and simulated time per trial in seconds for four kernels.}
@@ -1038,7 +1038,7 @@ Perforated (as built) & 0.028 & 12.009 & 3.151 & 2.006 & 21.137 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Key-value suite in the full-run campaign. Redis requests per second (simulated time, overall value printed by \texttt{redis-benchmark}) and data-TLB misses per 1000 instructions over the whole suite.}
@@ -1076,7 +1076,7 @@ Figure~\ref{fig:thp_effect} shows NINE with huge pages off and on (same binary, 
     \item CoLT-FA helps most in the other case, when memory ends up in 4KB pages.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/thp_effect_nine.png}
 \caption{NINE with transparent huge pages off and on (same binary, same machine).}
@@ -1091,7 +1091,7 @@ Figure~\ref{fig:thp_effect} shows NINE with huge pages off and on (same binary, 
     \item With real input sizes, mcf (3.360 to 3.695) and omnetpp (2.172 to 2.324) have the most walks, much higher than with test inputs.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{SPEC CPU2017 reference inputs, page walks per 1000 instructions (huge pages on, each design on its own machine).}
@@ -1134,7 +1134,7 @@ To test the design under the paper's rule, we added a strict mode (\texttt{PERF\
     \item The default behaviour is unchanged, so the earlier results can still be reproduced.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Perforated Pages as built and in strict mode, compared with NINE (page walks per 1000 instructions).}

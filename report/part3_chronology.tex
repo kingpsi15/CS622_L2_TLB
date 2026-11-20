@@ -31,7 +31,7 @@ Two full-system campaigns then ran at the same time on the lab machines:
     \item Table~\ref{tab:chr_ledger} (end of this part): every problem in one list.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.35cm and 0.35cm,
@@ -57,7 +57,7 @@ Two full-system campaigns then ran at the same time on the lab machines:
 \label{fig:chr_journey}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[x=1.22cm, y=0.62cm, font=\scriptsize]
 % rows: label, start, end, colour
@@ -87,7 +87,7 @@ Two full-system campaigns then ran at the same time on the lab machines:
 
 Part~\ref{part:mid} covers the first half. Table~\ref{tab:chr_phase1} only lists its steps in order and what each one left open.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Steps of the first half, in order, with the open points each one left.}
@@ -161,7 +161,7 @@ A full-system run needs:
 \end{itemize}
 The guest prints marker lines such as \texttt{SPEC\_START} and \texttt{SPEC\_RESULT} on its serial console, and the host side reads the console file to see what happened. Figure~\ref{fig:chr_guestflow} shows one run.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.3cm,
@@ -199,7 +199,7 @@ How the full-run lanes were managed:
 \subsection{Failures During Bring-Up, in Order}
 Table~\ref{tab:chr_bringup} lists the problems found before the first complete launch. Each one stopped every lane, and each took at least one boot (1.5 to 2 hours) to show up.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Problems found while bringing up the full-system runs.}
@@ -220,7 +220,7 @@ Four lanes kept running old guest scripts. & Generated scripts were not refreshe
 
 Before trusting any \texttt{gem5} result, the whole SPEC test set was run natively on a lab machine with the same binaries and configuration: 35 passed and 8 failed (Table~\ref{tab:chr_native}).
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Benchmarks that failed natively with our first SPEC configuration.}
@@ -280,7 +280,7 @@ Program aborted at tick 14282334490878
 \end{itemize}
 Figure~\ref{fig:chr_i8237} shows the diagnosis.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.4cm and 0.6cm,
@@ -333,7 +333,7 @@ Figure~\ref{fig:chr_i8237} shows the diagnosis.
 \end{itemize}
 Figure~\ref{fig:chr_extras} shows the layout.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.35cm and 0.35cm,
@@ -381,7 +381,7 @@ Figure~\ref{fig:chr_extras} shows the layout.
     \item These runs used the timing CPU for the whole benchmark, so they are a separate check of five designs next to the windowed campaign.
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{Full-run campaign, final result (SPEC test inputs, timing CPU for the whole benchmark).}
@@ -427,7 +427,7 @@ The next sections describe how perlbench, 619.lbm\_s and 631.deepsjeng\_s were m
 \end{itemize}
 Figure~\ref{fig:chr_window} shows one windowed run.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.5cm and 0.55cm,
@@ -475,7 +475,7 @@ Figure~\ref{fig:chr_window} shows one windowed run.
 
 619.lbm\_s crashed \texttt{gem5} in both campaigns, in different ways. Figure~\ref{fig:chr_lbm} shows the chain of failures and changes.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.45cm and 0.5cm,
@@ -552,7 +552,7 @@ board.cache_hierarchy.l1d-cache-0 is passing a Modified line through WriteReq
 
 \paragraph{Why 3 GiB.} On a PC, the addresses just below 4GB are used by devices. Memory above 3GB has to be placed above 4GB and described to the kernel in the E820 memory map (Figure~\ref{fig:chr_e820}). The board used by both campaigns only described memory below the device range.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[x=1cm, y=0.5cm, font=\scriptsize]
 \draw[fill=green!15] (0,0) rectangle (6,1); \node at (3,0.5) {RAM, 0 to 3GB (E820 entry, always present)};
@@ -584,7 +584,7 @@ board.cache_hierarchy.l1d-cache-0 is passing a Modified line through WriteReq
 
 This took the most time of all the investigations. Both 500.perlbench\_r and 600.perlbench\_s failed on every design in both campaigns, so the cause was not one TLB design. Figure~\ref{fig:chr_perl} shows the order in which possible causes were ruled out.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.32cm and 0.5cm,
@@ -651,7 +651,7 @@ fldz; fld %st(0); fldt 0x30(%rsp); fmul %st(2),%st; fucomip %st(1),%st; fstp %st
 \end{lstlisting}
 A series of small C programs, each with inline assembly and each changing one thing, was run natively and in \texttt{gem5}. Table~\ref{tab:chr_x87tests} lists them. Several hypotheses were made and dropped on the way: that \texttt{fstp} clobbers the zero flag, that a missing \texttt{fstl} is the cause, that \texttt{fxch} is wrong, that conversion to and from 80-bit values is wrong, and that \texttt{fstpt} leaves bad state. Two of our own readings were also wrong for a while: one test that seemed to pass was not a real test, because \texttt{1.0L} itself read as zero in \texttt{gem5}, and ``process state is ruled out'' was withdrawn when a failing test was found to run after other x87 code in the same process.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \small
 \caption{The x87 test programs used to find the second cause.}
@@ -681,7 +681,7 @@ S0 to S4 & Constants and single loads & \texttt{fld1} loads 0 and \texttt{flds 2
     \item This is why earlier x87 code changed later results, and why constants such as 1.0 and 2.0, whose low 32 bits are zero, loaded as zero or as an old value.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[x=0.11cm, y=0.55cm, font=\scriptsize]
 \node[anchor=east] at (-2,2.5) {old slot (1.0)};
@@ -790,7 +790,7 @@ The ten guests then ran with no panics, and \textbf{both 500.perlbench\_r and 60
 \end{itemize}
 Figure~\ref{fig:chr_samehost} shows the rule.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   node distance=0.4cm and 0.6cm,
