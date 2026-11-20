@@ -99,3 +99,10 @@
 [2026-11-15 15:13:45] [csews20] [inc] installed tlb.cc.inc.fixed and tlb.hh.inc.fixed; restored executable bits on shebang scripts in the temporary tree
 [2026-11-15 15:17:30] [csews20] [inc] PASS: inc build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-inc/build/X86/gem5.opt
 [2026-11-15 15:17:30] [csews20] [inc] starting the lane's full-system SPEC CPU2017 test run
+[2026-11-20 12:56:12] [csews20] [inc] starting single-lane clean build; source=/users/btech/sahilag24/CS622_L2_TLB/gem5; worktree=/tmp/sahilag24/CS622_L2_TLB/gem5-inc
+[2026-11-20 12:56:12] [csews20] [inc] installing SCons 4.8.1 from the repository archive (offline)
+[2026-11-20 12:56:12] [csews20] [inc] using SCons 4.8.1 from /tmp/sahilag24/CS622_L2_TLB/scons
+[2026-11-20 12:56:12] [csews20] [inc] creating fresh temporary checkout
+[2026-11-20 12:56:47] [csews20] [inc] installed tlb.cc.inc.fixed and tlb.hh.inc.fixed; restored executable bits on shebang scripts in the temporary tree
+[2026-11-20 14:04:51] [csews20] [inc] PASS: inc build and smoke test; binary=/tmp/sahilag24/CS622_L2_TLB/gem5-inc/build/X86/gem5.opt
+[2026-11-20 14:04:51] [csews20] [inc] starting the lane's full-system SPEC CPU2017 test run

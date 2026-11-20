@@ -1,0 +1,53 @@
+csewsrm22 15:49 lane=excl tree=/tmp/sahilag24/CS622_L2_TLB/gem5-excl-isa
+movfp lines: 22  with dataSize=8: 22
+ [     CXX] src/base/date.cc -> X86/base/date.o
+ [    LINK]  -> X86/gem5.opt
+scons: done building targets.
+*** Summary of Warnings ***
+Warning: Detected GCC version 15.2.0 is not officially supported.
+         gem5 supports GCC v11 up to v14.2.
+Warning: You can get a 12% performance improvement by installing tcmalloc
+         (libgoogle-perftools-dev package on Ubuntu or RedHat).
+Warning: Header file <capstone/capstone.h> not found.
+         This host has no capstone library installed.
+Warning: While checking protoc version: [Errno 2] No such file or directory:
+         'protoc'
+Warning: Protocol buffer compiler (protoc) not found.
+         Please install protobuf-compiler for tracing support.
+Warning: Couldn't find HDF5 C++ libraries. Disabling HDF5 support.
+BUILD DONE 15:56
+-rwxr-xr-x 1 sahilag24 btech 948745256 17-15:56 build/X86/gem5.opt
+-rwxr-xr-x 1 sahilag24 btech 948762504 17-15:49 build/X86/gem5.opt.pre_x87
+cmd=/tmp/perl600 /users/btech/sahilag24/c1.pl
+executable=/tmp/perl600
+MATCH x87s 0
+MATCH x87s 1
+MATCH x87s 2
+MATCH x87s 3
+MATCH x87s 4
+MATCH x87q 0 0
+MATCH x87q 0 1
+MATCH x87q 0 2
+MATCH x87q 1 0
+MATCH x87q 1 1
+MATCH x87q 1 2
+MATCH x87q 2 0
+MATCH x87q 2 1
+MATCH x87q 2 2
+MATCH x87q 3 0
+MATCH x87q 3 1
+MATCH x87q 3 2
+MATCH x87r 0
+MATCH x87r 1
+MATCH x87r 4
+MATCH x87r 5
+MATCH x87r 6
+MATCH x87r 7
+MATCH x87r 8
+MATCH x87r 9
+MATCH x87y
+MATCH x87z
+MATCH perl c1
+MATCH perl c2
+MATCH perl c3
+VERIFY DONE 15:56

@@ -1,0 +1,35 @@
+=== 20:53:00 csewsrm22 excl
+main gem5: NOT RUNNING | extra guests alive: 3 of 11
+  main: panic=0 trouble=0 started=3 results=2 idle=3905m SPEC_START 503.bwaves_r
+  run0: panic=0 trouble=0 started=3 results=2 idle=4105m SPEC_START 531.deepsjeng_r
+  run1: panic=0 trouble=0 started=3 results=2 idle=4215m SPEC_START 538.imagick_r
+  run10: panic=0 trouble=0 started=2 results=1 idle=5567m SPEC_START 527.cam4_r
+  run2: panic=0 trouble=0 started=3 results=2 idle=4002m SPEC_START 541.leela_r
+  run3: panic=0 trouble=0 started=4 results=3 idle=2498m SPEC_START 625.x264_s
+  run4: panic=0 trouble=0 started=1 results=0 idle=7162m SPEC_START 627.cam4_s
+  run5: panic=0 trouble=0 started=3 results=2 idle=3796m SPEC_START 549.fotonik3d_r
+  run6: panic=0 trouble=0 started=2 results=1 idle=5154m SPEC_START 521.wrf_r
+  run7: panic=0 trouble=0 started=3 results=2 idle=4422m SPEC_START 557.xz_r
+  run8: panic=0 trouble=0 started=2 results=1 idle=4573m SPEC_START 525.x264_r
+  run9: panic=0 trouble=0 started=2 results=1 idle=6190m SPEC_START 526.blender_r
+results: PASS=16 FAIL=1 timeout(rc=124)=0
+SPEC_RESULT 500.perlbench_r FAIL rc=0
+benchmark minutes (as observed by this monitor):
+  run5 628.pop2_s PASS 2317 min
+  main 500.perlbench_r FAIL 2624 min
+  run8 500.perlbench_r FAIL 2587 min
+  run7 523.xalancbmk_r PASS 760 min
+  run3 621.wrf_s PASS 2924 min
+  run1 507.cactuBSSN_r PASS 1170 min
+  run0 505.mcf_r PASS 1336 min
+  run2 508.namd_r PASS 1331 min
+  main 502.gcc_r PASS 870 min
+  run5 519.lbm_r PASS 1030 min
+  run3 510.parest_r PASS 1180 min
+  run3 544.nab_r PASS 555 min
+host: /tmp free 47G | mem avail 53G | load 3.00 | uptime 11987m
+ALERTS:
+
+  - main gem5 not running and guest not finished
+  - only 3 of 11 extra guests alive (0 finished)
+  - 1 benchmark FAIL line(s)

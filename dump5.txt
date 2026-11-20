@@ -1,0 +1,338 @@
+=== isa_patch.py
+import sys,os
+d=sys.argv[1]
+p=d+"/src/arch/x86/isa/insts/x87/compare_and_test/floating_point_ordered_compare.py"
+s=open(p).read()
+if "FCOMIP_R" not in s.replace("# FCOMIP",""):
+    old="def macroop FCOMI_R\n{\n    compfp st(0), sti\n};\n"
+    assert s.count(old)==1,"macroop pattern"
+    open(p,"w").write(s.replace(old,old+"\ndef macroop FCOMIP_R\n{\n    compfp st(0), sti, spm=1\n};\n"))
+p=d+"/src/arch/x86/isa/decoder/x87.isa"
+s=open(p).read()
+if "0x3: fcomip();" in s:
+    open(p,"w").write(s.replace("                0x3: fcomip();\n","                0x3: Inst::FCOMIP(Rq);\n"))
+print("isa patched")
+=== classify.py & decoder FXAM
+# Copyright (c) 2007 The Hewlett-Packard Development Company
+# All rights reserved.
+#
+# The license below extends only to copyright in the software and shall
+# not be construed as granting a license to any other intellectual
+# property including but not limited to intellectual property relating
+# to a hardware implementation of the functionality of the software
+# licensed hereunder.  You may use the software subject to the license
+# terms below provided that you ensure that this notice is replicated
+# unmodified and in its entirety in all distributions of the software,
+# modified or unmodified, in source code or in binary form.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FXAM
+"""
+decoder/x87.isa-65-                    0x0: Inst::FCHS();
+decoder/x87.isa-66-                    0x1: Inst::FABS();
+decoder/x87.isa-67-                    0x4: ftst();
+decoder/x87.isa:68:                    0x5: fxam();
+decoder/x87.isa-69-                }
+decoder/x87.isa-70-                default: Inst::FLDENV(M);
+decoder/x87.isa-71-            }
+=== fpop.isa top
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+//////////////////////////////////////////////////////////////////////////
+//
+// FpOp Microop templates
+//
+//////////////////////////////////////////////////////////////////////////
+
+def template MicroFpOpExecute {{
+    Fault
+    %(class_name)s::execute(ExecContext *xc,
+            trace::InstRecord *traceData) const
+    {
+        Fault fault = NoFault;
+
+        DPRINTF(X86, "The data size is %d\n", dataSize);
+        %(op_decl)s;
+        %(op_rd)s;
+
+        if (%(cond_check)s) {
+            %(code)s;
+            %(flag_code)s;
+            %(tag_code)s;
+            %(top_code)s;
+        } else {
+            %(else_code)s;
+        }
+
+        //Write the resulting state to the execution context
+        if (fault == NoFault) {
+            %(op_wb)s;
+        }
+        return fault;
+    }
+}};
+
+def template MicroFpOpDeclare {{
+    class %(class_name)s : public %(base_class)s
+    {
+      private:
+        %(reg_idx_arr_decl)s;
+
+      public:
+        template <typename ...Args>
+        %(class_name)s(ExtMachInst mach_inst, const char *inst_mnem,
+                uint64_t set_flags, uint8_t data_size, int8_t _spm,
+                Args... args);
+
+        Fault execute(ExecContext *, trace::InstRecord *) const override;
+    };
+}};
+
+def template MicroFpOpConstructor {{
+    template <typename ...Args>
+    %(class_name)s::%(class_name)s(ExtMachInst mach_inst,
+            const char *inst_mnem, uint64_t set_flags,
+            uint8_t data_size, int8_t _spm, Args... args) :
+        %(base_class)s(mach_inst, "%(mnemonic)s", inst_mnem, set_flags,
+                %(op_class)s, { args... }, data_size, _spm)
+    {
+        %(set_reg_idx_arr)s;
+        %(constructor)s;
+    }
+}};
+
+let {{
+
+    header_output = ""
+    decoder_output = ""
+    exec_output = ""
+
+    class FpOpMeta(type):
+        def buildCppClasses(self, name, Name, suffix, code, big_code,
+                flag_code, cond_check, else_code, op_class, operand_types):
+
+            global header_output
+            global decoder_output
+            global exec_output
+
+            allCode = "|".join((code, flag_code, cond_check, else_code))
+
+            if flag_code != "" or cond_check != "true":
+                self.buildCppClasses(name, Name, suffix, code, big_code, "",
+                                     "true", "", op_class, operand_types)
+                suffix = "Flags" + suffix
+
+            if big_code:
+                self.buildCppClasses(name, Name, suffix + "Big", big_code, "",
+                                     flag_code, cond_check, else_code,
+                                     op_class, operand_types)
+
+            base = "X86ISA::InstOperands<" + \
+                ", ".join(["X86ISA::FpOp"] +
+                          [op.cxx_class() for op in operand_types]) + ">"
+
+            iop_tag = InstObjParams(name, Name + "TopTag" + suffix, base,
+                    {"code" : code,
+                     "flag_code" : flag_code,
+                     "cond_check" : cond_check,
+                     "else_code" : else_code,
+                     "tag_code" : "FTW = genX87Tags(FTW, TOP, spm);",
+                     "top_code" : "TOP = (TOP + spm + 8) % 8;",
+                     "op_class" : op_class})
+            iop_top = InstObjParams(name, Name + "Top" + suffix, base,
+                    {"code" : code,
+                     "flag_code" : flag_code,
+                     "cond_check" : cond_check,
+                     "else_code" : else_code,
+                     "tag_code" : ";",
+                     "top_code" : "TOP = (TOP + spm + 8) % 8;",
+                     "op_class" : op_class})
+            iop = InstObjParams(name, Name + suffix, base,
+                    {"code" : code,
+                     "flag_code" : flag_code,
+                     "cond_check" : cond_check,
+                     "else_code" : else_code,
+                     "tag_code" : ";",
+                     "top_code" : ";",
+                     "op_class" : op_class})
+
+            header_output += MicroFpOpDeclare.subst(iop_tag)
+            decoder_output += MicroFpOpConstructor.subst(iop_tag)
+            exec_output += MicroFpOpExecute.subst(iop_tag)
+            header_output += MicroFpOpDeclare.subst(iop_top)
+            decoder_output += MicroFpOpConstructor.subst(iop_top)
+            exec_output += MicroFpOpExecute.subst(iop_top)
+            header_output += MicroFpOpDeclare.subst(iop)
+            decoder_output += MicroFpOpConstructor.subst(iop)
+            exec_output += MicroFpOpExecute.subst(iop)
+
+
+        def __new__(mcls, Name, bases, dict):
+            abstract = False
+            name = Name.lower()
+            if "abstract" in dict:
+                abstract = dict['abstract']
+                del dict['abstract']
+
+            cls = super().__new__(mcls, Name, bases, dict)
+            if not abstract:
+                cls.className = Name
+                cls.mnemonic = name
+                code = cls.code
+                big_code = cls.big_code
+                flag_code = cls.flag_code
+                cond_check = cls.cond_check
+                else_code = cls.else_code
+                op_class = cls.op_class
+                operand_types = cls.operand_types
+
+                mcls.buildCppClasses(cls, name, Name, "",
+                        code, big_code, flag_code, cond_check, else_code,
+                        op_class, operand_types)
+
+                global microopClasses
+                microopClasses[name] = cls
+
+            return cls
+
+    class FpOp(X86Microop, metaclass=FpOpMeta):
+        abstract = True
+
+        big_code = ""
+        flag_code = ""
+        cond_check = "true"
+        else_code = ";"
+        op_class = "FloatAddOp"
+
+        def __init__(self, *ops, spm=0,
+                SetStatus=False, UpdateFTW=True, dataSize="env.dataSize"):
+            self.ops = list(map(str, ops))
+            self.spm = spm
+            self.dataSize = dataSize
+            if SetStatus:
+                self.className += "Flags"
+            if spm:
+                self.className += "Top"
+            if spm and UpdateFTW:
+                self.className += "Tag"
+
+        def getAllocator(self, microFlags):
+            op_iter = iter(self.ops)
+            ops = list([Type(op_iter).ctor_args() for
+                    Type in self.operand_types])
+            spm_ops = [str(self.spm)] + ops
+            alloc_fmt = """(StaticInstPtr) new {class_name}(
+                machInst, macrocodeBlock, {flags}, {dataSize},
+                {spm_ops})"""
+            alloc_subst = {
+                "flags": self.microFlagsText(microFlags),
+                "dataSize": self.dataSize,
+                "spm_ops": ", ".join(spm_ops),
+            }
+            alloc_small = alloc_fmt.format(
+                class_name=self.className, **alloc_subst)
+            alloc_big = alloc_fmt.format(
+                class_name=self.className + "Big", **alloc_subst)
+            if self.big_code:
+                alloc_str = f"""{self.dataSize} == 8 ?
+                                {alloc_big} : {alloc_small};"""
+            else:
+                alloc_str = f"{alloc_small};"
+            return alloc_str
+
+    class Fp0Op(FpOp):
+        abstract = True
+        operand_types = ()
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+
+    class Fp1Op(FpOp):
+        abstract = True
+        operand_types = (FloatDestOp)
+        def __init__(self, reg1, **kwargs):
+            super().__init__(reg1, **kwargs)
+
+    class Fp2Op(FpOp):
+        abstract = True
+        operand_types = (FloatDestOp, FloatSrc1Op)
+        def __init__(self, reg1, reg2, **kwargs):
+            super().__init__(reg1, reg2, **kwargs)
+
+    class Fp3Op(FpOp):
+        abstract = True
+        operand_types = (FloatDestOp, FloatSrc1Op, FloatSrc2Op)
+        def __init__(self, reg1, reg2, reg3, **kwargs):
+            super().__init__(reg1, reg2, reg3, **kwargs)
+
+    class Movfp(Fp2Op):
+        code = '''
+        if (dataSize == 4) {
+            FpDestReg_uqw = mbits(FpDestReg_uqw, 63, 32) |
+                            mbits(FpSrcReg1_uqw, 31, 0);
+        } else {
+            FpDestReg_uqw = FpSrcReg1_uqw;
+=== FTW usage
+isa/bitfields.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/bitfields.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microasm.isa:26:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microasm.isa:36:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microasm.isa:241:    assembler.symbols["ftw"] = ctrlRegIdx("misc_reg::Ftw")
+isa/outputblock.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/outputblock.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/operands.isa:30:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/operands.isa:40:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/operands.isa:226:        'FTW':           ControlReg('X86ISA::misc_reg::Ftw', 68, ctype='uw'),
+isa/main.isa:26:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/main.isa:36:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/rom.isa:15:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/rom.isa:25:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/specop.isa:25:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/specop.isa:35:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/limmop.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/limmop.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/seqop.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/seqop.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/debug.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/debug.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/ldstop.isa:28:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/ldstop.isa:38:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/mediaop.isa:17:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/mediaop.isa:27:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/mediaop.isa:1562:        code = 'FTW = 0xFFFF;'
+isa/microops/regop.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/regop.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/regop.isa:1731:            FTW = X86ISA::convX87XTagsToTags(SrcReg1);
+isa/microops/regop.isa:1736:            DestReg = X86ISA::convX87TagsToXTags(FTW);
+isa/microops/fpop.isa:27:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/fpop.isa:37:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/fpop.isa:145:                     "tag_code" : "FTW = genX87Tags(FTW, TOP, spm);",
+isa/microops/fpop.isa:219:                SetStatus=False, UpdateFTW=True, dataSize="env.dataSize"):
+isa/microops/fpop.isa:227:            if spm and UpdateFTW:
+isa/microops/base.isa:26:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/base.isa:36:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+isa/microops/microops.isa:24:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+isa/microops/microops.isa:34:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

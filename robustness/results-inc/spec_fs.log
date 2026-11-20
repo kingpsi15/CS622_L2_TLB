@@ -445,3 +445,53 @@ Terminated
 [2026-11-15 15:17:30] [csews20] [inc] full-system boot CPU=atomic; /dev/kvm access: read=no, write=no
 [2026-11-15 15:17:34] [csews20] [inc] generated /tmp/sahilag24/work/jobs/spec_fs_guest.sh: 43 SPEC benchmarks (43 runnable; 0 unavailable; 0 cached PASS)
 [2026-11-15 15:17:34] [csews20] [inc] starting full-system SPEC test-input run: 43 benchmarks; gem5=/tmp/sahilag24/CS622_L2_TLB/gem5-inc/build/X86/gem5.opt
+[2026-11-18 08:52:57] [csews20] [inc] gem5 full-system SPEC run failed; see /tmp/sahilag24/work/runs/spec_fs_inc_20261115_151730/gem5_host.log
+Terminated
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 500.perlbench_r FAIL rc=0
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 502.gcc_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 503.bwaves_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 505.mcf_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 507.cactuBSSN_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 508.namd_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 510.parest_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 511.povray_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 519.lbm_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 520.omnetpp_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 521.wrf_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 523.xalancbmk_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 525.x264_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 526.blender_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 527.cam4_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 531.deepsjeng_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 538.imagick_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 541.leela_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 544.nab_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 548.exchange2_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 549.fotonik3d_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 554.roms_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 557.xz_r FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 600.perlbench_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 602.gcc_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 603.bwaves_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 605.mcf_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 607.cactuBSSN_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 619.lbm_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 620.omnetpp_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 621.wrf_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 623.xalancbmk_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 625.x264_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 627.cam4_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 628.pop2_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 631.deepsjeng_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 638.imagick_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 641.leela_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 644.nab_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 648.exchange2_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 649.fotonik3d_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 654.roms_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] SPEC_RESULT 657.xz_s FAIL missing-result-marker
+[2026-11-18 08:52:57] [csews20] [inc] guest did not reach the SPEC completion marker; see /tmp/sahilag24/work/runs/spec_fs_inc_20261115_151730/serial.log
+[2026-11-18 08:52:57] [csews20] [inc] incomplete SPEC results: 1/43 result markers; see /tmp/sahilag24/work/runs/spec_fs_inc_20261115_151730/serial.log
+[2026-11-18 08:52:57] [csews20] [inc] saved remote simulator tails under /users/btech/sahilag24/CS622_L2_TLB/robustness/results-inc/latest_fs_*.tail.txt
+[2026-11-20 14:04:51] [csews20] [inc] preparing lane-local SPEC CPU2017 full-system run in /tmp
+[2026-11-20 14:04:51] [csews20] [inc] downloading full-system kernel into /tmp

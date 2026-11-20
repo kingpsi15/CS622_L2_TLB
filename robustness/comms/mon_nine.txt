@@ -1,0 +1,38 @@
+=== 20:54:54 csewsrm23 nine
+main gem5: NOT RUNNING | extra guests alive: 3 of 13
+  main: panic=0 trouble=0 started=3 results=2 idle=3771m SPEC_START 503.bwaves_r
+  run0: panic=0 trouble=0 started=2 results=1 idle=4800m SPEC_START 508.namd_r
+  run1: panic=0 trouble=0 started=3 results=2 idle=3939m SPEC_START 549.fotonik3d_r
+  run10: panic=0 trouble=0 started=3 results=2 idle=4313m SPEC_START 625.x264_s
+  run11: panic=0 trouble=0 started=3 results=3 idle=3879m SPEC_RESULT 631.deepsjeng_s FAIL rc=0
+  run12: panic=0 trouble=0 started=3 results=3 idle=4127m SPEC_RESULT 638.imagick_s PASS rc=0
+  run2: panic=0 trouble=0 started=3 results=2 idle=4591m SPEC_START 554.roms_r
+  run3: panic=0 trouble=0 started=2 results=1 idle=4216m SPEC_START 519.lbm_r
+  run4: panic=0 trouble=0 started=1 results=0 idle=7143m SPEC_START 627.cam4_s
+  run5: panic=0 trouble=0 started=3 results=2 idle=3965m SPEC_START 602.gcc_s
+  run6: panic=0 trouble=0 started=2 results=1 idle=5320m SPEC_START 525.x264_r
+  run7: panic=0 trouble=0 started=2 results=1 idle=5248m SPEC_START 526.blender_r
+  run8: panic=0 trouble=0 started=2 results=1 idle=4216m SPEC_START 527.cam4_r
+  run9: panic=0 trouble=0 started=3 results=2 idle=3746m SPEC_START 623.xalancbmk_s
+results: PASS=19 FAIL=2 timeout(rc=124)=0
+SPEC_RESULT 500.perlbench_r FAIL rc=0
+SPEC_RESULT 631.deepsjeng_s FAIL rc=0
+benchmark minutes (as observed by this monitor):
+  run5 628.pop2_s PASS 2452 min
+  run11 541.leela_r PASS 1046 min
+  run2 511.povray_r PASS 760 min
+  run10 538.imagick_r PASS 905 min
+  run3 621.wrf_s PASS 2956 min
+  run8 500.perlbench_r FAIL 2906 min
+  run12 638.imagick_s PASS 995 min
+  run5 523.xalancbmk_r PASS 685 min
+  run1 510.parest_r PASS 1461 min
+  run11 631.deepsjeng_s FAIL 745 min
+  main 502.gcc_r PASS 879 min
+  run9 531.deepsjeng_r PASS 1671 min
+host: /tmp free 54G | mem avail 54G | load 3.00 | uptime 11989m
+ALERTS:
+
+  - main gem5 not running and guest not finished
+  - only 3 of 13 extra guests alive (2 finished)
+  - 2 benchmark FAIL line(s)

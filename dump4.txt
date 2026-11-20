@@ -1,0 +1,339 @@
+=== FXAM HITS
+[1] 3468878
+[2] 3468879
+[3] 3468880
+[4] 3468881
+[5] 3468882
+[6] 3468883
+[7] 3468884
+[8] 3468885
+[9] 3468886
+[10] 3468887
+[11] 3468888
+[12] 3468889
+[13] 3468890
+[14] 3468891
+[15] 3468892
+[16] 3468893
+[17] 3468894
+[18] 3468895
+[19] 3468896
+[20] 3468897
+[21] 3468898
+[22] 3468899
+[23] 3468900
+[24] 3468901
+[25] 3468902
+[26] 3468903
+[27] 3468904
+[28] 3468905
+[29] 3468906
+[30] 3468907
+[31] 3468908
+[32] 3468910
+[33] 3468911
+[34] 3468912
+[35] 3468913
+[36] 3468914
+[37] 3468915
+[38] 3468916
+[39] 3468917
+[40] 3468918
+[41] 3468919
+[42] 3468920
+[43] 3468921
+[44] 3468922
+[45] 3468923
+[46] 3468924
+[47] 3468925
+[48] 3468926
+[49] 3468927
+[50] 3468928
+[51] 3468929
+[52] 3468930
+[53] 3468931
+[54] 3468932
+[55] 3468933
+[56] 3468935
+[57] 3468936
+[58] 3468937
+[59] 3468938
+[60] 3468939
+[61] 3468940
+[62] 3468941
+[63] 3468942
+csewsrm4 extra-atomic-excl/run0 [600.perlbench_s ]
+csewsrm25 extra-perf/run8 [500.perlbench_r 527.cam4_r 619.lbm_s ]
+[1]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[4]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[6]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[7]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[2]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[3]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[20]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+csewsrm24 extra-agile/run8 [500.perlbench_r 527.cam4_r 619.lbm_s ]
+csewsrm22 extra-excl/run8 [500.perlbench_r 525.x264_r 600.perlbench_s 648.exchange2_s ]
+csewsrm52 extra-inc/run0 [500.perlbench_r ]
+csewsrm64 extra-agile/run0 [500.perlbench_r ]
+csewsrm62 extra-nine/run4 [600.perlbench_s ]
+csewsrm54 extra-inc/run4 [600.perlbench_s ]
+csewsrm66 extra-agile/run4 [600.perlbench_s ]
+[5]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[8]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[9]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[10]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[11]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[12]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[15]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[17]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[19]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[22]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[25]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[44]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[45]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[46]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[47]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[48]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[50]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[52]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[54]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[55]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[56]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[57]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[58]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[59]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[62]-  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[63]+  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+csewsrm60 extra-nine/run0 [500.perlbench_r ]
+csewsrm31 extra-atomic-perf/run0 [600.perlbench_s ]
+csewsrm58 extra-excl/run4 [600.perlbench_s ]
+csewsrm56 extra-excl/run0 [500.perlbench_r ]
+csewsrm28 extra-inc/run0 [600.perlbench_s ]
+csewsrm29 extra-atomic-agile/run0 [600.perlbench_s ]
+csewsrm31 extra-excl/run5 [600.perlbench_s ]
+[13]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[30]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[31]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[33]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[41]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[42]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[49]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[51]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[53]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[60]-  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+csewsrm68 extra-perf/run0 [500.perlbench_r ]
+[14]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[23]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[24]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[26]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[28]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[43]-  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+csewsrm45 extra-atomic-perf/run0 [500.perlbench_r ]
+csewsrm68 extra-perf/run6 [600.perlbench_s ]
+csewsrm26 extra-atomic-nine/run0 [600.perlbench_s ]
+csewsrm34 extra-nine/run0 [600.perlbench_s ]
+csewsrm40 extra-atomic-excl/run0 [500.perlbench_r ]
+csewsrm23 extra-nine/run8 [500.perlbench_r 527.cam4_r 619.lbm_s ]
+csewsrm26 extra-nine/run8 [600.perlbench_s ]
+csewsrm34 extra-perf/run8 [600.perlbench_s ]
+csewsrm47 extra-perf/run0 [600.perlbench_s ]
+csewsrm44 extra-atomic-agile/run0 [500.perlbench_r ]
+[16]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[18]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[21]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[29]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[32]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[35]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[37]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[38]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[40]-  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[61]+  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+csewsrm32 extra-agile/run8 [600.perlbench_s ]
+[27]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[34]   Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+[36]-  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+csewsrm46 extra-agile/run0 [600.perlbench_s ]
+[39]+  Done                    ssh -n -o ConnectTimeout=5 csewsrm$n 'bash ~/fxam_hits.sh' 2> /dev/null
+=== fpop.isa rest
+
+    class Cosfp(Fp2Op):
+        code = 'FpDestReg = cos(FpSrcReg1);'
+        op_class = 'FloatSqrtOp'
+
+    class Sinfp(Fp2Op):
+        code = 'FpDestReg = sin(FpSrcReg1);'
+        op_class = 'FloatSqrtOp'
+
+    class Tanfp(Fp2Op):
+        code = 'FpDestReg = tan(FpSrcReg1);'
+        op_class = 'FloatSqrtOp'
+
+
+    class ConvOp(Fp2Op):
+        abstract = True
+        op_class = 'FloatCvtOp'
+
+    class Cvtf_i2d(ConvOp):
+        operand_types = (FloatDestOp, IntSrc1Op)
+        code = '''
+            X86IntReg intReg = SrcReg1;
+            if (REX_W)
+                FpDestReg = intReg.SR;
+            else
+                FpDestReg = intReg.SE;
+            '''
+
+    class Cvtf_i2d_hi(ConvOp):
+        operand_types = (FloatDestOp, IntSrc1Op)
+        code = 'FpDestReg = bits(SrcReg1, 63, 32);'
+
+    class Cvtf_d2i(ConvOp):
+        operand_types = (FoldedDestOp, FloatSrc1Op)
+        code = '''
+            int64_t intSrcReg1 = static_cast<int64_t>(FpSrcReg1);
+            DestReg = merge(DestReg, dest, intSrcReg1, dataSize);
+            '''
+
+    class Cvtint_fp80(Fp3Op):
+        operand_types = (FloatDestOp, IntSrc1Op, IntSrc2Op)
+        code = '''
+            uint8_t bits[10];
+            *(uint64_t *)(bits + 0) = SrcReg1;
+            *(uint16_t *)(bits + 8) = (uint16_t)SrcReg2;
+            FpDestReg = loadFloat80(bits);
+            '''
+
+    class Cvtfp80h_int(ConvOp):
+        operand_types = (IntDestOp, FloatSrc1Op)
+        code = '''
+            char bits[10];
+            storeFloat80(bits, FpSrcReg1);
+            DestReg = *(uint64_t *)(bits + 0);
+            '''
+
+    class Cvtfp80l_int(ConvOp):
+        operand_types = (IntDestOp, FloatSrc1Op)
+        code = '''
+            char bits[10];
+            storeFloat80(bits, FpSrcReg1);
+            DestReg = *(uint16_t *)(bits + 8);
+            '''
+
+    class Addfp(Fp3Op):
+        code = 'FpDestReg = FpSrcReg1 + FpSrcReg2;'
+
+    class Mulfp(Fp3Op):
+        code = 'FpDestReg = FpSrcReg1 * FpSrcReg2;'
+        op_class = 'FloatMultOp'
+
+    class Divfp(Fp3Op):
+        code = 'FpDestReg = FpSrcReg1 / FpSrcReg2;'
+        op_class = 'FloatDivOp'
+
+    class Subfp(Fp3Op):
+        code = 'FpDestReg = FpSrcReg1 - FpSrcReg2;'
+
+    class Yl2xFp(Fp3Op):
+        code = '''
+            FpDestReg = FpSrcReg2 * (log(FpSrcReg1) / log(2));
+        '''
+        op_class = 'FloatSqrtOp'
+
+    class PremFp(Fp3Op):
+        code = '''
+            [[maybe_unused]] RegVal new_fsw = FSW;
+            int src1_exp;
+            int src2_exp;
+            std::frexp(FpSrcReg1, &src1_exp);
+            std::frexp(FpSrcReg2, &src2_exp);
+
+            const int d = src2_exp - src1_exp;
+            if (d < 64) {
+                const int64_t q = std::trunc(FpSrcReg2 / FpSrcReg1);
+                FpDestReg = FpSrcReg2 - FpSrcReg1 * q;
+                new_fsw &= ~(CC0Bit | CC1Bit | CC2Bit | CC2Bit);
+                new_fsw |= (q & 0x1) ? CC1Bit : 0;
+                new_fsw |= (q & 0x2) ? CC3Bit : 0;
+                new_fsw |= (q & 0x4) ? CC0Bit : 0;
+            } else {
+                const int n = 42;
+                const int64_t qq = std::trunc(
+                    FpSrcReg2 / std::ldexp(FpSrcReg1, d - n));
+                FpDestReg = FpSrcReg2 - std::ldexp(FpSrcReg1 * qq, d - n);
+                new_fsw |= CC2Bit;
+            }
+        '''
+        op_class = 'FloatDivOp'
+
+        flag_code = 'FSW = new_fsw;'
+
+    class Compfp(Fp2Op):
+        operand_types = (FloatSrc1Op, FloatSrc2Op)
+        code = '''
+            //               ZF PF CF
+            // Unordered      1  1  1
+            // Greater than   0  0  0
+            // Less than      0  0  1
+            // Equal          1  0  0
+            //           OF = SF = AF = 0
+            ccFlagBits = ccFlagBits & ~(SFBit | AFBit | ZFBit | PFBit);
+            cfofBits = cfofBits & ~(OFBit | CFBit);
+
+            if (std::isnan(FpSrcReg1) || std::isnan(FpSrcReg2)) {
+                ccFlagBits = ccFlagBits | (ZFBit | PFBit);
+                cfofBits = cfofBits | CFBit;
+            }
+            else if(FpSrcReg1 < FpSrcReg2)
+                cfofBits = cfofBits | CFBit;
+            else if(FpSrcReg1 == FpSrcReg2)
+                ccFlagBits = ccFlagBits | ZFBit;
+        '''
+        op_class = 'FloatCmpOp'
+
+    class absfp(Fp2Op):
+        code = 'FpDestReg = fabs(FpSrcReg1);'
+        flag_code = 'FSW = FSW & (~CC1Bit);'
+
+    class chsfp(Fp2Op):
+        code = 'FpDestReg = (-1) * (FpSrcReg1);'
+        flag_code = 'FSW = FSW & (~CC1Bit);'
+
+    class Pop87(Fp0Op):
+        code = ''
+        op_class = 'IntAluOp'
+        def __init__(self):
+            super().__init__(spm=1)
+}};
+=== operands
+30:// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+40:// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+166:        'FpSrcReg1':     FloatReg('src1', 22),
+167:        'FpSrcReg2':     FloatReg('src2', 23),
+168:        'FpSrcReg3':     FloatReg('src3', 24),
+169:        'FpDestReg':     FloatReg('dest', 25),
+223:        'TOP':           ControlReg('X86ISA::misc_reg::X87Top', 66,
+225:        'FSW':           ControlReg('X86ISA::misc_reg::Fsw', 67, ctype='uw'),
+226:        'FTW':           ControlReg('X86ISA::misc_reg::Ftw', 68, ctype='uw'),
+227:        'FCW':           ControlReg('X86ISA::misc_reg::Fcw', 69, ctype='uw'),
+=== fnstsw and compare
+--- control/store_status_word.py
+sed: can't read control/store_status_word.py: No such file or directory
+--- compare_and_test/floating_point_unordered_compare.py
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+microcode = """
+# FUCOM
+# FUCOMP
+# FUCOMPP
+
+# fucomi
+def macroop FUCOMI_R {
+    compfp st(0), sti
+};
+
+# fucomi with stack pop (caused by spm=1)
+def macroop FUCOMIP_R {
+    compfp st(0), sti, spm=1
+};
+
+"""

@@ -1,0 +1,1502 @@
+=================== /users/btech/sahilag24/five_lane_clean_build.sh
+cat: /users/btech/sahilag24/five_lane_clean_build.sh: No such file or directory
+=================== /users/btech/sahilag24/CS622_L2_TLB/robustness/scripts/five_lane_clean_build.sh
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="${ROOT:-$HOME/CS622_L2_TLB}"
+GEM5_SRC="${GEM5_SRC:-$ROOT/gem5}"
+PYTHON_BIN="${PYTHON_BIN:-/usr/bin/python3.10}"
+WORK_ROOT="${WORK_ROOT:-/tmp/${USER:-sahilag24}/CS622_L2_TLB}"
+SCONS_DIR="${SCONS_DIR:-$WORK_ROOT/scons}"
+
+usage() {
+  echo "Usage: $0 [inc|excl|nine|agile|perf]" >&2
+  echo "On csewsrm21-25, the lane is detected from the hostname if omitted." >&2
+  exit 2
+}
+
+detect_lane() {
+  case "$(hostname -s)" in
+    csewsrm21) echo inc ;;
+    csewsrm22) echo excl ;;
+    csewsrm23) echo nine ;;
+    csewsrm24) echo agile ;;
+    csewsrm25) echo perf ;;
+    *) return 1 ;;
+  esac
+}
+
+LANE="${1:-}"
+if [[ -z "$LANE" ]]; then
+  LANE="$(detect_lane)" || usage
+fi
+[[ $# -le 1 ]] || usage
+case "$LANE" in
+  inc|excl|nine|agile|perf) ;;
+  *) usage ;;
+esac
+
+RESULT_DIR="$ROOT/robustness/results-$LANE"
+RUN_LOG="$RESULT_DIR/clean_build.log"
+BUILD_LOG="$RESULT_DIR/clean_build_scons.log"
+TREE="$WORK_ROOT/gem5-$LANE"
+mkdir -p "$RESULT_DIR" "$WORK_ROOT"
+
+log() {
+  printf '[%s] [%s] [%s] %s\n' \
+    "$(date '+%F %T')" "$(hostname -s)" "$LANE" "$*" | tee -a "$RUN_LOG"
+}
+
+ensure_scons() {
+  local archive="$ROOT/robustness/vendor/scons-4.8.1.tar.gz"
+  local version=""
+
+  if [[ -d "$SCONS_DIR/SCons" ]]; then
+    version="$(PYTHONPATH="$SCONS_DIR" "$PYTHON_BIN" -c \
+      'import SCons; print(SCons.__version__)' 2>/dev/null || true)"
+  fi
+  if [[ "$version" != "4.8.1" ]]; then
+    [[ -f "$archive" ]] || {
+      log "SCons 4.8.1 is unavailable and vendored archive is missing: $archive"
+      return 1
+    }
+    log "installing SCons 4.8.1 from the repository archive (offline)"
+    mkdir -p "$SCONS_DIR"
+    tar -xzf "$archive" -C "$SCONS_DIR"
+    version="$(PYTHONPATH="$SCONS_DIR" "$PYTHON_BIN" -c \
+      'import SCons; print(SCons.__version__)' 2>/dev/null || true)"
+  fi
+  if [[ "$version" != "4.8.1" ]]; then
+    log "could not load SCons 4.8.1 from $SCONS_DIR (found: ${version:-none})"
+    return 1
+  fi
+  log "using SCons $version from $SCONS_DIR"
+}
+
+main() {
+  local cc_file="tlb.cc.$LANE.fixed"
+  local hh_file="tlb.hh.$LANE.fixed"
+  local cc_path="$GEM5_SRC/src/arch/x86/$cc_file"
+  local hh_path="$GEM5_SRC/src/arch/x86/$hh_file"
+
+  [[ -x "$PYTHON_BIN" ]] || { log "Python executable not found: $PYTHON_BIN"; return 1; }
+  [[ -d "$GEM5_SRC" ]] || { log "gem5 source tree not found: $GEM5_SRC"; return 1; }
+  [[ -f "$cc_path" && -f "$hh_path" ]] || {
+    log "fixed TLB sources not found: $cc_path or $hh_path"
+    return 1
+  }
+
+  log "starting single-lane clean build; source=$GEM5_SRC; worktree=$TREE"
+  ensure_scons
+
+  # Reuse a valid temporary checkout for incremental retries. If /tmp was
+  # cleared or the copy is incomplete, recreate it from the persistent source.
+  if [[ ! -f "$TREE/SConstruct" || ! -d "$TREE/src" ]]; then
+    log "creating fresh temporary checkout"
+    rm -rf -- "$TREE"
+    mkdir -p "$(dirname "$TREE")"
+    cp -a "$GEM5_SRC" "$TREE"
+  else
+    log "reusing existing temporary checkout for incremental build"
+  fi
+  while IFS= read -r -d '' script; do
+    IFS= read -r first_line < "$script" || true
+    if [[ "${first_line:-}" == '#!'* ]]; then
+      chmod +x "$script"
+    fi
+    unset first_line
+  done < <(find "$TREE" -path "$TREE/build" -prune -o -type f -print0)
+  cp "$cc_path" "$TREE/src/arch/x86/tlb.cc"
+  cp "$hh_path" "$TREE/src/arch/x86/tlb.hh"
+  log "installed $cc_file and $hh_file; restored executable bits on shebang scripts in the temporary tree"
+
+  if (
+    cd "$TREE"
+    export PATH="$HOME/.local/bin:/usr/sbin:/usr/bin:/bin"
+    export CC=gcc-11 CXX=g++-11
+    export PYTHONPATH="$SCONS_DIR"
+    "$PYTHON_BIN" -m SCons build/X86/gem5.opt -j2 --ignore-style
+  ) > >(tee -a "$BUILD_LOG") 2>&1; then
+    :
+  else
+    local build_status=$?
+    log "SCons build failed (exit $build_status); see $BUILD_LOG"
+    return "$build_status"
+  fi
+
+  if [[ ! -x "$TREE/build/X86/gem5.opt" ]]; then
+    log "build returned success but gem5.opt is missing; see $BUILD_LOG"
+    return 1
+  fi
+  "$TREE/build/X86/gem5.opt" --help >/dev/null 2>&1 || {
+    log "gem5.opt smoke test failed"
+    return 1
+  }
+
+  log "PASS: $LANE build and smoke test; binary=$TREE/build/X86/gem5.opt"
+  log "starting the lane's full-system SPEC CPU2017 test run"
+  bash "$ROOT/robustness/scripts/run_spec_fs.sh" "$LANE" "$TREE"
+}
+
+main
+=================== /tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/python/gem5/components/boards/kernel_disk_workload.py
+# Copyright (c) 2021, 2023 The Regents of the University of California
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+import os
+from abc import abstractmethod
+from pathlib import Path
+from typing import (
+    List,
+    Optional,
+    Union,
+)
+
+import m5
+from m5.util import warn
+
+from ...resources.resource import (
+    BinaryResource,
+    BootloaderResource,
+    CheckpointResource,
+    DiskImageResource,
+    KernelResource,
+)
+from .abstract_board import AbstractBoard
+
+
+class KernelDiskWorkload:
+    """
+    The purpose of this abstract class is to enable a full-system boot
+    consisting of of a kernel which will then load a disk image.
+
+    For this to function correctly, the KernelDiskWorkload class should be
+    added as a superclass to a board and the abstract methods implemented.
+    E.g.:
+
+    .. code-block:: python
+
+        class X86Board(AbstractBoard, KernelDiskWorkload):
+            ...
+            @overrides(KernelDiskWorkload)
+            def get_default_kernel_args(self) -> List[str]:
+                return [
+                    "earlyprintk=ttyS0",
+                    "console=ttyS0",
+                    "lpj=7999923",
+                    "root={root_value}",
+                ]
+            ...
+
+
+    .. note::
+
+        * This assumes only one disk is set.
+        * This assumes the Linux kernel is used.
+    """
+
+    @abstractmethod
+    def get_default_kernel_args(self) -> List[str]:
+        """
+        Returns a default list of arguments for the workload kernel. We assume
+        the following strings may be used as placeholders, to be replaced when
+        ``set_kernel_disk_workload`` is executed:
+
+        * `{root_value}` : set to ``get_default_kernel_root_val()``.
+
+        :returns: A default list of arguments for the workload kernel.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_disk_device(self) -> str:
+        """
+        Set a default disk device, in case user does not specify a disk device.
+
+        :returns: The disk device.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def _add_disk_to_board(self, disk_image: DiskImageResource) -> None:
+        """
+        Sets the configuration needed to add the disk image to the board.
+
+        .. note::
+
+            This will be executed at the end of the
+            ``set_kernel_disk_workload`` function.
+
+        :param disk_image: The disk image to add to the system.
+        """
+        raise NotImplementedError
+
+    def get_disk_root_partition(
+        cls, disk_image: DiskImageResource
+    ) -> Optional[str]:
+        """
+        Obtains the root partition of a disk image by inspecting the resource's
+        metadata.
+
+        :returns: The disk image's root partition.
+        """
+        return disk_image.get_root_partition()
+
+    def get_default_kernel_root_val(
+        self, disk_image: DiskImageResource
+    ) -> str:
+        """
+        Get the default kernel root value to be passed to the kernel. This is
+        determined by the user-passed or board-default ``disk_device``, and
+        the disk image partition obtained from ``get_disk_root_partition()``.
+
+        :param disk_image: The disk image to be added to the system.
+
+        :returns: The default value for the ``root`` argument to be passed to the
+                  kernel.
+        """
+        return (self._disk_device or self.get_disk_device()) + (
+            self.get_disk_root_partition(disk_image) or ""
+        )
+
+    def set_kernel_disk_workload(
+        self,
+        kernel: KernelResource,
+        disk_image: DiskImageResource,
+        bootloader: Optional[BootloaderResource] = None,
+        disk_device: Optional[str] = None,
+        readfile: Optional[str] = None,
+        readfile_contents: Optional[str] = None,
+        kernel_args: Optional[List[str]] = None,
+        exit_on_work_items: bool = True,
+        checkpoint: Optional[Union[Path, CheckpointResource]] = None,
+    ) -> None:
+        """
+        This function allows the setting of a full-system run with a Kernel
+        and a disk image.
+
+        :param kernel: The kernel to boot.
+        :param disk_image: The disk image to mount.
+        :param bootloader: The current implementation of the ARM board requires
+                           three resources to operate -- kernel, disk image,
+                           and, a bootloader.
+        :param readfile: An optional parameter stating the file to be read by
+                         by ``m5 readfile``.
+        :param readfile_contents: An optional parameter stating the contents of
+                                  the readfile file. If set with ``readfile``,
+                                  the contents of `readfile` will be overwritten
+                                  with ``readfile_contents``, otherwise a new file
+                                  will be created with the value of
+                                  ``readfile_contents``.
+        :param kernel_args: An optional parameter for setting arguments to be
+                            passed to the kernel. By default set to
+                            ``get_default_kernel_args()``.
+        :param exit_on_work_items: Whether the simulation should exit on work
+                                   items. ``True`` by default.
+        :param checkpoint: The checkpoint directory. Used to restore the
+                           simulation to that checkpoint.
+        """
+
+        # We assume this this is in a multiple-inheritance setup with an
+        # Abstract board. This function will not work otherwise.
+        assert isinstance(self, AbstractBoard)
+
+        if self.is_workload_set():
+            warn("Workload has been set more than once!")
+        self.set_is_workload_set(True)
+
+        # Set the disk device
+        self._disk_device = disk_device
+
+        # If we are setting a workload of this type, we need to run as a
+        # full-system simulation.
+        self._set_fullsystem(True)
+
+        # Set the kernel to use.
+        self.workload.object_file = kernel.get_local_path()
+
+        # Set the arguments to be passed to the kernel.
+        self.workload.command_line = (
+            " ".join(kernel_args or self.get_default_kernel_args())
+        ).format(
+            root_value=self.get_default_kernel_root_val(disk_image=disk_image),
+            disk_device=self._disk_device or self.get_disk_device(),
+        )
+
+        # Setting the bootloader information for ARM board. The current
+        # implementation of the ArmBoard class expects a boot loader file to be
+        # provided along with the kernel and the disk image.
+
+        self._bootloader = []
+        if bootloader is not None:
+            self._bootloader.append(bootloader.get_local_path())
+
+        # Set the readfile.
+        if readfile:
+            self.readfile = readfile
+        elif readfile_contents:
+            self._set_readfile_contents(readfile_contents)
+
+        self._add_disk_to_board(disk_image=disk_image)
+
+        # Set whether to exit on work items.
+        self.exit_on_work_items = exit_on_work_items
+
+        # Here we set `self._checkpoint_dir`. This is then used by the
+        # Simulator module to setup checkpoints.
+        if checkpoint:
+            if isinstance(checkpoint, Path):
+                self._checkpoint = checkpoint
+            elif isinstance(checkpoint, CheckpointResource):
+                self._checkpoint = Path(checkpoint.get_local_path())
+            else:
+                # The checkpoint_dir must be None, Path, Or AbstractResource.
+                raise Exception(
+                    "Checkpoints must be passed as a Path or an "
+                    "CheckpointResource."
+                )
+
+    def append_kernel_arg(self, arg: str) -> None:
+        """
+        Append a kernel argument to the list of kernel arguments.
+
+        :param arg: The kernel argument to append.
+        """
+        self.workload.command_line += f" {arg}"
+
+    def _set_readfile_contents(self, readfile_contents: str) -> None:
+        # We hash the contents of the readfile and append it to the
+        # readfile name. This is to ensure that we don't overwrite the
+        # readfile if the contents are different.
+        readfile_contents_hash = hex(
+            hash(tuple(bytes(readfile_contents, "utf-8")))
+        )
+        self.readfile = os.path.join(
+            m5.options.outdir, ("readfile_" + readfile_contents_hash)
+        )
+
+        file = open(self.readfile, "w+")
+        file.write(readfile_contents)
+        file.close()
+
+    def set_binary_to_run(self, application: BinaryResource, args: List[str]):
+        """
+        Set the binary to run on the board.
+
+        The binary could be an application or any executable script.
+        Note: this will override the readfile or readfile_contents set in the
+        set_kernel_disk_workload function.
+
+        :param application: The binary to run.
+        :param args: The arguments to pass to the binary.
+        """
+        if self.readfile:
+            warn(
+                "Setting a binary to run will override the readfile "
+                "set in the set_kernel_disk_workload function."
+            )
+        from base64 import b64encode
+
+        with open(application.get_local_path(), "rb") as binfile:
+            encodedBin = b64encode(binfile.read()).decode()
+
+        application_command = (
+            f'echo "{encodedBin}" | base64 -d > myapp\n'
+            "chmod +x myapp\n"
+            f"./myapp {args}\n"
+        )
+
+        self._set_readfile_contents(application_command)
+=================== /tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/python/gem5/components/boards/abstract_board.py
+# Copyright (c) 2025 Arm Limited
+# All rights reserved.
+#
+# The license below extends only to copyright in the software and shall
+# not be construed as granting a license to any other intellectual
+# property including but not limited to intellectual property relating
+# to a hardware implementation of the functionality of the software
+# licensed hereunder.  You may use the software subject to the license
+# terms below provided that you ensure that this notice is replicated
+# unmodified and in its entirety in all distributions of the software,
+# modified or unmodified, in source code or in binary form.
+#
+# Copyright (c) 2022 The Regents of the University of California
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+import inspect
+from abc import (
+    ABCMeta,
+    abstractmethod,
+)
+from pathlib import Path
+from typing import (
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+)
+
+from m5.objects import (
+    ClockDomain,
+    IOXBar,
+    PciBus,
+    Root,
+    SrcClockDomain,
+    System,
+    VoltageDomain,
+)
+from m5.params import (
+    AddrRange,
+    Port,
+)
+
+from ...resources.resource import WorkloadResource
+from .mem_mode import (
+    MemMode,
+    mem_mode_to_string,
+)
+
+
+class AbstractBoard:
+    """The abstract board interface.
+
+    Boards are used as the object which can connect together all other
+    components. This abstract class defines the external interface that other
+    boards must provide. Boards can be specialized for different ISAs or system
+    designs (e.g., core counts, cache types, memory channels, I/O devices, etc).
+
+    In addition to providing the place that system components are connected,
+    the board also exposes an interface for the caches, processor, and memory
+    to interact.
+
+    The board also exposes an interface to set up I/O devices which needs to be
+    specialized for each ISA and/or platform.
+
+    Board inherits from System and can therefore be used as a System SimObject
+    when required.
+    """
+
+    __metaclass__ = ABCMeta
+
+    def __init__(
+        self,
+        clk_freq: str,
+        processor: "AbstractProcessor",
+        memory: "AbstractMemorySystem",
+        cache_hierarchy: Optional["AbstractCacheHierarchy"],
+    ) -> None:
+        """
+        :param clk_freq: The clock frequency for this board.
+        :param processor: The processor for this board.
+        :param memory: The memory for this board.
+        :param cache_hierarchy: The Cache Hierarchy for this board.
+                                In some boards caches can be optional. If so,
+                                that board must override ``_connect_things``.
+        """
+
+        if not isinstance(self, System):
+            raise Exception("A gem5 stdlib board must inherit from System.")
+
+        # Set up the clock domain and the voltage domain.
+        self.clk_domain = SrcClockDomain()
+        self.clk_domain.clock = clk_freq
+        self.clk_domain.voltage_domain = VoltageDomain()
+
+        # Set the processor, memory, and cache hierarchy.
+        self.processor = processor
+        self.memory = memory
+        self._cache_hierarchy = cache_hierarchy
+        if cache_hierarchy is not None:
+            self.cache_hierarchy = cache_hierarchy
+
+        # This variable determines whether the board is to be executed in
+        # full-system or syscall-emulation mode. This is set when the workload
+        # is defined. Whether or not the board is to be run in FS mode is
+        # determined by which kind of workload is set.
+        self._is_fs = None
+        self._is_workload_set = False
+        self._workload: WorkloadResource = None
+
+        # This variable is used to record the checkpoint directory which is
+        # set when declaring the board's workload and then used by the
+        # Simulator module.
+        self._checkpoint = None
+
+        # A private variable to record whether `_connect_things` has been
+        # been called.
+        self._connect_things_called = False
+
+    def get_processor(self) -> "AbstractProcessor":
+        """Get the processor connected to the board.
+
+        :returns: The processor.
+        """
+        return self.processor
+
+    def get_memory(self) -> "AbstractMemory":
+        """Get the memory (RAM) connected to the board.
+
+        :returns: The memory system.
+        """
+        return self.memory
+
+    def get_mem_ranges(self) -> Sequence[AddrRange]:
+        """Get all the mem ranges in the board, This
+        tries to account for boards instantiating memories other
+        than main DRAM.
+        Using get_mem_ports might return some duplicate ranges
+        (when not considering interleaving) when the board
+        memory has multiple ports
+
+        :returns: All the memory ranges
+        """
+        return self.get_memory().get_uninterleaved_range()
+
+    def get_mem_ports(self) -> Sequence[Tuple[AddrRange, Port]]:
+        """Get the memory ports exposed on this board
+
+        .. note::
+
+            The ports should be returned such that the address ranges are
+            in ascending order.
+        """
+        return self.get_memory().get_mem_ports()
+
+    def get_cache_hierarchy(self) -> Optional["AbstractCacheHierarchy"]:
+        """Get the cache hierarchy connected to the board.
+
+        :returns: The cache hierarchy.
+        """
+        return self._cache_hierarchy
+
+    def get_cache_line_size(self) -> int:
+        """Get the size of the cache line.
+
+        :returns: The size of the cache line size.
+        """
+        return self.cache_line_size
+
+    def get_devices(self):
+        """Get the devices connected to the board.
+
+        Currently, this is only used for GPUs by the ViperBoard.
+
+        :returns: The devices connected to the board or None.
+        """
+        return None
+
+    def connect_system_port(self, port: Port) -> None:
+        self.system_port = port
+
+    def set_mem_mode(self, mem_mode: MemMode) -> None:
+        """
+        Set the memory mode of the board.
+
+        :param mem_mode: The memory mode the board is to be set to.
+        """
+        self.mem_mode = mem_mode_to_string(mem_mode=mem_mode)
+
+    def get_clock_domain(self) -> ClockDomain:
+        """Get the clock domain.
+
+        :returns: The clock domain.
+        """
+        return self.clk_domain
+
+    def _set_fullsystem(self, is_fs: bool) -> None:
+        """
+        Sets whether this board is to be run in FS or SE mode. This is set
+        via the workload (the workload specified determines whether this will
+        be run in FS mode or not). This is not intended to be set in a
+        configuration script ergo, it's private.
+
+        :param is_fs: Set whether the board is to be run in FS mode or SE mode.
+        """
+        self._is_fs = is_fs
+
+        self._setup_memory_ranges()
+        self._setup_board()
+
+    def is_fullsystem(self) -> bool:
+        """
+        Returns ``True`` if the board is to be run in FS mode. Otherwise the board
+        is to be run in Se mode. An exception will be thrown if this has not
+        been set.
+
+        This function is used by the Simulator module to setup the simulation
+        correctly.
+        """
+        if self._is_fs == None:
+            raise Exception(
+                "The workload for this board not yet to be set. "
+                "Whether the board is to be executed in FS or SE "
+                "mode is determined by which 'set workload' "
+                "function is run."
+            )
+        return self._is_fs
+
+    def set_is_workload_set(self, is_set: bool) -> None:
+        self._is_workload_set = is_set
+
+    def is_workload_set(self) -> bool:
+        return self._is_workload_set
+
+    def set_workload(self, workload: WorkloadResource) -> None:
+        """
+        Set the workload for this board to run.
+
+        This function will take the workload specified and run the correct
+        workload function (e.g., ``set_kernel_disk_workload``) with the correct
+        parameters
+
+        :param workload: The workload to be set to this board.
+        """
+        self._workload = workload
+
+        try:
+            func = getattr(self, workload.get_function_str())
+        except AttributeError:
+            raise Exception(
+                "This board does not support this workload type. "
+                f"This board does not contain the necessary "
+                f"`{workload.get_function_str()}` function"
+            )
+
+        func_signature = inspect.signature(func)
+        for param_name in workload.get_parameters().keys():
+            if param_name not in func_signature.parameters.keys():
+                raise Exception(
+                    "Workload specifies non-existent parameter "
+                    f"`{param_name}` for function "
+                    f"`{workload.get_function_str()}` "
+                )
+
+        func(**workload.get_parameters())
+
+    def get_workload(self) -> Optional[WorkloadResource]:
+        return self._workload
+
+    @abstractmethod
+    def _setup_board(self) -> None:
+        """
+        This function is called at the end of `_set_fullsystem`. The reason for
+        this is the board's configuraiton varies significantly depending on
+        whether it is to be run in FS or SE mode. This function is therefore
+        called when a workload is set --- after construction but before
+        `_pre_instantiate` is called.
+
+        As `_setup_memory_ranges()` is set in the constructor, this function
+        can be considered to have been called prior to `_setup_board
+        """
+        raise NotImplementedError
+
+    # Technically `get_dma_ports` returns a list. This list could be empty to
+    # indicate the presense of dma ports. Though I quite like having this
+    # boolean to quickly check a board.
+    @abstractmethod
+    def has_dma_ports(self) -> bool:
+        """Determine whether the board has DMA ports or not.
+
+        :returns: ``True`` if the board has DMA ports, otherwise ``False``.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_dma_ports(self) -> List[Port]:
+        """Get the board's Direct Memory Access ports.
+        This abstract method must be implemented within the subclasses if they
+        support DMA and/or full system simulation.
+
+        :returns: A List of the Direct Memory Access ports.
+
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def has_io_bus(self) -> bool:
+        """Determine whether the board has an IO bus or not.
+
+        :returns: ``True`` if the board has an IO bus, otherwise ``False``.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_io_bus(self) -> IOXBar:
+        """Get the board's IO Bus.
+
+        This abstract method must be implemented within the subclasses if they
+        support DMA and/or full system simulation.
+
+        The I/O bus is a non-coherent bus (in the classic caches). On the CPU
+        side, it accepts requests meant for I/O devices. On the memory side, it
+        forwards these requests to the devices (e.g., the interrupt
+        controllers on each core).
+
+        :returns: The I/O Bus.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def has_pci_bus(self) -> bool:
+        """Determine whether the board has an PCI bus or not.
+
+        :returns: ``True`` if the board has an PCI bus, otherwise ``False``.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_pci_bus(self) -> PciBus:
+        """Get the board's main PCI Bus.
+
+        This abstract method must be implemented within the subclasses if they
+        support PCI and/or full system simulation.
+
+        The PCI bus is a non-coherent bus (in the classic caches). This bus is
+        connected to the PCI host bridge and to each PCI devices of the system.
+
+        :returns: The PCI Bus.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def has_coherent_io(self) -> bool:
+        """Determine whether the board needs coherent I/O
+
+        :returns: ``True`` if the board needs coherent I/O, ``False`` otherwise.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_mem_side_coherent_io_port(self):
+        """Get the memory-side coherent I/O port.
+
+        This abstract method must be implemented if ``has_coherent_io`` is ``True``.
+
+        This returns a *port* (not a bus) that should be connected to a
+        CPU-side port for which coherent I/O (DMA) is issued.
+        """
+        raise NotImplementedError
+
+    def get_checkpoint_dir(self) -> Optional[Path]:
+        return self._checkpoint
+
+    @abstractmethod
+    def _setup_memory_ranges(self) -> None:
+        """
+        Set the memory ranges for this board and memory system.
+
+        This is called at the end of the `_set_fullsystem` function but before
+        `_setup_board`.  `_set_fullsystem` is called when the workload is
+        declared. It is before `_pre_instantiate` (but, obviously after
+        construction).
+
+        It should query the board's memory
+        to determine the size and the set the memory ranges on the memory
+        system and on the board.
+
+        As thisis called at the end of `_set_fullsystem`, the board's memory
+        can be setup differently depending on whether the board is to be run in
+        FS or SE mode.
+
+        The simplest implementation sets the board's memory range to the size
+        of memory and memory system's range to be the same as the board. Full
+        system implementations will likely need something more complicated.
+
+        .. note::
+
+            This *must* be called prior to the incorporation of the cache
+            hierarchy (via ``_connect_things``) as cache hierarchies depend upon
+            knowing the memory system's ranges.
+        """
+        raise NotImplementedError
+
+    def _connect_things(self) -> None:
+        """Connects all the components to the board.
+
+        The order of this board is always:
+
+        1. Connect the memory.
+        2. Connect the cache hierarchy.
+        3. Connect the processor.
+
+        Developers may build upon this assumption when creating components.
+
+        .. note::
+
+            * The processor is incorporated after the cache hierarchy due to a bug
+            noted here: https://gem5.atlassian.net/browse/GEM5-1113. Until this
+            bug is fixed, this ordering must be maintained.
+            * Once this function is called ``_connect_things_called`` *must* be set
+            to ``True``.
+        """
+
+        if self._connect_things_called:
+            raise Exception(
+                "The `_connect_things` function has already been called."
+            )
+
+        # Incorporate the memory into the motherboard.
+        self.get_memory().incorporate_memory(self)
+
+        # Incorporate the cache hierarchy for the motherboard.
+        if self.get_cache_hierarchy():
+            self.get_cache_hierarchy().incorporate_cache(self)
+
+        # Incorporate the processor into the motherboard.
+        self.get_processor().incorporate_processor(self)
+
+        self._connect_things_called = True
+
+    def _post_instantiate(self):
+        """Called to set up anything needed after ``m5.instantiate``."""
+        self.get_processor()._post_instantiate()
+        if self.get_cache_hierarchy():
+            self.get_cache_hierarchy()._post_instantiate()
+        self.get_memory()._post_instantiate()
+
+    def _pre_instantiate(self, full_system: Optional[bool] = None) -> Root:
+        """To be called immediately before ``m5.instantiate``. This is where
+        ``_connect_things`` is executed by default and the root object is Root
+        object is created and returned.
+
+        :param full_system: Used to pass the full system flag to the board from
+                            the Simulator module. **Note**: This was
+                            implemented solely to maintain backawards
+                            compatibility with while the Simululator module's
+                            `full_system` flag is in state of deprecation. This
+                            parameter will be removed when it is. When this
+                            occurs whether a simulation is to be run in FS or
+                            SE mode will be determined by the board set."""
+
+        # 1. Connect the memory, processor, and cache hierarchy.
+        self._connect_things()
+
+        # 2. Create the root object
+        root = Root(
+            full_system=(
+                full_system
+                if full_system is not None
+                else self.is_fullsystem()
+            ),
+            board=self,
+        )
+
+        # 3. Call any of the components' `_pre_instantiate` functions.
+        self.get_processor()._pre_instantiate(root)
+        self.get_memory()._pre_instantiate(root)
+        if self.get_cache_hierarchy():
+            self.get_cache_hierarchy()._pre_instantiate(root)
+
+        # 4. Return the root object.
+        return root
+
+    def _connect_things_check(self):
+        """
+        Here we check that connect things has been called and throw an
+        Exception if it has not.
+
+        Since v22.1 ``_connect_things`` function has
+        been moved from the AbstractBoard constructor to the
+        ``_pre_instantation`` function. Users who have used the gem5 stdlib
+        components (i.e., boards which inherit from AbstractBoard) and the
+        Simulator module should notice no change. Those who do not use the
+        Simulator module and instead called ``m5.instantiate`` directly must
+        call ``AbstractBoard._pre_instantation`` prior to ``_connect_things`` is
+        called. In order to avoid confusion, this check has been incorporated
+        and the Exception thrown explains the fix needed to convert old scripts
+        to function with `v22.1`.
+
+        This function is called in ``AbstractSystemBoard.createCCObject`` and
+        ``ArmBoard.createCCObject``. Both these functions override
+        ``SimObject.createCCObject``. We can not do that here as AbstractBoard
+        does not inherit form System.
+        """
+        if not self._connect_things_called:
+            raise Exception(
+                """
+AbstractBoard's ``_connect_things`` function has not been called. This is likely
+due to not running a board outside of the gem5 Standard Library Simulator
+module. If this is the case, this can be resolved by calling
+``<AbstractBoard>._pre_instantiate()`` prior to ``m5.instantiate()``.
+"""
+            )
+=================== /tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/python/gem5/components/memory/memory.py
+# Copyright (c) 2021 The Regents of the University of California
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+"""Channeled "generic" DDR memory controllers"""
+
+from math import log
+from typing import (
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
+
+from m5.objects import (
+    AbstractMemory,
+    DRAMInterface,
+    MemCtrl,
+)
+from m5.params import (
+    AddrRange,
+    Port,
+)
+from m5.util.convert import toMemorySize
+
+from ...utils.override import overrides
+from ..boards.abstract_board import AbstractBoard
+from .abstract_memory_system import AbstractMemorySystem
+
+
+def _try_convert(val, cls):
+    try:
+        return cls(val)
+    except:
+        raise Exception(f"Could not convert {val} to {cls}")
+
+
+def _isPow2(num):
+    log_num = int(log(num, 2))
+    if 2**log_num != num:
+        return False
+    else:
+        return True
+
+
+class ChanneledMemory(AbstractMemorySystem):
+    """A class to implement multi-channel memory system
+
+    This class can take a DRAM Interface as a parameter to model a multi
+    channel DDR DRAM memory system.
+    """
+
+    def __init__(
+        self,
+        dram_interface_class: Type[DRAMInterface],
+        num_channels: Union[int, str],
+        interleaving_size: Union[int, str],
+        size: Optional[str] = None,
+        addr_mapping: Optional[str] = None,
+    ) -> None:
+        """
+        :param dram_interface_class: The DRAM interface type to create with
+                                     this memory controller.
+        :param num_channels: The number of channels that needs to be
+                             simulated.
+        :param size: Optionally specify the size of the DRAM controller's
+                     address space. By default, it starts at 0 and ends at
+                     the size of the DRAM device specified.
+        :param addr_mapping: Defines the address mapping scheme to be used.
+                             If ``None``, it is defaulted to ``addr_mapping`` from
+                             ``dram_interface_class``.
+        :param interleaving_size: Defines the interleaving size of the multi-
+                                  channel memory system. By default, it is
+                                  equivalent to the atom size, i.e., 64.
+        """
+        num_channels = _try_convert(num_channels, int)
+        interleaving_size = _try_convert(interleaving_size, int)
+
+        if size:
+            size = _try_convert(size, str)
+
+        if addr_mapping:
+            addr_mapping = _try_convert(addr_mapping, str)
+
+        super().__init__()
+        self._dram_class = dram_interface_class
+        self._num_channels = num_channels
+
+        if not _isPow2(interleaving_size):
+            raise ValueError("Memory interleaving size should be a power of 2")
+        self._intlv_size = interleaving_size
+
+        if addr_mapping:
+            self._addr_mapping = addr_mapping
+        else:
+            self._addr_mapping = self._dram_class.addr_mapping.value
+
+        if size:
+            self._size = toMemorySize(size)
+        else:
+            self._size = self._get_dram_size(num_channels, self._dram_class)
+
+        self._create_mem_interfaces_controller()
+
+    def _create_mem_interfaces_controller(self):
+        self._dram = [
+            self._dram_class(addr_mapping=self._addr_mapping)
+            for _ in range(self._num_channels)
+        ]
+
+        self.mem_ctrl = [
+            MemCtrl(dram=self._dram[i]) for i in range(self._num_channels)
+        ]
+
+    def _get_dram_size(self, num_channels: int, dram: DRAMInterface) -> int:
+        return num_channels * (
+            dram.device_size.value
+            * dram.devices_per_rank.value
+            * dram.ranks_per_channel.value
+        )
+
+    def _interleave_addresses(self):
+        if self._addr_mapping == "RoRaBaChCo":
+            rowbuffer_size = (
+                self._dram_class.device_rowbuffer_size.value
+                * self._dram_class.devices_per_rank.value
+            )
+            intlv_low_bit = log(rowbuffer_size, 2)
+        elif self._addr_mapping in ["RoRaBaCoCh", "RoCoRaBaCh"]:
+            intlv_low_bit = log(self._intlv_size, 2)
+        else:
+            raise ValueError(
+                "Only these address mappings are supported: "
+                "RoRaBaChCo, RoRaBaCoCh, RoCoRaBaCh"
+            )
+
+        intlv_bits = log(self._num_channels, 2)
+        for i, ctrl in enumerate(self.mem_ctrl):
+            ctrl.dram.range = AddrRange(
+                start=self._mem_range.start,
+                size=self._mem_range.size(),
+                intlvHighBit=intlv_low_bit + intlv_bits - 1,
+                xorHighBit=0,
+                intlvBits=intlv_bits,
+                intlvMatch=i,
+            )
+
+    @overrides(AbstractMemorySystem)
+    def incorporate_memory(self, board: AbstractBoard) -> None:
+        if self._intlv_size < int(board.get_cache_line_size()):
+            raise ValueError(
+                "Memory interleaving size can not be smaller than"
+                " board's cache line size.\nBoard's cache line size: "
+                f"{board.get_cache_line_size()}\n, This memory's interleaving "
+                f"size: {self._intlv_size}"
+            )
+
+    @overrides(AbstractMemorySystem)
+    def get_mem_ports(self) -> Sequence[Tuple[AddrRange, Port]]:
+        return [(ctrl.dram.range, ctrl.port) for ctrl in self.mem_ctrl]
+
+    @overrides(AbstractMemorySystem)
+    def get_memory_controllers(self) -> List[MemCtrl]:
+        return [ctrl for ctrl in self.mem_ctrl]
+
+    @overrides(AbstractMemorySystem)
+    def get_mem_interfaces(self) -> List[AbstractMemory]:
+        return self._dram
+
+    @overrides(AbstractMemorySystem)
+    def get_size(self) -> int:
+        return self._size
+
+    @overrides(AbstractMemorySystem)
+    def set_memory_range(self, ranges: List[AddrRange]) -> None:
+        """Need to add support for non-contiguous non overlapping ranges in
+        the future.
+        """
+        if len(ranges) != 1 or ranges[0].size() != self._size:
+            raise Exception(
+                "Multi channel memory controller requires a single range "
+                "which matches the memory's size.\n"
+                f"The range size: {ranges[0].size()}\n"
+                f"This memory's size: {self._size}"
+            )
+        self._mem_range = ranges[0]
+        self._interleave_addresses()
+
+    @overrides(AbstractMemorySystem)
+    def get_uninterleaved_range(self) -> List[AddrRange]:
+        return [self._mem_range]
+=================== /tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/python/gem5/components/memory/single_channel.py
+# Copyright (c) 2021 The Regents of the University of California
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+from typing import Optional
+
+from .abstract_memory_system import AbstractMemorySystem
+from .dram_interfaces.ddr3 import (
+    DDR3_1600_8x8,
+    DDR3_2133_8x8,
+)
+from .dram_interfaces.ddr4 import DDR4_2400_8x8
+from .dram_interfaces.ddr5 import (
+    DDR5_4400_4x8,
+    DDR5_6400_4x8,
+    DDR5_8400_4x8,
+)
+from .dram_interfaces.hbm import HBM_1000_4H_1x128
+from .dram_interfaces.lpddr3 import LPDDR3_1600_1x32
+from .memory import ChanneledMemory
+
+
+def SingleChannelDDR3_1600(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    """
+    A single channel memory system using DDR3_1600_8x8 based DIMM.
+    """
+    return ChanneledMemory(DDR3_1600_8x8, 1, 64, size=size)
+
+
+def SingleChannelDDR3_2133(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    """
+    A single channel memory system using DDR3_2133_8x8 based DIMM.
+    """
+    return ChanneledMemory(DDR3_2133_8x8, 1, 64, size=size)
+
+
+def SingleChannelDDR4_2400(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    """
+    A single channel memory system using DDR4_2400_8x8 based DIMM.
+    """
+    return ChanneledMemory(DDR4_2400_8x8, 1, 64, size=size)
+
+
+def SingleChannelLPDDR3_1600(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    return ChanneledMemory(LPDDR3_1600_1x32, 1, 64, size=size)
+
+
+def SingleChannelHBM(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    if not size:
+        size = "256MiB"
+    return ChanneledMemory(HBM_1000_4H_1x128, 1, 64, size=size)
+
+
+def DIMM_DDR5_4400(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    """
+    A single DIMM of DDR5 has two channels.
+    """
+    return ChanneledMemory(DDR5_4400_4x8, 2, 64, size=size)
+
+
+def DIMM_DDR5_6400(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    """
+    A single DIMM of DDR5 has two channels.
+    """
+    return ChanneledMemory(DDR5_6400_4x8, 2, 64, size=size)
+
+
+def DIMM_DDR5_8400(
+    size: Optional[str] = None,
+) -> AbstractMemorySystem:
+    """
+    A single DIMM of DDR5 has two channels.
+    """
+    return ChanneledMemory(DDR5_8400_4x8, 2, 64, size=size)
+=================== /tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/python/gem5/components/memory/abstract_memory_system.py
+# Copyright (c) 2021 The Regents of the University of California
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+from abc import (
+    ABCMeta,
+    abstractmethod,
+)
+from typing import (
+    List,
+    Sequence,
+    Tuple,
+)
+
+from m5.objects import (
+    AbstractMemory,
+    MemCtrl,
+    MemInterface,
+    Root,
+    SubSystem,
+)
+from m5.params import (
+    AddrRange,
+    Port,
+)
+
+from ..boards.abstract_board import AbstractBoard
+
+
+class AbstractMemorySystem(SubSystem):
+    __metaclass__ = ABCMeta
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def _pre_instantiate(self, root: Root) -> None:
+        """Called in the `AbstractBoard`'s `_pre_instantiate` method. This is
+        called after `connect_things`, after the creation of the root object
+        (which is passed in as an argument), but before `m5.instantiate`).
+
+        Subclasses should override this method to set up any connections.
+
+        At present there is no general task that must be specified here and is
+        default or applicable to all memory systems.
+        """
+        pass
+
+    @abstractmethod
+    def incorporate_memory(self, board: AbstractBoard) -> None:
+        """This function completes all of the necessary steps to add this
+        memory system to the board."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_mem_ports(self) -> Sequence[Tuple[AddrRange, Port]]:
+        """Get the ports to connect this memory system to the cache."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_memory_controllers(self) -> List[MemCtrl]:
+        """Get all of the memory controllers in this memory system.
+
+        The "memory controller" is the object that has a port named "port"
+        that is the CPU-side port for the memory."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_mem_interfaces(self) -> List[AbstractMemory]:
+        """Get all memory interfaces in this memory system.
+        Useful when creating physical memory objects.
+
+        The "mem interface" is the object that is an AbstractMemory and
+        is used to create the backing store."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_size(self) -> int:
+        """Returns the total size of the memory system."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def set_memory_range(self, ranges: List[AddrRange]) -> None:
+        """Set the total range for this memory system.
+
+        May pass multiple non-overlapping ranges. The total size of the ranges
+        should match the size of the memory.
+
+        If this memory system is incompatible with the ranges, an exception
+        will be raised.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_uninterleaved_range(self) -> List[AddrRange]:
+        """Returns the range of the memory system without interleaving.
+        This is useful when other components in the system want to interleave
+        the memory range different to how the memory has interleaved them.
+        """
+        raise NotImplementedError
+
+    def _post_instantiate(self) -> None:
+        """Called to set up anything needed after ``m5.instantiate``."""
+        pass
+=================== packet.hh makeResponse
+1060-     */
+1061-    void
+1062:    makeResponse()
+1063-    {
+1064-        assert(needsResponse());
+1065-        assert(isRequest());
+1066-        cmd = cmd.responseCommand();
+1067-
+1068-        // responses are never express, even if the snoop that
+1069-        // triggered them was
+1070-        flags.clear(EXPRESS_SNOOP);
+1071-    }
+1072-
+--
+1074-    makeAtomicResponse()
+1075-    {
+1076:        makeResponse();
+1077-    }
+1078-
+1079-    void
+1080-    makeTimingResponse()
+1081-    {
+1082:        makeResponse();
+1083-    }
+1084-
+1085-    void
+1086-    setFunctionalResponseStatus(bool success)
+1087-    {
+1088-        if (!success) {
+1089-            if (isWrite()) {
+1090-                cmd = MemCmd::FunctionalWriteError;
+1091-            } else {
+1092-                cmd = MemCmd::FunctionalReadError;
+=================== cacheResponding users
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:323:        // responding to a snoop. See setCacheResponding below.
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:324:        CACHE_RESPONDING       = 0x00000008,
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:636:     * Set the cacheResponding flag. This is used by the caches to
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:644:     * first, ignoring the cacheResponding flag if hasSharers is set.
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:647:     * hasSharers cacheResponding state
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:653:    void setCacheResponding()
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:656:        assert(!flags.isSet(CACHE_RESPONDING));
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:657:        flags.set(CACHE_RESPONDING);
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:659:    bool cacheResponding() const { return flags.isSet(CACHE_RESPONDING); }
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:662:     * combination with the cacheResponding flag, as clarified
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/packet.hh:715:        assert(cacheResponding());
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/base.cc:1228:            pkt->setCacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/base.cc:1623:    // cacheResponding flag (normally signalling dirty data) if the
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/base.cc:1626:    // Shared, Exclusive or Modified, see Packet::setCacheResponding
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/base.cc:1636:        if (pkt->cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/base.cc:2011:            pkt->cacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:99:                    pkt->setCacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:119:                        // (cacheResponding set, hasSharers not set)
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:120:                        pkt->setCacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:425:    if (pkt->cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:466:        snoop_pkt->setCacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:675:    if (pkt->cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1028:        // bus as us. We'll assert cacheResponding in both cases, but
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1029:        // in the latter case cacheResponding will keep the
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1109:            bool already_responded = pkt->cacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1111:            if (!already_responded && pkt->cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1152:            assert(pkt->cacheResponding());
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1206:        pkt->setCacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1349:            pkt->setCacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1413:        assert(!(snoop_pkt.cacheResponding()));
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1456:        // It is important to check cacheResponding before
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/cache/cache.cc:1462:        if (snoop_pkt.cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:156:    bool cache_responding = pkt->cacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:257:    // checking if a cache set the cacheResponding flag during the
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:259:    const bool expect_snoop_resp = !cache_responding && pkt->cacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:260:    bool expect_response = pkt->needsResponse() && !pkt->cacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:281:            if (pkt->cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:530:    const bool cache_responding = pkt->cacheResponding();
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:556:    if (!cache_responding && pkt->cacheResponding()) {
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:966:        assert(pkt->cacheResponding());
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:1103:    return (pointOfCoherency && pkt->cacheResponding()) ||
+/tmp/sahilag24/CS622_L2_TLB/gem5-nine/src/mem/coherent_xbar.cc:1107:        (pkt->cacheResponding() &&
+=================== deepsjeng alloc
+grep: /tmp/sahilag24/work-nine/cpu2017/benchspec/CPU/631.deepsjeng_s/src: No such file or directory
+grep: /tmp/sahilag24/work-nine/cpu2017/benchspec/CPU/631.deepsjeng_s/src: No such file or directory

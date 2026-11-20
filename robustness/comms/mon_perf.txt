@@ -1,0 +1,38 @@
+=== 20:56:32 csewsrm25 perf
+main gem5: NOT RUNNING | extra guests alive: 3 of 13
+  main: panic=0 trouble=0 started=3 results=2 idle=4034m SPEC_START 503.bwaves_r
+  run0: panic=0 trouble=0 started=3 results=2 idle=3946m SPEC_START 548.exchange2_r
+  run1: panic=0 trouble=0 started=2 results=1 idle=5414m SPEC_START 510.parest_r
+  run10: panic=0 trouble=0 started=3 results=2 idle=4619m SPEC_START 625.x264_s
+  run11: panic=0 trouble=0 started=3 results=3 idle=3642m SPEC_RESULT 631.deepsjeng_s FAIL rc=0
+  run12: panic=0 trouble=0 started=3 results=2 idle=4047m SPEC_START 638.imagick_s
+  run2: panic=0 trouble=0 started=3 results=2 idle=4801m SPEC_START 554.roms_r
+  run3: panic=0 trouble=0 started=2 results=1 idle=3894m SPEC_START 519.lbm_r
+  run4: panic=0 trouble=0 started=1 results=0 idle=7177m SPEC_START 627.cam4_s
+  run5: panic=0 trouble=0 started=3 results=2 idle=4465m SPEC_START 602.gcc_s
+  run6: panic=0 trouble=0 started=2 results=1 idle=5070m SPEC_START 525.x264_r
+  run7: panic=0 trouble=0 started=2 results=1 idle=5455m SPEC_START 526.blender_r
+  run8: panic=0 trouble=0 started=2 results=1 idle=4241m SPEC_START 527.cam4_r
+  run9: panic=0 trouble=0 started=3 results=3 idle=4155m SPEC_RESULT 623.xalancbmk_s PASS rc=0
+results: PASS=19 FAIL=2 timeout(rc=124)=0
+SPEC_RESULT 500.perlbench_r FAIL rc=0
+SPEC_RESULT 631.deepsjeng_s FAIL rc=0
+benchmark minutes (as observed by this monitor):
+  run2 511.povray_r PASS 754 min
+  run12 507.cactuBSSN_r PASS 2379 min
+  run10 538.imagick_r PASS 700 min
+  run5 523.xalancbmk_r PASS 637 min
+  run11 541.leela_r PASS 1484 min
+  run8 500.perlbench_r FAIL 2902 min
+  run9 623.xalancbmk_s PASS 653 min
+  run12 544.nab_r PASS 733 min
+  main 502.gcc_r PASS 951 min
+  run0 508.namd_r PASS 1516 min
+  run3 621.wrf_s PASS 3265 min
+  run11 631.deepsjeng_s FAIL 597 min
+host: /tmp free 57G | mem avail 53G | load 3.00 | uptime 11991m
+ALERTS:
+
+  - main gem5 not running and guest not finished
+  - only 3 of 13 extra guests alive (2 finished)
+  - 2 benchmark FAIL line(s)
