@@ -1,0 +1,1 @@
+/users/btech/sahilag24/isa_lane.sh: line 18: 2908760 Segmentation fault      (core dumped) ssh -n -o LogLevel=ERROR sahilag24@csewsrm$TGT.cse.iitk.ac.in "bash ~/spawn_isa.sh $L $SRC '600' $SW" >> $LOG 2>&1

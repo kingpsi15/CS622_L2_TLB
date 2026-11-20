@@ -11,3 +11,20 @@ build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'fninit' unimp
 build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'fwait' unimplemented
 src/dev/x86/pc.cc:117: warn: Don't know what interrupt to clear for console.
 src/arch/x86/interrupts.cc:530: hack: Assuming logical destinations are 1 << id.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0xea.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0xea.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0xe1.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0xe1.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0xa.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0xa.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0x88.
+src/dev/ps2/mouse.cc:153: warn: Unknown mouse command 0x0.
+src/sim/power_state.cc:105: warn: PowerState: Already in the requested power state, request ignored
+build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'fwait' unimplemented
+src/dev/x86/i8237.cc:48: warn: Read from i8237 channel 0 current address unimplemented; returning 0.
+src/arch/generic/debugfaults.hh:145: warn: MOVNTPS: Ignoring non-temporal hint, modeling as cacheable!
+build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'fcomip' unimplemented
+build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'fxam' unimplemented
+src/arch/generic/debugfaults.hh:145: warn: MOVNTDQ: Ignoring non-temporal hint, modeling as cacheable!
+build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'prefetch_nta' unimplemented
+build/X86/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'prefetch_nta' unimplemented

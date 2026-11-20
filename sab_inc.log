@@ -1,0 +1,8 @@
+10:05:27 copying
+10:05:45 building disk
+slice 0 503.bwaves_r
+slice 1 508.namd_r
+slice 2 510.parest_r
+slice 3 619.lbm_s
+10:06:22 launching 4 guests
+gem5 processes: 9

@@ -1,0 +1,643 @@
+######## LANE inc
+ 1069 tlb.cc
+  225 tlb.hh
+ 1294 total
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.cc: No such file or directory
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.hh: No such file or directory
+######## LANE excl
+ 1023 tlb.cc
+  255 tlb.hh
+ 1278 total
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.cc: No such file or directory
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.hh: No such file or directory
+######## LANE nine
+  947 tlb.cc
+  255 tlb.hh
+ 1202 total
+--- /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.cc	2026-11-12 21:59:15.955089490 +0530
++++ tlb.cc	2026-11-15 15:14:02.427496820 +0530
+@@ -35,11 +35,42 @@
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
++// NINE (neither-inclusive-nor-exclusive) set-associative L2 TLB - FIXED.
++//
++// Bugs found in tlb.cc.nine.sa / tlb.hh.nine.sa and fixed here:
++//   1. l2_remove(va) matched L2 entries by VA only, ignoring the PCID/ASN
++//      that is folded into the stored key. demapPage() on one address space
++//      could therefore invalidate a different address space's L2 translation
++//      for the same VA (and leave the demapped process's own stale L2 copy
++//      behind if that copy had a different PCID encoding at the time it was
++//      looked up). Fixed: l2_remove(va, asn) builds the same concAddrPcid()
++//      key used at insert time and matches on that exact key.
++//   2. serialize()/unserialize() only covered the L1 array. A checkpoint
++//      restore silently dropped all L2 state, so a restored run has fewer
++//      cached translations than an uninterrupted run would (not a crash, but
++//      an observable, undocumented behavior change and a lost-state bug for
++//      any policy study that checkpoints). Fixed: L2 valid bits + entries
++//      are serialized/restored alongside L1.
++//   3. No stat distinguished an L2 hit/promotion from an L1 hit, so a dead L2
++//      (e.g. because of bug 1's corruption) was not visible in stats.txt.
++//      Fixed: added l2Hits/l2Insertions/l2Evictions.
++//   4. L2 geometry (128 sets x 4 ways), index hash, replacement policy and
++//      insert-on-L2-hit behavior were compile-time constants, which blocked
++//      the requested runtime sweep. Fixed: all four are environment-selected
++//      in the constructor (see tlb.hh.nine.fixed top comment for the names);
++//      one gem5.opt binary covers every variant.
++//
++// Not changed (shared with stock/other lanes, out of this lane's scope):
++//   PCID is still folded into the low 12 address bits (concAddrPcid); this
++//   works because PCID is <=12 bits and vpn here is always page-aligned, but
++//   it is still a fragile representation vs. a real tagged-TLB ASID field.
++
+ #include "arch/x86/tlb.hh"
+ 
+ #include <cstdlib>
+ #include <cstring>
+ #include <memory>
++#include <random>
+ 
+ #include "arch/x86/faults.hh"
+ #include "arch/x86/insts/microldstop.hh"
+@@ -63,53 +94,182 @@
+ 
+ namespace X86ISA {
+ 
+-// ===================== TLBCHK-INSTRUMENTATION =====================
+ namespace
+ {
+-struct ChkCfg
++uint32_t
++chkRandU32()
+ {
+-    bool panicOnError = false;
+-    uint64_t fsPeriod = 64;
+-    uint64_t maxWarn = 20;
+-    ChkCfg()
+-    {
+-        if (const char *s = std::getenv("TLBCHK_PANIC")) panicOnError = atoi(s);
+-        if (const char *s = std::getenv("TLBCHK_FS_PERIOD")) fsPeriod = strtoull(s, 0, 0);
+-        if (const char *s = std::getenv("TLBCHK_MAXWARN")) maxWarn = strtoull(s, 0, 0);
+-    }
+-};
+-ChkCfg &chkCfg() { static ChkCfg c; return c; }
+-uint64_t chkWarned = 0;
+-} // anonymous namespace
++    static std::mt19937 rng(0xC0FFEE ^ (uint32_t)(uintptr_t)&rng);
++    return rng();
++}
+ 
+-void
+-TLB::chkReport(const char *kind, const std::string &msg)
++uint32_t
++envU32(const char *name, uint32_t def)
+ {
+-    if (chkCfg().panicOnError)
+-        panic("TLBCHK %s in %s: %s", kind, name(), msg);
+-    if (chkWarned++ < chkCfg().maxWarn)
+-        warn("TLBCHK %s in %s @tick %llu: %s", kind, name(),
+-             (unsigned long long)curTick(), msg);
++    if (const char *s = std::getenv(name)) {
++        char *end;
++        unsigned long v = strtoul(s, &end, 0);
++        if (end != s) return (uint32_t)v;
++    }
++    return def;
+ }
+ 
+-void TLB::chkInclusion(const char *) {}
++uint32_t
++roundUpPow2(uint32_t v)
++{
++    uint32_t p = 1;
++    while (p < v) p <<= 1;
++    return p;
++}
++} // anonymous namespace
+ 
+ TLB::TLB(const Params &p)
+-    : BaseTLB(p), configAddress(0), size(p.size),
+-      tlb(size), lruSeq(0), m5opRange(p.system->m5opRange()), stats(this)
++    : BaseTLB(p), configAddress(0),
++      size(envU32("NINE_L1_SIZE", 0) ? envU32("NINE_L1_SIZE", 0) : p.size),
++      tlb(size), lruSeq(0),
++      l2_lruSeq(0), l2_fifoCounter(0),
++      m5opRange(p.system->m5opRange()), stats(this)
+ {
+     if (!size)
+         fatal("TLBs must have a non-zero size.\n");
+ 
+-    for (int x = 0; x < size; x++) {
++    for (uint32_t x = 0; x < size; x++) {
+         tlb[x].trieHandle = NULL;
+         freeList.push_back(&tlb[x]);
+     }
+ 
++    // --- NINE set-associative L2 setup: geometry read from the environment
++    // so a single binary covers the whole runtime-variant sweep. ---
++    l2NumSets = roundUpPow2(std::min<uint32_t>(4096,
++                    std::max<uint32_t>(1, envU32("NINE_L2_SETS", 128))));
++    l2NumWays = std::min<uint32_t>(16,
++                    std::max<uint32_t>(1, envU32("NINE_L2_WAYS", 4)));
++    l2HashPolicy = envU32("NINE_L2_HASH", 0);
++    l2ReplPolicy = envU32("NINE_L2_REPL", 0);
++    l2InsertOnHit = envU32("NINE_L2_INSERT_ON_HIT", 1) != 0;
++
++    l2_entries.resize((size_t)l2NumSets * l2NumWays);
++    l2_valid.assign((size_t)l2NumSets * l2NumWays, false);
++    l2_fifoSeq.assign((size_t)l2NumSets * l2NumWays, 0);
++
+     walker = p.walker;
+     walker->setTLB(this);
+ }
+ 
++// --- NINE set-associative L2 helper functions ---
++TlbEntry *
++TLB::l2_lookup(Addr va, bool update_lru)
++{
++    Addr true_vpn = va >> X86ISA::PageShift;
++    uint32_t set_idx = l2_hash(true_vpn);
++    uint32_t base = set_idx * l2NumWays;
++
++    for (uint32_t i = 0; i < l2NumWays; i++) {
++        if (l2_valid[base + i] && l2_entries[base + i].vaddr == va) {
++            if (update_lru)
++                l2_entries[base + i].lruSeq = ++l2_lruSeq;
++            return &l2_entries[base + i];
++        }
++    }
++    return NULL;
++}
++
++// FIX (bug 1): take the ASN so we only remove the translation for the
++// address space actually being demapped, instead of every PCID sharing
++// this VA. The key is built exactly as insert builds it (page-aligned VA
++// OR'd with the PCID), so this matches the same entry insert would have
++// produced/updated, not just anything with the same page number.
++void
++TLB::l2_remove(Addr va, uint64_t asn)
++{
++    Addr pageAligned = va & ~mask(X86ISA::PageShift);
++    Addr target = concAddrPcid(pageAligned, asn);
++    Addr true_vpn = pageAligned >> X86ISA::PageShift;
++    uint32_t set_idx = l2_hash(true_vpn);
++    uint32_t base = set_idx * l2NumWays;
++
++    for (uint32_t i = 0; i < l2NumWays; i++) {
++        if (l2_valid[base + i] && l2_entries[base + i].vaddr == target) {
++            l2_valid[base + i] = false;
++        }
++    }
++}
++
++void
++TLB::l2_flushAll()
++{
++    std::fill(l2_valid.begin(), l2_valid.end(), false);
++}
++
++void
++TLB::l2_flushNonGlobal()
++{
++    for (size_t i = 0; i < l2_valid.size(); i++) {
++        if (l2_valid[i] && !l2_entries[i].global)
++            l2_valid[i] = false;
++    }
++}
++
++TlbEntry *
++TLB::l2_insert(Addr vpn, const TlbEntry &entry, uint64_t pcid)
++{
++    Addr true_vpn = vpn >> X86ISA::PageShift;
++    uint32_t set_idx = l2_hash(true_vpn);
++    uint32_t base = set_idx * l2NumWays;
++
++    Addr concat_va = concAddrPcid(vpn, pcid);
++
++    // Already present (e.g. re-promoted from L1, or already installed by an
++    // earlier miss on another thread sharing this TLB object)?
++    for (uint32_t i = 0; i < l2NumWays; i++) {
++        if (l2_valid[base + i] && l2_entries[base + i].vaddr == concat_va) {
++            if (l2InsertOnHit)
++                l2_entries[base + i].lruSeq = ++l2_lruSeq;
++            return &l2_entries[base + i];
++        }
++    }
++
++    // Pick a victim way according to the configured replacement policy.
++    uint32_t victim = 0;
++    bool foundEmpty = false;
++    for (uint32_t i = 0; i < l2NumWays && !foundEmpty; i++) {
++        if (!l2_valid[base + i]) { victim = i; foundEmpty = true; }
++    }
++    if (!foundEmpty) {
++        switch (l2ReplPolicy) {
++          case 1: { // FIFO: smallest insertion sequence number
++            victim = 0;
++            for (uint32_t i = 1; i < l2NumWays; i++)
++                if (l2_fifoSeq[base + i] < l2_fifoSeq[base + victim])
++                    victim = i;
++            break;
++          }
++          case 2: { // random
++            victim = chkRandU32() % l2NumWays;
++            break;
++          }
++          default: { // LRU
++            victim = 0;
++            for (uint32_t i = 1; i < l2NumWays; i++)
++                if (l2_entries[base + i].lruSeq < l2_entries[base + victim].lruSeq)
++                    victim = i;
++            break;
++          }
++        }
++        stats.l2Evictions++;
++    }
++
++    l2_valid[base + victim] = true;
++    l2_entries[base + victim] = entry;
++    l2_entries[base + victim].lruSeq = ++l2_lruSeq;
++    l2_fifoSeq[base + victim] = ++l2_fifoCounter;
++    l2_entries[base + victim].vaddr = concat_va;
++    stats.l2Insertions++;
++
++    return &l2_entries[base + victim];
++}
++// -------------------------------------------
++
+ void
+ TLB::evictLRU()
+ {
+@@ -131,6 +291,12 @@
+ TlbEntry *
+ TLB::insert(Addr vpn, const TlbEntry &entry, uint64_t pcid)
+ {
++    // NINE: L1 and L2 residency are independent; always keep (or refresh) a
++    // copy in the L2 regardless of whether this insert came from a cold
++    // miss or an L2->L1 promotion (l2_insert is idempotent on an exact-key
++    // hit, see above).
++    l2_insert(vpn, entry, pcid);
++
+     //Adding pcid to the page address so
+     //that multiple processes using the same
+     //tlb do not conflict when using the same
+@@ -184,6 +350,8 @@
+             freeList.push_back(&tlb[i]);
+         }
+     }
++
++    l2_flushAll();
+ }
+ 
+ void
+@@ -203,12 +371,21 @@
+             freeList.push_back(&tlb[i]);
+         }
+     }
++    l2_flushNonGlobal();
+ }
+ 
+ void
+ TLB::demapPage(Addr va, uint64_t asn)
+ {
+-    TlbEntry *entry = trie.lookup(va);
++    // FIX (bug 1): pass the ASN through so l2_remove invalidates only the
++    // (va, asn) translation that is actually being unmapped.
++    l2_remove(va, asn);
++    Addr pageAlignedVaddr = va & ~mask(X86ISA::PageShift);
++    Addr concat_va = concAddrPcid(pageAlignedVaddr, asn);
++    TlbEntry *entry = trie.lookup(concat_va);
++    if (!entry && asn == 0) {
++        entry = trie.lookup(pageAlignedVaddr);
++    }
+     if (entry) {
+         trie.remove(entry->trieHandle);
+         entry->trieHandle = NULL;
+@@ -233,6 +410,7 @@
+         pkt->writeData((uint8_t *)&data);
+         tc->setMiscReg(regNum, letoh(data));
+     }
++
+     return Cycles(1);
+ }
+ 
+@@ -450,6 +628,22 @@
+             pageAlignedVaddr = concAddrPcid(pageAlignedVaddr, pcid);
+             TlbEntry *entry = lookup(pageAlignedVaddr);
+ 
++            // --- L2 lookup on an L1 miss ---
++            if (!entry) {
++                // It missed in L1. Check the L2.
++                TlbEntry *l2_entry = l2_lookup(pageAlignedVaddr);
++
++                if (l2_entry) {
++                    DPRINTF(TLB, "L2 TLB HIT for address %#x.\n", pageAlignedVaddr);
++                    stats.l2Hits++;
++                    // Copy it into the L1 (NINE: the L2 copy stays resident).
++                    entry = insert(pageAlignedVaddr, *l2_entry, pcid);
++                } else {
++                    DPRINTF(TLB, "L2 TLB MISS for address %#x. Going to Walker...\n", pageAlignedVaddr);
++                }
++            }
++            // -------------------------
++
+             switch (mode) {
+                 case BaseMMU::Read:
+                     stats.rdAccesses++;
+@@ -533,60 +727,6 @@
+                     vaddr, true, BaseMMU::Write, inUser, false);
+             }
+ 
+-            // TLBCHK-INSTRUMENTATION: translation oracle
+-            {
+-                Addr chk_pa = entry->paddr | (vaddr & mask(entry->logBytes));
+-                chkTranslations++;
+-                if (!FullSystem) {
+-                    stats.chkOracleChecks++;
+-                    Process *cp = tc->getProcessPtr();
+-                    const EmulationPageTable::Entry *opte =
+-                        cp->pTable->lookup(vaddr);
+-                    if (!opte) {
+-                        stats.chkOracleWalkFault++;
+-                        chkReport("ORACLE-STALE-UNMAPPED", csprintf(
+-                            "va %#x -> pa %#x but page table has no mapping "
+-                            "(pid %d mode %d)", vaddr, chk_pa,
+-                            cp->pid(), (int)mode));
+-                    } else {
+-                        Addr opa = opte->paddr + (vaddr & mask(PageShift));
+-                        bool oro = opte->flags & EmulationPageTable::ReadOnly;
+-                        if (opa != chk_pa || (oro && entry->writable)) {
+-                            stats.chkOracleMismatch++;
+-                            chkReport("ORACLE-MISMATCH", csprintf(
+-                                "va %#x: TLB pa %#x w%d, page table pa %#x "
+-                                "ro%d (pid %d mode %d)", vaddr, chk_pa,
+-                                entry->writable, opa, oro, cp->pid(),
+-                                (int)mode));
+-                        }
+-                    }
+-                } else if (chkCfg().fsPeriod &&
+-                           chkTranslations % chkCfg().fsPeriod == 0) {
+-                    stats.chkOracleChecks++;
+-                    Addr wa = vaddr;
+-                    unsigned wlog = 0;
+-                    Fault wf = walker->startFunctional(tc, wa, wlog, mode);
+-                    if (wf != NoFault) {
+-                        stats.chkOracleWalkFault++;
+-                        chkReport("ORACLE-STALE-NOTPRESENT", csprintf(
+-                            "va %#x -> pa %#x (log %d) but guest page "
+-                            "tables say not present (cr3 %#x mode %d)",
+-                            vaddr, chk_pa, entry->logBytes,
+-                            tc->readMiscRegNoEffect(misc_reg::Cr3),
+-                            (int)mode));
+-                    } else {
+-                        Addr wpa = wa | (vaddr & mask(wlog));
+-                        if (wpa != chk_pa) {
+-                            stats.chkOracleMismatch++;
+-                            chkReport("ORACLE-MISMATCH", csprintf(
+-                                "va %#x: TLB pa %#x (log %d), walk pa %#x "
+-                                "(log %d) cr3 %#x", vaddr, chk_pa,
+-                                entry->logBytes, wpa, wlog,
+-                                tc->readMiscRegNoEffect(misc_reg::Cr3)));
+-                        }
+-                    }
+-                }
+-            }
+             Addr paddr = entry->paddr | (vaddr & mask(entry->logBytes));
+             DPRINTF(TLB, "Translated %#x -> %#x.\n", vaddr, paddr);
+             req->setPaddr(paddr);
+@@ -695,20 +835,12 @@
+                "TLB misses on write requests"),
+       ADD_STAT(exMisses, statistics::units::Count::get(),
+                "TLB misses on execute (instr) requests"),
+-      ADD_STAT(chkOracleChecks, statistics::units::Count::get(),
+-               "TLBCHK: translations compared against the page-table oracle"),
+-      ADD_STAT(chkOracleMismatch, statistics::units::Count::get(),
+-               "TLBCHK: TLB pa/permission disagreed with page tables"),
+-      ADD_STAT(chkOracleWalkFault, statistics::units::Count::get(),
+-               "TLBCHK: TLB translated a page the page tables do not map"),
+-      ADD_STAT(chkInclusionChecks, statistics::units::Count::get(),
+-               "TLBCHK: L1-subset-of-L2 invariant checks"),
+-      ADD_STAT(chkInclusionViolations, statistics::units::Count::get(),
+-               "TLBCHK: L1 entries without a matching L2 copy"),
+-      ADD_STAT(chkL2Hits, statistics::units::Count::get(),
+-               "TLBCHK: L1 misses served by the L2"),
+-      ADD_STAT(chkBackInvalidations, statistics::units::Count::get(),
+-               "TLBCHK: L1 entries back-invalidated by an L2 eviction")
++      ADD_STAT(l2Hits, statistics::units::Count::get(),
++               "NINE: L1 misses served by the L2"),
++      ADD_STAT(l2Insertions, statistics::units::Count::get(),
++               "NINE: new L2 entries installed"),
++      ADD_STAT(l2Evictions, statistics::units::Count::get(),
++               "NINE: L2 entries evicted to make room")
+ {
+ }
+ 
+@@ -725,6 +857,32 @@
+         if (tlb[x].trieHandle != NULL)
+             tlb[x].serializeSection(cp, csprintf("Entry%d", _count++));
+     }
++
++    // FIX (bug 2): serialize the L2 state too, or a checkpoint restore
++    // silently drops every L2-resident translation.
++    SERIALIZE_SCALAR(l2NumSets);
++    SERIALIZE_SCALAR(l2NumWays);
++    SERIALIZE_SCALAR(l2_lruSeq);
++    SERIALIZE_SCALAR(l2_fifoCounter);
++
++    uint32_t _l2count = 0;
++    for (size_t i = 0; i < l2_valid.size(); i++) {
++        if (l2_valid[i])
++            _l2count++;
++    }
++    SERIALIZE_SCALAR(_l2count);
++
++    uint32_t idx = 0;
++    for (size_t i = 0; i < l2_valid.size(); i++) {
++        if (!l2_valid[i])
++            continue;
++        uint32_t slot = (uint32_t)i;
++        uint64_t fifoSeq = l2_fifoSeq[i];
++        paramOut(cp, csprintf("l2_slot_%d", idx), slot);
++        paramOut(cp, csprintf("l2_fifo_%d", idx), fifoSeq);
++        l2_entries[i].serializeSection(cp, csprintf("L2Entry%d", idx));
++        idx++;
++    }
+ }
+ 
+ void
+@@ -747,6 +905,36 @@
+         newEntry->trieHandle = trie.insert(newEntry->vaddr,
+             TlbEntryTrie::MaxBits - newEntry->logBytes, newEntry);
+     }
++
++    // FIX (bug 2): restore L2 state. If the checkpoint predates this fix
++    // (no L2 fields present) the L2 just starts empty, same as before.
++    uint32_t ckptSets = l2NumSets, ckptWays = l2NumWays;
++    UNSERIALIZE_OPT_SCALAR(ckptSets);
++    UNSERIALIZE_OPT_SCALAR(ckptWays);
++    UNSERIALIZE_OPT_SCALAR(l2_lruSeq);
++    UNSERIALIZE_OPT_SCALAR(l2_fifoCounter);
++
++    std::fill(l2_valid.begin(), l2_valid.end(), false);
++
++    if (ckptSets == l2NumSets && ckptWays == l2NumWays) {
++        uint32_t _l2count = 0;
++        UNSERIALIZE_OPT_SCALAR(_l2count);
++        for (uint32_t idx = 0; idx < _l2count; idx++) {
++            uint32_t slot = 0;
++            uint64_t fifoSeq = 0;
++            paramIn(cp, csprintf("l2_slot_%d", idx), slot);
++            paramIn(cp, csprintf("l2_fifo_%d", idx), fifoSeq);
++            if (slot < l2_entries.size()) {
++                l2_entries[slot].unserializeSection(cp,
++                    csprintf("L2Entry%d", idx));
++                l2_valid[slot] = true;
++                l2_fifoSeq[slot] = fifoSeq;
++            }
++        }
++    }
++    // else: geometry changed across the restore (e.g. a different
++    // NINE_L2_SETS/WAYS); the L2 contents cannot be mapped 1:1 onto the new
++    // geometry, so we conservatively leave it empty rather than guess.
+ }
+ 
+ Port *
+--- /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.hh	2026-11-12 21:59:15.943089433 +0530
++++ tlb.hh	2026-11-15 15:14:02.428496827 +0530
+@@ -35,6 +35,18 @@
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
++// NINE (neither-inclusive-nor-exclusive) set-associative L2 TLB - FIXED.
++//
++// Runtime variants (read from the environment once, in the TLB constructor;
++// one gem5.opt binary covers all of them):
++//   NINE_L2_SETS   : number of L2 sets, power of 2, 1..4096 (default 128)
++//   NINE_L2_WAYS   : L2 associativity, 1..16                (default 4)
++//   NINE_L2_HASH   : set-index hash: 0=xor-fold(default) 1=low-bits 2=multiplicative
++//   NINE_L2_REPL   : L2 replacement: 0=LRU(default) 1=FIFO 2=random
++//   NINE_L2_INSERT_ON_HIT : 1=re-touch L2 copy on an L2->L1 promotion (default), 0=leave L2 LRU state alone
++//   NINE_L1_SIZE   : overrides the SimObject's L1 'size' param when set (>0)
++// See tlb.cc.nine.fixed top-of-file comment for what each bug fix changes.
++
+ #ifndef __ARCH_X86_TLB_HH__
+ #define __ARCH_X86_TLB_HH__
+ 
+@@ -99,14 +111,60 @@
+ 
+       protected:
+         uint32_t size;
+-
+         std::vector<TlbEntry> tlb;
+-
+         EntryList freeList;
+-
+         TlbEntryTrie trie;
+         uint64_t lruSeq;
+ 
++        // --- NINE set-associative L2: runtime-configurable geometry ---
++        // (FIX: these used to be compile-time 'static const' constants with
++        // no way to sweep geometry without a rebuild, and the per-set fixed
++        // C arrays made that impossible anyway; now a flat vector sized at
++        // construction time from the environment.)
++        uint32_t l2NumSets;
++        uint32_t l2NumWays;
++        uint32_t l2HashPolicy;   // 0=xor-fold 1=low-bits 2=multiplicative
++        uint32_t l2ReplPolicy;   // 0=LRU 1=FIFO 2=random
++        bool     l2InsertOnHit;  // re-touch L2 entry on L1 promotion
++
++        std::vector<TlbEntry> l2_entries; // flat: [set*l2NumWays + way]
++        std::vector<bool>     l2_valid;
++        std::vector<uint64_t> l2_fifoSeq; // insertion order, for FIFO replacement
++        uint64_t l2_lruSeq;
++        uint64_t l2_fifoCounter;
++
++        inline uint32_t
++        l2_hash(Addr vpn)
++        {
++            // l2NumSets is enforced to be a power of two (see ctor).
++            uint32_t setBits = 0;
++            for (uint32_t n = l2NumSets; n > 1; n >>= 1) setBits++;
++            uint32_t m = l2NumSets - 1;
++            switch (l2HashPolicy) {
++              case 1: // low-bits only
++                return (uint32_t)(vpn & m);
++              case 2: { // multiplicative (Knuth) mixing before folding
++                uint64_t h = (uint64_t)vpn * 2654435761u;
++                return (uint32_t)((h >> 13) & m);
++              }
++              default: { // xor-fold (same spirit as the original xor_7_hash,
++                         // generalized to any power-of-two set count)
++                uint32_t hi = (uint32_t)((vpn >> setBits) & m);
++                uint32_t lo = (uint32_t)(vpn & m);
++                return hi ^ lo;
++              }
++            }
++        }
++
++        // --- L2 helper functions (FIX: l2_remove now takes the ASN/PCID so
++        // it only removes the translation for the address space that is
++        // actually being demapped; see .cc for details). ---
++        TlbEntry *l2_lookup(Addr va, bool update_lru = true);
++        TlbEntry *l2_insert(Addr vpn, const TlbEntry &entry, uint64_t pcid);
++        void l2_remove(Addr va, uint64_t asn);
++        void l2_flushAll();
++        void l2_flushNonGlobal();
++
+         AddrRange m5opRange;
+ 
+         struct TlbStats : public statistics::Group
+@@ -119,14 +177,12 @@
+             statistics::Scalar rdMisses;
+             statistics::Scalar wrMisses;
+             statistics::Scalar exMisses;
+-            // TLBCHK-INSTRUMENTATION
+-            statistics::Scalar chkOracleChecks;
+-            statistics::Scalar chkOracleMismatch;
+-            statistics::Scalar chkOracleWalkFault;
+-            statistics::Scalar chkInclusionChecks;
+-            statistics::Scalar chkInclusionViolations;
+-            statistics::Scalar chkL2Hits;
+-            statistics::Scalar chkBackInvalidations;
++            // FIX: the original NINE SA code never counted L2 hits/promotions
++            // at all, so there was no way to tell a working L2 apart from a
++            // dead one without the external checker.
++            statistics::Scalar l2Hits;
++            statistics::Scalar l2Insertions;
++            statistics::Scalar l2Evictions;
+         } stats;
+ 
+         Fault translateInt(bool read, RequestPtr req, ThreadContext *tc);
+@@ -138,10 +194,6 @@
+       public:
+ 
+         void evictLRU();
+-        // TLBCHK-INSTRUMENTATION
+-        void chkInclusion(const char *where);
+-        void chkReport(const char *kind, const std::string &msg);
+-        uint64_t chkTranslations = 0;
+ 
+         uint64_t
+         nextSeq()
+@@ -178,6 +230,9 @@
+         TlbEntry *insert(Addr vpn, const TlbEntry &entry, uint64_t pcid);
+ 
+         // Checkpointing
++        // FIX: original NINE SA serialize/unserialize only covered the L1
++        // array; the L2 state silently vanished across a checkpoint
++        // restore. Now both are serialized together.
+         void serialize(CheckpointOut &cp) const override;
+         void unserialize(CheckpointIn &cp) override;
+ 
+######## LANE agile
+ 1113 tlb.cc
+  242 tlb.hh
+ 1355 total
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.cc: No such file or directory
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.hh: No such file or directory
+######## LANE perf
+ 1143 tlb.cc
+  289 tlb.hh
+ 1432 total
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.cc: No such file or directory
+diff: /tmp/sahilag24/work-nine/gem5-base/src/arch/x86/tlb.hh: No such file or directory

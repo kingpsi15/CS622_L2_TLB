@@ -1,0 +1,10 @@
+09:47:31 copying
+09:55:48 building disk
+slice 0 500.perlbench_r
+slice 1 525.x264_r
+slice 2 527.cam4_r
+slice 3 621.wrf_s
+slice 4 625.x264_s
+slice 5 627.cam4_s
+09:56:24 launching 6 guests
+gem5 processes: 12

@@ -1,0 +1,6 @@
+10:06:43 copying
+10:07:08 building disk
+slice 0 548.exchange2_r
+slice 1 619.lbm_s
+10:07:44 launching 2 guests
+gem5 processes: 5

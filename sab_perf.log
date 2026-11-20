@@ -1,0 +1,6 @@
+10:12:57 copying
+10:15:46 building disk
+slice 0 507.cactuBSSN_r
+slice 1 619.lbm_s
+10:16:13 launching 2 guests
+gem5 processes: 5
