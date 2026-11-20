@@ -582,13 +582,13 @@ CoLT-FA & 36 & 2 & 1 & 4 \\
 
 \noindent \textbf{Every benchmark that can run in this setup passes on every design.} The same three benchmarks fail on every design, and none of the failures depends on the TLB:
 \begin{itemize}
-    \item \textbf{500.perlbench\_r and 600.perlbench\_s} fail because of a bug in \texttt{gem5}'s emulation of x87 floating-point instructions. Perl prints long double values (\texttt{printf "\%a"}) through these instructions and the result is wrong under \texttt{gem5}. We checked that both benchmarks pass natively with the exact same SPEC setup and wrapper, and that they still fail in \texttt{gem5} with the wrapper removed. A patch to the x87 microcode was in progress at the time of writing.
-    \item \textbf{631.deepsjeng\_s} needs 6.9GB of memory, more than the 3 GiB the board allows, so the program cannot start.
+    \item \textbf{500.perlbench\_r and 600.perlbench\_s} fail because of a bug in \texttt{gem5}'s emulation of x87 floating-point instructions. Perl prints long double values (\texttt{printf "\%a"}) through these instructions and the result is wrong under \texttt{gem5}. We checked that both benchmarks pass natively with the exact same SPEC setup and wrapper, and that they still fail in \texttt{gem5} with the wrapper removed. The root cause was later found and fixed: \texttt{fcomip} was not implemented, and the x87 \texttt{movfp} micro-operations copied only 32 of 64 bits (Section~\ref{sec:chr_perl}). With the fix, small perl programs and 30 x87 test cases give the same output as native in SE mode. Full-system reruns of both perlbench benchmarks on the fixed build were started but had not finished when this report was written, so the table counts them as FAIL.
+    \item \textbf{631.deepsjeng\_s} needs 6.9GB of memory, more than the 3 GiB board used for this campaign, so the program cannot start. On a separate board configured with 12 GiB (Section~\ref{sec:chr_mem}), it passed in full-system mode on Inclusive, Exclusive, NINE, Agile and Perforated Pages.
 \end{itemize}
 
 \noindent Four more benchmarks have no full-system pass/fail result:
 \begin{itemize}
-    \item \textbf{619.lbm\_s} needs 3.2GB, just above the memory limit, and \texttt{gem5} stops with an internal cache assertion when it switches back from the timing to the atomic CPU after its window. Its window statistics were saved.
+    \item \textbf{619.lbm\_s} needs 3.2GB, just above the memory limit, and \texttt{gem5} stops with an internal cache assertion when it switches back from the timing to the atomic CPU after its window. Its window statistics were saved. The full history of this benchmark is in Section~\ref{sec:chr_lbm}.
     \item \textbf{525.x264\_r and 625.x264\_s} run about 1 trillion instructions each on the test input, which would take around 13 days to simulate. Their window statistics were saved.
     \item \textbf{627.cam4\_s} passes on four designs and was still running on Agile and CoLT-FA at the time of writing. It fails natively on our SPEC build but passes in \texttt{gem5}.
 \end{itemize}
@@ -849,8 +849,8 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
 \label{sec:limits}
 % -----------------------------------------------------------------------------
 \begin{itemize}
-    \item \textbf{Memory limit.} The \texttt{X86Board} allows at most 3 GiB of guest memory, so 631.deepsjeng\_s and 619.lbm\_s were checked in SE mode only (both PASS on all designs).
-    \item \textbf{x87 emulation.} The perlbench failures are caused by \texttt{gem5}, not by the TLB designs, and affect every design.
+    \item \textbf{Memory limit.} The board used for the main campaign gives the guest 3 GiB. 631.deepsjeng\_s and 619.lbm\_s were checked in SE mode with 8 GiB (both PASS on all designs). A 12 GiB board was also made to work (Section~\ref{sec:chr_mem}); 631.deepsjeng\_s passes on it, while 619.lbm\_s needed a change to the page walker, described in Section~\ref{sec:chr_lbm}.
+    \item \textbf{x87 emulation.} The perlbench failures are caused by \texttt{gem5}, not by the TLB designs, and affect every design. The bug was found and fixed (Section~\ref{sec:chr_perl}), but the full-system reruns with the fix did not finish in time.
     \item \textbf{Sampled windows.} Performance numbers come from windows of 200M to 1.5G instructions, not from whole runs. Correctness is still checked over the whole run for SPEC test inputs.
     \item \textbf{Same-machine rule.} With transparent huge pages on, the guest's memory layout depends on the disk image built on each machine, so these results are only compared within one machine.
     \item \textbf{Single core.} All full-system runs use one simulated core.

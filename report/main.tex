@@ -11,7 +11,8 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\usepackage{longtable}
 \usepackage{hyperref}
 \usepackage{cite}
 \usepackage[title,titletoc]{appendix}
@@ -45,11 +46,11 @@
 \maketitle
 
 \begin{abstract}
-Virtual memory address translation overhead represents a performance bottleneck in computing systems, accounting for 10\% to 40\% of execution cycles in data-intensive workloads. This report covers the whole project on L2 TLB architectures in the \texttt{gem5} simulator~\cite{binkert2011gem5}, in two parts.
+Virtual memory address translation overhead represents a performance bottleneck in computing systems, accounting for 10\% to 40\% of execution cycles in data-intensive workloads. This report covers the whole project on L2 TLB architectures in the \texttt{gem5} simulator~\cite{binkert2011gem5}, in three parts.
 
 \textbf{Part I} is our mid-review report. It refactors the L2 TLB into a 128-set, 4-way set-associative array with XOR-7 indexing and evaluates Inclusive, NINE and Exclusive inclusion policies, Sequential and Naive Free Prefetching, CoLT-FA (\textbf{52.19\% L2 miss reduction}), Perforated Pages (\textbf{4.16$\times$ speedup} on clustered versus dispersed fragmentation) and a prototype Hybrid L2 TLB (\textbf{71.22\% L2 miss reduction}), all in syscall-emulation (SE) mode on microbenchmarks.
 
-\textbf{Part II} covers the work after the mid-review. An audit of all designs found problems that only appear under a real operating system: missing L2 invalidation on page unmaps and address-space switches, PCID handling, checkpointing and hard-coded permissions. We fixed six designs (Inclusive, Exclusive, NINE, Agile/NaiveFP, Perforated Pages and CoLT-FA), added a translation oracle and invariant checkers, and found \textbf{no translation error} in any design. We rebuilt CoLT-FA so that it coalesces pages from the hardware page walker, which made it work in full-system mode. In full-system \texttt{gem5} on an Ubuntu 24.04 guest, \textbf{37 of the 43 SPEC CPU2017 benchmarks pass on every design}, and none of the failures is caused by the TLB. On TLB-intensive workloads, CoLT-FA reduces page walks compared with NINE by \textbf{59\% to 64\%} on GAPBS bfs, cc and sssp with 4KB pages. A closer look at Perforated Pages shows that its large gains come from an unrealistic model. The report ends with an appendix describing the submitted artifact and how to evaluate it.
+\textbf{Part II} covers the work after the mid-review. An audit of all designs found problems that only appear under a real operating system: missing L2 invalidation on page unmaps and address-space switches, PCID handling, checkpointing and hard-coded permissions. We fixed six designs (Inclusive, Exclusive, NINE, Agile/NaiveFP, Perforated Pages and CoLT-FA), added a translation oracle and invariant checkers, and found \textbf{no translation error} in any design. We rebuilt CoLT-FA so that it coalesces pages from the hardware page walker, which made it work in full-system mode. In full-system \texttt{gem5} on an Ubuntu 24.04 guest, \textbf{37 of the 43 SPEC CPU2017 benchmarks pass on every design}, and none of the failures is caused by the TLB. On TLB-intensive workloads, CoLT-FA reduces page walks compared with NINE by \textbf{59\% to 64\%} on GAPBS bfs, cc and sssp with 4KB pages. A closer look at Perforated Pages shows that its large gains come from an unrealistic model. \textbf{Part III} retells the whole project in time order, including every attempt that failed: the full-system bring-up, a device-model panic that stopped all runs, a page walker write that broke the cache hierarchy, a 12 GiB memory map, and an x87 emulation bug in \texttt{gem5} that made perlbench fail, which we traced to an unimplemented \texttt{fcomip} and to register moves that copied only 32 of 64 bits. The report ends with an appendix describing the submitted artifact and how to evaluate it.
 \end{abstract}
 
 \newpage
@@ -64,6 +65,11 @@ Virtual memory address translation overhead represents a performance bottleneck 
 \part{Progress after the Mid-Review}
 \label{part:post}
 \input{part2_postmid}
+
+\newpage
+\part{Complete Chronology of the Project}
+\label{part:chron}
+\input{part3_chronology}
 
 \newpage
 \begin{appendices}
