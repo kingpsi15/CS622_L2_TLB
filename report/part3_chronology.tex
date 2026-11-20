@@ -19,7 +19,7 @@ The project had two halves:
     \item up to the mid-review: the L2 TLB designs were built in SE mode;
     \item after the mid-review: everything was moved to full-system simulation.
 \end{itemize}
-From 15 November two full-system campaigns ran at the same time on the lab machines:
+Two full-system campaigns then ran at the same time on the lab machines:
 \begin{itemize}
     \item \textbf{Full-run campaign.} Five designs (Inclusive, Exclusive, NINE, Agile, Perforated Pages), one \emph{lane} each. The guest boots on the atomic CPU, then runs every SPEC benchmark start to end on the timing CPU. Most of the simulator problems in this part were found and fixed here.
     \item \textbf{Windowed campaign.} All six designs including CoLT-FA, one \texttt{gem5} process per benchmark. Atomic CPU except for a measurement window on the timing CPU. This gave the pass/fail matrix of Section~\ref{sec:fs_spec} and all performance numbers in Part~\ref{part:post}.
@@ -27,7 +27,7 @@ From 15 November two full-system campaigns ran at the same time on the lab machi
 
 \begin{itemize}
     \item Figure~\ref{fig:chr_journey}: the path of the whole project.
-    \item Figure~\ref{fig:chr_gantt}: when each second-half activity ran.
+    \item Figure~\ref{fig:chr_gantt}: the order of the second-half activities.
     \item Table~\ref{tab:chr_ledger} (end of this part): every problem in one list.
 \end{itemize}
 
@@ -60,12 +60,6 @@ From 15 November two full-system campaigns ran at the same time on the lab machi
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[x=1.22cm, y=0.62cm, font=\scriptsize]
-% day grid
-\foreach \dd/\lab in {0/12 Nov,1/13 Nov,2/14 Nov,3/15 Nov,4/16 Nov,5/17 Nov,6/18 Nov,7/19 Nov,8/20 Nov} {
-  \draw[gray!40] (\dd,0.3) -- (\dd,-10.6);
-  \node[anchor=south, font=\tiny] at (\dd+0.5,0.3) {\lab};
-}
-\draw[gray!40] (9,0.3) -- (9,-10.6);
 % rows: label, start, end, colour
 \foreach \row/\lab/\st/\en/\col in {
  1/Full-system bring-up/0/3.4/blue!35,
@@ -82,7 +76,7 @@ From 15 November two full-system campaigns ran at the same time on the lab machi
   \fill[\col] (\st,-\row-0.32) rectangle (\en,-\row+0.32);
 }
 \end{tikzpicture}
-\caption{Calendar of the second half of the project. Bars show when each activity was running, at the resolution of a few hours.}
+\caption{Order of the second-half activities. Bars that overlap ran at the same time.}
 \label{fig:chr_gantt}
 \end{figure}
 
@@ -151,7 +145,7 @@ The audit, the fixes and the verification are described in detail in Part~\ref{p
 \end{itemize}
 
 % -----------------------------------------------------------------------------
-\section{Bringing Up the Full-System Setup (12 to 15 November)}
+\section{Bringing Up the Full-System Setup}
 \label{sec:chr_bringup}
 % -----------------------------------------------------------------------------
 
@@ -213,7 +207,7 @@ Table~\ref{tab:chr_bringup} lists the problems found before the first complete l
 \midrule
 Guest script stops at its first \texttt{sudo}. & The guest user is in the \texttt{sudo} group but \texttt{/etc/sudoers.d} was empty, so \texttt{sudo} asked for a password. & A drop-in sudoers file was written into each root image with \texttt{debugfs}, without booting it. \\
 First two restart requests ignored. & The supervisor only accepted the bracketed \texttt{[ADMIN ...]} format. & Third attempt used the right format. \\
-After the sudo fix, all five lanes blocked again in the morning. & The SPEC \texttt{shrc} script uses \texttt{pwd}, and it was sourced from the wrong directory. & Guest script generator changed to enter the SPEC directory first. \\
+After the sudo fix, all five lanes blocked again. & The SPEC \texttt{shrc} script uses \texttt{pwd}, and it was sourced from the wrong directory. & Guest script generator changed to enter the SPEC directory first. \\
 Every benchmark would have been marked FAIL. & The script searched for the wrong success string. \texttt{runcpu} prints \texttt{Success: 1x<benchmark>}. & Search string corrected. Since the pass cache is keyed on a hash of the generator, the edit also cleared old cached passes. \\
 Four lanes kept running old guest scripts. & Generated scripts were not refreshed on the other hosts. & Scripts regenerated on every lane. \\
 8 of 43 benchmarks fail natively (Table~\ref{tab:chr_native}). & Build problems in our SPEC configuration. & Configuration changes, after which all 43 passed natively on the Exclusive tree. \\
@@ -242,20 +236,20 @@ Before trusting any \texttt{gem5} result, the whole SPEC test set was run native
 \noindent On a second SPEC tree, built later for the windowed campaign, 627.cam4\_s still failed its output check natively, but passed inside \texttt{gem5} on every design where it finished. We did not look into this further.
 
 % -----------------------------------------------------------------------------
-\section{First Launch and the i8237 Panic (15 November)}
+\section{First Launch and the i8237 Panic}
 \label{sec:chr_i8237}
 % -----------------------------------------------------------------------------
 
 \begin{itemize}
-    \item 15 November, about 10:05: all five lanes restarted from scratch.
-    \item Exclusive lane: boot finished at about 11:29, \texttt{SPEC\_START 500.perlbench\_r} at 11:31. Then the console stayed silent.
+    \item All five lanes were restarted from scratch.
+    \item Exclusive lane: boot took about 1.5 hours, then \texttt{SPEC\_START 500.perlbench\_r} appeared two minutes later. Then the console stayed silent.
 \end{itemize}
 
 \paragraph{A wrong first reading.}
 \begin{itemize}
     \item About 30 minutes later \texttt{gem5} was at 100\% CPU and the console had not changed.
     \item We read this as ``slow, not hung'' and did not act. This was wrong.
-    \item By 13:00 the process had gone on all five lanes, each with 43 rows of \texttt{FAIL missing-result-marker}. Those rows only meant no benchmark had finished.
+    \item About 1.5 hours later the process had gone on all five lanes, each with 43 rows of \texttt{FAIL missing-result-marker}. Those rows only meant no benchmark had finished.
 \end{itemize}
 
 \paragraph{Narrowing down.}
@@ -291,14 +285,14 @@ Figure~\ref{fig:chr_i8237} shows the diagnosis.
   b/.style={draw, rounded corners, fill=#1, font=\scriptsize, align=center, text width=3.3cm, minimum height=0.8cm},
   b/.default=blue!6,
   arr/.style={-{Stealth[length=1.8mm]}, thick}]
-\node[b=gray!12] (a) {Console silent after \texttt{SPEC\_START}; \texttt{gem5} gone by 13:00};
+\node[b=gray!12] (a) {Console silent after \texttt{SPEC\_START}; \texttt{gem5} gone 1.5 hours later};
 \node[q, below=of a] (q1) {Host rebooted?};
 \node[q, below=of q1] (q2) {Script timeout?};
 \node[q, below=of q2] (q3) {Panic in error file?};
 \node[b=green!10, below=of q3] (c) {\texttt{i8237.cc:48} panic on all five lanes};
 \node[b=orange!15, below=of c] (p1) {Patch A: unimplemented reads return 0 with a warning};
 \node[b=orange!15, below=of p1] (p2) {Scan all device panics; Patch B: three more i8237 sites};
-\node[b=green!10, below=of p2] (ok) {Relaunch at about 15:15; main lanes then ran more than 16 hours with no panic};
+\node[b=green!10, below=of p2] (ok) {Relaunch; main lanes then ran more than 16 hours with no panic};
 \node[b=red!8, right=1.2cm of q1] (n1) {No: uptime 3 days};
 \node[b=red!8, right=1.2cm of q2] (n2) {No: no time limit in the script};
 \draw[arr] (a) -- (q1); \draw[arr] (q1) -- node[left, font=\tiny]{no} (q2); \draw[arr] (q2) -- node[left, font=\tiny]{no} (q3);
@@ -312,20 +306,20 @@ Figure~\ref{fig:chr_i8237} shows the diagnosis.
 \paragraph{The cost.}
 \begin{itemize}
     \item The first relaunch was done right after Patch A, without first searching for other reachable panics or testing one lane.
-    \item When the search found more cases, the five new runs were killed and restarted again at about 15:15. This cost another boot.
+    \item When the search found more cases, the five new runs were killed and restarted again. This cost another boot.
     \item What we changed after this: check the error file for \texttt{panic} and \texttt{fatal} at every status check, and test a fix on one lane before relaunching all.
     \item Why the guest reads the DMA controller at all was never found. The fix only makes the read harmless.
 \end{itemize}
 
 % -----------------------------------------------------------------------------
-\section{Scaling the Full-Run Campaign (15 to 17 November)}
+\section{Scaling the Full-Run Campaign}
 \label{sec:chr_scale}
 % -----------------------------------------------------------------------------
 
 \subsection{One Guest per Lane Was Too Slow}
 \begin{itemize}
     \item The guest script runs the 43 benchmarks one after another, and has no way to run only some of them.
-    \item At about 17:00 on 15 November every lane was still on its first benchmark, and the deadline was close.
+    \item Hours after the restart every lane was still on its first benchmark, and the deadline was close.
     \item So extra guests were added on idle cores:
     \begin{itemize}
         \item the 43 \texttt{SPEC\_START} blocks were split into $K$ slices;
@@ -366,8 +360,8 @@ Figure~\ref{fig:chr_extras} shows the layout.
 
 \begin{itemize}
     \item Extra guests per host: 6 at first, later chosen from free disk space, since each SPEC disk copy takes about 15 to 17GB.
-    \item Morning of 16 November: 30 hosts reporting.
-    \item 17 November: 64 hosts, up to 87 guests per lane, more than 1,000 CPU-hours per lane.
+    \item Later: 30 hosts reporting.
+    \item At the end: 64 hosts, up to 87 guests per lane, more than 1,000 CPU-hours per lane.
 \end{itemize}
 
 \subsection{Monitoring Problems}
@@ -375,19 +369,19 @@ Figure~\ref{fig:chr_extras} shows the layout.
     \item The first board script logged into each lane host over SSH. On the machine it ran on, \texttt{ssh} itself crashed with a segmentation fault, so every lane showed \texttt{SSH\_FAILED}.
     \item The board was rebuilt: each host writes its own report into the shared home directory and the board only reads those files.
     \item It also showed old incident files as new, because its default cut-off time was too early.
-    \item The monitor still could not tell a slow run from a hung one after \texttt{SPEC\_START}, the same gap that caused the wrong reading on 15 November.
+    \item The monitor still could not tell a slow run from a hung one after \texttt{SPEC\_START}, the same gap that caused the wrong reading during the first launch.
 \end{itemize}
 
 \subsection{Results of the Full-Run Campaign}
 \begin{itemize}
-    \item Table~\ref{tab:chr_fullrun} gives the last full status of this campaign that was recorded (15:42 on 17 November), plus the 12 GiB runs of Section~\ref{sec:chr_mem}.
+    \item Table~\ref{tab:chr_fullrun} gives the last full status of this campaign that was recorded, plus the 12 GiB runs of Section~\ref{sec:chr_mem}.
     \item These runs used the timing CPU for the whole benchmark, so they are a separate check of five designs next to the windowed campaign.
 \end{itemize}
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{Full-run campaign, status recorded at 15:42 on 17 November (SPEC test inputs, out of 43).}
+\caption{Full-run campaign, last recorded status (SPEC test inputs, out of 43).}
 \label{tab:chr_fullrun}
 \begin{tabularx}{\textwidth}{l c X}
 \toprule
@@ -407,19 +401,19 @@ Perforated Pages & 35 & 500.perlbench\_r, 600.perlbench\_s, 631.deepsjeng\_s (3 
 \noindent The other benchmarks were still running at that time. The failures are the same kinds as in the windowed campaign: perlbench, and the two benchmarks that need more memory than the guest has. The next sections cover each of them.
 
 % -----------------------------------------------------------------------------
-\section{The Windowed Campaign (15 to 19 November)}
+\section{The Windowed Campaign}
 \label{sec:chr_window}
 % -----------------------------------------------------------------------------
 
 \subsection{Why a Second Campaign}
 \begin{itemize}
-    \item By the evening of 15 November it was clear that whole benchmarks on the timing CPU would not finish for all 43 benchmarks and all designs in time.
+    \item After the first launch it was clear that whole benchmarks on the timing CPU would not finish for all 43 benchmarks and all designs in time.
     \item Cycle and IPC numbers were also needed for the performance study.
     \item So a second campaign was started, with three differences:
     \begin{itemize}
         \item one \texttt{gem5} process per benchmark instead of one guest per lane;
         \item atomic CPU for everything except a measurement window;
-        \item CoLT-FA added as a sixth design from 16 November.
+        \item CoLT-FA added later as a sixth design.
     \end{itemize}
 \end{itemize}
 Figure~\ref{fig:chr_window} shows one windowed run.
@@ -448,13 +442,13 @@ Figure~\ref{fig:chr_window} shows one windowed run.
 
 \subsection{Events in Order}
 \begin{itemize}
-    \item \textbf{15 November, 18:20.} First shards launched on the same hosts as the full-run lanes. By about 21:15 the shared load had slowed the full-run boots from about 100 minutes to more than 3 hours, and we were asked to move. About 70 idle lab machines accepted our login (earlier attempts had failed only because SSH asked to confirm unknown host keys, which batch mode cannot answer). The runs moved to 10 machines, two per design, 215 runs in all.
-    \item \textbf{16 November, 03:50. Window handler bug.} Six runs had ended right at the end of their window, with no statistics and no SPEC result. The instruction-count handler had been given as a one-element list. In \texttt{gem5} 25.1 a list is a queue of handlers, each used once, so the second event went to the default handler, which ends the simulation. Every benchmark would have hit this. Fix: pass a single function, which runs on every event. Warm-up was also lowered from 500M to 50M, since some test inputs are shorter than 500M. All 215 runs restarted at 03:47.
-    \item \textbf{16 November, 15:25.} 130 windows dumped. Three runs had crashed when switching from the timing CPU back to the atomic CPU, all on 619.lbm\_s (Section~\ref{sec:chr_lbm}). Still no SPEC result anywhere.
-    \item \textbf{16 November, 16:46. First result.} Exclusive 623.xalancbmk\_s passed. Its program was only about 0.4G instructions, but the run took 8 to 9 hours after \texttt{SPEC\_START}: \texttt{runcpu} setup and output checking take about 8 hours on the atomic CPU. With the measured atomic speed of about 0.9 million instructions per second, we estimated finish time as \texttt{SPEC\_START} + 8 hours + 0.31 hours per billion native instructions. The two x264 benchmarks (about 1 trillion instructions each) would need about 13 days and were not completed.
-    \item \textbf{16 November, 17:30.} The windows showed that SPEC test inputs cause few TLB misses (Section~\ref{sec:fs_spec}). This started the TLB-intensive workload sets (Section~\ref{sec:chr_workloads}).
-    \item \textbf{17 November.} Several machines went offline or were rebooted; their runs were moved. The 9 longest benchmarks were also rerun on lightly loaded machines, about a day ahead of the packed copies. perlbench failed on every design that reached it (Section~\ref{sec:chr_perl}).
-    \item \textbf{19 November, 23:30.} Final matrix: 37 PASS on four designs, 36 PASS on Agile and CoLT-FA with 627.cam4\_s still running, the same three failures everywhere.
+    \item \textbf{Start.} First shards launched on the same hosts as the full-run lanes. A few hours later the shared load had slowed the full-run boots from about 100 minutes to more than 3 hours, and we were asked to move. About 70 idle lab machines accepted our login (earlier attempts had failed only because SSH asked to confirm unknown host keys, which batch mode cannot answer). The runs moved to 10 machines, two per design, 215 runs in all.
+    \item \textbf{Window handler bug.} Six runs had ended right at the end of their window, with no statistics and no SPEC result. The instruction-count handler had been given as a one-element list. In \texttt{gem5} 25.1 a list is a queue of handlers, each used once, so the second event went to the default handler, which ends the simulation. Every benchmark would have hit this. Fix: pass a single function, which runs on every event. Warm-up was also lowered from 500M to 50M, since some test inputs are shorter than 500M. All 215 runs were restarted.
+    \item \textbf{First windows.} 130 windows dumped. Three runs had crashed when switching from the timing CPU back to the atomic CPU, all on 619.lbm\_s (Section~\ref{sec:chr_lbm}). Still no SPEC result anywhere.
+    \item \textbf{First result.} Exclusive 623.xalancbmk\_s passed. Its program was only about 0.4G instructions, but the run took 8 to 9 hours after \texttt{SPEC\_START}: \texttt{runcpu} setup and output checking take about 8 hours on the atomic CPU. With the measured atomic speed of about 0.9 million instructions per second, we estimated finish time as \texttt{SPEC\_START} + 8 hours + 0.31 hours per billion native instructions. The two x264 benchmarks (about 1 trillion instructions each) would need about 13 days and were not completed.
+    \item \textbf{Low TLB pressure.} The windows showed that SPEC test inputs cause few TLB misses (Section~\ref{sec:fs_spec}). This started the TLB-intensive workload sets (Section~\ref{sec:chr_workloads}).
+    \item \textbf{Lost machines and long benchmarks.} Several machines went offline or were rebooted; their runs were moved. The 9 longest benchmarks were also rerun on lightly loaded machines, about a day ahead of the packed copies. perlbench failed on every design that reached it (Section~\ref{sec:chr_perl}).
+    \item \textbf{End.} Final matrix: 37 PASS on four designs, 36 PASS on Agile and CoLT-FA with 627.cam4\_s still running, the same three failures everywhere.
 \end{itemize}
 
 \subsection{Other Problems of This Campaign}
@@ -523,7 +517,7 @@ board.cache_hierarchy.l1d-cache-0 is passing a Modified line through WriteReq
 
 \begin{itemize}
     \item With the second change the 3 GiB runs no longer crashed. \texttt{gem5} exited normally, but the result was \texttt{FAIL}: the kernel had killed 619.lbm\_s for lack of memory (about 2.7GB resident).
-    \item Runs on the 12 GiB board (Section~\ref{sec:chr_mem}) were started on 17 November. No result was recorded before the campaign ended.
+    \item Runs on the 12 GiB board (Section~\ref{sec:chr_mem}) were started later. No result was recorded before the campaign ended.
 \end{itemize}
 
 \paragraph{Windowed campaign.}
@@ -711,7 +705,7 @@ S0 to S4 & Constants and single loads & \texttt{fld1} loads 0 and \texttt{flds 2
     \item one lane had its work files under a different directory name;
     \item all lanes then exited at once because the new binary needs \texttt{LD\_LIBRARY\_PATH} for the newer C++ library, which the launch command did not set.
 \end{itemize}
-The ten guests were running at about 18:50 on 17 November with no panics, but no result was recorded before the campaign ended. These builds also used the original page walker, without the functional write of Section~\ref{sec:chr_lbm}.
+The ten guests were then running with no panics, but no result was recorded before the campaign ended. These builds also used the original page walker, without the functional write of Section~\ref{sec:chr_lbm}.
 
 \paragraph{Still open.}
 \begin{itemize}
@@ -721,15 +715,15 @@ The ten guests were running at about 18:50 on 17 November with no panics, but no
 \end{itemize}
 
 % -----------------------------------------------------------------------------
-\section{TLB-Intensive Workloads and CoLT-FA (16 to 18 November)}
+\section{TLB-Intensive Workloads and CoLT-FA}
 \label{sec:chr_workloads}
 % -----------------------------------------------------------------------------
 
 \subsection{Why New Workloads}
 \begin{itemize}
-    \item On 16 November the first windows showed that SPEC test inputs cause few TLB misses: the highest on Inclusive was 1.145 page walks per 1000 instructions.
+    \item The first windows showed that SPEC test inputs cause few TLB misses: the highest on Inclusive was 1.145 page walks per 1000 instructions.
     \item So the designs would look the same on SPEC test inputs.
-    \item Three sets of TLB-intensive runs were started the same evening:
+    \item Three sets of TLB-intensive runs were started:
 \end{itemize}
 \begin{enumerate}
     \item \textbf{Microbenchmarks}, including a GUPS random update kernel and pointer chasing over 256MB.
@@ -740,7 +734,7 @@ The ten guests were running at about 18:50 on 17 November with no panics, but no
 \subsection{CoLT-FA Becomes the Sixth Design}
 \begin{itemize}
     \item The instructor had asked us to focus on CoLT.
-    \item About 18:30 on 16 November, CoLT-FA was added to the full-system campaign.
+    \item CoLT-FA was then added to the full-system campaign.
     \item The mid-review version could not work with a real kernel, since it read \texttt{gem5}'s emulated page table.
     \item It was rebuilt on the fixed NINE design, so the hardware page walker builds coalesced runs from the eight page table entries in the cache line it has just read (Section~\ref{sec:colt_fs}).
     \item A switch, \texttt{COLT\_ENABLE=0}, turns the buffer off, so the same binary also runs plain NINE. This later mattered for fair comparisons.
@@ -749,7 +743,7 @@ The ten guests were running at about 18:50 on 17 November with no panics, but no
 
 \subsection{The Instructor's Suggestion}
 \begin{itemize}
-    \item On 17 November the instructor suggested a graph benchmark (GAPBS) and a key-value store (Redis or memcached).
+    \item Later the instructor suggested a graph benchmark (GAPBS) and a key-value store (Redis or memcached).
     \item GAPBS bfs, pr and cc and memcached were already running.
     \item We added GAPBS bc, sssp and tc, and Redis 7.2.5 built statically.
 \end{itemize}
@@ -757,20 +751,20 @@ The ten guests were running at about 18:50 on 17 November with no panics, but no
 \subsection{Two Results That Needed a Second Look}
 \paragraph{Perforated Pages looked too good.}
 \begin{itemize}
-    \item On 17 November Perforated Pages showed close to zero walks on almost every workload, for example 0.24 against 54.76 for NINE on pr.
+    \item Perforated Pages showed close to zero walks on almost every workload, for example 0.24 against 54.76 for NINE on pr.
     \item Reading the model: each L2 entry stored a separate physical address for each of the 512 pages of its 2MB region and never checked that they are contiguous. That is about 512 times what a real design can hold.
-    \item A strict mode was written the same day and run on the same workloads. Under it, Perforated Pages had more walks than NINE on most workloads (Section~\ref{sec:perf_strict}).
+    \item A strict mode was written and run on the same workloads. Under it, Perforated Pages had more walks than NINE on most workloads (Section~\ref{sec:perf_strict}).
     \item This also changes how the Perforated results of Part~\ref{part:mid} should be read.
 \end{itemize}
 
 \paragraph{CoLT-FA looked worse with huge pages on.}
 \begin{itemize}
-    \item On 18 November, with huge pages on, bc gave 2.16 walks per 1000 instructions on NINE and 4.31 on CoLT-FA.
+    \item With huge pages on, bc gave 2.16 walks per 1000 instructions on NINE and 4.31 on CoLT-FA.
     \item The CoLT-FA run had millions of buffer hits, which meant its guest used many more 4KB pages than the NINE run.
     \item The two runs were on different machines, and each machine had built its own disk image.
     \item Running again on the same machine gave identical statistics, while the same NINE setup gave 2.16 on one machine and 6.04 on another.
     \item Conclusion: with huge pages on, results depend on the machine. Such results are only compared between runs on the same machine.
-    \item NINE and CoLT-FA were rerun in pairs on single machines on 20 November (Table~\ref{tab:colt_thpon}).
+    \item NINE and CoLT-FA were then rerun in pairs on single machines (Table~\ref{tab:colt_thpon}).
     \item With 4KB pages the results were the same across machines, so those comparisons stand.
 \end{itemize}
 Figure~\ref{fig:chr_samehost} shows the rule.
@@ -804,7 +798,7 @@ Figure~\ref{fig:chr_samehost} shows the rule.
 \end{itemize}
 
 % -----------------------------------------------------------------------------
-\section{Final Measurements, Report and Artifact (19 to 20 November)}
+\section{Final Measurements, Report and Artifact}
 \label{sec:chr_final}
 % -----------------------------------------------------------------------------
 
@@ -827,11 +821,11 @@ Table~\ref{tab:chr_ledger} lists every problem described in this part, in the or
 \caption{Every problem met in the second half of the project, in time order.}
 \label{tab:chr_ledger}\\
 \toprule
-\textbf{When} & \textbf{Problem} & \textbf{Cause} & \textbf{Final state} \\
+\textbf{Stage} & \textbf{Problem} & \textbf{Cause} & \textbf{Final state} \\
 \midrule
 \endfirsthead
 \toprule
-\textbf{When} & \textbf{Problem} & \textbf{Cause} & \textbf{Final state} \\
+\textbf{Stage} & \textbf{Problem} & \textbf{Cause} & \textbf{Final state} \\
 \midrule
 \endhead
 Audit & L2 not cleared on unmap or CR3 switch & Designs written for SE mode & Fixed in all designs \\
@@ -845,22 +839,22 @@ Bring-up & Restart requests ignored & Wrong line format & Fixed format \\
 Bring-up & \texttt{shrc} failure & Sourced from wrong directory & Generator fixed \\
 Bring-up & All results would be FAIL & Wrong success string & Fixed \\
 Bring-up & 8 benchmarks fail natively & C++ standard, weak pthread symbols, stack & Fixed, 43 of 43 natively \\
-15 Nov & \texttt{gem5} panic on all lanes & Unmodelled i8237 registers & Two patches, then stable \\
-15 Nov & Silence read as ``slow'' & Monitor could not see panics & Error file checked at every status \\
-15 Nov & Board script failed & \texttt{ssh} crashed on one machine & Board reads shared files \\
-15 Nov & Shared load slowed other runs & Two campaigns on same hosts & Windowed runs moved \\
-15 Nov & New machines refused login & Host key prompts in batch mode & Accept new keys \\
-16 Nov & Runs ended at window end & Handler given as a list & Single function; all restarted \\
-16 Nov & Warm-up longer than some tests & 500M too long & 50M \\
-16 Nov & 619.lbm\_s crashes (both campaigns) & Walker write meets dirty line; 3.2GB needed & Functional write; SE 8 GiB PASS \\
-16 Nov & Functional-fix build failed & Missing \texttt{GLIBCXX} version & \texttt{LD\_LIBRARY\_PATH} set \\
-16 Nov & 631.deepsjeng\_s fails & 6.9GB needed & 12 GiB board PASS; SE PASS \\
-17 Nov & 12 GiB board would not start & E820 entry had no parent & Entry attached to workload \\
-17 Nov & perlbench fails everywhere & \texttt{fcomip} stub; 32-bit \texttt{movfp} & Fixed in SE; FS rerun unfinished \\
-17 Nov & Fixed perl reruns exited & Script substitution, path, library path & Launched by hand \\
-17 Nov & Perforated far better than all & 512 addresses per entry & Strict mode added \\
-18 Nov & CoLT-FA worse with THP on & Different machines, different images & Same-machine rule; reruns \\
-17--20 Nov & Redis makes no progress & Not found & Left out \\
+First launch & \texttt{gem5} panic on all lanes & Unmodelled i8237 registers & Two patches, then stable \\
+First launch & Silence read as ``slow'' & Monitor could not see panics & Error file checked at every status \\
+Full-run scaling & Board script failed & \texttt{ssh} crashed on one machine & Board reads shared files \\
+Windowed runs & Shared load slowed other runs & Two campaigns on same hosts & Windowed runs moved \\
+Windowed runs & New machines refused login & Host key prompts in batch mode & Accept new keys \\
+Windowed runs & Runs ended at window end & Handler given as a list & Single function; all restarted \\
+Windowed runs & Warm-up longer than some tests & 500M too long & 50M \\
+Both campaigns & 619.lbm\_s crashes (both campaigns) & Walker write meets dirty line; 3.2GB needed & Functional write; SE 8 GiB PASS \\
+Full-run lanes & Functional-fix build failed & Missing \texttt{GLIBCXX} version & \texttt{LD\_LIBRARY\_PATH} set \\
+Both campaigns & 631.deepsjeng\_s fails & 6.9GB needed & 12 GiB board PASS; SE PASS \\
+12 GiB board & 12 GiB board would not start & E820 entry had no parent & Entry attached to workload \\
+perlbench & perlbench fails everywhere & \texttt{fcomip} stub; 32-bit \texttt{movfp} & Fixed in SE; FS rerun unfinished \\
+perlbench & Fixed perl reruns exited & Script substitution, path, library path & Launched by hand \\
+Workloads & Perforated far better than all & 512 addresses per entry & Strict mode added \\
+Workloads & CoLT-FA worse with THP on & Different machines, different images & Same-machine rule; reruns \\
+Workloads & Redis makes no progress & Not found & Left out \\
 Throughout & Machines rebooted or lost & Lab machines shared & Runs moved, results kept \\
 Throughout & Mirror loop died & Laptop slept & Keep-alives, restarted \\
 \bottomrule
