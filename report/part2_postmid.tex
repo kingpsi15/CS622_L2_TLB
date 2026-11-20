@@ -7,9 +7,19 @@
 \label{sec:phase2}
 % -----------------------------------------------------------------------------
 
-After the mid-review we took a step back and asked a simple question: \emph{are the designs from Part~\ref{part:mid} correct when a real operating system runs on top of them?} Every result in Part~\ref{part:mid} came from SE mode, where \texttt{gem5} emulates the operating system, and from small single-process microbenchmarks. In SE mode many events that matter for a TLB never happen. There are no context switches with a real CR3 write, no \texttt{INVLPG} instructions when the kernel unmaps a page, no process IDs (PCIDs) in use, and no kernel code sharing the TLB with the program.
+After the mid-review we wanted to check whether the designs from Part~\ref{part:mid} still work when a real operating system runs on top of them.
+\begin{itemize}
+    \item Every result in Part~\ref{part:mid} came from SE mode, where \texttt{gem5} emulates the operating system, and from small single-process microbenchmarks.
+    \item In SE mode several events that matter for a TLB never happen:
+    \begin{itemize}
+        \item no context switches with a real CR3 write,
+        \item no \texttt{INVLPG} instructions when the kernel unmaps a page,
+        \item no process IDs (PCIDs) in use,
+        \item no kernel code sharing the TLB with the program.
+    \end{itemize}
+\end{itemize}
 
-So the second phase focused on depth instead of adding new mechanisms from the mid-review's next-steps list. It had five stages, shown in Figure~\ref{fig:phase2_flow}:
+\noindent So instead of adding new mechanisms from the mid-review's next-steps list, the second phase went back over the existing designs. It had five stages (Figure~\ref{fig:phase2_flow}):
 \begin{enumerate}
     \item An implementation audit of every design.
     \item Correctness fixes for every design, kept as separate \texttt{.fixed} source files.
@@ -63,7 +73,12 @@ CoLT-FA & \texttt{tlb.\{cc,hh\}.colt.fixed} & NINE plus an 8-entry fully associa
 \label{sec:audit}
 % -----------------------------------------------------------------------------
 
-The first task was a line-by-line audit of every TLB variant from Part~\ref{part:mid} (recorded in \texttt{TLB\_IMPLEMENTATION\_AUDIT.md}). The audit found problems in how the designs were built and tested, and also in what the code did when an operating system is present. Table~\ref{tab:audit} summarises the findings.
+The first task was to read every TLB design from Part~\ref{part:mid} line by line. The notes are in \texttt{docs/design\_reports/TLB\_IMPLEMENTATION\_AUDIT.md}.
+\begin{itemize}
+    \item Some problems were in how the designs were built and tested.
+    \item Others were in what the code does when an operating system is running.
+\end{itemize}
+Table~\ref{tab:audit} lists the findings.
 
 \begin{table}[htbp]
 \centering
@@ -84,14 +99,23 @@ The first task was a line-by-line audit of every TLB variant from Part~\ref{part
 \end{tabularx}
 \end{table}
 
-An important point from the audit is that findings 2 and 3 cannot be triggered in SE mode. In SE mode \texttt{gem5} never calls \texttt{demapPage}, because it is only reached from full-system code paths (the page fault handler and the \texttt{INVLPG} instruction), and it always uses PCID 0. This is why the second phase had to move to full-system simulation (Section~\ref{sec:fs_method}).
+Findings 2 and 3 cannot happen in SE mode:
+\begin{itemize}
+    \item \texttt{demapPage} is only called from full-system code (the page fault handler and the \texttt{INVLPG} instruction), so SE mode never calls it.
+    \item SE mode always uses PCID 0.
+\end{itemize}
+This is why the second phase moved to full-system simulation (Section~\ref{sec:fs_method}).
 
 % -----------------------------------------------------------------------------
 \section{Correctness Fixes for Each Design}
 \label{sec:fixes}
 % -----------------------------------------------------------------------------
 
-Each design was fixed in a new source file (\texttt{tlb.cc.<design>.fixed} and \texttt{tlb.hh.<design>.fixed}), so the original snapshots stay unchanged for comparison. The fixes common to all designs are listed first, followed by the design-specific ones.
+\begin{itemize}
+    \item Each design was fixed in a new source file (\texttt{tlb.cc.<design>.fixed} and \texttt{tlb.hh.<design>.fixed}).
+    \item The original files were kept unchanged, so the two can be compared.
+    \item Fixes common to all designs are listed first, then the ones for each design.
+\end{itemize}
 
 \subsection{Fixes Common to All Designs}
 \begin{itemize}
@@ -105,7 +129,12 @@ Each design was fixed in a new source file (\texttt{tlb.cc.<design>.fixed} and \
 
 \subsection{Design-Specific Fixes}
 
-\paragraph{Inclusive.} Four issues were fixed (Table~\ref{tab:inc_bugs}). While fixing the checkpoint code we also found that \texttt{gem5}'s checkpoint format is positional: a value written after a group of entries is read back as part of that group. The first two attempts at the fix failed on restore for this reason, and the third attempt placed all L2 values in their own section.
+\paragraph{Inclusive.}
+\begin{itemize}
+    \item Four issues were fixed (Table~\ref{tab:inc_bugs}).
+    \item \texttt{gem5}'s checkpoint format is positional: a value written after a group of entries is read back as part of that group.
+    \item Because of this, the first two attempts at the checkpoint fix failed on restore. The third attempt put all L2 values in their own section.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -124,11 +153,27 @@ Each design was fixed in a new source file (\texttt{tlb.cc.<design>.fixed} and \
 \end{tabularx}
 \end{table}
 
-\paragraph{Exclusive.} The exclusive policy requires that a translation is never in both levels at once. We added a checker for this rule. With several hardware threads sharing the TLB (SMT), promotion and eviction could leave duplicate translations: the checker recorded \textbf{391,950 duplicate violations in 1,368,154 checks} on the original code. After the fix the same run reports \textbf{0} violations. The PCID-aware removal and the L2 checkpointing were fixed as for the other designs.
+\paragraph{Exclusive.}
+\begin{itemize}
+    \item Rule: a translation must never be in both levels at once. We added a checker for this rule.
+    \item With several hardware threads sharing the TLB (SMT), promotion and eviction could leave the same translation in both levels.
+    \item Original code: \textbf{391,950 violations in 1,368,154 checks}. After the fix: \textbf{0}.
+    \item PCID-aware removal and L2 checkpointing were fixed as in the other designs.
+\end{itemize}
 
-\paragraph{NINE.} The same PCID and checkpoint issues were fixed. Since NINE has no inclusion rule to check, a \emph{staleness scan} was added instead: after every flush, unmap and checkpoint restore, every valid L1 and L2 entry is checked again against the page table. On the \texttt{remap} stress test the scan ran 30 times and found no stale entry.
+\paragraph{NINE.}
+\begin{itemize}
+    \item The same PCID and checkpoint issues were fixed.
+    \item NINE has no inclusion rule to check, so we added a \emph{staleness scan}: after every flush, unmap and checkpoint restore, every valid L1 and L2 entry is checked again against the page table.
+    \item On the \texttt{remap} stress test the scan ran 30 times and found no stale entry.
+\end{itemize}
 
-\paragraph{Agile / NaiveFP.} Seven issues were fixed in the prefetching design (Table~\ref{tab:agile_bugs}). The prefetcher was also turned into a runtime-parameterised design (degree, direction, adaptive degree, throttling and priority are selected with \texttt{AGILE\_PF\_*} variables) with counters for issued, useful and unused prefetches.
+\paragraph{Agile / NaiveFP.}
+\begin{itemize}
+    \item Seven issues were fixed (Table~\ref{tab:agile_bugs}).
+    \item Degree, direction, adaptive degree, throttling and priority can now be set at runtime with \texttt{AGILE\_PF\_*} variables.
+    \item New counters for issued, useful and unused prefetches.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -150,7 +195,11 @@ Each design was fixed in a new source file (\texttt{tlb.cc.<design>.fixed} and \
 \end{tabularx}
 \end{table}
 
-\paragraph{Perforated Pages.} Six issues were fixed (Table~\ref{tab:perf_bugs}). Issue 4 is the most serious: every L2 hit returned a translation with hard-coded permissions (user access allowed, execution allowed), so in full-system mode a user program could have been given access to a kernel page.
+\paragraph{Perforated Pages.}
+\begin{itemize}
+    \item Six issues were fixed (Table~\ref{tab:perf_bugs}).
+    \item Issue 4: every L2 hit returned fixed permissions (user access allowed, execution allowed). In full-system mode a user program could have been given access to a kernel page.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -179,7 +228,7 @@ Each design was fixed in a new source file (\texttt{tlb.cc.<design>.fixed} and \
 % -----------------------------------------------------------------------------
 
 \subsection{Translation Oracle and Invariant Checkers}
-To check correctness instead of only counting misses, we added an instrumentation layer to \texttt{tlb.cc}. It is applied by a script (\texttt{robustness/patches/apply\_checker*.py}) so that the same checker is used for every design:
+To check correctness and not only count misses, we added checking code to \texttt{tlb.cc}. A script (\texttt{robustness/patches/apply\_checker*.py}) adds it, so every design gets the same checker:
 \begin{itemize}
     \item \textbf{Translation oracle}: every time a translation finishes, the physical address given by the TLB is compared with the true one. In SE mode the true answer comes from the process page table. In full-system mode the checker does its own functional page walk of the guest page table every $N$-th translation ($N = 64$ by default, set with \texttt{TLBCHK\_FS\_PERIOD}).
     \item \textbf{Inclusion invariant} (Inclusive): every valid L1 entry must have a matching L2 entry.
@@ -195,7 +244,13 @@ Three test programs were written for the SE-mode matrix (\texttt{robustness/test
     \item \texttt{pf\_patterns}: nine access patterns (ascending, descending, strides 2/4/8/16, random, pointer chasing, hot/cold) over a chosen number of pages.
     \item \texttt{perf\_holes}: 2MB regions with different hole patterns (dense, edge, clustered, dispersed, one hole per 64 pages, sparse, churn) for Perforated Pages.
 \end{itemize}
-These were combined into a job matrix covering Atomic, Timing and O3 CPUs, single and multiple cores, multi-threaded and multi-programmed runs, SMT with 2 and 4 threads, and fork with shared memory. Every job was run on the design under test \emph{and} on stock \texttt{gem5}, so a failure that also happens on stock \texttt{gem5} can be separated from a failure of the design.
+These were combined into a job matrix:
+\begin{itemize}
+    \item Atomic, Timing and O3 CPUs;
+    \item single and multiple cores, multi-threaded and multi-programmed runs;
+    \item SMT with 2 and 4 threads, and fork with shared memory.
+\end{itemize}
+Every job was run on the design \emph{and} on stock \texttt{gem5}. A failure that also happens on stock \texttt{gem5} is a \texttt{gem5} limit, not a design bug.
 
 \subsection{Problems in the Test Harness}
 Two harness problems were found and fixed while setting up SPEC CPU2017 in SE mode:
@@ -210,7 +265,16 @@ Two harness problems were found and fixed while setting up SPEC CPU2017 in SE mo
 % -----------------------------------------------------------------------------
 
 \subsection{Correctness Matrix}
-Table~\ref{tab:se_matrix} gives the SE-mode results. \textbf{No design produced a single oracle mismatch.} Every failure in the matrix also fails, in the same way, on stock \texttt{gem5}: these are known limits of SE mode (\texttt{setitimer} not implemented, fork with \texttt{MAP\_SHARED} hanging past the timeout, and multi-process remap tests that see stale data on stock \texttt{gem5} too).
+Table~\ref{tab:se_matrix} gives the SE-mode results.
+\begin{itemize}
+    \item \textbf{No design had any oracle mismatch.}
+    \item Every failing job also fails in the same way on stock \texttt{gem5}. These are SE-mode limits:
+    \begin{itemize}
+        \item \texttt{setitimer} is not implemented;
+        \item fork with \texttt{MAP\_SHARED} hangs past the timeout;
+        \item multi-process remap tests see stale data on stock \texttt{gem5} too.
+    \end{itemize}
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -232,7 +296,12 @@ CoLT-FA & 36/36 & 0 & see Section~\ref{sec:colt_se} \\
 \end{table}
 
 \subsection{SPEC CPU2017 in SE Mode}
-For the Inclusive design, all SPEC CPU2017 rate benchmarks that could be built were run with test inputs on the Atomic CPU, on both the fixed design and stock \texttt{gem5}, with the oracle and inclusion checker turned on. \textbf{All 31 SPEC invocations that could run passed, with 0 inclusion violations, 0 oracle mismatches and output identical to stock \texttt{gem5}.} The two that could not run (perlbench and omnetpp) failed on both builds because of the option problem described above.
+For the Inclusive design:
+\begin{itemize}
+    \item All SPEC CPU2017 rate benchmarks that could be built were run with test inputs on the Atomic CPU, on the fixed design and on stock \texttt{gem5}, with the oracle and inclusion checker on.
+    \item \textbf{All 31 that could run passed}, with 0 inclusion violations, 0 oracle mismatches and output identical to stock \texttt{gem5}.
+    \item perlbench and omnetpp could not run on either build, because of the option problem above.
+\end{itemize}
 
 \subsection{Design Parameter Sweeps}
 Because the fixed designs take their parameters at runtime, each design was swept with a single binary. All variants kept 0 correctness errors. Tables~\ref{tab:sweep_inc} to~\ref{tab:sweep_perf} show selected rows.
@@ -298,7 +367,11 @@ Random replacement & \texttt{NINE\_L2\_REPL=2} & 512 & 47,832 & 3,519 \\
 \end{tabular}
 \end{table}
 
-\noindent For NINE, doubling the total L2 capacity (more sets or more ways) roughly doubled the L2 hit rate, while the hash and replacement choice made a smaller difference at a fixed capacity.
+\noindent For NINE:
+\begin{itemize}
+    \item Doubling the L2 size (more sets or more ways) roughly doubled the L2 hits.
+    \item At a fixed size, the hash and replacement choice changed L2 hits less.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -320,7 +393,11 @@ random & degree 8 & 8,767 & 422,793 & 1,601 & 289,525 \\
 \end{tabular}
 \end{table}
 
-\noindent For the Agile prefetcher, the adaptive degree reached almost the same number of walks as a fixed degree of 8 on the ascending pattern (4,238 against 4,224) while issuing about one sixth of the prefetches (21,490 against 136,584). On the random pattern most prefetches were never used.
+\noindent For the Agile prefetcher:
+\begin{itemize}
+    \item On the ascending pattern, the adaptive degree gave almost the same walks as a fixed degree of 8 (4,238 against 4,224) with about one sixth of the prefetches (21,490 against 136,584).
+    \item On the random pattern most prefetches were never used.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -341,7 +418,7 @@ Prefetch 64 (best) & \texttt{PERF\_PREFETCH\_DEGREE=64} & 136,601 & $-8.8\%$ \\
 \end{tabular}
 \end{table}
 
-\noindent For Perforated Pages, reverting the four correctness fixes did not change the SE-mode miss count, which is expected: the paths they fix are not reached in SE mode.
+\noindent For Perforated Pages, turning off the four correctness fixes did not change the SE-mode miss count. This is expected, since SE mode does not reach the code they fix.
 
 % -----------------------------------------------------------------------------
 \section{CoLT-FA Rebuilt for Full-System Simulation}
@@ -349,10 +426,24 @@ Prefetch 64 (best) & \texttt{PERF\_PREFETCH\_DEGREE=64} & 136,601 & $-8.8\%$ \\
 % -----------------------------------------------------------------------------
 
 \subsection{Why the Mid-Review CoLT-FA Did Not Work Under an Operating System}
-The CoLT-FA buffer from Section~5 found contiguous pages by reading \texttt{gem5}'s \emph{emulated} page table (\texttt{p->pTable->lookup}). This table only exists in SE mode. In full-system mode the operating system owns the page tables and \texttt{gem5}'s hardware page walker reads them from simulated memory, so the mid-review CoLT-FA never formed a single coalesced entry. It also had the same problems as the other designs: entries had no PCID, the permissions of every hit were fixed in the code (\texttt{user=true}, \texttt{noExec=false}), and nothing cleared the buffer on an unmap or an address-space switch.
+\begin{itemize}
+    \item The CoLT-FA buffer from Section~5 found contiguous pages by reading \texttt{gem5}'s \emph{emulated} page table (\texttt{p->pTable->lookup}).
+    \item This table only exists in SE mode. In full-system mode the operating system owns the page tables, and \texttt{gem5}'s page walker reads them from simulated memory.
+    \item So in full-system mode the mid-review CoLT-FA never formed a single coalesced entry.
+    \item It also had the same problems as the other designs:
+    \begin{itemize}
+        \item entries had no PCID;
+        \item every hit used fixed permissions (\texttt{user=true}, \texttt{noExec=false});
+        \item nothing cleared the buffer on an unmap or an address-space switch.
+    \end{itemize}
+\end{itemize}
 
 \subsection{New Design}
-We rebuilt CoLT-FA on top of the fixed NINE L2 (\texttt{tlb.cc.nine.fixed}), which was the baseline used for CoLT in Part~\ref{part:mid}. The changes are generated by one script (\texttt{robustness/patches/make\_colt\_fixed.py}) that writes \texttt{tlb.cc.colt.fixed}, \texttt{tlb.hh.colt.fixed} and \texttt{pagetable\_walker.cc.colt}.
+\begin{itemize}
+    \item CoLT-FA was rebuilt on top of the fixed NINE L2 (\texttt{tlb.cc.nine.fixed}), the same baseline CoLT used in Part~\ref{part:mid}.
+    \item One script (\texttt{robustness/patches/make\_colt\_fixed.py}) writes \texttt{tlb.cc.colt.fixed}, \texttt{tlb.hh.colt.fixed} and \texttt{pagetable\_walker.cc.colt}.
+\end{itemize}
+The changes:
 
 \begin{itemize}
     \item \textbf{Coalescing in the page walker.} As in the CoLT paper, coalescing now happens when a walk reads the final 4KB page table entry. That entry sits in a 64-byte cache line together with seven neighbouring entries. The walker reads this line and passes the eight entries to the TLB (\texttt{coltObserveLeaf}).
@@ -396,11 +487,19 @@ Figure~\ref{fig:colt_flow} shows the new flow.
 \label{fig:colt_flow}
 \end{figure}
 
-Two details were decided on purpose. First, the accessed and dirty bits are not compared when forming a run: the accessed bit of the requested entry is only written back after this step, and \texttt{gem5}'s walker does not set the dirty bit at all, so comparing them would stop almost every run. Second, the checker described in Section~\ref{sec:verif} was applied to the CoLT-FA tree as well, so every CoLT-FA full-system run also checks one in every 64 translations against a functional page walk.
+Two choices made on purpose:
+\begin{itemize}
+    \item The accessed and dirty bits are not compared when forming a run. The accessed bit of the requested entry is only written back after this step, and \texttt{gem5}'s walker never sets the dirty bit, so comparing them would stop almost every run.
+    \item The checker from Section~\ref{sec:verif} is also in the CoLT-FA build, so every CoLT-FA full-system run checks one in every 64 translations against a page walk of its own.
+\end{itemize}
 
 \subsection{SE-Mode Verification of CoLT-FA}
 \label{sec:colt_se}
-CoLT-FA was first checked in SE mode with 9 programs, on the Atomic and Timing CPUs, with CoLT turned on and off: 36 runs in total. \textbf{All 36 runs passed with 0 oracle mismatches and 0 stale entries.} Table~\ref{tab:colt_se} shows how active the buffer was on the Atomic CPU.
+\begin{itemize}
+    \item 9 programs, Atomic and Timing CPUs, CoLT on and off: 36 runs.
+    \item \textbf{All 36 passed, with 0 oracle mismatches and 0 stale entries.}
+    \item Table~\ref{tab:colt_se} shows how often the buffer was used on the Atomic CPU.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -422,7 +521,7 @@ CoLT-FA was first checked in SE mode with 9 programs, on the Atomic and Timing C
 \end{tabular}
 \end{table}
 
-\noindent The buffer is most useful when pages are touched in address order (14,322 hits on the ascending pattern) and least useful on random access. The Timing CPU runs gave the same counts.
+\noindent The buffer gets the most hits when pages are touched in address order (14,322 on the ascending pattern) and the fewest on random access. The Timing CPU runs gave the same counts.
 
 % -----------------------------------------------------------------------------
 \section{Full-System Evaluation Methodology}
@@ -454,7 +553,13 @@ Control & \texttt{gem5-bridge} hypercalls from the guest to the simulator \\
 \end{table}
 
 \subsection{Measurement Windows}
-Running whole benchmarks on the detailed timing CPU was far too slow for the time available. Each benchmark therefore runs on the atomic CPU, which still uses the TLB under test for every access and so still tests correctness, and only a fixed \emph{window} of instructions is measured on the timing CPU. SPEC's own \texttt{submit} setting wraps every benchmark command with two hypercalls, so \texttt{gem5} knows when the benchmark program itself starts and ends (and not SPEC's setup scripts). Figure~\ref{fig:window} shows the sequence.
+\begin{itemize}
+    \item Running whole benchmarks on the timing CPU would have taken too long.
+    \item So each benchmark runs on the atomic CPU, and only a fixed \emph{window} of instructions is measured on the timing CPU.
+    \item The atomic CPU still uses the TLB under test for every access, so correctness is still tested over the whole run.
+    \item SPEC's \texttt{submit} setting wraps every benchmark command with two hypercalls, so \texttt{gem5} knows when the benchmark program starts and ends (as opposed to SPEC's own setup scripts).
+\end{itemize}
+Figure~\ref{fig:window} shows the sequence.
 
 \begin{figure}[htbp]
 \centering
@@ -494,10 +599,17 @@ memcached & GET phase only & 1.5G & stop the simulation \\
 \end{tabular}
 \end{table}
 
-If a program finishes before the window ends, the statistics up to that point are kept and marked as \emph{partial}. Short GAPBS kernels such as bfs and cc are measured this way in full.
+If a program ends before the window ends, the statistics up to that point are kept and marked \emph{partial}. Short GAPBS kernels such as bfs and cc are measured whole this way.
 
 \subsection{Running Several Hundred Simulations}
-Each benchmark ran in its own \texttt{gem5} process. This made the runs independent, so a benchmark that crashes or fails does not affect any other. Over the campaign we used about 40 machines of the department lab. The flow is shown in Figure~\ref{fig:infra}. Since the lab machines could not reach GitHub, all code and tools were copied from a laptop, and the inputs (built \texttt{gem5}, kernel, Ubuntu image and SPEC tree, about 20GB per design) were copied from machine to machine. Each machine then built its own SPEC disk image with \texttt{mkfs.ext4 -d}. Results were copied back to the laptop every 30 minutes by \texttt{sync\_fs\_results.sh}.
+\begin{itemize}
+    \item Each benchmark ran in its own \texttt{gem5} process, so a crash or failure in one does not affect the others.
+    \item About 40 lab machines were used over the campaign (Figure~\ref{fig:infra}).
+    \item The lab machines cannot reach GitHub, so code and tools were copied from a laptop.
+    \item The inputs (built \texttt{gem5}, kernel, Ubuntu image and SPEC tree, about 20GB per design) were copied from machine to machine.
+    \item Each machine built its own SPEC disk image with \texttt{mkfs.ext4 -d}.
+    \item Results were copied back to the laptop every 30 minutes by \texttt{sync\_fs\_results.sh}.
+\end{itemize}
 
 \begin{figure}[htbp]
 \centering
@@ -517,7 +629,7 @@ Each benchmark ran in its own \texttt{gem5} process. This made the runs independ
 \end{figure}
 
 \subsection{Problems Met During the Campaign}
-Table~\ref{tab:campaign_issues} records the problems that affected the runs and what was done about them. We report them because some of them changed how the results must be read.
+Table~\ref{tab:campaign_issues} lists the problems that affected the runs and what was done. Some of them change how the results should be read. Part~\ref{part:chron} gives the full story of each.
 
 \begin{table}[htbp]
 \centering
@@ -538,14 +650,24 @@ Many \texttt{gem5} processes on one machine slow each other down. & Measured (be
 \end{tabularx}
 \end{table}
 
-On an idle machine one \texttt{gem5} process ran a test program at 2.23 million instructions per second. The same program on a machine running about 30 \texttt{gem5} processes ran at 0.58 million instructions per second, 3.8 times slower. A loaded machine still completed about 7 times more work in total, so most benchmarks were packed onto shared machines. The 9 longest benchmarks were also rerun with only 4 or 5 processes per machine so they could finish in time.
+Speed of one \texttt{gem5} process:
+\begin{itemize}
+    \item idle machine: 2.23 million instructions per second;
+    \item machine with about 30 \texttt{gem5} processes: 0.58 million, 3.8 times slower;
+    \item but the loaded machine still did about 7 times more work in total, so most benchmarks were packed onto shared machines;
+    \item the 9 longest benchmarks were also rerun with only 4 or 5 processes per machine, so they could finish in time.
+\end{itemize}
 
 % -----------------------------------------------------------------------------
 \section{Full-System SPEC CPU2017 Results}
 \label{sec:fs_spec}
 % -----------------------------------------------------------------------------
 
-All 43 SPEC CPU2017 benchmarks were run with test inputs on all six designs. A benchmark counts as PASS only if SPEC's own output check passes. Figure~\ref{fig:spec_outcome} and Table~\ref{tab:spec_outcome} give the results.
+\begin{itemize}
+    \item All 43 SPEC CPU2017 benchmarks, test inputs, all six designs.
+    \item PASS means SPEC's own output check passed.
+\end{itemize}
+Figure~\ref{fig:spec_outcome} and Table~\ref{tab:spec_outcome} give the results.
 
 \begin{figure}[htbp]
 \centering
@@ -580,21 +702,31 @@ CoLT-FA & 36 & 2 & 1 & 4 \\
 \label{fig:spec_pie}
 \end{figure}
 
-\noindent \textbf{Every benchmark that can run in this setup passes on every design.} The same three benchmarks fail on every design, and none of the failures depends on the TLB:
+\noindent \textbf{Every benchmark that can run in this setup passes on every design.} The same three benchmarks fail on every design, and none of these failures comes from the TLB:
 \begin{itemize}
-    \item \textbf{500.perlbench\_r and 600.perlbench\_s} fail because of a bug in \texttt{gem5}'s emulation of x87 floating-point instructions. Perl prints long double values (\texttt{printf "\%a"}) through these instructions and the result is wrong under \texttt{gem5}. We checked that both benchmarks pass natively with the exact same SPEC setup and wrapper, and that they still fail in \texttt{gem5} with the wrapper removed. The root cause was later found and fixed: \texttt{fcomip} was not implemented, and the x87 \texttt{movfp} micro-operations copied only 32 of 64 bits (Section~\ref{sec:chr_perl}). With the fix, small perl programs and 30 x87 test cases give the same output as native in SE mode. Full-system reruns of both perlbench benchmarks on the fixed build were started but had not finished when this report was written, so the table counts them as FAIL.
-    \item \textbf{631.deepsjeng\_s} needs 6.9GB of memory, more than the 3 GiB board used for this campaign, so the program cannot start. On a separate board configured with 12 GiB (Section~\ref{sec:chr_mem}), it passed in full-system mode on Inclusive, Exclusive, NINE, Agile and Perforated Pages.
+    \item \textbf{500.perlbench\_r and 600.perlbench\_s}: a bug in how \texttt{gem5} runs x87 floating-point instructions.
+    \begin{itemize}
+        \item Perl prints values with \texttt{printf "\%a"} through these instructions, and the output is wrong under \texttt{gem5}.
+        \item Both pass natively with the same SPEC setup and wrapper, and both still fail in \texttt{gem5} with the wrapper removed.
+        \item Cause found and fixed later: \texttt{fcomip} was not implemented, and the x87 \texttt{movfp} micro-ops copied only 32 of 64 bits (Section~\ref{sec:chr_perl}). With the fix, small perl programs and 30 x87 test cases match native in SE mode.
+        \item Full-system reruns with the fix had not finished when this report was written, so the table counts them as FAIL.
+    \end{itemize}
+    \item \textbf{631.deepsjeng\_s}: needs 6.9GB, more than the 3 GiB guest, so it cannot start. On a separate 12 GiB board (Section~\ref{sec:chr_mem}) it passed in full-system mode on Inclusive, Exclusive, NINE, Agile and Perforated Pages.
 \end{itemize}
 
 \noindent Four more benchmarks have no full-system pass/fail result:
 \begin{itemize}
-    \item \textbf{619.lbm\_s} needs 3.2GB, just above the memory limit, and \texttt{gem5} stops with an internal cache assertion when it switches back from the timing to the atomic CPU after its window. Its window statistics were saved. The full history of this benchmark is in Section~\ref{sec:chr_lbm}.
+    \item \textbf{619.lbm\_s}: needs 3.2GB, just above the limit. \texttt{gem5} stops with a cache assertion when it switches back from the timing to the atomic CPU after the window. Its window statistics were saved. Full history in Section~\ref{sec:chr_lbm}.
     \item \textbf{525.x264\_r and 625.x264\_s} run about 1 trillion instructions each on the test input, which would take around 13 days to simulate. Their window statistics were saved.
     \item \textbf{627.cam4\_s} passes on four designs and was still running on Agile and CoLT-FA at the time of writing. It fails natively on our SPEC build but passes in \texttt{gem5}.
 \end{itemize}
 
 \subsection{The Two Large Benchmarks in SE Mode}
-Since 631.deepsjeng\_s and 619.lbm\_s do not fit in the full-system guest, both were run in SE mode with 8 GiB of memory on all six designs. Each output was compared byte by byte with the native output, which had passed SPEC's check. 619.lbm\_s is an OpenMP program, so it was run with one OpenMP thread (\texttt{OMP\_NUM\_THREADS=1}).
+\begin{itemize}
+    \item 631.deepsjeng\_s and 619.lbm\_s do not fit in the 3 GiB guest, so both were run in SE mode with 8 GiB on all six designs.
+    \item Each output was compared byte by byte with the native output, which had passed SPEC's check.
+    \item 619.lbm\_s is an OpenMP program and was run with one thread (\texttt{OMP\_NUM\_THREADS=1}).
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -614,7 +746,13 @@ Since 631.deepsjeng\_s and 619.lbm\_s do not fit in the full-system guest, both 
 \noindent The CoLT-FA runs had the oracle turned on and reported 0 mismatches, with 1,600,771 buffer hits on 631.deepsjeng\_s and 62,071,327 on 619.lbm\_s.
 
 \subsection{How Much the SPEC Test Inputs Use the TLB}
-The windows also show how hard each benchmark pushes the TLB. Figure~\ref{fig:spec_pressure} plots the page walks per 1000 instructions on the Inclusive design. The highest value is 1.145 (638.imagick\_s), and benchmarks usually called memory-intensive stay low: 605.mcf\_s is 0.242, and lbm, roms and xz stay at or below about 0.5. The test inputs are small, so their working sets mostly fit in the TLB's reach. \textbf{The SPEC test-input runs are therefore mainly a correctness result}, and the performance comparison in Section~\ref{sec:perf} uses workloads that stress the TLB much more.
+Figure~\ref{fig:spec_pressure} shows page walks per 1000 instructions on the Inclusive design.
+\begin{itemize}
+    \item The highest value is 1.145 (638.imagick\_s).
+    \item Benchmarks usually called memory-intensive are low too: 605.mcf\_s is 0.242; lbm, roms and xz are at or below about 0.5.
+    \item The test inputs are small, so they mostly fit in what the TLB can cover.
+    \item \textbf{So the SPEC test-input runs are mainly a correctness result.} The performance comparison in Section~\ref{sec:perf} uses workloads with more TLB misses.
+\end{itemize}
 
 \begin{figure}[htbp]
 \centering
@@ -629,7 +767,12 @@ The windows also show how hard each benchmark pushes the TLB. Figure~\ref{fig:sp
 % -----------------------------------------------------------------------------
 
 \subsection{Workloads}
-Following the instructor's suggestion, we used the GAPBS graph benchmark suite and a key-value store, together with other standard memory-intensive programs (Table~\ref{tab:workloads}). All programs were built as static binaries and placed on a separate disk image. The GAPBS graphs were generated once in advance with GAPBS's own converter, because generating the graph took about 95\% of the instructions of a bfs run. The memcached load generator (\texttt{mc-crusher}) does not stop by itself after a fixed number of requests, so a small driver script (\texttt{run\_memcached.sh}) watches memcached's own counters and stops each phase.
+\begin{itemize}
+    \item As the instructor suggested, we used the GAPBS graph suite and a key-value store (memcached), plus other standard memory-intensive programs (Table~\ref{tab:workloads}).
+    \item All programs were built as static binaries and put on a separate disk image.
+    \item The GAPBS graphs were generated once in advance with GAPBS's own converter, because generating the graph took about 95\% of the instructions of a bfs run.
+    \item The memcached load generator (\texttt{mc-crusher}) does not stop by itself, so a small script (\texttt{run\_memcached.sh}) watches memcached's counters and stops each phase.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -657,10 +800,16 @@ SPEC CPU2017 reference & mcf, omnetpp, xalancbmk, deepsjeng, xz, roms, lbm, bwav
 \noindent The native numbers come from a processor with a much larger second-level TLB (about 2,048 entries) than our 512-entry L2, so the same programs miss more in our simulated system.
 
 \subsection{How the Numbers Are Compared}
-The metric is \emph{page walks per 1000 instructions} in the measurement window: data-TLB misses that remain after the L1, the CoLT-FA buffer (if present) and the L2 have all missed. Lower is better. Two rules were followed for every comparison, because of what the data showed:
+The metric is \emph{page walks per 1000 instructions} in the measurement window: data-TLB misses left after the L1, the CoLT-FA buffer (if present) and the L2 all miss. Lower is better. Two rules were followed, because of what the data showed:
 \begin{itemize}
-    \item \textbf{With transparent huge pages off}, results are stable across machines. For example, bfs gave 1.219 to 1.253 walks per 1000 instructions for the four non-CoLT designs, which ran on three different machines, so these runs are compared across machines.
-    \item \textbf{With transparent huge pages on}, results depend on the machine. Each machine built its own disk image, and how the guest places huge pages in memory changed with it. The same NINE configuration gave 2.16 walks per 1000 instructions for bc on one machine and 6.04 on another, while repeating a run on the \emph{same} machine gave exactly the same statistics. Huge-pages-on results are therefore only compared between runs on the same machine.
+    \item \textbf{Huge pages off}: results are the same across machines. For example, bfs gave 1.219 to 1.253 for the four non-CoLT designs, run on three different machines. These runs are compared across machines.
+    \item \textbf{Huge pages on}: results depend on the machine.
+    \begin{itemize}
+        \item Each machine built its own disk image, and where the guest puts huge pages changed with it.
+        \item The same NINE setup gave 2.16 for bc on one machine and 6.04 on another.
+        \item Running again on the \emph{same} machine gave identical statistics.
+        \item So huge-pages-on results are only compared between runs on the same machine.
+    \end{itemize}
 \end{itemize}
 
 \subsection{All Designs With Huge Pages Off}
@@ -695,7 +844,13 @@ STREAM & 0.414 & 0.399 & 0.400 & 0.399 & 0.400 & 0.399 & 0.400 \\
 \end{tabular}
 \end{table}
 
-\noindent Among the inclusion policies, Exclusive gives the fewest walks on every workload (STREAM is a tie), because it does not keep the same translation in both levels and so holds more translations in total (for pr, 51.821 against 55.046 for Inclusive, about 6\% fewer). Inclusive gives the most. The Agile prefetcher gives almost the same numbers as NINE on these workloads. CoLT-FA gives the largest reduction of the realistic designs. Perforated Pages as built shows very low numbers; Section~\ref{sec:perf_strict} explains why these numbers are not realistic.
+\begin{itemize}
+    \item Exclusive gives the fewest walks of the inclusion policies on every workload (STREAM is a tie). It does not keep the same translation in both levels, so it holds more translations in total. For pr: 51.821 against 55.046 for Inclusive, about 6\% fewer.
+    \item Inclusive gives the most walks.
+    \item Agile gives almost the same numbers as NINE on these workloads.
+    \item CoLT-FA gives the largest reduction of the realistic designs.
+    \item Perforated Pages as built shows close to zero walks. Section~\ref{sec:perf_strict} explains why these numbers are not realistic.
+\end{itemize}
 
 \subsection{CoLT-FA Compared With NINE}
 CoLT-FA is built on NINE, and the same binary runs both. Figure~\ref{fig:colt_vs_nine} shows the change in page walks with huge pages off.
@@ -729,9 +884,19 @@ STREAM & 0.400 & 0.400 & $0.0\%$ \\
 \end{tabular}
 \end{table}
 
-\noindent CoLT-FA reduces page walks most on the graph kernels bfs, cc and sssp, by about 59\% to 64\%, and by 36\% and 24\% on bc and pr. These kernels read the graph's large arrays, which the operating system often places on physically contiguous 4KB pages, and that is exactly what CoLT can merge. On XSBench the reduction is 12\%. On memcached, tc and STREAM it is small or zero. For STREAM the buffer received very few hits (57 with 8 entries), which means that in this run the guest did not give STREAM's arrays physically contiguous pages, and CoLT can only merge contiguous pages.
+\begin{itemize}
+    \item bfs, cc and sssp: about 59\% to 64\% fewer walks. bc: 36\%. pr: 24\%.
+    \item These kernels read large graph arrays, which the operating system often puts on physically contiguous 4KB pages. That is what CoLT can merge.
+    \item XSBench: 12\%.
+    \item memcached, tc and STREAM: small or zero.
+    \item STREAM got only 57 buffer hits with 8 entries. In this run the guest did not give STREAM's arrays contiguous physical pages, and CoLT can only merge contiguous pages.
+\end{itemize}
 
-\paragraph{Buffer size.} Figure~\ref{fig:colt_size} compares the default 8-entry buffer with a 32-entry buffer. Going from 8 to 32 entries reduces walks a little further on some workloads (pr from 41.812 to 38.420, bfs from 0.448 to 0.424), but most of the benefit already comes with 8 entries.
+\paragraph{Buffer size.} Figure~\ref{fig:colt_size} compares 8 and 32 entries.
+\begin{itemize}
+    \item 32 entries reduce walks a little more on some workloads: pr 41.812 to 38.420, bfs 0.448 to 0.424.
+    \item Most of the reduction already comes with 8 entries.
+\end{itemize}
 
 \begin{figure}[htbp]
 \centering
@@ -740,7 +905,7 @@ STREAM & 0.400 & 0.400 & $0.0\%$ \\
 \label{fig:colt_size}
 \end{figure}
 
-\paragraph{With huge pages on.} Following the same-machine rule, the comparison with huge pages on uses NINE and CoLT-FA runs from the same machine (Table~\ref{tab:colt_thpon} and Figure~\ref{fig:colt_thpon}).
+\paragraph{With huge pages on.} Following the same-machine rule, each NINE and CoLT-FA pair comes from one machine (Table~\ref{tab:colt_thpon} and Figure~\ref{fig:colt_thpon}).
 
 \begin{table}[htbp]
 \centering
@@ -767,7 +932,12 @@ STREAM & csews36 & 0.012 & 0.010 & $-16.7\%$ \\
 \end{tabular}
 \end{table}
 
-\noindent With huge pages on, CoLT-FA still reduces page walks, by 47.5\% on bfs and by about 24\% to 29\% on pr, bc and sssp. The absolute numbers are much smaller than with huge pages off, so the remaining walks come from memory that is still mapped with 4KB pages, which is the part CoLT-FA can coalesce. On cc and STREAM the values are very small (below 0.03), so their percentages rest on few walks. The four SPEC reference benchmarks in the lower part of the table were also run on one machine with the same binary. CoLT-FA reduces walks by 79.7\% on lbm, 44.3\% on xalancbmk and 21.3\% on omnetpp, while mcf is almost unchanged ($-1.1\%$).
+\begin{itemize}
+    \item CoLT-FA still reduces walks: 47.5\% on bfs, about 24\% to 29\% on pr, bc and sssp.
+    \item The numbers are much smaller than with huge pages off. The walks left come from memory still in 4KB pages, which is the part CoLT-FA can merge.
+    \item cc and STREAM are below 0.03, so their percentages are based on few walks.
+    \item SPEC reference inputs, same machine and same binary: 79.7\% fewer walks on lbm, 44.3\% on xalancbmk, 21.3\% on omnetpp; mcf almost unchanged ($-1.1\%$).
+\end{itemize}
 
 \begin{figure}[htbp]
 \centering
@@ -777,7 +947,13 @@ STREAM & csews36 & 0.012 & 0.010 & $-16.7\%$ \\
 \end{figure}
 
 \subsection{The Effect of Huge Pages}
-Figure~\ref{fig:thp_effect} shows NINE with transparent huge pages off and on, from the same binary on the same machine. Huge pages remove most of the page walks: pr goes from 54.760 to 2.687, XSBench from 14.256 to 1.138, and bfs from 1.234 to 0.118. memcached barely changes (1.178 to 1.117). This shows that, when the operating system can give a program 2MB pages, much of the TLB pressure disappears, and the designs then differ less. CoLT-FA is most useful in the opposite case, when memory ends up in 4KB pages.
+Figure~\ref{fig:thp_effect} shows NINE with huge pages off and on (same binary, same machine).
+\begin{itemize}
+    \item Huge pages remove most walks: pr 54.760 to 2.687, XSBench 14.256 to 1.138, bfs 1.234 to 0.118.
+    \item memcached barely changes: 1.178 to 1.117.
+    \item When the operating system can give a program 2MB pages, most TLB misses go away and the designs differ less.
+    \item CoLT-FA helps most in the other case, when memory ends up in 4KB pages.
+\end{itemize}
 
 \begin{figure}[htbp]
 \centering
@@ -787,7 +963,12 @@ Figure~\ref{fig:thp_effect} shows NINE with transparent huge pages off and on, f
 \end{figure}
 
 \subsection{SPEC CPU2017 Reference Inputs}
-Nine SPEC benchmarks were run with reference inputs, measured for 200M instructions after 3G instructions of warm-up, with huge pages on. Each design ran on its own machine, so following the rule above these numbers are reported per design and are not used for small differences. Table~\ref{tab:ref} shows the results for the four inclusion and prefetching designs, which agree with each other closely. With real input sizes mcf (3.360 to 3.695) and omnetpp (2.172 to 2.324) are the most TLB-intensive, far above their test-input values.
+\begin{itemize}
+    \item Nine SPEC benchmarks with reference inputs: 3G instructions warm-up, 200M measured, huge pages on.
+    \item Each design ran on its own machine, so by the rule above these are reported per design and not used for small differences.
+    \item Table~\ref{tab:ref} shows the four inclusion and prefetching designs. Their numbers are close to each other.
+    \item With real input sizes, mcf (3.360 to 3.695) and omnetpp (2.172 to 2.324) have the most walks, much higher than with test inputs.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -817,9 +998,20 @@ Nine SPEC benchmarks were run with reference inputs, measured for 200M instructi
 \label{sec:perf_strict}
 % -----------------------------------------------------------------------------
 
-In Table~\ref{tab:thpoff_all}, Perforated Pages as built shows close to zero page walks on almost every workload, far fewer than any other design. While looking into this we found the reason in the model itself. Each L2 entry covers a 2MB virtual region, but it stores a \emph{separate physical address for each of its 512 4KB pages} (\texttt{paddrs[512]}), and it never checks that these pages are physically contiguous. With 128 sets of 4 ways, the L2 can therefore hold up to $128 \times 4 \times 512 = 262{,}144$ unrelated 4KB translations, about 512 times the reach of the other designs' 512-entry L2. Real perforated pages are 2MB regions that are physically contiguous apart from their holes, so one base address and a bitmap are enough to describe them.
+In Table~\ref{tab:thpoff_all}, Perforated Pages as built shows close to zero walks on almost every workload, far fewer than any other design. The reason is in the model:
+\begin{itemize}
+    \item Each L2 entry covers a 2MB virtual region, but stores a \emph{separate physical address for each of its 512 4KB pages} (\texttt{paddrs[512]}).
+    \item It never checks that these pages are physically contiguous.
+    \item With 128 sets of 4 ways, the L2 can hold up to $128 \times 4 \times 512 = 262{,}144$ unrelated 4KB translations, about 512 times what the other designs' 512-entry L2 holds.
+    \item Real perforated pages are 2MB regions that are physically contiguous apart from their holes, so one base address and a bitmap describe them.
+\end{itemize}
 
-To measure the design under the paper's rule, we added a strict mode (\texttt{PERF\_STRICT=1}, produced by \texttt{robustness/patches/make\_perf\_strict.py}). A 4KB page may join a region only if its physical address equals the region's base address plus its offset. Otherwise the region is started again from the new page. The default behaviour is unchanged, so the earlier results stay reproducible.
+To test the design under the paper's rule, we added a strict mode (\texttt{PERF\_STRICT=1}, made by \texttt{robustness/patches/make\_perf\_strict.py}):
+\begin{itemize}
+    \item A 4KB page may join a region only if its physical address equals the region's base address plus its offset.
+    \item Otherwise the region is started again from the new page.
+    \item The default behaviour is unchanged, so the earlier results can still be reproduced.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
@@ -842,7 +1034,14 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
 \end{tabular}
 \end{table}
 
-\noindent With the strict rule, Perforated Pages has \emph{more} page walks than NINE on most workloads (for example pr 88.556 against 54.760, and mcf 10.352 against 3.617). Every entry is tied to a 2MB virtual region, so memory made of scattered 4KB pages wastes most of each entry, and regions are restarted often. XSBench is the exception (4.941 against 14.256). We conclude that the large gains measured for Perforated Pages in this project, including those in Section~6 of Part~\ref{part:mid}, come mostly from the unlimited per-page storage of the model and not from the perforated-page idea. A fair evaluation of Perforated Pages would also need the operating system support from the paper, which creates the sparse 2MB regions in the first place. For these reasons we treat CoLT-FA as the main realistic design of this project.
+\begin{itemize}
+    \item With the strict rule, Perforated Pages has \emph{more} walks than NINE on most workloads: pr 88.556 against 54.760, mcf 10.352 against 3.617.
+    \item Each entry is tied to a 2MB virtual region. With scattered 4KB pages most of each entry is unused, and regions are restarted often.
+    \item XSBench is the exception: 4.941 against 14.256.
+    \item So the large gains measured for Perforated Pages in this project, including Section~6 of Part~\ref{part:mid}, come mostly from the model storing one address per page, not from the perforated-page idea.
+    \item A fair test would also need the operating system support from the paper, which creates the sparse 2MB regions.
+    \item For these reasons we treat CoLT-FA as the main realistic design of this project.
+\end{itemize}
 
 % -----------------------------------------------------------------------------
 \section{Limitations and Notes on Method}
@@ -854,13 +1053,31 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
     \item \textbf{Sampled windows.} Performance numbers come from windows of 200M to 1.5G instructions, not from whole runs. Correctness is still checked over the whole run for SPEC test inputs.
     \item \textbf{Same-machine rule.} With transparent huge pages on, the guest's memory layout depends on the disk image built on each machine, so these results are only compared within one machine.
     \item \textbf{Single core.} All full-system runs use one simulated core.
-    \item \textbf{Redis.} Redis was also prepared as a second key-value store. The first runs stopped making progress inside the guest before the measured phase and were stopped after two days. A second attempt with time limits and progress messages on every step also stopped inside the guest, right after the Redis server was started, and was stopped after six hours. Redis was therefore left out of the evaluation, and memcached covers the key-value store case in this report.
+    \item \textbf{Redis.} Prepared as a second key-value store. The first runs stopped making progress in the guest before the measured phase and were stopped after two days. A second attempt, with time limits and progress messages, also stopped right after starting the server and was stopped after six hours. Redis was left out; memcached covers key-value stores.
     \item \textbf{The Hybrid L2 TLB} from Part~\ref{part:mid} was not part of the second phase.
 \end{itemize}
 
 % -----------------------------------------------------------------------------
 \section{Conclusion}
 % -----------------------------------------------------------------------------
-In the first half of the project we built set-associative L2 TLB designs with different inclusion policies, prefetching, CoLT-FA, Perforated Pages and a Hybrid in \texttt{gem5}, and measured them in SE mode on microbenchmarks. In the second half we audited all of them and fixed the problems that only show up under a real operating system: missing L2 invalidation on unmaps and address-space switches, PCID handling, checkpointing, and hard-coded permissions. We added a translation oracle and invariant checkers and found no translation error in any design. We rebuilt CoLT-FA so that it coalesces pages from the hardware page walker, as in the original paper, which made it work in full-system mode for the first time.
+\textbf{First half:}
+\begin{itemize}
+    \item Built set-associative L2 TLB designs in \texttt{gem5}: inclusion policies, prefetching, CoLT-FA, Perforated Pages and a Hybrid.
+    \item Measured them in SE mode on microbenchmarks.
+\end{itemize}
+\textbf{Second half:}
+\begin{itemize}
+    \item Audited all designs and fixed the problems that only show up under a real operating system: L2 not cleared on unmaps and address-space switches, PCID handling, checkpointing, fixed permissions.
+    \item Added a translation oracle and invariant checkers. No translation error was found in any design.
+    \item Rebuilt CoLT-FA so it merges pages from the hardware page walker, as in the paper. It now works in full-system mode.
+\end{itemize}
 
-In full-system mode on an Ubuntu guest, every SPEC CPU2017 benchmark that the simulator can run passed on all six designs. The only failures came from a \texttt{gem5} floating-point emulation bug and from the 3 GiB memory limit, and the two large benchmarks passed in SE mode with more memory. On the graph and key-value workloads, CoLT-FA reduced page walks compared with NINE by 59\% to 64\% on bfs, cc and sssp, by 36\% on bc and by 24\% on pr with 4KB pages, and, on the same machine with huge pages on, by 47.5\% on bfs and by about 24\% to 29\% on pr, bc and sssp. On SPEC reference inputs it reduced walks by 79.7\% on lbm, 44.3\% on xalancbmk and 21.3\% on omnetpp. Exclusive was the best of the inclusion policies. A closer look at Perforated Pages showed that its large gains came from an unrealistic model, and under the paper's rule it did worse than NINE on most workloads.
+\textbf{Results:}
+\begin{itemize}
+    \item Full system, Ubuntu guest: every SPEC CPU2017 benchmark the simulator can run passed on all six designs. The failures came from a \texttt{gem5} x87 bug and the 3 GiB memory limit. The two large benchmarks passed in SE mode with more memory.
+    \item CoLT-FA against NINE, 4KB pages: 59\% to 64\% fewer walks on bfs, cc and sssp; 36\% on bc; 24\% on pr.
+    \item Same machine, huge pages on: 47.5\% on bfs; about 24\% to 29\% on pr, bc and sssp.
+    \item SPEC reference inputs: 79.7\% on lbm, 44.3\% on xalancbmk, 21.3\% on omnetpp.
+    \item Exclusive was the best of the inclusion policies.
+    \item Perforated Pages' large gains came from an unrealistic model. Under the paper's rule it did worse than NINE on most workloads.
+\end{itemize}
