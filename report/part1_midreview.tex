@@ -65,7 +65,7 @@ Modifications were implemented within the x86 memory subsystem:
 \end{itemize}
 
 When linking \texttt{build/X86/gem5.opt}, the default linker used so much memory that the host ran out of memory and started swapping. We switched to the GNU \textbf{gold} linker:
-\begin{lstlisting}[float=H,language=bash,caption={Build command using the GNU gold linker to avoid running out of host memory},label={lst:build_gold}]
+\begin{lstlisting}[language=bash,caption={Build command using the GNU gold linker to avoid running out of host memory},label={lst:build_gold}]
 scons build/X86/gem5.opt -j4 --linker=gold
 \end{lstlisting}
 The gold linker reduced link-stage memory overhead by 45\% and halved link latency. Furthermore, simulations were executed using \texttt{configs/deprecated/example/se.py}.
@@ -122,7 +122,7 @@ The lower 7 bits of the virtual page number are XORed with bits 7 to 13. This sp
 
 Listing~\ref{lst:xor_code} shows the C++ implementation of this hashing function embedded inside \texttt{src/arch/x86/tlb.cc}.
 
-\begin{lstlisting}[float=H,language=C++,caption={XOR-7 Set-Associative Hash Indexing Implementation in \texttt{src/arch/x86/tlb.cc}},label={lst:xor_code}]
+\begin{lstlisting}[language=C++,caption={XOR-7 Set-Associative Hash Indexing Implementation in \texttt{src/arch/x86/tlb.cc}},label={lst:xor_code}]
 // Implemented XOR-7 set selection based on Seznec [1993]
 uint32_t
 TLB::getL2SetIndex(Addr vpn) const
@@ -183,7 +183,7 @@ In an exclusive hierarchy, a translation can reside in at most one level of the 
 
 Listing~\ref{lst:exclusive_code} provides our C++ implementation of the exclusive promotion and eviction spilling logic in \texttt{src/arch/x86/tlb.cc}.
 
-\begin{lstlisting}[float=H,language=C++,caption={Exclusive Policy L2 Promotion and L1 Demotion Spilling Implementation},label={lst:exclusive_code}]
+\begin{lstlisting}[language=C++,caption={Exclusive Policy L2 Promotion and L1 Demotion Spilling Implementation},label={lst:exclusive_code}]
 // On L1 Miss Hit in L2 -> Promote to L1 and Evict from L2
 if (policy == POLICY_EXCLUSIVE && l2_hit) {
     l1_entry = *l2_hit_ptr;
@@ -213,7 +213,7 @@ To stress the hierarchy, five microbenchmarks were implemented in C:
 \subsection{gem5 Execution Commands for Section 3}
 To compile the microbenchmarks and execute the inclusion sweep across combinations, the following commands were run:
 
-\begin{lstlisting}[float=H,language=bash,caption={Compilation and Execution Commands for Inclusion Policy Sweep in \texttt{gem5}},label={lst:cmd_inclusion}]
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for Inclusion Policy Sweep in \texttt{gem5}},label={lst:cmd_inclusion}]
 # Step 1: Compile all microbenchmarks statically
 gcc -O2 -static tlb_seq_fit.c -o tlb_seq_fit
 gcc -O2 -static tlb_overflow.c -o tlb_overflow
@@ -305,7 +305,7 @@ On an L2 miss, \texttt{NaiveFP} looks at the other 7 entries in the aligned 32KB
 
 Listing~\ref{lst:naivefp_code} shows our C++ implementation of \texttt{NaiveFP} inside \texttt{src/arch/x86/tlb.cc}.
 
-\begin{lstlisting}[float=H,language=C++,caption={Naive Free Prefetcher (NaiveFP) Cache-Line Boundary Alignment and Installation},label={lst:naivefp_code}]
+\begin{lstlisting}[language=C++,caption={Naive Free Prefetcher (NaiveFP) Cache-Line Boundary Alignment and Installation},label={lst:naivefp_code}]
 // Implemented Free Adjacent Prefetching based on Margaritov et al. [MICRO 2019]
 void TLB::performNaiveFreePrefetch(Addr fault_va, Process *p) {
     Addr base_va = fault_va & ~0x7000ULL; // Align to 32KB boundary (8 pages)
@@ -326,7 +326,7 @@ void TLB::performNaiveFreePrefetch(Addr fault_va, Process *p) {
 \subsection{gem5 Execution Commands for Section 4}
 The prefetchers were evaluated under the command sequence:
 
-\begin{lstlisting}[float=H,language=bash,caption={Execution Commands for Evaluating TLB Prefetchers in \texttt{gem5}},label={lst:cmd_prefetch}]
+\begin{lstlisting}[language=bash,caption={Execution Commands for Evaluating TLB Prefetchers in \texttt{gem5}},label={lst:cmd_prefetch}]
 # Execute baseline SA-NINE on overflow benchmark
 ./build/X86/gem5.opt --outdir=results_v2/nine_sa__overflow \
     configs/deprecated/example/se.py -c ./tlb_overflow --cpu-type=TimingSimpleCPU
@@ -382,7 +382,7 @@ Table~\ref{tab:prefetcher_sweep} shows the impact of prefetching applied on top 
 We first tested set-associative coalescing (CoLT-SA). The paper focuses on \textbf{CoLT-FA}: a small fully associative buffer, next to the set-associative array, that holds the merged entries.
 
 We engineered an 8-entry Fully-Associative Coalescing Buffer (\texttt{colt\_fa\_array}) operating in parallel with the 128-set L2 TLB:
-\begin{lstlisting}[float=H,language=C++,caption={CoLT-FA Buffer Data Structure in \texttt{src/arch/x86/tlb.hh}},label={lst:colt_entry}]
+\begin{lstlisting}[language=C++,caption={CoLT-FA Buffer Data Structure in \texttt{src/arch/x86/tlb.hh}},label={lst:colt_entry}]
 // Implemented based on Pham et al., MICRO 2012 [CoLT-FA Architecture]
 struct ColtFaEntry {
     Addr vpn_base;      // 4KB-aligned base virtual page
@@ -435,7 +435,7 @@ When an L1 miss occurs:
 
 Listing~\ref{lst:colt_lookup} provides the lookup logic implementation in \texttt{src/arch/x86/tlb.cc}.
 
-\begin{lstlisting}[float=H,language=C++,caption={Parallel CoLT-FA Range Lookup and PA Synthesis in \texttt{src/arch/x86/tlb.cc}},label={lst:colt_lookup}]
+\begin{lstlisting}[language=C++,caption={Parallel CoLT-FA Range Lookup and PA Synthesis in \texttt{src/arch/x86/tlb.cc}},label={lst:colt_lookup}]
 // CoLT-FA Range Lookup Implementation [Pham et al., MICRO 2012]
 ColtFaEntry* TLB::colt_fa_lookup(Addr va) {
     for (int i = 0; i < 8; ++i) {
@@ -456,7 +456,7 @@ ColtFaEntry* TLB::colt_fa_lookup(Addr va) {
 \subsection{gem5 Execution Commands for Section 5}
 The CoLT-FA verification experiment was executed under the command sequence:
 
-\begin{lstlisting}[float=H,language=bash,caption={Compilation and Execution Commands for CoLT-FA Experiments in \texttt{gem5}},label={lst:cmd_colt}]
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for CoLT-FA Experiments in \texttt{gem5}},label={lst:cmd_colt}]
 # Step 1: Compile the CoLT 8MB strided benchmark statically
 gcc -O2 -static tlb_colt_bench.c -o tlb_colt_bench_static
 
@@ -510,7 +510,7 @@ Perforated Pages lets the processor treat the 2MB region as one large page \text
 
 \subsection{Hardware Architecture in gem5}
 We modeled Perforated Pages in \texttt{gem5} via a L2 Sparse Huge Page (SHP) entry:
-\begin{lstlisting}[float=H,language=C++,caption={Sparse Huge Page Descriptor and Bitmap Tracking in \texttt{src/arch/x86/tlb.hh}},label={lst:shp_entry}]
+\begin{lstlisting}[language=C++,caption={Sparse Huge Page Descriptor and Bitmap Tracking in \texttt{src/arch/x86/tlb.hh}},label={lst:shp_entry}]
 // Implemented based on Park et al., ISCA 2020 [Perforated Pages]
 struct SparseL2Entry {
     Addr vpn_2mb;              // 2MB aligned virtual base
@@ -570,7 +570,7 @@ Embedding a 512-bit vector inside every L2 entry increases the SRAM cell area by
 
 Listing~\ref{lst:decoupled_bitmap} shows the decoupled bitmap installation and translation eviction tracking in \texttt{src/arch/x86/tlb.cc}.
 
-\begin{lstlisting}[float=H,language=C++,caption={Decoupled In-TLB Bitmap Installation and Eviction Tracking in \texttt{tlb.cc}},label={lst:decoupled_bitmap}]
+\begin{lstlisting}[language=C++,caption={Decoupled In-TLB Bitmap Installation and Eviction Tracking in \texttt{tlb.cc}},label={lst:decoupled_bitmap}]
 // Decoupled Bitmap Cache Installation [Park et al., ISCA 2020 Section IV-C]
 void TLB::installBitmapCacheEntry(uint32_t set_idx, Addr vpn_chunk, uint32_t sub_bitmap) {
     stats.perfPagesBitmapInstalls++;
@@ -592,7 +592,7 @@ void TLB::installBitmapCacheEntry(uint32_t set_idx, Addr vpn_chunk, uint32_t sub
 \subsection{gem5 Execution Commands for Section 6}
 The clustered and dispersed Perforated Pages benchmarks were evaluated using the command sequence:
 
-\begin{lstlisting}[float=H,language=bash,caption={Compilation and Execution Commands for Perforated Pages in \texttt{gem5}},label={lst:cmd_perfpages}]
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for Perforated Pages in \texttt{gem5}},label={lst:cmd_perfpages}]
 # Step 1: Compile clustered and dispersed benchmarks statically
 gcc -O2 -static tlb_perfpages_bench.c -o tlb_perfpages_bench
 gcc -O2 -static tlb_perfpages_dispersed.c -o tlb_perfpages_dispersed
@@ -715,7 +715,7 @@ Recognizing that CoLT~\cite{pham2012colt} and Perforated Pages~\cite{kwon2020per
 
 Listing~\ref{lst:grand_hybrid_code} displays the unified translation dispatch loop from \texttt{src/arch/x86/tlb.cc}.
 
-\begin{lstlisting}[float=H,language=C++,caption={Hybrid L2 TLB Translation Dispatch in \texttt{src/arch/x86/tlb.cc}},label={lst:grand_hybrid_code}]
+\begin{lstlisting}[language=C++,caption={Hybrid L2 TLB Translation Dispatch in \texttt{src/arch/x86/tlb.cc}},label={lst:grand_hybrid_code}]
 // Hybrid L2 TLB Lookup Pipeline
 Fault TLB::translateHybridL2(const RequestPtr &req, ThreadContext *tc) {
     Addr va = req->getVaddr();
@@ -742,7 +742,7 @@ Fault TLB::translateHybridL2(const RequestPtr &req, ThreadContext *tc) {
 \subsection{gem5 Execution Commands for Section 8}
 The prototype Hybrid L2 TLB was verified using the commands:
 
-\begin{lstlisting}[float=H,language=bash,caption={Compilation and Execution Commands for Hybrid L2 TLB},label={lst:cmd_grand_hybrid}]
+\begin{lstlisting}[language=bash,caption={Compilation and Execution Commands for Hybrid L2 TLB},label={lst:cmd_grand_hybrid}]
 # Step 1: Copy verified Hybrid source into active build tree
 cp src/arch/x86/tlb.hh.hybrid.verified src/arch/x86/tlb.hh
 cp src/arch/x86/tlb.cc.hybrid.verified src/arch/x86/tlb.cc
