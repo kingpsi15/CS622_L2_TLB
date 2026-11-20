@@ -709,7 +709,7 @@ CoLT-FA & 36 & 2 & 1 & 4 \\
         \item Perl prints values with \texttt{printf "\%a"} through these instructions, and the output is wrong under \texttt{gem5}.
         \item Both pass natively with the same SPEC setup and wrapper, and both still fail in \texttt{gem5} with the wrapper removed.
         \item Cause found and fixed later: \texttt{fcomip} was not implemented, and the x87 \texttt{movfp} micro-ops copied only 32 of 64 bits (Section~\ref{sec:chr_perl}). With the fix, small perl programs and 30 x87 test cases match native in SE mode.
-        \item Full-system reruns with the fix had not finished when this report was written, so the table counts them as FAIL.
+        \item In the full-run campaign, both passed in full-system mode on all five designs with the fix (Table~\ref{tab:fullrun_short}). The windowed campaign did not rerun them, so the table above counts them as FAIL.
     \end{itemize}
     \item \textbf{631.deepsjeng\_s}: needs 6.9GB, more than the 3 GiB guest, so it cannot start. On a separate 12 GiB board (Section~\ref{sec:chr_mem}) it passed in full-system mode on Inclusive, Exclusive, NINE, Agile and Perforated Pages.
 \end{itemize}
@@ -744,6 +744,69 @@ CoLT-FA & 36 & 2 & 1 & 4 \\
 \end{table}
 
 \noindent The CoLT-FA runs had the oracle turned on and reported 0 mismatches, with 1,600,771 buffer hits on 631.deepsjeng\_s and 62,071,327 on 619.lbm\_s.
+
+\subsection{Full-Run Campaign: All 43 Benchmarks}
+A second full-system campaign ran five designs with the timing CPU for the whole of every benchmark (Section~\ref{sec:chr_scale}).
+\begin{itemize}
+    \item \textbf{All 43 SPEC CPU2017 benchmarks passed on all five designs} (Table~\ref{tab:fullrun_short}).
+    \item 500.perlbench\_r and 600.perlbench\_s passed on builds with the x87 fix.
+    \item 619.lbm\_s and 631.deepsjeng\_s passed on a 12 GiB board.
+    \item 525.x264\_r, 625.x264\_s and 627.cam4\_s, which the windowed campaign did not finish, passed here.
+    \item CoLT-FA was not part of this campaign.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Full-run campaign, SPEC CPU2017 test inputs (out of 43). Full list in \texttt{results\_final/fullrun\_spec\_matrix.csv}.}
+\label{tab:fullrun_short}
+\begin{tabular}{l c c c c c}
+\toprule
+ & \textbf{Inclusive} & \textbf{Exclusive} & \textbf{NINE} & \textbf{Agile} & \textbf{Perforated} \\
+\midrule
+PASS & 43 & 43 & 43 & 43 & 43 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Full-Run Campaign: Cycles on SPEC CPU2017}
+\label{sec:fullrun_cycles}
+Since the full-run campaign used the timing CPU for whole benchmarks, its runs also give cycle counts for every benchmark on every design.
+\begin{itemize}
+    \item One benchmark per guest; cycles are counted from the end of boot to the end of the run, so they include SPEC's own setup and output check.
+    \item 215 runs (43 benchmarks $\times$ 5 designs), all ending normally. Atomic-only copies were left out.
+    \item perlbench comes from the x87-fixed builds and 619.lbm\_s from the build with the functional page table write.
+    \item Spot check: the cycle counts for 605.mcf\_s and 507.cactuBSSN\_r match the raw \texttt{stats.txt} files exactly.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Full-run campaign: speedup over Inclusive in simulated cycles, SPEC CPU2017 test inputs, 43 benchmarks.}
+\label{tab:fullrun_cycles}
+\begin{tabular}{l c c c l l}
+\toprule
+\textbf{Design} & \textbf{Geomean} & \textbf{Mean IPC} & \textbf{Wins / ties / losses} & \textbf{Best} & \textbf{Worst} \\
+\midrule
+Inclusive & 1.0000 & 1.670 & -- & -- & -- \\
+Exclusive & 0.9990 & 1.671 & 14 / 15 / 14 & 1.014 (605.mcf\_s) & 0.951 (507.cactuBSSN\_r) \\
+NINE & 0.9980 & 1.670 & 5 / 13 / 25 & 1.008 (505.mcf\_r) & 0.949 (507.cactuBSSN\_r) \\
+Agile / NaiveFP & 0.9984 & 1.670 & 5 / 4 / 34 & 1.020 (505.mcf\_r) & 0.991 (519.lbm\_r) \\
+Perforated (as built) & 1.0120 & 1.691 & 43 / 0 / 0 & 1.030 (605.mcf\_s) & 1.002 (525.x264\_r) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent What this shows:
+\begin{itemize}
+    \item The TLB design changes total cycles by about 1\% or less on most SPEC test inputs. This matches the low TLB pressure of these inputs (next section).
+    \item Exclusive has the best single result of the realistic designs: 1.014 on 605.mcf\_s.
+    \item The largest gains for Perforated Pages are on 605.mcf\_s (1.030), 520.omnetpp\_r and 620.omnetpp\_s (1.027) and 654.roms\_s (1.022). Perforated Pages as built is \emph{not} an upper bound or an ideal TLB; its gains come from storing one address per 4KB page (Section~\ref{sec:perf_strict}).
+    \item 507.cactuBSSN\_r is 5\% slower on Exclusive and NINE than on Inclusive. The cause was not investigated.
+    \item In these runs the Agile prefetcher issued 0 prefetches, so Agile's differences from NINE do not come from prefetching.
+    \item Each design and benchmark ran on its own machine, so differences of a fraction of a percent should not be read as design effects.
+    \item CoLT-FA was not part of this campaign.
+\end{itemize}
 
 \subsection{How Much the SPEC Test Inputs Use the TLB}
 Figure~\ref{fig:spec_pressure} shows page walks per 1000 instructions on the Inclusive design.
@@ -946,6 +1009,64 @@ STREAM & csews36 & 0.012 & 0.010 & $-16.7\%$ \\
 \label{fig:colt_thpon}
 \end{figure}
 
+\subsection{Full-Run Campaign: GAPBS and Key-Value Suites}
+\label{sec:fullrun_suites}
+The full-run campaign also ran two benchmark suites on its five designs.
+\begin{itemize}
+    \item \textbf{GAPBS suite}: bfs, pr, cc, bc, sssp and tc, each on a generated graph with $2^{20}$ vertices and about 15.7 million undirected edges, 3 trials each.
+    \item \textbf{Key-value suite}: Redis with \texttt{redis-benchmark} (SET, GET, HSET, ZADD), then memcached.
+    \item Setup: 8 GiB board, atomic CPU for boot, then the timing CPU for the whole suite; build with the functional page table write (Section~\ref{sec:chr_lbm}).
+    \item Every benchmark in both suites finished with \texttt{rc=0} on all five designs.
+    \item Per-run numbers are in \texttt{results\_final/fullrun\_suites.csv}.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{GAPBS suite in the full-run campaign. Data-TLB misses per 1000 instructions over the whole suite (graph generation included), and simulated time per trial in seconds for four kernels.}
+\label{tab:fullrun_gapbs}
+\begin{tabular}{l r r r r r}
+\toprule
+\textbf{Design} & \textbf{DTLB misses / 1k instr.} & \textbf{pr} & \textbf{bc} & \textbf{sssp} & \textbf{tc} \\
+\midrule
+Inclusive & 4.441 & 13.886 & 3.689 & 2.382 & 22.643 \\
+Exclusive & 4.256 & 13.793 & 3.677 & 2.368 & 22.588 \\
+NINE & 4.425 & 13.884 & 3.690 & 2.382 & 22.657 \\
+Agile / NaiveFP & 4.413 & 13.877 & 3.687 & 2.380 & 22.613 \\
+Perforated (as built) & 0.028 & 12.009 & 3.151 & 2.006 & 21.137 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Key-value suite in the full-run campaign. Redis requests per second (simulated time, overall value printed by \texttt{redis-benchmark}) and data-TLB misses per 1000 instructions over the whole suite.}
+\label{tab:fullrun_kv}
+\begin{tabular}{l r r r r r}
+\toprule
+\textbf{Design} & \textbf{SET} & \textbf{GET} & \textbf{HSET} & \textbf{ZADD} & \textbf{DTLB misses / 1k instr.} \\
+\midrule
+Inclusive & 82,028 & 103,244 & 75,647 & 66,634 & 1.129 \\
+Exclusive & 82,248 & 103,442 & 75,753 & 66,650 & 1.006 \\
+NINE & 82,229 & 103,461 & 75,976 & 67,158 & 1.050 \\
+Agile / NaiveFP & 82,470 & 103,774 & 75,749 & 66,510 & 1.048 \\
+Perforated (as built) & 82,898 & 103,804 & 76,636 & 68,661 & 0.913 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent What the numbers show, and their limits:
+\begin{itemize}
+    \item Exclusive has the fewest data-TLB misses of the four inclusion and prefetch designs in both suites, as in the windowed results.
+    \item Inclusive, NINE and Agile are within about 1\% of each other on GAPBS. In these runs the Agile prefetcher issued 0 prefetches, so Agile behaved like NINE.
+    \item Perforated Pages as built is lowest and fastest, for the reason given in Section~\ref{sec:perf_strict}: its model stores one address per 4KB page.
+    \item Redis throughput differs by about 1\% or less between Inclusive, Exclusive, NINE and Agile.
+    \item memcached finished with \texttt{rc=0} on every design, but the driver printed no throughput number.
+    \item Each design ran on a different machine, and the statistics cover the whole suite including graph generation. So small differences should not be read as design effects (Section~\ref{sec:perf}).
+    \item CoLT-FA was not part of these runs.
+\end{itemize}
+
 \subsection{The Effect of Huge Pages}
 Figure~\ref{fig:thp_effect} shows NINE with huge pages off and on (same binary, same machine).
 \begin{itemize}
@@ -1049,11 +1170,11 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
 % -----------------------------------------------------------------------------
 \begin{itemize}
     \item \textbf{Memory limit.} The board used for the main campaign gives the guest 3 GiB. 631.deepsjeng\_s and 619.lbm\_s were checked in SE mode with 8 GiB (both PASS on all designs). A 12 GiB board was also made to work (Section~\ref{sec:chr_mem}); 631.deepsjeng\_s passes on it, while 619.lbm\_s needed a change to the page walker, described in Section~\ref{sec:chr_lbm}.
-    \item \textbf{x87 emulation.} The perlbench failures are caused by \texttt{gem5}, not by the TLB designs, and affect every design. The bug was found and fixed (Section~\ref{sec:chr_perl}), but the full-system reruns with the fix did not finish in time.
+    \item \textbf{x87 emulation.} The perlbench failures are caused by \texttt{gem5}, not by the TLB designs, and affect every design. The bug was found and fixed (Section~\ref{sec:chr_perl}). With the fix, both perlbench benchmarks passed in full-system mode on the five designs of the full-run campaign; the windowed campaign (and so CoLT-FA) did not rerun them.
     \item \textbf{Sampled windows.} Performance numbers come from windows of 200M to 1.5G instructions, not from whole runs. Correctness is still checked over the whole run for SPEC test inputs.
     \item \textbf{Same-machine rule.} With transparent huge pages on, the guest's memory layout depends on the disk image built on each machine, so these results are only compared within one machine.
     \item \textbf{Single core.} All full-system runs use one simulated core.
-    \item \textbf{Redis.} Prepared as a second key-value store. The first runs stopped making progress in the guest before the measured phase and were stopped after two days. A second attempt, with time limits and progress messages, also stopped right after starting the server and was stopped after six hours. Redis was left out; memcached covers key-value stores.
+    \item \textbf{Redis.} In the windowed campaign, Redis stopped making progress in the guest twice (once after two days, once after six hours) and was left out. In the full-run campaign, on an 8 GiB board, Redis ran to the end on all five designs (Table~\ref{tab:fullrun_kv}). CoLT-FA has no Redis result.
     \item \textbf{The Hybrid L2 TLB} from Part~\ref{part:mid} was not part of the second phase.
 \end{itemize}
 
@@ -1075,6 +1196,8 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
 \textbf{Results:}
 \begin{itemize}
     \item Full system, Ubuntu guest: every SPEC CPU2017 benchmark the simulator can run passed on all six designs. The failures came from a \texttt{gem5} x87 bug and the 3 GiB memory limit. The two large benchmarks passed in SE mode with more memory.
+    \item Full-run campaign: GAPBS (six kernels) and Redis plus memcached finished on all five designs. Exclusive had the fewest data-TLB misses; Redis throughput differed by about 1\% or less.
+    \item Full-run campaign (timing CPU for whole benchmarks): \textbf{all 43 SPEC benchmarks passed} on Inclusive, Exclusive, NINE, Agile and Perforated Pages, using the x87 fix for perlbench and the 12 GiB board for 619.lbm\_s and 631.deepsjeng\_s.
     \item CoLT-FA against NINE, 4KB pages: 59\% to 64\% fewer walks on bfs, cc and sssp; 36\% on bc; 24\% on pr.
     \item Same machine, huge pages on: 47.5\% on bfs; about 24\% to 29\% on pr, bc and sssp.
     \item SPEC reference inputs: 79.7\% on lbm, 44.3\% on xalancbmk, 21.3\% on omnetpp.

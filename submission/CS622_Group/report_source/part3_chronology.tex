@@ -21,7 +21,7 @@ The project had two halves:
 \end{itemize}
 Two full-system campaigns then ran at the same time on the lab machines:
 \begin{itemize}
-    \item \textbf{Full-run campaign.} Five designs (Inclusive, Exclusive, NINE, Agile, Perforated Pages), one \emph{lane} each. The guest boots on the atomic CPU, then runs every SPEC benchmark start to end on the timing CPU. Most of the simulator problems in this part were found and fixed here.
+    \item \textbf{Full-run campaign.} Five designs (Inclusive, Exclusive, NINE, Agile, Perforated Pages), one \emph{lane} each. The guest boots on the atomic CPU, then runs every SPEC benchmark start to end on the timing CPU. Most of the simulator problems in this part were found and fixed here. \textbf{In the end all 43 SPEC benchmarks passed on all five designs} (Table~\ref{tab:chr_fullrun}).
     \item \textbf{Windowed campaign.} All six designs including CoLT-FA, one \texttt{gem5} process per benchmark. Atomic CPU except for a measurement window on the timing CPU. This gave the pass/fail matrix of Section~\ref{sec:fs_spec} and all performance numbers in Part~\ref{part:post}.
 \end{itemize}
 
@@ -374,31 +374,37 @@ Figure~\ref{fig:chr_extras} shows the layout.
 
 \subsection{Results of the Full-Run Campaign}
 \begin{itemize}
-    \item Table~\ref{tab:chr_fullrun} gives the last full status of this campaign that was recorded, plus the 12 GiB runs of Section~\ref{sec:chr_mem}.
+    \item Table~\ref{tab:chr_fullrun} gives the final result of this campaign, collected from the console logs of every guest. The per-benchmark list is in \texttt{results\_final/fullrun\_spec\_matrix.csv}.
     \item These runs used the timing CPU for the whole benchmark, so they are a separate check of five designs next to the windowed campaign.
 \end{itemize}
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{Full-run campaign, last recorded status (SPEC test inputs, out of 43).}
+\caption{Full-run campaign, final result (SPEC test inputs, timing CPU for the whole benchmark).}
 \label{tab:chr_fullrun}
 \begin{tabularx}{\textwidth}{l c X}
 \toprule
-\textbf{Design} & \textbf{PASS} & \textbf{FAIL at that time} \\
+\textbf{Design} & \textbf{PASS} & \textbf{How the last benchmarks passed} \\
 \midrule
-Inclusive & 35 & 600.perlbench\_s, 619.lbm\_s, 631.deepsjeng\_s (3 GiB) \\
-Exclusive & 35 & 500.perlbench\_r, 600.perlbench\_s, 631.deepsjeng\_s (3 GiB) \\
-NINE & 35 & 500.perlbench\_r, 600.perlbench\_s, 619.lbm\_s, 631.deepsjeng\_s (3 GiB) \\
-Agile / NaiveFP & 35 & 500.perlbench\_r, 619.lbm\_s, 631.deepsjeng\_s (3 GiB) \\
-Perforated Pages & 35 & 500.perlbench\_r, 600.perlbench\_s, 631.deepsjeng\_s (3 GiB) \\
-\midrule
-\multicolumn{3}{l}{631.deepsjeng\_s on the 12 GiB board: PASS on all five designs.} \\
+Inclusive & 43 / 43 & perlbench on the x87-fixed build; 619 and 631 on the 12 GiB board \\
+Exclusive & 43 / 43 & same \\
+NINE & 43 / 43 & same \\
+Agile / NaiveFP & 43 / 43 & same \\
+Perforated Pages & 43 / 43 & same \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\noindent The other benchmarks were still running at that time. The failures are the same kinds as in the windowed campaign: perlbench, and the two benchmarks that need more memory than the guest has. The next sections cover each of them.
+\noindent Notes on the table:
+\begin{itemize}
+    \item 39 benchmarks passed on the normal 3 GiB board with the normal build of each design, including 525.x264\_r, 625.x264\_s and 627.cam4\_s, which the windowed campaign did not finish.
+    \item 500.perlbench\_r and 600.perlbench\_s passed only on builds with the x87 fix (Section~\ref{sec:chr_perl}). On the normal builds they failed on every design.
+    \item 619.lbm\_s and 631.deepsjeng\_s passed only on the 12 GiB board (Sections~\ref{sec:chr_lbm} and~\ref{sec:chr_mem}). On the 3 GiB board they failed.
+    \item Two passes come from the campaign's last status snapshot because their hosts could not be reached when the console logs were collected: 507.cactuBSSN\_r on Inclusive and 631.deepsjeng\_s on Perforated Pages.
+    \item CoLT-FA was not part of this campaign.
+\end{itemize}
+The next sections describe how perlbench, 619.lbm\_s and 631.deepsjeng\_s were made to pass.
 
 % -----------------------------------------------------------------------------
 \section{The Windowed Campaign}
@@ -495,7 +501,8 @@ Figure~\ref{fig:chr_window} shows one windowed run.
 \paragraph{Full-run campaign.}
 \begin{itemize}
     \item First crash: a failure in the coherent crossbar (\texttt{coherent\_xbar.cc:159}).
-    \item A first change to how the walker writes a page table entry back moved the crash to \texttt{cache.cc:1225}:
+    \item The walker wrote the accessed bit back by reusing the response packet of its read as a write. A response packet can still carry a ``cache responding'' flag, which the crossbar does not expect on a new request.
+    \item First change (\texttt{patch\_walker\_write.py}): build a fresh write packet instead. This moved the crash to \texttt{cache.cc:1225}:
 \end{itemize}
 \begin{lstlisting}
 panic condition !invalidate && !pkt->hasSharers() occurred:
@@ -517,7 +524,7 @@ board.cache_hierarchy.l1d-cache-0 is passing a Modified line through WriteReq
 
 \begin{itemize}
     \item With the second change the 3 GiB runs no longer crashed. \texttt{gem5} exited normally, but the result was \texttt{FAIL}: the kernel had killed 619.lbm\_s for lack of memory (about 2.7GB resident).
-    \item Runs on the 12 GiB board (Section~\ref{sec:chr_mem}) were started later. No result was recorded before the campaign ended.
+    \item On the 12 GiB board (Section~\ref{sec:chr_mem}), timing CPU, 619.lbm\_s \textbf{passed on all five designs}. Some of these runs used the build with the functional page table write; for the others, which build was used is not recorded.
 \end{itemize}
 
 \paragraph{Windowed campaign.}
@@ -705,13 +712,14 @@ S0 to S4 & Constants and single loads & \texttt{fld1} loads 0 and \texttt{flds 2
     \item one lane had its work files under a different directory name;
     \item all lanes then exited at once because the new binary needs \texttt{LD\_LIBRARY\_PATH} for the newer C++ library, which the launch command did not set.
 \end{itemize}
-The ten guests were then running with no panics, but no result was recorded before the campaign ended. These builds also used the original page walker, without the functional write of Section~\ref{sec:chr_lbm}.
+The ten guests then ran with no panics, and \textbf{both 500.perlbench\_r and 600.perlbench\_s passed on all five designs}. These builds used the original page walker, without the functional write of Section~\ref{sec:chr_lbm}.
 
 \paragraph{Still open.}
 \begin{itemize}
     \item Whether \texttt{1.0L} reading as zero is a third, separate bug.
     \item Whether other unimplemented x87 instructions, such as \texttt{fxam}, matter.
-    \item All other SPEC results came from builds without these fixes. Benchmarks that passed are not affected in their pass/fail result, but an x87-heavy program could have taken a different path.
+    \item All other SPEC results came from builds without the x87 fix. Their pass/fail result is not affected, but an x87-heavy program could have taken a different path.
+    \item The windowed campaign (all six designs, including CoLT-FA) did not rerun perlbench on the fixed build.
 \end{itemize}
 
 % -----------------------------------------------------------------------------
@@ -793,8 +801,9 @@ Figure~\ref{fig:chr_samehost} shows the rule.
     \item First runs: every configuration stopped making progress in the guest before the measured phase. Stopped after about two days.
     \item First guess: the guest was waiting for random numbers. A test run showed the random number generator was ready 2.6 seconds into boot and the server answered a ping, so this was not it.
     \item The driver was changed to wait for the server's ready message before the load, use fewer keys, and print a progress line at every step.
-    \item Second attempt: also stopped, right after starting the server, and printed nothing for six hours.
-    \item With the deadline close, Redis was left out. memcached covers the key-value store case.
+    \item Second attempt: also stopped, right after starting the server, and printed nothing for six hours. Redis was left out of the windowed campaign.
+    \item In the full-run campaign, a separate key-value suite (Redis, then memcached) ran on an 8 GiB board with the timing CPU, and \textbf{finished on all five designs} (Section~\ref{sec:fullrun_suites}). The same campaign also ran a GAPBS suite with six kernels on all five designs.
+    \item Why the windowed Redis runs stopped was not found.
 \end{itemize}
 
 % -----------------------------------------------------------------------------
@@ -806,6 +815,23 @@ Figure~\ref{fig:chr_samehost} shows the rule.
     \item The windowed campaign finished except 627.cam4\_s on two designs and the two x264 benchmarks. Result files from all machines were collected into CSV files, and one script made every figure in this report from them.
     \item Same-machine pairs of NINE and CoLT-FA with huge pages on were run for GAPBS and for four SPEC reference benchmarks.
     \item The artifact was put together with the patches for all designs, the benchmark drivers and the scripts. Its quick test was run on a fresh lab machine: building one design took about 6 minutes, the quick test about 5 seconds, with CoLT-FA giving 14,330 buffer hits, 10,329 walks against 24,659 for NINE, and 0 oracle mismatches.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\section{Other Work in the Full-Run Campaign}
+\label{sec:chr_fullrun_other}
+% -----------------------------------------------------------------------------
+
+The full-run campaign's scripts and logs (in \texttt{fullrun\_campaign/}) record more work than the sections above. In short:
+\begin{itemize}
+    \item \textbf{Unimplemented instruction scan.} A script searched every run's error file for \texttt{gem5}'s ``instruction unimplemented'' warning and listed the benchmarks in that run. Out of 506 runs scanned: \texttt{fwait} and \texttt{fninit} in 490, \texttt{prefetch\_nta} in 84, \texttt{fxam} in 29, \texttt{fcomip} in 22. \texttt{fcomip} turned out to matter for perlbench (Section~\ref{sec:chr_perl}).
+    \item \textbf{\texttt{fcomip} and \texttt{fxam} patches.} The first patch script adds an \texttt{FCOMIP\_R} macro-op (\texttt{compfp st(0), sti, spm=1}, a compare followed by a pop) and points the decoder at it. A second version also implements \texttt{fxam}: a new \texttt{Examfp} micro-op sets the x87 condition codes for zero, normal, subnormal, infinity, NaN and empty, and the sign. Which builds included the second version is not recorded.
+    \item \textbf{Native memory probe.} Peak memory of the speed benchmarks, measured natively: 631.deepsjeng\_s 6.72 GiB, 628.pop2\_s 1.41 GiB, 649.fotonik3d\_s 0.54 GiB, 603.bwaves\_s 0.39 GiB, 605.mcf\_s 0.28 GiB, 621.wrf\_s 0.19 GiB. 627.cam4\_s crashed natively with a segmentation fault in this probe (0.83 GiB at the time).
+    \item \textbf{Atomic-only copies.} Some long benchmarks were also run with the atomic CPU only, on 3 GiB and 12 GiB boards, as a faster fallback. These passed too, but the table of Section~\ref{sec:chr_scale} only counts timing-CPU runs.
+    \item \textbf{Second perlbench reruns.} perlbench was also rerun with the guest scripts of the x87 reruns on the build with the functional page table write (\texttt{extra-x87v2}). Both perlbench benchmarks passed there on all five designs as well.
+    \item \textbf{Housekeeping.} Scripts killed copies of benchmarks that had already passed elsewhere, and removed SPEC disk images from hosts with no running \texttt{gem5}, to free disk space for new runs.
+    \item \textbf{Cycle comparison.} A final analysis took the 215 timing-CPU SPEC runs with one benchmark per guest and compared simulated cycles across the five designs (Section~\ref{sec:fullrun_cycles}). Atomic-only runs were filtered out, and the fixed builds were used for perlbench and 619.lbm\_s.
+    \item \textbf{Code review.} \texttt{docs/design\_reports/tlb\_review*.txt} hold the line counts and diffs of each design's \texttt{tlb.cc} and \texttt{tlb.hh} against the base tree, used to check which code each lane was running.
 \end{itemize}
 
 % -----------------------------------------------------------------------------
@@ -846,15 +872,15 @@ Windowed runs & Shared load slowed other runs & Two campaigns on same hosts & Wi
 Windowed runs & New machines refused login & Host key prompts in batch mode & Accept new keys \\
 Windowed runs & Runs ended at window end & Handler given as a list & Single function; all restarted \\
 Windowed runs & Warm-up longer than some tests & 500M too long & 50M \\
-Both campaigns & 619.lbm\_s crashes (both campaigns) & Walker write meets dirty line; 3.2GB needed & Functional write; SE 8 GiB PASS \\
+Both campaigns & 619.lbm\_s crashes (both campaigns) & Walker write meets dirty line; 3.2GB needed & 12 GiB board PASS (5 designs); SE PASS \\
 Full-run lanes & Functional-fix build failed & Missing \texttt{GLIBCXX} version & \texttt{LD\_LIBRARY\_PATH} set \\
 Both campaigns & 631.deepsjeng\_s fails & 6.9GB needed & 12 GiB board PASS; SE PASS \\
 12 GiB board & 12 GiB board would not start & E820 entry had no parent & Entry attached to workload \\
-perlbench & perlbench fails everywhere & \texttt{fcomip} stub; 32-bit \texttt{movfp} & Fixed in SE; FS rerun unfinished \\
+perlbench & perlbench fails everywhere & \texttt{fcomip} stub; 32-bit \texttt{movfp} & Fixed; FS PASS on 5 designs \\
 perlbench & Fixed perl reruns exited & Script substitution, path, library path & Launched by hand \\
 Workloads & Perforated far better than all & 512 addresses per entry & Strict mode added \\
 Workloads & CoLT-FA worse with THP on & Different machines, different images & Same-machine rule; reruns \\
-Workloads & Redis makes no progress & Not found & Left out \\
+Workloads & Redis makes no progress (windowed) & Not found & Left out there; full-run suite PASS (5 designs) \\
 Throughout & Machines rebooted or lost & Lab machines shared & Runs moved, results kept \\
 Throughout & Mirror loop died & Laptop slept & Keep-alives, restarted \\
 \bottomrule
