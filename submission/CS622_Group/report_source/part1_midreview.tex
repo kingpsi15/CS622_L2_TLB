@@ -807,44 +807,6 @@ The prototype Hybrid was evaluated across benchmark suites:
 \end{itemize}
 
 % -----------------------------------------------------------------------------
-\section{Next Steps Identified at the Mid-Review}
-% -----------------------------------------------------------------------------
-
-While building the Hybrid L2 TLB we hit cases our design could not handle. To plan the rest of the project we looked at recent papers (2021 to 2025). Below are our notes from the mid-review. Part~\ref{part:post} explains which direction the second phase actually took.
-
-\subsection{1. Temporal Address Translation: Embedding Deltas in Page Tables (Trail, ASPLOS 2024)}
-\begin{itemize}
-    \item Our prefetchers depend on pages being next to each other. Pointer-chasing programs such as graph traversals do not have this.
-    \item A history table in hardware would need too much area.
-    \item \textbf{Trail} (Yan et al., ASPLOS 2024~\cite{yan2024trail}) stores the history as deltas in unused bits of the PTEs in memory.
-\end{itemize}
-
-\subsection{2. Rapid Speculative Translation Using XOR Inversion (Revelator, ISCA 2023)}
-\begin{itemize}
-    \item Even with the Hybrid, the L1 data cache still waits for the TLB to give a physical address.
-    \item \textbf{Revelator} (Song et al., ISCA 2023~\cite{song2023revelator}) predicts the physical address with an XOR hash in one cycle.
-\end{itemize}
-
-\subsection{3. Adaptive and Recursive Page Merging (SnakeByte, HPCA 2023)}
-\begin{itemize}
-    \item Our Hybrid covers two sizes: 32KB (CoLT) and 2MB (Perforated Pages).
-    \item Memory can also be contiguous at sizes in between, such as 64KB or 512KB.
-    \item \textbf{SnakeByte} (Skarlatos et al., HPCA 2023~\cite{skarlatos2023snakebyte}) merges pages at variable sizes using base-and-bounds entries.
-\end{itemize}
-
-\subsection{4. Sub-Entry Sharing-Aware Multi-Core TLBs (STAR, MICRO 2024)}
-\begin{itemize}
-    \item Our single-core runs ignore virtual machines and threads that map different virtual addresses to the same physical page.
-    \item \textbf{STAR} (Kim et al., MICRO 2024~\cite{kim2024star}) separates the physical tag array from the virtual index, so several virtual tags can point to one shared physical page.
-\end{itemize}
-
-\subsection{5. Hardware Concurrency: Marching Page Walks (HPCA 2025)}
-\begin{itemize}
-    \item With SIMD instructions, several L2 TLB misses can happen at once and queue up at the page walker.
-    \item \textbf{Marching Page Walks} (HPCA 2025~\cite{marching2025hpca}) combines these misses into one batch of memory accesses.
-\end{itemize}
-
-% -----------------------------------------------------------------------------
 \section{Summary at the Mid-Review}
 % -----------------------------------------------------------------------------
 At the mid-review we had:

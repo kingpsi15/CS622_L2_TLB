@@ -1,10 +1,10 @@
-Project group: <GROUP NAME>
+Project group: 240068_240902_241110004
 Project: L2 TLB Support for Sparse Huge Pages (CS622)
 
 Members (name, roll number, contribution):
-  Aditya Sai Vemparala, 240068, <contribution %>
-  Sahil Agarwal, 240902, <contribution %>
-  Abhinav Singh Baghel, 241110004, <contribution %>
+  Aditya Sai Vemparala, 240068, 45%
+  Sahil Agarwal, 240902, 45%
+  Abhinav Singh Baghel, 241110004, 10%
 
 All project members own and give their consent on everything submitted as part of this submission. The work done and submitted in the project are done by the members of the project group mentioned above. Any use of external sources such as source code from other repositories, GPT generated source code/documentation/Figures etc. are properly attributed.
 
@@ -16,4 +16,8 @@ Attributions:
   STREAM (https://github.com/jeffhammond/STREAM), memcached 1.6.29 and mc-crusher
   (https://memcached.org, https://github.com/memcached/mc-crusher), libevent 2.1.12,
   Redis 7.2.5 (https://redis.io): downloaded and built unmodified by artifact/scripts/build_stdbench.sh.
-- AI assistance: <describe here, e.g. "A large language model was used to help write scripts, analyse results and draft parts of the report">.
+- AI assistance: A large language model was used as a coding and writing assistant. It helped write and debug
+  the build, run, monitoring and analysis scripts, helped diagnose gem5 problems (including the i8237
+  panic, the page-walker write and the x87 fcomip/movfp bugs), processed the result files into tables
+  and plots, and helped draft and edit the report and slides. The group members ran all experiments
+  on the lab machines and checked the results reported.
