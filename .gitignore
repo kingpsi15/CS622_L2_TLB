@@ -5,3 +5,6 @@ gem5/tlb_*
 fs_results/
 fs_assets_backup/
 gem5/CS622_L2_TLB/
+
+# local-only: contains credentials
+network.py

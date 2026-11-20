@@ -26,7 +26,7 @@ export SPECTAR=$W/spec-dl/spec2017.tar.xz
 # SPEC stays in this machine's /tmp workspace. Full-system SPEC runs expose it
 # to the guest through a lane-local disk image.
 export SPEC=$W/cpu2017
-export LOG=$H/$LANELOG
+export LOG=$H/docs/design_reports/$LANELOG
 export INC=$W/gem5-$VARIANT   # gem5 tree with this lane's TLB policy (inc|excl|nine)
 export BASE=$SHARED/gem5-base   # gem5 with stock upstream v25.1.0.1 TLB (differential baseline)
 export FS_KERNEL=$SHARED/dl/vmlinux-x86-ubuntu-6.8.0-52-generic
