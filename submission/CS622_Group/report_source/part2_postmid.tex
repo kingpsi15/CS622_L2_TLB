@@ -854,7 +854,7 @@ memcached & off & 1.178 & 1.081 & 1.728 \\
     \item \textbf{Sampled windows.} Performance numbers come from windows of 200M to 1.5G instructions, not from whole runs. Correctness is still checked over the whole run for SPEC test inputs.
     \item \textbf{Same-machine rule.} With transparent huge pages on, the guest's memory layout depends on the disk image built on each machine, so these results are only compared within one machine.
     \item \textbf{Single core.} All full-system runs use one simulated core.
-    \item \textbf{Redis.} Redis was also prepared as a second key-value store. The first runs stopped making progress inside the guest before the measured phase and were stopped after two days. A second attempt with time limits and progress messages on every step was started on the last day. memcached covers the key-value store case in this report.
+    \item \textbf{Redis.} Redis was also prepared as a second key-value store. The first runs stopped making progress inside the guest before the measured phase and were stopped after two days. A second attempt with time limits and progress messages on every step also stopped inside the guest, right after the Redis server was started, and was stopped after six hours. Redis was therefore left out of the evaluation, and memcached covers the key-value store case in this report.
     \item \textbf{The Hybrid L2 TLB} from Part~\ref{part:mid} was not part of the second phase.
 \end{itemize}
 

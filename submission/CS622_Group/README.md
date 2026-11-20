@@ -73,7 +73,7 @@ read from environment variables at run time, so one binary covers a parameter sw
 | 619.lbm_s: gem5 assertion `Packet::setCacheResponding(): !flags.isSet(CACHE_RESPONDING)` | FS, every design | always, right after its window when switching timing -> atomic | 3.2 GB working set over the 3 GiB guest; window stats saved. PASSES in SE with 8 GiB on all designs |
 | 525.x264_r, 625.x264_s no result | FS | always | ~1 trillion instructions; window stats only |
 | 627.cam4_s fails natively | native | always | SPEC build issue; passes in gem5 |
-| Redis runs make no progress in the guest | FS | first attempt, all configs | under investigation (driver now time-limited with progress markers) |
+| Redis runs make no progress in the guest | FS | both attempts, all configs | not resolved in time; Redis left out of the evaluation (memcached covers key-value stores). Driver kept in benchmarks/stdbench/ |
 | SE matrix failures (setitimer, fork + MAP_SHARED timeout, multi-process remap STALE) | SE | always | identical on stock gem5 (SE-mode limits) |
 
 ## 3. Assumptions and unsupported features
