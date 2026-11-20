@@ -96,6 +96,7 @@ Part~\ref{part:mid} covers the first half. Table~\ref{tab:chr_phase1} only lists
 \toprule
 \textbf{Step} & \textbf{What was built and found} & \textbf{What it left open} \\
 \midrule
+Project start & Read the CoLT and Perforated Pages papers and wrote down four ideas: bitmap compression in the L2 TLB, coalesced sparse pages (a CoLT and Perforated Pages hybrid), prefetching around holes, and dropping a sparse page back to 4KB pages when it has too many holes (\texttt{docs/design\_reports/sparse\_huge\_pages\_ideas.md}). & Only the hybrid idea was built (the Hybrid L2 TLB). \\
 Toolchain and baseline & \texttt{gem5} built for x86, static microbenchmarks, baseline TLB statistics. & Only SE mode was used. \\
 Set-associative L2 & 128 sets, 4 ways, XOR-7 index, replacing the default L2 behaviour. & Index hash only tested on synthetic patterns. \\
 Inclusion policies & Inclusive, NINE and Exclusive compared on microbenchmarks. & Invalidation of the L2 never exercised, since SE mode has no unmaps. \\
@@ -124,6 +125,7 @@ Two discrepancies & CoLT looked useless next to huge pages; the coarse filter re
 The audit, the fixes and the verification are described in detail in Part~\ref{part:post}. In time order they went as follows:
 \begin{enumerate}
     \item Every design was read line by line. Problems found: L2 not cleared when the kernel unmaps a page or switches address space, L2 removal ignored the PCID, checkpoints saved only the L1, Perforated hits used fixed permissions.
+    \item The audit also wrote a test plan for the mid-review designs: cold fill, the L1 edge (63, 64, 65 pages), the L2 edge (511, 512, 513 pages), 80 pages in one set, random and reversed streams, strides 1 to 8, the same virtual address in different processes, and faults, remaps and flushes. The stress tests below follow this plan.
     \item Each design got its own fixed source files, so the original and the fixed version can be built and compared.
     \item A translation oracle and invariant checkers were added, and stress tests were written that unmap, remap and switch processes.
     \item Every design was run on the SE correctness matrix and on SPEC in SE mode.
@@ -187,6 +189,7 @@ The guest prints marker lines such as \texttt{SPEC\_START} and \texttt{SPEC\_RES
 
 How the full-run lanes were managed:
 \begin{itemize}
+    \item The lanes followed a written protocol (\texttt{robustness/ORCHESTRATION\_PROTOCOL.md}): one owner per lane, and errors handed over through shared files.
     \item Each lane had a supervisor script in its own terminal session.
     \item When a run failed, the supervisor wrote an incident file, marked the lane as blocked, and waited.
     \item A run was restarted by adding a line \texttt{[ADMIN <time>] RESUME <lane>: <reason>} to a shared file.
@@ -739,6 +742,8 @@ The ten guests then ran with no panics, and \textbf{both 500.perlbench\_r and 60
     \item \textbf{Standard benchmarks}, since we preferred these over our own programs: GAPBS, XSBench, STREAM and memcached. The lab machines cannot reach GitHub, so sources were downloaded on a laptop, copied over, and built as static binaries. GAPBS graphs were generated in advance, because generating them took about 95\% of a run's instructions.
 \end{enumerate}
 
+\paragraph{The microbenchmark windows were not usable.} The 13 microbenchmarks (GUPS, pointer chasing, random, hot/cold, stride and sequential access over 256MB, hole patterns and stress tests) were run on all six designs. Every window ended after only 5 to 10 million instructions, marked as the program having ended, and every program gave almost the same walk rate (about 0.2 to 0.27 per 1000 instructions). So the windows measured program start-up and not the test loops. These results are kept in \texttt{results\_final/windows.csv} but are not used anywhere in this report.
+
 \subsection{CoLT-FA Becomes the Sixth Design}
 \begin{itemize}
     \item The instructor had asked us to focus on CoLT.
@@ -763,6 +768,14 @@ The ten guests then ran with no panics, and \textbf{both 500.perlbench\_r and 60
     \item Reading the model: each L2 entry stored a separate physical address for each of the 512 pages of its 2MB region and never checked that they are contiguous. That is about 512 times what a real design can hold.
     \item A strict mode was written and run on the same workloads. Under it, Perforated Pages had more walks than NINE on most workloads (Section~\ref{sec:perf_strict}).
     \item This also changes how the Perforated results of Part~\ref{part:mid} should be read.
+\end{itemize}
+
+\paragraph{Agile looked the same as NINE.}
+\begin{itemize}
+    \item In every full-system result, Agile was within a few percent of NINE.
+    \item Its statistics showed 0 prefetches issued, in both campaigns.
+    \item Reason: the prefetcher looks up neighbouring pages in \texttt{gem5}'s emulated page table, which only exists in SE mode. This is the same problem the mid-review CoLT-FA had.
+    \item So in full-system mode Agile is NINE without prefetching. This was found during the final check of the results, and there was no time left to move the prefetcher onto the page walker.
 \end{itemize}
 
 \paragraph{CoLT-FA looked worse with huge pages on.}
@@ -878,6 +891,8 @@ Both campaigns & 631.deepsjeng\_s fails & 6.9GB needed & 12 GiB board PASS; SE P
 12 GiB board & 12 GiB board would not start & E820 entry had no parent & Entry attached to workload \\
 perlbench & perlbench fails everywhere & \texttt{fcomip} stub; 32-bit \texttt{movfp} & Fixed; FS PASS on 5 designs \\
 perlbench & Fixed perl reruns exited & Script substitution, path, library path & Launched by hand \\
+Workloads & Microbenchmark windows only 5 to 10M instructions & Windows caught program start-up & Not used \\
+Final check & Agile issues 0 prefetches in full system & Prefetcher reads SE-only page table & Stated; not fixed \\
 Workloads & Perforated far better than all & 512 addresses per entry & Strict mode added \\
 Workloads & CoLT-FA worse with THP on & Different machines, different images & Same-machine rule; reruns \\
 Workloads & Redis makes no progress (windowed) & Not found & Left out there; full-run suite PASS (5 designs) \\

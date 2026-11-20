@@ -64,6 +64,7 @@ This report covers our project on L2 TLB designs in the \texttt{gem5} simulator~
     \item Full-run campaign (timing CPU for whole benchmarks, five designs): \textbf{all 43 pass on every design}, after fixing the x87 bug and using a 12 GiB board for the two largest benchmarks. The same campaign ran GAPBS and Redis/memcached to completion on all five designs. Across the 43 SPEC benchmarks the designs differ by about 1\% or less in total cycles.
     \item CoLT-FA against NINE with 4KB pages: \textbf{59\% to 64\%} fewer page walks on GAPBS bfs, cc and sssp.
     \item Perforated Pages' large gains came from an unrealistic model.
+    \item The Agile prefetcher only works in SE mode; in full system it issued no prefetches, so Agile behaves like NINE there.
 \end{itemize}
 
 \textbf{Part III: the whole project in time order}, including what failed: the full-system setup, a \texttt{gem5} device panic that stopped all runs, a page walker write that broke the cache code, a 12 GiB memory map, and an x87 bug in \texttt{gem5} that made perlbench fail (an unimplemented \texttt{fcomip}, and register moves that copied only 32 of 64 bits).
